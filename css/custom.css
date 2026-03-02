@@ -1,7 +1,6 @@
 /* ============================================
    ニンニン求人サイト — Custom Styles
-   "Pikachu Energy" — holographic card effects,
-   dynamic textures, Japanese pop energy
+   ポケモンカード専門店のブランドカラーで統一
    ============================================ */
 
 /* --- Design Tokens --- */
@@ -25,7 +24,7 @@
   --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
   --shadow-lg: 0 10px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
   --shadow-xl: 0 25px 60px rgba(0,0,0,0.12);
-  /* --shadow-glow removed (unnatural glow) */
+  /* グロウシャドウは不使用 */
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -117,7 +116,7 @@ body::after {
   50% { transform: translateY(-8px); }
 }
 
-/* --- Holographic Card Effect (removed — too AI-looking) --- */
+/* --- カードエフェクト --- */
 
 /* --- Section Titles (simplified — no decorative lines) --- */
 .section-title {
@@ -139,8 +138,6 @@ body::after {
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
 }
-
-/* Holographic border on hover — removed (AI-looking) */
 
 /* --- Feature Cards --- */
 .feature-card {
@@ -740,7 +737,7 @@ body::after {
   border: 0;
 }
 
-/* --- Character Animations (removed — SVG chars replaced with images) --- */
+/* --- キャラクター --- */
 
 /* --- prefers-reduced-motion --- */
 @media (prefers-reduced-motion: reduce) {
