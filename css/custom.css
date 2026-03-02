@@ -704,6 +704,80 @@ img { max-width: 100%; height: auto; }
   justify-content: center;
 }
 
+/* ========== ENTRY FORM ========== */
+.entry-field {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #EAEAEA;
+}
+.entry-field:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.entry-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  font-size: 14px;
+  color: var(--color-text);
+  font-weight: 500;
+  transition: all var(--transition);
+}
+.entry-radio:hover { border-color: var(--color-primary); background: var(--color-primary-light); }
+.entry-radio input { accent-color: #FFCB05; width: 16px; height: 16px; }
+.entry-radio:has(input:checked) { border-color: var(--color-primary); background: var(--color-primary-light); }
+
+.entry-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 48px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: all var(--transition);
+}
+.entry-submit-btn:hover { opacity: 0.85; }
+@media (max-width: 640px) {
+  .entry-submit-btn { width: 100%; justify-content: center; padding: 16px 24px; }
+}
+
+.entry-flow-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.entry-flow-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--color-body);
+  border-bottom: 1px solid #EAEAEA;
+}
+.entry-flow-list li:last-child { border-bottom: none; }
+.entry-flow-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  font-family: var(--font-num);
+  font-weight: 800;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
 /* ========== ACCESSIBILITY ========== */
 .skip-link {
   position: absolute;
