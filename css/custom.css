@@ -51,15 +51,11 @@ body {
 
 /* --- ヘッダー --- */
 .site-header {
-  transition: box-shadow var(--transition), background-color var(--transition);
-  border-bottom: 1px solid transparent;
+  transition: box-shadow var(--transition);
 }
 
 .site-header.scrolled {
   box-shadow: var(--shadow-sm);
-  background-color: rgba(255, 255, 255, 0.98) !important;
-  backdrop-filter: blur(8px);
-  border-bottom-color: var(--color-border);
 }
 
 /* --- ヒーローセクション --- */
@@ -70,14 +66,7 @@ body {
   min-height: 80vh;
 }
 
-.hero-floating {
-  animation: heroFloat 6s ease-in-out infinite;
-}
-
-@keyframes heroFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
+/* キャラクター浮遊アニメーション無し（企業的な印象） */
 
 /* --- セクションタイトル --- */
 .section-title {
@@ -110,7 +99,6 @@ body {
 }
 
 .card:hover {
-  transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
 
@@ -152,9 +140,7 @@ body {
   object-fit: contain;
 }
 
-.card:hover .feature-icon {
-  transform: scale(1.05);
-}
+/* ホバーアニメーション抑制（企業サイト向け） */
 
 /* --- 店舗カード --- */
 .store-card {
@@ -167,7 +153,6 @@ body {
 }
 
 .store-card:hover {
-  transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
 
@@ -213,9 +198,7 @@ body {
   transition: transform var(--transition);
 }
 
-.card:hover .avatar {
-  transform: scale(1.05);
-}
+/* アバターホバーアニメーション抑制 */
 
 /* --- ステップ --- */
 .step-circle {
@@ -271,7 +254,6 @@ body {
 
 .btn-primary:hover {
   opacity: 0.85;
-  transform: translateY(-1px);
 }
 
 .btn-primary-lg {
@@ -319,7 +301,6 @@ body {
 
 .btn-white:hover {
   opacity: 0.9;
-  transform: translateY(-1px);
 }
 
 /* --- スクロールアニメーション --- */
@@ -642,17 +623,8 @@ body {
     transition: none;
   }
 
-  .hero-floating {
-    animation: none;
-  }
-
   .card:hover,
   .store-card:hover {
-    transform: none;
-  }
-
-  .btn-primary:hover,
-  .btn-white:hover {
     transform: none;
   }
 }
