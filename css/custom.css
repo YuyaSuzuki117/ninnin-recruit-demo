@@ -1,7 +1,6 @@
 /* ============================================
    ニンニン求人サイト — Custom Styles
-   白ベース + ピカチュウイエローをアクセントに使用
-   鷹ノ羽陸運サイトの構成をベースに最適化
+   企業的デザイン — 鷹ノ羽陸運スタイルベース
    ============================================ */
 
 /* --- デザイントークン --- */
@@ -16,23 +15,22 @@
   --color-bg: #FFFFFF;
   --color-bg-alt: #F5F5F5;
   --color-white: #FFFFFF;
-  --color-border: #E5E7EB;
+  --color-border: #D1D5DB;
+  --color-dark: #1A1A1A;
 
   --font-heading: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
   --font-body: 'Noto Sans JP', sans-serif;
   --font-display: 'Sora', 'Zen Kaku Gothic New', sans-serif;
 
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
-  --shadow-lg: 0 10px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
 
   --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
-  --radius-xl: 8px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
 
-  --transition: 0.3s ease;
-  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition: 0.25s ease;
 }
 
 /* --- ベース --- */
@@ -49,13 +47,31 @@ body {
   line-height: 1.8;
 }
 
+/* --- ヘッダー上部バー --- */
+.header-top-bar {
+  background: var(--color-dark);
+  color: #D1D5DB;
+  font-size: 0.8125rem;
+}
+
+.header-top-bar a {
+  color: #D1D5DB;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.header-top-bar a:hover {
+  color: var(--color-primary);
+}
+
 /* --- ヘッダー --- */
 .site-header {
   transition: box-shadow var(--transition);
+  border-bottom: 2px solid var(--color-primary);
 }
 
 .site-header.scrolled {
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
 }
 
 /* --- ヒーローセクション --- */
@@ -63,16 +79,34 @@ body {
   position: relative;
   overflow: hidden;
   background: var(--color-white);
-  min-height: 80vh;
+  min-height: 75vh;
 }
 
-/* キャラクター浮遊アニメーション無し（企業的な印象） */
-
 /* --- セクションタイトル --- */
+.section-title-wrap {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title-en {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5rem;
+}
+
 .section-title {
   position: relative;
   display: inline-block;
   padding-bottom: 0.75rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: var(--color-text);
 }
 
 .section-title::after {
@@ -81,19 +115,17 @@ body {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 40px;
   height: 3px;
   background: var(--color-primary);
-  border-radius: 2px;
 }
 
 /* --- カード（共通） --- */
 .card {
   background: var(--color-white);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-border);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: box-shadow var(--transition);
   overflow: hidden;
   position: relative;
 }
@@ -105,6 +137,7 @@ body {
 /* --- 魅力カード --- */
 .feature-card {
   position: relative;
+  border-top: 3px solid var(--color-primary);
 }
 
 .feature-card .feature-tag {
@@ -112,35 +145,32 @@ body {
   top: 16px;
   right: 16px;
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--color-primary-dark);
   background: var(--color-primary-light);
   padding: 2px 10px;
   border-radius: 2px;
-  opacity: 0.7;
 }
 
 .feature-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
   background: var(--color-primary-light);
+  border: 1px solid var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.5rem;
-  transition: transform var(--transition);
+  margin: 0 auto 1.25rem;
 }
 
 .feature-icon img {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
 }
-
-/* ホバーアニメーション抑制（企業サイト向け） */
 
 /* --- 店舗カード --- */
 .store-card {
@@ -149,7 +179,7 @@ body {
   overflow: hidden;
   background: var(--color-white);
   border: 1px solid var(--color-border);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: box-shadow var(--transition);
 }
 
 .store-card:hover {
@@ -164,15 +194,14 @@ body {
 
 .store-badge {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 0;
+  left: 0;
   background: var(--color-primary);
   color: var(--color-text);
   font-family: var(--font-heading);
   font-size: 0.6875rem;
   font-weight: 700;
-  padding: 2px 10px;
-  border-radius: 4px;
+  padding: 4px 12px;
   z-index: 3;
 }
 
@@ -182,35 +211,42 @@ body {
 }
 
 .interview-card .avatar {
-  width: 84px;
-  height: 84px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: var(--color-bg-alt);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: 3px solid var(--color-white);
   box-shadow: var(--shadow-sm);
-  margin: -42px auto 0;
+  margin: -40px auto 0;
   position: relative;
   z-index: 2;
   overflow: hidden;
-  transition: transform var(--transition);
 }
 
-/* アバターホバーアニメーション抑制 */
+/* --- 募集カード --- */
+.job-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-sm);
+}
 
 /* --- ステップ --- */
 .step-circle {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
   background: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text);
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 800;
   font-family: var(--font-display);
   position: relative;
@@ -220,18 +256,28 @@ body {
 
 .step-connector {
   position: absolute;
-  left: 26px;
-  top: 52px;
+  left: 24px;
+  top: 48px;
   width: 2px;
-  height: calc(100% - 52px);
-  background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-light), transparent);
+  height: calc(100% - 48px);
+  background: var(--color-primary);
 }
 
 /* --- 応募誘導セクション --- */
 .cta-section {
-  background: var(--color-primary);
+  background: var(--color-dark);
   position: relative;
   overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-primary);
 }
 
 /* --- ボタン --- */
@@ -246,8 +292,7 @@ body {
   font-size: 1rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  box-shadow: var(--shadow-sm);
-  transition: opacity var(--transition), transform var(--transition);
+  transition: opacity var(--transition);
   border: none;
   cursor: pointer;
 }
@@ -287,27 +332,26 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 1rem 2.5rem;
-  background: var(--color-white);
+  background: var(--color-primary);
   color: var(--color-text);
   font-weight: 700;
   font-size: 1.125rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  box-shadow: var(--shadow-sm);
-  transition: opacity var(--transition), transform var(--transition);
+  transition: opacity var(--transition);
   border: none;
   cursor: pointer;
 }
 
 .btn-white:hover {
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 /* --- スクロールアニメーション --- */
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .animate-on-scroll.visible {
@@ -348,7 +392,6 @@ body {
   height: 2px;
   background: var(--color-text);
   transition: all var(--transition);
-  border-radius: 1px;
 }
 
 .hamburger.active span:nth-child(1) {
@@ -382,7 +425,7 @@ body {
 }
 
 .form-input::placeholder {
-  color: #6B7280;
+  color: #9CA3AF;
 }
 
 .form-label {
@@ -399,7 +442,7 @@ body {
   color: var(--color-white);
   font-size: 0.6875rem;
   padding: 0.125rem 0.5rem;
-  border-radius: 3px;
+  border-radius: 2px;
   margin-left: 0.5rem;
   font-weight: 500;
   vertical-align: middle;
@@ -424,6 +467,7 @@ body {
   font-weight: 600;
   color: var(--color-text);
   font-size: 0.9375rem;
+  border-right: 1px solid var(--color-border);
 }
 
 .job-table td {
@@ -440,6 +484,7 @@ body {
 
   .job-table th {
     border-bottom: none;
+    border-right: none;
     padding-bottom: 0.25rem;
   }
 
@@ -450,7 +495,7 @@ body {
 
 /* --- パンくずリスト --- */
 .breadcrumb {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: #6B7280;
 }
 
@@ -484,12 +529,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
 }
 
 /* --- フッター --- */
 .site-footer {
-  background: #1A1A1A;
+  background: var(--color-dark);
   color: #9CA3AF;
 }
 
@@ -521,6 +565,10 @@ body {
 
   .step-connector {
     display: none;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
   }
 }
 
@@ -574,7 +622,6 @@ body {
 .hamburger:focus-visible {
   outline: 3px solid var(--color-primary);
   outline-offset: 4px;
-  border-radius: 4px;
 }
 
 /* --- フォームエラー表示 --- */
@@ -621,10 +668,5 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-
-  .card:hover,
-  .store-card:hover {
-    transform: none;
   }
 }

@@ -173,24 +173,39 @@
   <!-- スキップリンク -->
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
+  <!-- ヘッダー上部バー（企業情報） -->
+  <div class="header-top-bar hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-9">
+        <p class="text-xs">株式会社NINJA ｜ ポケモンカード専門店「ニンニン」採用サイト</p>
+        <div class="flex items-center gap-6">
+          <a href="tel:03-4363-7710" class="flex items-center gap-1 text-xs font-medium">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            03-4363-7710
+          </a>
+          <a href="entry.html" class="bg-primary text-gray-900 text-xs font-bold px-4 py-1 hover:opacity-80 transition-opacity">応募フォーム</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ヘッダー -->
-  <header class="site-header fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+  <header class="site-header fixed top-0 lg:top-9 left-0 right-0 z-50 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 lg:h-20">
         <!-- ロゴ -->
-        <a href="index.html" class="flex items-center gap-2">
+        <a href="index.html" class="flex items-center gap-3">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/logo.png" alt="ニンニン" class="h-10 w-auto">
-          <span class="hidden sm:inline text-xs text-gray-500 ml-1">採用情報</span>
+          <span class="hidden sm:inline text-xs font-bold text-gray-500 border-l border-gray-300 pl-3">採用情報</span>
         </a>
 
         <!-- デスクトップナビ -->
-        <nav class="hidden lg:flex items-center gap-8" aria-label="メインナビゲーション">
-          <a href="#about" class="text-sm font-bold text-gray-800 hover:text-primary-dark transition-colors">ニンニンとは</a>
-          <a href="#features" class="text-sm font-bold text-gray-800 hover:text-primary-dark transition-colors">働く魅力</a>
-          <a href="#stores" class="text-sm font-bold text-gray-800 hover:text-primary-dark transition-colors">店舗一覧</a>
-          <a href="#interview" class="text-sm font-bold text-gray-800 hover:text-primary-dark transition-colors">先輩の声</a>
-          <a href="#jobs" class="text-sm font-bold text-gray-800 hover:text-primary-dark transition-colors">募集要項</a>
-          <a href="entry.html" class="btn-primary text-sm !py-2.5 !px-5">応募する</a>
+        <nav class="hidden lg:flex items-center gap-0" aria-label="メインナビゲーション">
+          <a href="#about" class="px-5 py-2 text-sm font-bold text-gray-800 hover:text-primary-dark hover:bg-gray-50 transition-colors border-r border-gray-200">ニンニンとは</a>
+          <a href="#features" class="px-5 py-2 text-sm font-bold text-gray-800 hover:text-primary-dark hover:bg-gray-50 transition-colors border-r border-gray-200">働く魅力</a>
+          <a href="#stores" class="px-5 py-2 text-sm font-bold text-gray-800 hover:text-primary-dark hover:bg-gray-50 transition-colors border-r border-gray-200">店舗一覧</a>
+          <a href="#interview" class="px-5 py-2 text-sm font-bold text-gray-800 hover:text-primary-dark hover:bg-gray-50 transition-colors border-r border-gray-200">先輩の声</a>
+          <a href="#jobs" class="px-5 py-2 text-sm font-bold text-gray-800 hover:text-primary-dark hover:bg-gray-50 transition-colors">募集要項</a>
         </nav>
 
         <!-- モバイルメニューボタン -->
@@ -208,14 +223,15 @@
     <!-- モバイルメニュー -->
     <nav id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl lg:hidden" aria-label="モバイルナビゲーション" aria-hidden="true">
       <div class="p-6 pt-20">
-        <div class="flex flex-col gap-1">
-          <a href="#about" class="py-3 px-4 text-gray-700 font-medium hover:bg-primary-light rounded transition-colors">ニンニンとは</a>
-          <a href="#features" class="py-3 px-4 text-gray-700 font-medium hover:bg-primary-light rounded transition-colors">働く魅力</a>
-          <a href="#stores" class="py-3 px-4 text-gray-700 font-medium hover:bg-primary-light rounded transition-colors">店舗一覧</a>
-          <a href="#interview" class="py-3 px-4 text-gray-700 font-medium hover:bg-primary-light rounded transition-colors">先輩の声</a>
-          <a href="#jobs" class="py-3 px-4 text-gray-700 font-medium hover:bg-primary-light rounded transition-colors">募集要項</a>
-          <div class="pt-4 mt-4 border-t">
-            <a href="entry.html" class="btn-primary w-full justify-center">応募する</a>
+        <div class="flex flex-col gap-0">
+          <a href="#about" class="py-3 px-4 text-gray-700 font-bold border-b border-gray-100 hover:bg-gray-50 transition-colors">ニンニンとは</a>
+          <a href="#features" class="py-3 px-4 text-gray-700 font-bold border-b border-gray-100 hover:bg-gray-50 transition-colors">働く魅力</a>
+          <a href="#stores" class="py-3 px-4 text-gray-700 font-bold border-b border-gray-100 hover:bg-gray-50 transition-colors">店舗一覧</a>
+          <a href="#interview" class="py-3 px-4 text-gray-700 font-bold border-b border-gray-100 hover:bg-gray-50 transition-colors">先輩の声</a>
+          <a href="#jobs" class="py-3 px-4 text-gray-700 font-bold border-b border-gray-100 hover:bg-gray-50 transition-colors">募集要項</a>
+          <div class="pt-6 mt-2">
+            <a href="tel:03-4363-7710" class="block text-center text-gray-800 font-bold text-lg mb-3">03-4363-7710</a>
+            <a href="entry.html" class="btn-primary w-full justify-center">応募フォーム</a>
           </div>
         </div>
       </div>
@@ -227,7 +243,7 @@
   <main id="main-content">
 
   <!-- ヒーロー -->
-  <section class="hero-section relative overflow-hidden flex items-center pt-16 lg:pt-20">
+  <section class="hero-section relative overflow-hidden flex items-center pt-16 lg:pt-[116px]">
     <!-- 背景画像 -->
     <div class="absolute inset-0">
       <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/mainimg1.jpg" alt="" class="w-full h-full object-cover" aria-hidden="true">
@@ -280,8 +296,9 @@ loading="eager">
   <!-- ニンニンとは -->
   <section id="about" class="py-20 lg:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 animate-on-scroll">
-        <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">ニンニンとは</h2>
+      <div class="section-title-wrap animate-on-scroll">
+        <span class="section-title-en">About Us</span>
+        <h2 class="section-title">ニンニンとは</h2>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -342,8 +359,9 @@ loading="eager">
   <!-- ============ 3つの魅力 ============ -->
   <section id="features" class="py-20 lg:py-28 bg-bg-alt">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 animate-on-scroll">
-        <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">ニンニンで働く3つの魅力</h2>
+      <div class="section-title-wrap animate-on-scroll">
+        <span class="section-title-en">Why Nin-Nin</span>
+        <h2 class="section-title">ニンニンで働く3つの魅力</h2>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
@@ -390,13 +408,10 @@ loading="eager">
   <!-- ============ 店舗一覧 ============ -->
   <section id="stores" class="py-20 lg:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 animate-on-scroll">
-        <div class="flex items-center justify-center gap-4 mb-2">
-          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec04_h2_img.png" alt="" class="h-12 w-auto max-w-[120px] object-contain" aria-hidden="true">
-          <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">店舗一覧</h2>
-          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec04_h2_img.png" alt="" class="h-12 w-auto max-w-[120px] object-contain" style="transform: scaleX(-1);" aria-hidden="true">
-        </div>
-        <p class="text-gray-600 mt-4">全国7拠点でお待ちしています</p>
+      <div class="section-title-wrap animate-on-scroll">
+        <span class="section-title-en">Shops</span>
+        <h2 class="section-title">店舗一覧</h2>
+        <p class="text-gray-600 mt-4 text-sm">全国7拠点でお待ちしています</p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -580,87 +595,72 @@ loading="eager">
   <!-- ============ 募集要項 ============ -->
   <section id="jobs" class="py-20 lg:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 animate-on-scroll">
-        <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">募集要項</h2>
-        <p class="text-gray-600 mt-6">あなたに合った働き方を見つけてください</p>
+      <div class="section-title-wrap animate-on-scroll">
+        <span class="section-title-en">Recruit</span>
+        <h2 class="section-title">募集要項</h2>
+        <p class="text-gray-600 mt-4 text-sm">あなたに合った働き方を見つけてください</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
 
         <!-- 正社員 -->
-        <a href="jobs.html" class="card group p-8 animate-on-scroll delay-1 relative overflow-hidden">
-          <!-- ゲンガーカード装飾 -->
-          <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2025/01/%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC.png"
-               alt="" class="absolute -right-6 -bottom-4 w-32 opacity-10 rotate-12 pointer-events-none" aria-hidden="true">
-          <div class="flex items-center gap-4 mb-6 relative z-10">
-            <div class="w-14 h-14 rounded bg-primary-light flex items-center justify-center">
-              <svg class="w-9 h-9" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="48" stroke="#1D1D1B" stroke-width="4"/>
-                <path d="M2 50 H98" stroke="#1D1D1B" stroke-width="4"/>
-                <path d="M2 50 A48 48 0 0 0 98 50" fill="white"/>
-                <path d="M2 50 A48 48 0 0 1 98 50" fill="#FF0000"/>
-                <circle cx="50" cy="50" r="16" fill="white" stroke="#1D1D1B" stroke-width="4"/>
-                <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
-              </svg>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-primary-dark tracking-wider">正社員</span>
-              <h3 class="font-bold text-xl text-gray-900 group-hover:text-primary-dark transition-colors">店舗スタッフ（正社員）</h3>
+        <a href="jobs.html" class="card group animate-on-scroll delay-1">
+          <div class="bg-primary px-8 py-5">
+            <div class="flex items-center gap-4">
+              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon02.png" alt="" class="w-10 h-10 object-contain" aria-hidden="true">
+              <div>
+                <span class="text-xs font-bold text-gray-800 tracking-wider">FULL-TIME</span>
+                <h3 class="font-heading font-bold text-xl text-gray-900">店舗スタッフ（正社員）</h3>
+              </div>
             </div>
           </div>
-          <div class="space-y-3 mb-6 relative z-10">
-            <div class="flex items-center gap-3 text-sm text-gray-600">
-              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 flex-shrink-0" aria-hidden="true">
-              月給 22万円〜35万円（経験・能力による）
+          <div class="p-8">
+            <div class="space-y-3 mb-6">
+              <div class="flex items-start gap-3 text-sm text-gray-700">
+                <span class="flex-shrink-0 w-1.5 h-1.5 bg-primary mt-2"></span>
+                月給 22万円〜35万円（経験・能力による）
+              </div>
+              <div class="flex items-start gap-3 text-sm text-gray-700">
+                <span class="flex-shrink-0 w-1.5 h-1.5 bg-primary mt-2"></span>
+                社会保険完備・交通費全額支給
+              </div>
+              <div class="flex items-start gap-3 text-sm text-gray-700">
+                <span class="flex-shrink-0 w-1.5 h-1.5 bg-primary mt-2"></span>
+                週休2日制（シフト制）
+              </div>
             </div>
-            <div class="flex items-center gap-3 text-sm text-gray-600">
-              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 flex-shrink-0" aria-hidden="true">
-              社会保険完備・交通費全額支給
-            </div>
-            <div class="flex items-center gap-3 text-sm text-gray-600">
-              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 flex-shrink-0" aria-hidden="true">
-              週休2日制（シフト制）
-            </div>
+            <span class="btn-outline text-sm w-full justify-center group-hover:bg-primary group-hover:border-primary">詳細を見る →</span>
           </div>
-          <span class="btn-outline text-sm w-full justify-center group-hover:bg-primary group-hover:text-white group-hover:border-primary relative z-10">詳細を見る</span>
         </a>
 
         <!-- アルバイト -->
-        <a href="jobs.html#part-time" class="card group p-8 animate-on-scroll delay-2 relative overflow-hidden">
-          <!-- ブラッキーカード装飾 -->
-          <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2024/06/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC-1.png"
-               alt="" class="absolute -right-6 -bottom-4 w-32 opacity-10 -rotate-12 pointer-events-none" aria-hidden="true">
-          <div class="flex items-center gap-4 mb-6 relative z-10">
-            <div class="w-14 h-14 rounded bg-primary-light flex items-center justify-center">
-              <svg class="w-9 h-9" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="48" stroke="#1D1D1B" stroke-width="4"/>
-                <path d="M2 50 H98" stroke="#1D1D1B" stroke-width="4"/>
-                <path d="M2 50 A48 48 0 0 0 98 50" fill="white"/>
-                <path d="M2 50 A48 48 0 0 1 98 50" fill="#3B4CCA"/>
-                <circle cx="50" cy="50" r="16" fill="white" stroke="#1D1D1B" stroke-width="4"/>
-                <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
-              </svg>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-accent tracking-wider">アルバイト</span>
-              <h3 class="font-bold text-xl text-gray-900 group-hover:text-accent transition-colors">店舗スタッフ（アルバイト）</h3>
+        <a href="jobs.html#part-time" class="card group animate-on-scroll delay-2">
+          <div class="bg-secondary px-8 py-5">
+            <div class="flex items-center gap-4">
+              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon04.png" alt="" class="w-10 h-10 object-contain" aria-hidden="true">
+              <div>
+                <span class="text-xs font-bold text-white/80 tracking-wider">PART-TIME</span>
+                <h3 class="font-heading font-bold text-xl text-white">店舗スタッフ（アルバイト）</h3>
+              </div>
             </div>
           </div>
-          <div class="space-y-3 mb-6 relative z-10">
-            <div class="flex items-center gap-3 text-sm text-gray-600">
-              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon07.png" alt="" class="w-4 h-4 flex-shrink-0" aria-hidden="true">
-              時給 1,100円〜1,500円（経験考慮）
+          <div class="p-8">
+            <div class="space-y-3 mb-6">
+              <div class="flex items-start gap-3 text-sm text-gray-700">
+                <span class="flex-shrink-0 w-1.5 h-1.5 bg-secondary mt-2"></span>
+                時給 1,100円〜1,500円（経験考慮）
+              </div>
+              <div class="flex items-start gap-3 text-sm text-gray-700">
+                <span class="flex-shrink-0 w-1.5 h-1.5 bg-secondary mt-2"></span>
+                週2日〜・1日4時間〜OK
+              </div>
+              <div class="flex items-start gap-3 text-sm text-gray-700">
+                <span class="flex-shrink-0 w-1.5 h-1.5 bg-secondary mt-2"></span>
+                学生・Wワーク歓迎・シフト自由
+              </div>
             </div>
-            <div class="flex items-center gap-3 text-sm text-gray-600">
-              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon07.png" alt="" class="w-4 h-4 flex-shrink-0" aria-hidden="true">
-              週2日〜・1日4時間〜OK
-            </div>
-            <div class="flex items-center gap-3 text-sm text-gray-600">
-              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon07.png" alt="" class="w-4 h-4 flex-shrink-0" aria-hidden="true">
-              学生・Wワーク歓迎・シフト自由
-            </div>
+            <span class="btn-outline text-sm w-full justify-center border-secondary text-secondary group-hover:bg-secondary group-hover:text-white group-hover:border-secondary">詳細を見る →</span>
           </div>
-          <span class="btn-outline text-sm w-full justify-center border-accent text-accent group-hover:bg-accent group-hover:text-white group-hover:border-accent relative z-10">詳細を見る</span>
         </a>
 
       </div>
@@ -671,16 +671,12 @@ loading="eager">
   <!-- ============ 応募の流れ ============ -->
   <section id="flow" class="py-20 lg:py-28 bg-bg-alt">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 animate-on-scroll">
-        <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">応募の流れ</h2>
+      <div class="section-title-wrap animate-on-scroll">
+        <span class="section-title-en">Flow</span>
+        <h2 class="section-title">応募の流れ</h2>
       </div>
 
-      <div class="max-w-3xl mx-auto relative">
-        <!-- ニンニンキャラクター装飾（右端） -->
-        <div class="hidden lg:block absolute -right-48 top-1/2 -translate-y-1/2 opacity-20" aria-hidden="true">
-          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png"
-               alt="" class="w-40">
-        </div>
+      <div class="max-w-3xl mx-auto">
         <div class="space-y-0">
 
           <!-- ステップ1 -->
@@ -747,30 +743,31 @@ loading="eager">
   <!-- ============ 応募誘導セクション ============ -->
   <section class="cta-section py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <!-- ニンニンキャラ + ピカチュウ 並べて表示 -->
-      <div class="flex items-end justify-center gap-4 mb-8" aria-hidden="true">
-        <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png"
-             alt="" class="w-40 lg:w-48 drop-shadow-2xl">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
-             alt="" class="w-36 lg:w-44 drop-shadow-2xl" style="animation-delay: -2s;">
+      <div class="section-title-wrap animate-on-scroll">
+        <span class="section-title-en !text-primary">Entry</span>
+        <h2 class="section-title !text-white">お問い合わせ・ご応募</h2>
       </div>
-      <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 mb-6 animate-on-scroll">
-        あなたの「好き」を<br class="sm:hidden">ゲットしよう！
-      </h2>
 
-      <p class="text-gray-700 text-lg mb-10 max-w-2xl mx-auto animate-on-scroll delay-1">
-        まずはお気軽にご応募ください。<br>
-        ポケカが好きな気持ちがあれば、未経験でも大歓迎。<br>
-        キミの「好き」のチカラ、ニンニンが待ってるぜ！
+      <p class="text-gray-300 text-base mb-10 max-w-2xl mx-auto animate-on-scroll delay-1">
+        お電話またはフォームからお気軽にお問い合わせ・ご応募ください。<br>
+        ポケモンカードが好きな方、未経験の方も歓迎いたします。
       </p>
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 animate-on-scroll delay-2">
-        <a href="entry.html" class="btn-white btn-primary-lg !bg-gray-900 !text-white">応募フォームへ</a>
-        <a href="tel:03-4363-7710" class="btn-white btn-primary-lg !bg-transparent !text-gray-900 border-2 border-gray-900/30 hover:!bg-gray-900/5">03-4363-7710</a>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10 animate-on-scroll delay-2">
+        <div class="text-center">
+          <p class="text-gray-400 text-xs mb-2">お電話でのお問い合わせ</p>
+          <a href="tel:03-4363-7710" class="text-white font-heading font-bold text-3xl lg:text-4xl tracking-wide hover:text-primary transition-colors">03-4363-7710</a>
+          <p class="text-gray-400 text-xs mt-2">受付時間：平日 10:00〜18:00</p>
+        </div>
+        <div class="hidden sm:block w-px h-20 bg-gray-700" aria-hidden="true"></div>
+        <div class="text-center">
+          <p class="text-gray-400 text-xs mb-2">WEBからのご応募</p>
+          <a href="entry.html" class="btn-white btn-primary-lg">応募フォームへ</a>
+        </div>
       </div>
 
-      <p class="text-gray-600 text-sm animate-on-scroll delay-3">
-        受付時間：平日 10:00〜18:00 ｜ 担当：採用チーム
+      <p class="text-gray-500 text-xs animate-on-scroll delay-3">
+        【受付担当】 採用チーム
       </p>
     </div>
   </section>
