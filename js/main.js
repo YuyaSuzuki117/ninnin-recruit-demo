@@ -166,7 +166,7 @@ function initScrollAnimations() {
   // prefers-reduced-motion を尊重
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const elements = document.querySelectorAll('.animate-on-scroll');
+  const elements = document.querySelectorAll('.fade-in, .animate-on-scroll');
 
   if (elements.length === 0) return;
 
