@@ -844,20 +844,5 @@
 
   <!-- JavaScript -->
   <script src="js/main.js"></script>
-  <script>
-    // ページトップボタンの表示切替
-    const pageTopBtn = document.getElementById('page-top');
-    if (pageTopBtn) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-          pageTopBtn.classList.remove('opacity-0', 'pointer-events-none');
-          pageTopBtn.classList.add('opacity-100');
-        } else {
-          pageTopBtn.classList.add('opacity-0', 'pointer-events-none');
-          pageTopBtn.classList.remove('opacity-100');
-        }
-      });
-    }
-  </script>
 </body>
 </html>

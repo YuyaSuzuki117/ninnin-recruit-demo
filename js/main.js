@@ -10,9 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initScrollAnimations();
   initFormValidation();
+  initPageTopButton();
 });
 
-/* --- Sticky Header with Shadow --- */
+/* --- スティッキーヘッダー（スクロール時影付加） --- */
 function initStickyHeader() {
   const header = document.querySelector('.site-header');
   if (!header) return;
@@ -32,7 +33,7 @@ function initStickyHeader() {
   }, { passive: true });
 }
 
-/* --- Mobile Menu Toggle (アクセシビリティ対応) --- */
+/* --- モバイルメニュー切り替え（アクセシビリティ対応） --- */
 function initMobileMenu() {
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
@@ -130,7 +131,7 @@ function initMobileMenu() {
   });
 }
 
-/* --- Smooth Scroll for Anchor Links --- */
+/* --- アンカーリンクのスムーススクロール --- */
 function initSmoothScroll() {
   // prefers-reduced-motion を尊重
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -160,7 +161,7 @@ function initSmoothScroll() {
   });
 }
 
-/* --- Scroll Animations (Intersection Observer) --- */
+/* --- スクロールアニメーション（Intersection Observer） --- */
 function initScrollAnimations() {
   // prefers-reduced-motion を尊重
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -190,7 +191,7 @@ function initScrollAnimations() {
   elements.forEach(el => observer.observe(el));
 }
 
-/* --- Form Validation (アクセシビリティ対応) --- */
+/* --- フォームバリデーション（アクセシビリティ対応） --- */
 function initFormValidation() {
   const form = document.getElementById('entry-form');
   if (!form) return;
@@ -353,4 +354,20 @@ function initFormValidation() {
     }
     return field.name || 'フィールド';
   }
+}
+
+/* --- ページトップボタンの表示切替 --- */
+function initPageTopButton() {
+  const pageTopBtn = document.getElementById('page-top') || document.getElementById('page-top-btn');
+  if (!pageTopBtn) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      pageTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+      pageTopBtn.classList.add('opacity-100');
+    } else {
+      pageTopBtn.classList.add('opacity-0', 'pointer-events-none');
+      pageTopBtn.classList.remove('opacity-100');
+    }
+  }, { passive: true });
 }

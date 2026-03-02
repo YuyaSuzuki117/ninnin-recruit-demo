@@ -87,6 +87,16 @@
     "inLanguage": "ja"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://ninnin-recruit.jp/" },
+      { "@type": "ListItem", "position": 2, "name": "応募フォーム" }
+    ]
+  }
+  </script>
 </head>
 <body class="font-body">
 
@@ -150,9 +160,11 @@
   <div class="pt-20 lg:pt-24 bg-bg-alt">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <nav class="breadcrumb" aria-label="パンくずリスト">
-        <a href="index.html">ホーム</a>
-        <span class="mx-2">&gt;</span>
-        <span>応募フォーム</span>
+        <ol class="flex items-center flex-wrap text-sm">
+          <li><a href="index.html">ホーム</a></li>
+          <li><span class="mx-2">&gt;</span></li>
+          <li aria-current="page"><span>応募フォーム</span></li>
+        </ol>
       </nav>
     </div>
   </div>
@@ -518,19 +530,5 @@
 
   <!-- JavaScript -->
   <script src="js/main.js"></script>
-  <script>
-    var pageTopBtn = document.getElementById('page-top');
-    if (pageTopBtn) {
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 400) {
-          pageTopBtn.classList.remove('opacity-0', 'pointer-events-none');
-          pageTopBtn.classList.add('opacity-100');
-        } else {
-          pageTopBtn.classList.add('opacity-0', 'pointer-events-none');
-          pageTopBtn.classList.remove('opacity-100');
-        }
-      });
-    }
-  </script>
 </body>
 </html>
