@@ -7,7 +7,7 @@
   <meta name="description" content="ポケモンカード専門店ニンニンの求人・採用情報。全国7店舗（秋葉原・池袋・新宿・渋谷・横浜・大阪日本橋・名古屋大須）でスタッフ募集中。正社員・アルバイト、未経験歓迎。">
   <meta name="robots" content="index, follow">
   <meta name="format-detection" content="telephone=no">
-  <meta name="theme-color" content="#F5A623">
+  <meta name="theme-color" content="#FFCB05">
   <link rel="canonical" href="https://ninnin-recruit.jp/">
   <link rel="icon" href="img/favicon.ico">
 
@@ -40,10 +40,11 @@
       theme: {
         extend: {
           colors: {
-            primary: { DEFAULT: '#F5A623', dark: '#D4891C', light: '#FFF3D6' },
-            accent: '#D8613C',
-            body: '#333333',
-            'bg-alt': '#FFF8F0',
+            primary: { DEFAULT: '#FFCB05', dark: '#CC9900', light: '#FFF7CC' },
+            accent: '#FF0000',
+            secondary: '#3B4CCA',
+            body: '#1D1D1B',
+            'bg-alt': '#FFFDE7',
           },
           fontFamily: {
             heading: ['Zen Kaku Gothic New', 'Noto Sans JP', 'sans-serif'],
@@ -172,12 +173,12 @@
       <div class="flex items-center justify-between h-16 lg:h-20">
         <!-- Logo -->
         <a href="index.html" class="flex items-center gap-2">
-          <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-            <span class="text-white font-heading font-extrabold text-lg">N</span>
+          <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center border-2 border-primary-dark">
+            <span class="text-body font-heading font-extrabold text-lg">N</span>
           </div>
           <div>
             <span class="font-heading font-bold text-xl text-gray-900 tracking-tight">ニンニン</span>
-            <span class="hidden sm:inline text-xs text-gray-500 ml-1">RECRUIT</span>
+            <span class="hidden sm:inline text-xs text-gray-500 ml-1">&#9889; RECRUIT</span>
           </div>
         </a>
 
@@ -232,7 +233,7 @@
         <!-- Text Column -->
         <div class="lg:col-span-3">
           <p class="inline-block bg-white/90 text-primary-dark font-bold text-sm px-4 py-1.5 rounded-full mb-6 shadow-sm animate-on-scroll">
-            ポケモンカード専門店 ニンニン — 全国7店舗で募集中
+            <span class="inline-block mr-1">&#9889;</span> ポケモンカード専門店 ニンニン — 全国7店舗で募集中 <span class="inline-block ml-1">&#9889;</span>
           </p>
           <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-gray-900 leading-tight mb-6 animate-on-scroll delay-1">
             好きを仕事に。<br>
@@ -251,29 +252,64 @@
           </div>
         </div>
 
-        <!-- Hero Decoration: Holographic Card Stack -->
+        <!-- Hero Decoration: Pokemon Card Style -->
         <div class="hidden lg:flex lg:col-span-2 justify-center items-center relative" role="presentation" aria-hidden="true">
-          <div class="relative">
-            <!-- Back card -->
-            <div class="absolute -top-4 -left-4 w-56 xl:w-64 h-72 xl:h-80 rounded-2xl bg-white/10 border border-white/20 rotate-12 hero-floating" style="animation-delay:-2s"></div>
-            <!-- Middle card -->
-            <div class="absolute -top-2 -left-2 w-56 xl:w-64 h-72 xl:h-80 rounded-2xl bg-white/15 border border-white/25 rotate-6 hero-floating" style="animation-delay:-4s"></div>
-            <!-- Front card — holographic -->
-            <div class="holo-card w-56 xl:w-64 h-72 xl:h-80 rounded-2xl border-2 border-white/40 flex flex-col items-center justify-center shadow-2xl relative overflow-hidden hero-floating">
-              <div class="holo-shimmer"></div>
-              <div class="relative z-10 text-center px-6">
-                <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-white/25 backdrop-blur flex items-center justify-center">
-                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+          <div class="relative w-72 h-96">
+            <!-- Card -->
+            <div class="absolute inset-0 rounded-2xl overflow-hidden border-4 border-yellow-400 bg-gradient-to-b from-yellow-100 to-yellow-50 shadow-2xl transform rotate-2 hero-floating">
+              <div class="holo-shimmer rounded-2xl"></div>
+              <!-- Card Header -->
+              <div class="relative z-10 px-5 pt-4">
+                <div class="flex justify-between items-center">
+                  <span class="font-display font-bold text-sm text-gray-800">ニンニン</span>
+                  <span class="font-display font-bold text-sm text-red-500">HP &#8734;</span>
                 </div>
-                <p class="text-white font-display font-bold text-xs tracking-[0.2em] uppercase mb-1 opacity-80">NinNin Recruit</p>
-                <p class="text-white font-heading font-bold text-lg xl:text-xl leading-snug">好きを仕事に</p>
-                <div class="mt-3 pt-3 border-t border-white/20">
-                  <p class="text-white/70 font-display text-[10px] tracking-widest uppercase">Full-time &bull; Part-time</p>
-                  <p class="text-white/90 font-heading font-bold text-sm mt-1">7 Stores Nationwide</p>
+                <div class="text-right text-xs text-yellow-600">&#9889; でんきタイプ</div>
+              </div>
+              <!-- Card Image Area -->
+              <div class="relative z-10 mx-4 mt-2 h-36 rounded-lg bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-500 flex items-center justify-center border-2 border-yellow-500">
+                <svg class="w-20 h-20 text-yellow-100 drop-shadow-lg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+                </svg>
+              </div>
+              <!-- Card Body -->
+              <div class="relative z-10 px-5 mt-3">
+                <p class="text-xs text-gray-500 italic">ポケカ専門店スタッフ &#8212; 全国7店舗</p>
+                <div class="mt-3 border-t border-yellow-300 pt-3">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <p class="font-bold text-sm text-gray-800">&#9889; 好きを仕事に</p>
+                      <p class="text-xs text-gray-500 mt-0.5">「好き」のエネルギーで全力アタック</p>
+                    </div>
+                    <span class="font-display font-bold text-2xl text-red-500">&#8734;</span>
+                  </div>
+                </div>
+                <div class="mt-2 border-t border-yellow-300 pt-2">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <p class="font-bold text-sm text-gray-800">&#9889; 仲間をゲット</p>
+                      <p class="text-xs text-gray-500 mt-0.5">ポケカ好きの仲間と出会える</p>
+                    </div>
+                    <span class="font-display font-bold text-2xl text-red-500">200</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Card Footer -->
+              <div class="relative z-10 px-5 mt-2">
+                <div class="flex items-center gap-1 text-xs text-gray-400">
+                  <span>弱点: なし</span>
+                  <span class="mx-2">|</span>
+                  <span>抵抗力: なし</span>
+                  <span class="mx-2">|</span>
+                  <span>にげる: 0</span>
                 </div>
               </div>
             </div>
           </div>
+          <!-- Floating lightning bolts around the card -->
+          <svg class="absolute -top-4 -left-4 w-10 h-10 text-yellow-300 opacity-60 hero-floating" style="animation-delay:-1s" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+          <svg class="absolute -bottom-2 -right-6 w-8 h-8 text-red-400 opacity-50 hero-floating" style="animation-delay:-3s" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+          <svg class="absolute top-1/2 -right-10 w-6 h-6 text-yellow-200 opacity-40 hero-floating" style="animation-delay:-5s" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
         </div>
       </div>
     </div>
@@ -284,18 +320,35 @@
   <section id="about" class="py-20 lg:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 animate-on-scroll">
-        <p class="text-primary-dark font-bold text-sm tracking-widest uppercase mb-3">About Us</p>
+        <div class="flex items-center justify-center gap-3 mb-3">
+          <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+          <p class="text-primary-dark font-bold text-sm tracking-widest uppercase">About Us</p>
+          <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+        </div>
         <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">ニンニンとは</h2>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <!-- Image Placeholder -->
         <div class="animate-on-scroll">
-          <div class="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-primary-light via-amber-100 to-orange-100 aspect-[4/3] flex items-center justify-center">
-            <div class="text-center p-8">
-              <div class="text-6xl mb-4">&#127183;&#127775;</div>
+          <div class="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-primary-light via-yellow-200 to-yellow-300 aspect-[4/3] flex items-center justify-center relative">
+            <div class="text-center p-8 relative z-10">
+              <div class="text-6xl mb-4">&#9889;&#127924;</div>
               <p class="text-primary-dark font-bold text-xl">ニンニン店舗イメージ</p>
               <p class="text-gray-500 text-sm mt-2">※実際の店舗写真に差し替え予定</p>
+            </div>
+            <!-- Monsterball decoration -->
+            <div class="absolute bottom-4 right-4 opacity-15">
+              <svg class="w-24 h-24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" stroke="#1D1D1B" stroke-width="4"/>
+                <path d="M2 50 H98" stroke="#1D1D1B" stroke-width="4"/>
+                <circle cx="50" cy="50" r="16" fill="white" stroke="#1D1D1B" stroke-width="4"/>
+                <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
+                <path d="M2 50 A48 48 0 0 0 98 50" fill="#FF0000"/>
+                <path d="M2 50 A48 48 0 0 1 98 50" fill="white"/>
+                <circle cx="50" cy="50" r="16" fill="white" stroke="#1D1D1B" stroke-width="4"/>
+                <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
+              </svg>
             </div>
           </div>
         </div>
@@ -314,17 +367,17 @@
             スタッフの8割以上がポケカプレイヤー。好きなことを仕事にできる、そんな職場環境がここにはあります。
           </p>
           <div class="grid grid-cols-3 gap-6">
-            <div class="text-center">
+            <div class="text-center bg-primary-light rounded-xl py-4 px-2">
               <p class="font-heading font-extrabold text-3xl text-primary-dark">7</p>
-              <p class="text-sm text-gray-500 mt-1">店舗数</p>
+              <p class="text-sm text-gray-600 mt-1">店舗数</p>
             </div>
-            <div class="text-center">
+            <div class="text-center bg-primary-light rounded-xl py-4 px-2">
               <p class="font-heading font-extrabold text-3xl text-primary-dark">50+</p>
-              <p class="text-sm text-gray-500 mt-1">スタッフ数</p>
+              <p class="text-sm text-gray-600 mt-1">スタッフ数</p>
             </div>
-            <div class="text-center">
+            <div class="text-center bg-primary-light rounded-xl py-4 px-2">
               <p class="font-heading font-extrabold text-3xl text-primary-dark">80%</p>
-              <p class="text-sm text-gray-500 mt-1">ポケカ好き率</p>
+              <p class="text-sm text-gray-600 mt-1">ポケカ好き率</p>
             </div>
           </div>
         </div>
@@ -337,7 +390,25 @@
   <section id="features" class="py-20 lg:py-28 bg-bg-alt">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 animate-on-scroll">
-        <p class="text-primary-dark font-bold text-sm tracking-widest uppercase mb-3">Why NinNin?</p>
+        <div class="flex items-center justify-center gap-3 mb-3">
+          <svg class="w-6 h-6" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" stroke="#1D1D1B" stroke-width="4"/>
+            <path d="M2 50 H98" stroke="#1D1D1B" stroke-width="4"/>
+            <path d="M2 50 A48 48 0 0 0 98 50" fill="#FF0000"/>
+            <path d="M2 50 A48 48 0 0 1 98 50" fill="white"/>
+            <circle cx="50" cy="50" r="16" fill="white" stroke="#1D1D1B" stroke-width="4"/>
+            <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
+          </svg>
+          <p class="text-primary-dark font-bold text-sm tracking-widest uppercase">Why NinNin?</p>
+          <svg class="w-6 h-6" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" stroke="#1D1D1B" stroke-width="4"/>
+            <path d="M2 50 H98" stroke="#1D1D1B" stroke-width="4"/>
+            <path d="M2 50 A48 48 0 0 0 98 50" fill="#FF0000"/>
+            <path d="M2 50 A48 48 0 0 1 98 50" fill="white"/>
+            <circle cx="50" cy="50" r="16" fill="white" stroke="#1D1D1B" stroke-width="4"/>
+            <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
+          </svg>
+        </div>
         <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">ニンニンで働く3つの魅力</h2>
       </div>
 
@@ -351,7 +422,7 @@
           <p class="text-gray-600 leading-relaxed">
             スタッフ同士が共通の趣味で繋がれる職場。休憩時間にデッキの話で盛り上がったり、新弾の情報交換をしたり。好きなものを共有できる仲間がいます。
           </p>
-          <div class="feature-tag">TEAM</div>
+          <div class="feature-tag">&#9889;TEAM</div>
         </div>
 
         <!-- Feature 2 -->
@@ -363,7 +434,7 @@
           <p class="text-gray-600 leading-relaxed">
             接客未経験でも大丈夫。先輩スタッフが丁寧に教えます。カード査定や買取のノウハウも、独自の研修プログラムでしっかりサポートします。
           </p>
-          <div class="feature-tag">GROW</div>
+          <div class="feature-tag">&#9889;GROW</div>
         </div>
 
         <!-- Feature 3 -->
@@ -375,7 +446,7 @@
           <p class="text-gray-600 leading-relaxed">
             主要都市のアクセス便利な場所に店舗を展開。自宅から近い店舗を選べるので、通勤も楽々。ライフスタイルに合わせた働き方ができます。
           </p>
-          <div class="feature-tag">ACCESS</div>
+          <div class="feature-tag">&#9889;ACCESS</div>
         </div>
       </div>
     </div>
@@ -386,7 +457,11 @@
   <section id="stores" class="py-20 lg:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 animate-on-scroll">
-        <p class="text-primary-dark font-bold text-sm tracking-widest uppercase mb-3">Our Stores</p>
+        <div class="flex items-center justify-center gap-3 mb-3">
+          <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+          <p class="text-primary-dark font-bold text-sm tracking-widest uppercase">Our Stores</p>
+          <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+        </div>
         <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">店舗一覧</h2>
         <p class="text-gray-600 mt-6">全国7店舗でお待ちしています</p>
       </div>
@@ -395,8 +470,8 @@
 
         <!-- Store 1 -->
         <div class="store-card animate-on-scroll delay-1">
-          <div class="store-img" style="background:linear-gradient(135deg,#F5A623,#E8930E)">
-            <span class="store-badge">本店</span>
+          <div class="store-img" style="background:linear-gradient(135deg,#FFCB05,#FFD700)">
+            <span class="store-badge">&#9889; 本店</span>
             <svg class="store-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
           </div>
           <div class="p-5">
@@ -408,7 +483,7 @@
 
         <!-- Store 2 -->
         <div class="store-card animate-on-scroll delay-1">
-          <div class="store-img" style="background:linear-gradient(135deg,#E8930E,#D8613C)">
+          <div class="store-img" style="background:linear-gradient(135deg,#FFCB05,#FF0000)">
             <svg class="store-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
           </div>
           <div class="p-5">
@@ -420,7 +495,7 @@
 
         <!-- Store 3 -->
         <div class="store-card animate-on-scroll delay-2">
-          <div class="store-img" style="background:linear-gradient(135deg,#FFD666,#F5A623)">
+          <div class="store-img" style="background:linear-gradient(135deg,#FFD700,#FFCB05)">
             <svg class="store-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
           </div>
           <div class="p-5">
@@ -432,7 +507,7 @@
 
         <!-- Store 4 -->
         <div class="store-card animate-on-scroll delay-2">
-          <div class="store-img" style="background:linear-gradient(135deg,#F7C948,#E8930E)">
+          <div class="store-img" style="background:linear-gradient(135deg,#FFCB05,#CC9900)">
             <svg class="store-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
           </div>
           <div class="p-5">
@@ -444,7 +519,7 @@
 
         <!-- Store 5 -->
         <div class="store-card animate-on-scroll delay-3">
-          <div class="store-img" style="background:linear-gradient(135deg,#FFC078,#D8613C)">
+          <div class="store-img" style="background:linear-gradient(135deg,#FFD700,#3B4CCA)">
             <svg class="store-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
           </div>
           <div class="p-5">
@@ -456,7 +531,7 @@
 
         <!-- Store 6 -->
         <div class="store-card animate-on-scroll delay-3">
-          <div class="store-img" style="background:linear-gradient(135deg,#F5A623,#C97B18)">
+          <div class="store-img" style="background:linear-gradient(135deg,#FF0000,#FFCB05)">
             <svg class="store-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
           </div>
           <div class="p-5">
@@ -468,7 +543,7 @@
 
         <!-- Store 7 -->
         <div class="store-card animate-on-scroll delay-4">
-          <div class="store-img" style="background:linear-gradient(135deg,#FFE08A,#F5A623)">
+          <div class="store-img" style="background:linear-gradient(135deg,#FFCB05,#3B4CCA)">
             <svg class="store-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
           </div>
           <div class="p-5">
@@ -487,7 +562,11 @@
   <section id="interview" class="py-20 lg:py-28 bg-bg-alt">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 animate-on-scroll">
-        <p class="text-primary-dark font-bold text-sm tracking-widest uppercase mb-3">Interview</p>
+        <div class="flex items-center justify-center gap-3 mb-3">
+          <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+          <p class="text-primary-dark font-bold text-sm tracking-widest uppercase">Interview</p>
+          <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+        </div>
         <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">先輩スタッフの声</h2>
         <p class="text-gray-600 mt-6">実際に働いているスタッフに聞きました</p>
       </div>
@@ -496,7 +575,7 @@
 
         <!-- Interview 1 -->
         <a href="interview.html" class="card group animate-on-scroll delay-1">
-          <div class="h-32 bg-gradient-to-br from-amber-200 to-primary"></div>
+          <div class="h-32 bg-gradient-to-br from-yellow-300 via-primary to-yellow-500"></div>
           <div class="interview-card px-6 pb-6">
             <div class="avatar">&#128102;</div>
             <div class="text-center mt-4">
@@ -511,7 +590,7 @@
 
         <!-- Interview 2 -->
         <a href="interview.html" class="card group animate-on-scroll delay-2">
-          <div class="h-32 bg-gradient-to-br from-orange-200 to-accent"></div>
+          <div class="h-32 bg-gradient-to-br from-primary via-red-400 to-accent"></div>
           <div class="interview-card px-6 pb-6">
             <div class="avatar">&#128103;</div>
             <div class="text-center mt-4">
@@ -526,7 +605,7 @@
 
         <!-- Interview 3 -->
         <a href="interview.html" class="card group animate-on-scroll delay-3">
-          <div class="h-32 bg-gradient-to-br from-yellow-200 to-primary-dark"></div>
+          <div class="h-32 bg-gradient-to-br from-yellow-200 via-primary to-secondary"></div>
           <div class="interview-card px-6 pb-6">
             <div class="avatar">&#128100;</div>
             <div class="text-center mt-4">
@@ -548,7 +627,25 @@
   <section id="jobs" class="py-20 lg:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 animate-on-scroll">
-        <p class="text-primary-dark font-bold text-sm tracking-widest uppercase mb-3">Recruitment</p>
+        <div class="flex items-center justify-center gap-3 mb-3">
+          <svg class="w-6 h-6" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" stroke="#1D1D1B" stroke-width="4"/>
+            <path d="M2 50 H98" stroke="#1D1D1B" stroke-width="4"/>
+            <path d="M2 50 A48 48 0 0 0 98 50" fill="#FF0000"/>
+            <path d="M2 50 A48 48 0 0 1 98 50" fill="white"/>
+            <circle cx="50" cy="50" r="16" fill="white" stroke="#1D1D1B" stroke-width="4"/>
+            <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
+          </svg>
+          <p class="text-primary-dark font-bold text-sm tracking-widest uppercase">Recruitment</p>
+          <svg class="w-6 h-6" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" stroke="#1D1D1B" stroke-width="4"/>
+            <path d="M2 50 H98" stroke="#1D1D1B" stroke-width="4"/>
+            <path d="M2 50 A48 48 0 0 0 98 50" fill="#FF0000"/>
+            <path d="M2 50 A48 48 0 0 1 98 50" fill="white"/>
+            <circle cx="50" cy="50" r="16" fill="white" stroke="#1D1D1B" stroke-width="4"/>
+            <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
+          </svg>
+        </div>
         <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">募集要項</h2>
         <p class="text-gray-600 mt-6">あなたに合った働き方を見つけてください</p>
       </div>
@@ -558,7 +655,16 @@
         <!-- Job: 正社員 -->
         <a href="jobs.html" class="card group p-8 animate-on-scroll delay-1">
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-14 h-14 rounded-xl bg-primary-light flex items-center justify-center text-2xl">&#128188;</div>
+            <div class="w-14 h-14 rounded-xl bg-primary-light flex items-center justify-center">
+              <svg class="w-9 h-9" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" stroke="#1D1D1B" stroke-width="4"/>
+                <path d="M2 50 H98" stroke="#1D1D1B" stroke-width="4"/>
+                <path d="M2 50 A48 48 0 0 0 98 50" fill="#FF0000"/>
+                <path d="M2 50 A48 48 0 0 1 98 50" fill="white"/>
+                <circle cx="50" cy="50" r="16" fill="white" stroke="#1D1D1B" stroke-width="4"/>
+                <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
+              </svg>
+            </div>
             <div>
               <span class="text-xs font-bold text-primary-dark tracking-wider">FULL-TIME</span>
               <h3 class="font-bold text-xl text-gray-900 group-hover:text-primary-dark transition-colors">店舗スタッフ（正社員）</h3>
@@ -584,7 +690,16 @@
         <!-- Job: アルバイト -->
         <a href="jobs.html#part-time" class="card group p-8 animate-on-scroll delay-2">
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-14 h-14 rounded-xl bg-orange-50 flex items-center justify-center text-2xl">&#9200;</div>
+            <div class="w-14 h-14 rounded-xl bg-primary-light flex items-center justify-center">
+              <svg class="w-9 h-9" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" stroke="#1D1D1B" stroke-width="4"/>
+                <path d="M2 50 H98" stroke="#1D1D1B" stroke-width="4"/>
+                <path d="M2 50 A48 48 0 0 0 98 50" fill="#3B4CCA"/>
+                <path d="M2 50 A48 48 0 0 1 98 50" fill="white"/>
+                <circle cx="50" cy="50" r="16" fill="white" stroke="#1D1D1B" stroke-width="4"/>
+                <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
+              </svg>
+            </div>
             <div>
               <span class="text-xs font-bold text-accent tracking-wider">PART-TIME</span>
               <h3 class="font-bold text-xl text-gray-900 group-hover:text-accent transition-colors">店舗スタッフ（アルバイト）</h3>
@@ -616,7 +731,11 @@
   <section id="flow" class="py-20 lg:py-28 bg-bg-alt">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 animate-on-scroll">
-        <p class="text-primary-dark font-bold text-sm tracking-widest uppercase mb-3">Application Flow</p>
+        <div class="flex items-center justify-center gap-3 mb-3">
+          <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+          <p class="text-primary-dark font-bold text-sm tracking-widest uppercase">Application Flow</p>
+          <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+        </div>
         <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">応募の流れ</h2>
       </div>
 
@@ -687,12 +806,25 @@
   <!-- ============ CTA ============ -->
   <section class="cta-section py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="flex items-center justify-center gap-3 mb-4 animate-on-scroll">
+        <svg class="w-8 h-8 text-yellow-300" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+        <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="48" stroke="white" stroke-width="4"/>
+          <path d="M2 50 H98" stroke="white" stroke-width="4"/>
+          <path d="M2 50 A48 48 0 0 0 98 50" fill="#FF0000" opacity="0.8"/>
+          <path d="M2 50 A48 48 0 0 1 98 50" fill="white" opacity="0.8"/>
+          <circle cx="50" cy="50" r="16" fill="white" stroke="white" stroke-width="4"/>
+          <circle cx="50" cy="50" r="8" fill="#1D1D1B"/>
+        </svg>
+        <svg class="w-8 h-8 text-yellow-300" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+      </div>
       <h2 class="font-heading font-bold text-3xl lg:text-4xl text-white mb-6 animate-on-scroll">
-        あなたの「好き」を<br class="sm:hidden">待っています
+        あなたの「好き」を<br class="sm:hidden">ゲットしよう！
       </h2>
       <p class="text-white/90 text-lg mb-10 max-w-2xl mx-auto animate-on-scroll delay-1">
         まずはお気軽にご応募ください。<br>
-        ポケカが好きな気持ちがあれば、未経験でも大歓迎です。
+        ポケカが好きな気持ちがあれば、未経験でも大歓迎。<br>
+        キミの「好き」のチカラ、ニンニンが待ってるぜ！
       </p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 animate-on-scroll delay-2">
@@ -723,10 +855,10 @@
         <!-- Company -->
         <div class="md:col-span-2">
           <div class="flex items-center gap-2 mb-4">
-            <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center" role="presentation">
-              <span class="text-white font-heading font-extrabold text-lg" aria-hidden="true">N</span>
+            <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center border-2 border-primary-dark" role="presentation">
+              <span class="text-body font-heading font-extrabold text-lg" aria-hidden="true">N</span>
             </div>
-            <span class="font-heading font-bold text-xl text-white">ニンニン</span>
+            <span class="font-heading font-bold text-xl text-white">ニンニン <span class="text-primary text-sm">&#9889;</span></span>
           </div>
           <p class="text-gray-400 text-sm leading-relaxed mb-4">
             株式会社NINJA<br>
