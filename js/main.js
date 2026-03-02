@@ -245,7 +245,7 @@ function initFormValidation() {
     if (isValid) {
       // 成功メッセージ
       const successMsg = document.createElement('div');
-      successMsg.className = 'mt-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-center';
+      successMsg.className = 'mt-6 p-4 bg-green-50 border border-green-200 rounded text-green-800 text-center';
       successMsg.setAttribute('role', 'status');
       successMsg.setAttribute('aria-live', 'polite');
       successMsg.innerHTML = '<p class="font-bold text-lg mb-1">送信完了</p><p>ご応募ありがとうございます。担当者より折り返しご連絡いたします。</p>';
