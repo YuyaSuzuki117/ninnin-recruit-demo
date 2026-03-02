@@ -337,39 +337,62 @@
   <!-- ============ MAIN ============ -->
   <main id="main-content">
 
-  <!-- ============ BREADCRUMB ============ -->
-  <div class="pt-20 lg:pt-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <nav class="breadcrumb" aria-label="パンくずリスト">
-        <a href="index.html">HOME</a>
-        <span class="mx-2">&gt;</span>
-        <span class="text-gray-900 font-medium">募集要項</span>
-      </nav>
+  <!-- ============ PAGE HERO ============ -->
+  <section class="relative overflow-hidden pt-16 lg:pt-20">
+    <!-- 背景: mainimg1.jpg フルワイド -->
+    <div class="absolute inset-0">
+      <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/mainimg1.jpg" alt="" class="w-full h-full object-cover" aria-hidden="true">
+      <!-- 黄色系オーバーレイ -->
+      <div class="absolute inset-0 bg-gradient-to-r from-yellow-500/85 via-yellow-400/75 to-amber-500/80"></div>
     </div>
-  </div>
 
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="flex items-end justify-between">
+        <div>
+          <!-- パンくず -->
+          <nav class="breadcrumb mb-6" aria-label="パンくずリスト">
+            <a href="index.html" class="!text-white/80 hover:!text-white">HOME</a>
+            <span class="mx-2 text-white/60">&gt;</span>
+            <span class="text-white font-medium">募集要項</span>
+          </nav>
 
-  <!-- ============ PAGE HEADER ============ -->
-  <section class="bg-white pb-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center animate-on-scroll">
-        <div class="flex items-center justify-center gap-3">
-          <h1 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">募集要項</h1>
+          <h1 class="font-heading font-bold text-4xl lg:text-5xl text-white drop-shadow-sm">募集要項</h1>
+          <p class="text-white/90 mt-4 max-w-xl text-lg">あなたに合った働き方を見つけてください。正社員・アルバイトの2つのポジションで募集しています。</p>
         </div>
-        <p class="text-gray-500 mt-8 max-w-2xl mx-auto">あなたに合った働き方を見つけてください。正社員・アルバイトの2つのポジションで募集しています。</p>
-      </div>
 
-      <!-- Quick Nav -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10 animate-on-scroll delay-1">
+        <!-- ニンニンキャラ＋ピカチュウ 右下配置 -->
+        <div class="hidden md:flex items-end gap-2 flex-shrink-0">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="" class="w-24 drop-shadow-lg hero-floating" aria-hidden="true">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="" class="w-32 drop-shadow-lg hero-floating" aria-hidden="true" style="animation-delay: 0.5s;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ Quick Nav (正社員/アルバイト切り替え) ============ -->
+  <section class="bg-white py-10 relative">
+    <!-- ゲンガー装飾 -->
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2025/01/%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC.png" alt="" class="absolute top-4 left-4 w-28 opacity-[0.07] pointer-events-none select-none -rotate-12" aria-hidden="true">
+    <!-- ブラッキー装飾 -->
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2024/06/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC-1.png" alt="" class="absolute bottom-4 right-4 w-28 opacity-[0.07] pointer-events-none select-none rotate-12" aria-hidden="true">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-on-scroll">
         <a href="#full-time" class="inline-flex items-center gap-3 px-6 py-3 bg-primary-light rounded-xl hover:bg-yellow-100 transition-colors group">
-          <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white text-lg">&#128188;</div>
+          <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center overflow-hidden">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon03.png" alt="" class="w-7 h-7 object-contain">
+          </div>
           <div class="text-left">
             <p class="font-bold text-gray-900 group-hover:text-primary-dark transition-colors">店舗スタッフ（正社員）</p>
             <p class="text-xs text-gray-500">月給22万円〜35万円</p>
           </div>
         </a>
         <a href="#part-time" class="inline-flex items-center gap-3 px-6 py-3 bg-yellow-50 rounded-xl hover:bg-yellow-100 transition-colors group">
-          <div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-white text-lg">&#9200;</div>
+          <div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center overflow-hidden">
+            <!-- ポケモンボール風SVG（ニンニンらしい要素のためそのまま維持） -->
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10" fill="white"/><path d="M2 12h20" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="#FF0000" stroke="white" stroke-width="2"/></svg>
+          </div>
           <div class="text-left">
             <p class="font-bold text-gray-900 group-hover:text-accent transition-colors">店舗スタッフ（アルバイト）</p>
             <p class="text-xs text-gray-500">時給1,100円〜1,500円</p>
@@ -381,12 +404,17 @@
 
 
   <!-- ============ 正社員 ============ -->
-  <section id="full-time" class="py-16 lg:py-24 bg-bg-alt">
+  <section id="full-time" class="py-16 lg:py-24 bg-bg-alt relative">
+    <!-- セクション装飾: ニンニンキャラ小 -->
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="" class="absolute top-8 right-8 w-16 opacity-[0.08] pointer-events-none select-none" aria-hidden="true">
+
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <!-- Section Header -->
       <div class="flex items-center gap-4 mb-10 animate-on-scroll">
-        <div class="w-14 h-14 rounded-xl bg-primary-light flex items-center justify-center text-2xl flex-shrink-0 relative">&#128188;<svg class="absolute -top-1 -right-1 w-5 h-5 text-yellow-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h7l-2 8 10-12h-7l2-8z"/></svg></div>
+        <div class="w-14 h-14 rounded-xl bg-primary-light flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon04.png" alt="" class="w-9 h-9 object-contain">
+        </div>
         <div>
           <span class="text-xs font-bold text-primary-dark tracking-wider">FULL-TIME</span>
           <h2 class="font-heading font-bold text-2xl lg:text-3xl text-gray-900">店舗スタッフ（正社員）</h2>
@@ -396,17 +424,14 @@
       <!-- Job Description -->
       <div class="card p-6 sm:p-8 mb-8 animate-on-scroll delay-1">
         <h3 class="font-heading font-bold text-xl text-gray-900 mb-6 flex items-center gap-2">
-          <svg class="w-5 h-5 text-primary" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon02.png" alt="" class="w-5 h-5 object-contain" aria-hidden="true">
           仕事内容
         </h3>
 
-        <!-- Placeholder Image -->
-        <div class="rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-primary-light via-amber-100 to-orange-100 aspect-[16/7] flex items-center justify-center">
-          <div class="text-center p-8">
-            <div class="text-5xl mb-3">&#127183;&#128176;</div>
-            <p class="text-primary-dark font-bold text-lg">店舗での接客・買取風景イメージ</p>
-            <p class="text-gray-500 text-sm mt-1">※実際の店舗写真に差し替え予定</p>
-          </div>
+        <!-- 店内写真 -->
+        <div class="rounded-xl overflow-hidden mb-6 aspect-[16/7] relative">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo01.png" alt="ニンニン店内の様子" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
         </div>
 
         <div class="space-y-4 text-gray-600 leading-relaxed">
@@ -418,27 +443,27 @@
             <p class="font-bold text-gray-900 mb-2">具体的には...</p>
             <ul class="space-y-2">
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>ポケモンカードのシングル販売・パック販売の接客対応</span>
               </li>
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>カードの買取査定・在庫管理・値付け作業</span>
               </li>
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>オリパ（オリジナルパック）の企画・作成</span>
               </li>
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>対戦スペースの運営・イベントの企画サポート</span>
               </li>
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>ECサイトへの商品登録・発送業務</span>
               </li>
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>店舗ディスプレイの作成・SNS運用</span>
               </li>
             </ul>
@@ -450,17 +475,17 @@
         </div>
       </div>
 
-      <!-- Representative Message (Optional) -->
+      <!-- Representative Message -->
       <div class="card p-6 sm:p-8 mb-8 animate-on-scroll delay-2">
         <h3 class="font-heading font-bold text-xl text-gray-900 mb-6 flex items-center gap-2">
-          <svg class="w-5 h-5 text-primary" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon07.png" alt="" class="w-5 h-5 object-contain" aria-hidden="true">
           採用担当からのメッセージ
         </h3>
         <div class="flex flex-col sm:flex-row gap-6 items-start">
-          <!-- Placeholder Avatar -->
+          <!-- ニンニンキャラをアバターとして使用 -->
           <div class="flex-shrink-0 mx-auto sm:mx-0">
-            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center text-3xl shadow-md">
-              &#128100;
+            <div class="w-24 h-24 rounded-full bg-primary-light flex items-center justify-center shadow-md overflow-hidden">
+              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="ニンニン" class="w-20 h-20 object-contain">
             </div>
           </div>
           <div class="text-gray-600 leading-relaxed space-y-3">
@@ -472,18 +497,16 @@
               お客様と一緒にカードの魅力を分かち合い、笑顔あふれるお店を一緒に作っていける仲間をお待ちしています。
               まずはお気軽にご応募ください。
             </p>
-            <p class="text-sm text-gray-500 font-medium">── 採用チーム一同</p>
+            <p class="text-sm text-gray-500 font-medium">-- 採用チーム一同</p>
           </div>
         </div>
       </div>
 
       <!-- Job Details Table -->
       <div class="card overflow-hidden mb-8 animate-on-scroll delay-2">
-        <div class="bg-primary-light px-6 sm:px-8 py-4">
-          <h3 class="font-heading font-bold text-lg text-gray-900 flex items-center gap-2">
-            <svg class="w-5 h-5 text-primary-dark" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
-            募集要項詳細
-          </h3>
+        <div class="bg-primary-light px-6 sm:px-8 py-4 flex items-center gap-3">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon03.png" alt="" class="w-6 h-6 object-contain" aria-hidden="true">
+          <h3 class="font-heading font-bold text-lg text-gray-900">募集要項詳細</h3>
         </div>
         <table class="job-table">
           <tbody>
@@ -532,10 +555,10 @@
               <th>待遇・福利厚生</th>
               <td>
                 <div class="flex flex-wrap gap-2">
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">社会保険完備</span>
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">社員割引</span>
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">研修制度</span>
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">有給休暇</span>
+                  <span class="inline-block bg-primary-light text-primary-dark text-xs font-medium px-2.5 py-1 rounded-full">社会保険完備</span>
+                  <span class="inline-block bg-primary-light text-primary-dark text-xs font-medium px-2.5 py-1 rounded-full">社員割引</span>
+                  <span class="inline-block bg-primary-light text-primary-dark text-xs font-medium px-2.5 py-1 rounded-full">研修制度</span>
+                  <span class="inline-block bg-primary-light text-primary-dark text-xs font-medium px-2.5 py-1 rounded-full">有給休暇</span>
                 </div>
               </td>
             </tr>
@@ -565,54 +588,53 @@
       <!-- Location / Map -->
       <div class="card p-6 sm:p-8 mb-8 animate-on-scroll delay-3">
         <h3 class="font-heading font-bold text-xl text-gray-900 mb-6 flex items-center gap-2">
-          <svg class="w-5 h-5 text-primary" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon08.png" alt="" class="w-5 h-5 object-contain" aria-hidden="true">
           勤務地
         </h3>
         <p class="text-gray-600 mb-4">全国7拠点のいずれかに配属となります。ご希望の勤務地をお聞かせください。</p>
         <div class="grid sm:grid-cols-2 gap-3 mb-6">
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             秋葉原店（JR秋葉原駅 徒歩3分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             秋葉原2号店（JR秋葉原駅 徒歩5分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             中野店（JR中野駅 徒歩3分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             池袋店（JR池袋駅 徒歩5分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             大阪日本橋店（南海なんば駅 徒歩8分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             大阪日本橋2号店（南海なんば駅 徒歩10分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             トレレン秋葉原店（JR秋葉原駅 徒歩圏内）
           </div>
         </div>
-        <!-- Map Placeholder -->
-        <div class="rounded-xl overflow-hidden bg-gray-100 aspect-[16/7] flex items-center justify-center border-2 border-dashed border-gray-300">
-          <div class="text-center p-6">
-            <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <p class="text-gray-500 font-medium">Google Maps 埋め込み予定</p>
-            <p class="text-gray-400 text-sm mt-1">※各店舗の地図を表示します</p>
-          </div>
+
+        <!-- 店舗写真グリッド -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 rounded-xl overflow-hidden">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="秋葉原店" class="w-full h-32 object-cover">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="中野店" class="w-full h-32 object-cover">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="池袋店" class="w-full h-32 object-cover">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_oosaka.png" alt="大阪日本橋店" class="w-full h-32 object-cover">
         </div>
       </div>
 
       <!-- Apply Button -->
       <div class="text-center animate-on-scroll delay-3">
         <a href="entry.html" class="btn-primary btn-primary-lg">
-          <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
           正社員に応募する
         </a>
         <p class="text-sm text-gray-400 mt-4">応募フォームに移動します</p>
@@ -622,13 +644,35 @@
   </section>
 
 
+  <!-- ============ セクション間装飾 ============ -->
+  <div class="relative h-12 bg-white overflow-hidden">
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+    <div class="flex items-center justify-center h-full gap-8 opacity-[0.06]">
+      <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="" class="w-10" aria-hidden="true">
+      <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec04_h2_img.png" alt="" class="w-20" aria-hidden="true">
+      <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="" class="w-10 -scale-x-100" aria-hidden="true">
+    </div>
+  </div>
+
+
   <!-- ============ アルバイト ============ -->
-  <section id="part-time" class="py-16 lg:py-24 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="part-time" class="py-16 lg:py-24 bg-white relative">
+    <!-- セクション装飾: 店内写真薄い背景 -->
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
+      <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo03.png" alt="" class="w-full h-full object-cover" aria-hidden="true">
+    </div>
+
+    <!-- ニンニンキャラ小 装飾 -->
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="" class="absolute bottom-12 left-8 w-16 opacity-[0.08] pointer-events-none select-none -scale-x-100" aria-hidden="true">
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
       <!-- Section Header -->
       <div class="flex items-center gap-4 mb-10 animate-on-scroll">
-        <div class="w-14 h-14 rounded-xl bg-yellow-50 flex items-center justify-center text-2xl flex-shrink-0 relative">&#9200;<svg class="absolute -top-1 -right-1 w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#1D1D1B" stroke-width="2"/><path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10" fill="#FF0000"/><path d="M2 12h20" stroke="#1D1D1B" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="white" stroke="#1D1D1B" stroke-width="2"/></svg></div>
+        <div class="w-14 h-14 rounded-xl bg-yellow-50 flex items-center justify-center flex-shrink-0 relative">
+          <!-- ポケモンボール風SVG（ニンニンらしい要素のため維持） -->
+          <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#1D1D1B" stroke-width="2"/><path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10" fill="#FF0000"/><path d="M2 12h20" stroke="#1D1D1B" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="white" stroke="#1D1D1B" stroke-width="2"/></svg>
+        </div>
         <div>
           <span class="text-xs font-bold text-accent tracking-wider">PART-TIME</span>
           <h2 class="font-heading font-bold text-2xl lg:text-3xl text-gray-900">店舗スタッフ（アルバイト）</h2>
@@ -638,17 +682,14 @@
       <!-- Job Description -->
       <div class="card p-6 sm:p-8 mb-8 animate-on-scroll delay-1">
         <h3 class="font-heading font-bold text-xl text-gray-900 mb-6 flex items-center gap-2">
-          <svg class="w-5 h-5 text-accent" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon02.png" alt="" class="w-5 h-5 object-contain" aria-hidden="true">
           仕事内容
         </h3>
 
-        <!-- Placeholder Image -->
-        <div class="rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-yellow-50 via-yellow-100 to-red-100 aspect-[16/7] flex items-center justify-center">
-          <div class="text-center p-8">
-            <div class="text-5xl mb-3">&#127183;&#9996;</div>
-            <p class="text-accent font-bold text-lg">楽しくアルバイトするイメージ</p>
-            <p class="text-gray-500 text-sm mt-1">※実際の店舗写真に差し替え予定</p>
-          </div>
+        <!-- 店内写真 -->
+        <div class="rounded-xl overflow-hidden mb-6 aspect-[16/7] relative">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo02.png" alt="ニンニン店舗スタッフの様子" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
         </div>
 
         <div class="space-y-4 text-gray-600 leading-relaxed">
@@ -660,23 +701,23 @@
             <p class="font-bold text-gray-900 mb-2">主なお仕事...</p>
             <ul class="space-y-2">
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>レジ対応・カード販売の接客</span>
               </li>
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>商品の陳列・整理・在庫補充</span>
               </li>
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>カードの仕分け・スリーブ入れ作業</span>
               </li>
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>店内の清掃・ディスプレイ整備</span>
               </li>
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon05.png" alt="" class="w-5 h-5 object-contain flex-shrink-0 mt-0.5" aria-hidden="true">
                 <span>慣れてきたら買取査定の補助もお任せします</span>
               </li>
             </ul>
@@ -690,11 +731,9 @@
 
       <!-- Job Details Table -->
       <div class="card overflow-hidden mb-8 animate-on-scroll delay-2">
-        <div class="bg-yellow-50 px-6 sm:px-8 py-4">
-          <h3 class="font-heading font-bold text-lg text-gray-900 flex items-center gap-2">
-            <svg class="w-5 h-5 text-accent" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
-            募集要項詳細
-          </h3>
+        <div class="bg-yellow-50 px-6 sm:px-8 py-4 flex items-center gap-3">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon03.png" alt="" class="w-6 h-6 object-contain" aria-hidden="true">
+          <h3 class="font-heading font-bold text-lg text-gray-900">募集要項詳細</h3>
         </div>
         <table class="job-table">
           <tbody>
@@ -734,10 +773,10 @@
               <th>待遇・福利厚生</th>
               <td>
                 <div class="flex flex-wrap gap-2">
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">社員割引</span>
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">研修制度</span>
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">制服貸与</span>
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">正社員登用制度あり</span>
+                  <span class="inline-block bg-yellow-50 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">社員割引</span>
+                  <span class="inline-block bg-yellow-50 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">研修制度</span>
+                  <span class="inline-block bg-yellow-50 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">制服貸与</span>
+                  <span class="inline-block bg-yellow-50 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">正社員登用制度あり</span>
                 </div>
               </td>
             </tr>
@@ -756,11 +795,11 @@
               <th>対象</th>
               <td>
                 <div class="flex flex-wrap gap-2">
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">高校生不可</span>
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">大学生歓迎</span>
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">フリーター歓迎</span>
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">Wワーク歓迎</span>
-                  <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">未経験OK</span>
+                  <span class="inline-block bg-yellow-50 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">高校生不可</span>
+                  <span class="inline-block bg-yellow-50 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">大学生歓迎</span>
+                  <span class="inline-block bg-yellow-50 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">フリーター歓迎</span>
+                  <span class="inline-block bg-yellow-50 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">Wワーク歓迎</span>
+                  <span class="inline-block bg-yellow-50 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">未経験OK</span>
                 </div>
               </td>
             </tr>
@@ -782,54 +821,53 @@
       <!-- Location / Map -->
       <div class="card p-6 sm:p-8 mb-8 animate-on-scroll delay-3">
         <h3 class="font-heading font-bold text-xl text-gray-900 mb-6 flex items-center gap-2">
-          <svg class="w-5 h-5 text-accent" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon08.png" alt="" class="w-5 h-5 object-contain" aria-hidden="true">
           勤務地
         </h3>
         <p class="text-gray-600 mb-4">全国7拠点のいずれかに配属となります。自宅から通いやすい店舗をお選びいただけます。</p>
         <div class="grid sm:grid-cols-2 gap-3 mb-6">
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-accent flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             秋葉原店（JR秋葉原駅 徒歩3分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-accent flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             秋葉原2号店（JR秋葉原駅 徒歩5分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-accent flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             中野店（JR中野駅 徒歩3分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-accent flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             池袋店（JR池袋駅 徒歩5分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-accent flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             大阪日本橋店（南海なんば駅 徒歩8分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-accent flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             大阪日本橋2号店（南海なんば駅 徒歩10分）
           </div>
           <div class="flex items-center gap-2 text-sm text-gray-600">
-            <svg class="w-4 h-4 text-accent flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon06.png" alt="" class="w-4 h-4 object-contain flex-shrink-0" aria-hidden="true">
             トレレン秋葉原店（JR秋葉原駅 徒歩圏内）
           </div>
         </div>
-        <!-- Map Placeholder -->
-        <div class="rounded-xl overflow-hidden bg-gray-100 aspect-[16/7] flex items-center justify-center border-2 border-dashed border-gray-300">
-          <div class="text-center p-6">
-            <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <p class="text-gray-500 font-medium">Google Maps 埋め込み予定</p>
-            <p class="text-gray-400 text-sm mt-1">※各店舗の地図を表示します</p>
-          </div>
+
+        <!-- 店舗写真グリッド -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 rounded-xl overflow-hidden">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="秋葉原店" class="w-full h-32 object-cover">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="中野店" class="w-full h-32 object-cover">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="池袋店" class="w-full h-32 object-cover">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_oosaka.png" alt="大阪日本橋店" class="w-full h-32 object-cover">
         </div>
       </div>
 
       <!-- Apply Button -->
       <div class="text-center animate-on-scroll delay-3">
         <a href="entry.html" class="btn-primary btn-primary-lg" style="background: linear-gradient(135deg, #FFCB05, #CC9900);">
-          <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
           アルバイトに応募する
         </a>
         <p class="text-sm text-gray-400 mt-4">応募フォームに移動します</p>
@@ -840,9 +878,19 @@
 
 
   <!-- ============ CTA ============ -->
-  <section class="cta-section py-20 lg:py-28">
+  <section class="cta-section py-20 lg:py-28 relative">
+    <!-- ゲンガー・ブラッキー装飾（opacity-15に変更） -->
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2025/01/%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC.png" alt="" class="absolute bottom-0 left-0 w-40 opacity-[0.15] pointer-events-none select-none -rotate-12" aria-hidden="true">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2024/06/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC-1.png" alt="" class="absolute top-0 right-0 w-36 opacity-[0.15] pointer-events-none select-none rotate-6" aria-hidden="true">
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="" class="w-20 mx-auto mb-4 drop-shadow-lg" aria-hidden="true">
+
+      <!-- ニンニンキャラ＋ピカチュウ大きく並べて表示 -->
+      <div class="flex items-end justify-center gap-4 mb-8">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="" class="w-36 drop-shadow-lg hero-floating" aria-hidden="true">
+        <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="" class="w-40 drop-shadow-lg hero-floating" aria-hidden="true" style="animation-delay: 0.8s;">
+      </div>
+
       <h2 class="font-heading font-bold text-3xl lg:text-4xl text-white mb-6 animate-on-scroll">
         あなたの「好き」を<br class="sm:hidden">待っています
       </h2>
@@ -853,11 +901,9 @@
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 animate-on-scroll delay-2">
         <a href="entry.html" class="btn-white btn-primary-lg">
-          <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           WEBから応募する
         </a>
         <a href="tel:03-4363-7710" class="btn-white btn-primary-lg !bg-transparent !text-white border-2 border-white/50 hover:!bg-white/10">
-          <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
           03-4363-7710
         </a>
       </div>
@@ -870,6 +916,15 @@
 
   </main><!-- /main -->
 
+  <!-- ============ BANNER STRIP (フッター上部) ============ -->
+  <div class="bg-primary py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+      <a href="https://nin-nin-pokeka.jp/" target="_blank" rel="noopener noreferrer" class="block">
+        <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_link02.png" alt="ニンニン公式サイトはこちら" class="h-10 sm:h-14 w-auto">
+      </a>
+    </div>
+  </div>
+
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -878,7 +933,7 @@
         <!-- Company -->
         <div class="md:col-span-2">
           <div class="flex items-center gap-2 mb-4">
-            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/logo.png" alt="ニンニン" class="h-10 w-auto brightness-0 invert">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/f_logo.png" alt="ニンニン" class="h-10 w-auto">
           </div>
           <p class="text-gray-400 text-sm leading-relaxed mb-4">
             株式会社NINJA<br>
@@ -918,7 +973,34 @@
     </div>
   </footer>
 
+  <!-- ページトップボタン -->
+  <a href="#" id="page-top-btn" class="fixed bottom-6 right-6 z-40 opacity-0 pointer-events-none transition-all duration-300 hover:scale-110" aria-label="ページトップへ戻る">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/page_top.png" alt="ページトップ" class="w-14 h-14 drop-shadow-md">
+  </a>
+
   <!-- JS -->
   <script src="js/main.js"></script>
+  <script>
+    // ページトップボタンの表示制御
+    (function() {
+      var btn = document.getElementById('page-top-btn');
+      if (!btn) return;
+
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+          btn.style.opacity = '1';
+          btn.style.pointerEvents = 'auto';
+        } else {
+          btn.style.opacity = '0';
+          btn.style.pointerEvents = 'none';
+        }
+      });
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
 </body>
 </html>

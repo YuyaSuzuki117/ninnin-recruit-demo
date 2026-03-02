@@ -158,255 +158,310 @@
   </div>
 
 
-  <!-- ============ PAGE HEADER ============ -->
-  <section class="bg-bg-alt pb-12 pt-6">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="animate-on-scroll">
-        <h1 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 section-title">応募フォーム</h1>
-        <div class="mt-6" aria-hidden="true">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="" class="w-20 mx-auto drop-shadow-lg">
-        </div>
+  <!-- ============ PAGE HEADER（mainimg1.jpg背景 + キャラ） ============ -->
+  <section class="relative h-48 lg:h-64 overflow-hidden">
+    <!-- 背景写真 -->
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/mainimg1.jpg"
+         alt="" class="absolute inset-0 w-full h-full object-cover" aria-hidden="true">
+    <!-- 黄色系オーバーレイ -->
+    <div class="absolute inset-0 bg-yellow-500/70" aria-hidden="true"></div>
+
+    <div class="relative z-10 h-full flex flex-col items-center justify-center px-4">
+      <!-- キャラクター -->
+      <div class="flex items-end justify-center gap-4 mb-3">
+        <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png"
+             alt="ニンニンキャラクター" class="w-24 lg:w-32 drop-shadow-lg">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+             alt="ピカチュウ" class="w-16 lg:w-24 drop-shadow-lg">
       </div>
-      <p class="text-gray-600 mt-8 max-w-2xl mx-auto leading-relaxed animate-on-scroll delay-1">
-        ニンニンへのご応募ありがとうございます。<br>
-        以下のフォームに必要事項をご入力の上、送信してください。<br class="hidden sm:inline">
-        担当者より3営業日以内にご連絡いたします。
-      </p>
+      <!-- タイトル -->
+      <h1 class="font-heading font-bold text-3xl lg:text-4xl text-white drop-shadow-md">応募フォーム</h1>
     </div>
   </section>
 
 
-  <!-- ============ FORM ============ -->
+  <!-- ============ FORM（2カラム: フォーム + キャラ） ============ -->
   <section class="py-16 lg:py-20 bg-white">
-    <div class="max-w-[700px] mx-auto px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="card p-8 sm:p-10 lg:p-12 animate-on-scroll delay-2">
-        <!-- エラーメッセージ用aria-liveリージョン -->
-        <div id="form-errors" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+      <!-- 説明テキスト -->
+      <div class="text-center mb-10 animate-on-scroll">
+        <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          ニンニンへのご応募ありがとうございます。<br>
+          以下のフォームに必要事項をご入力の上、送信してください。<br class="hidden sm:inline">
+          担当者より3営業日以内にご連絡いたします。
+        </p>
+      </div>
 
-        <form id="entry-form" novalidate>
+      <div class="lg:grid lg:grid-cols-5 lg:gap-12 lg:items-start">
 
-          <!-- お名前 -->
-          <div class="mb-6">
-            <label for="name" class="form-label">
-              お名前<span class="required">必須</span>
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="form-input"
-              placeholder="例：山田 太郎"
-              required
-              aria-required="true"
-              aria-describedby="name-error"
-              autocomplete="name"
-            >
-            <p id="name-error" class="form-error" role="alert" hidden></p>
+        <!-- 左カラム: フォーム -->
+        <div class="lg:col-span-3">
+
+          <!-- モバイル: フォーム上にキャラ -->
+          <div class="flex items-center justify-center gap-4 mb-8 lg:hidden">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png"
+                 alt="" aria-hidden="true" class="w-20">
+            <p class="font-heading font-bold text-lg text-gray-800">キミの応募を<br>待ってるぜ!</p>
           </div>
 
-          <!-- ふりがな -->
-          <div class="mb-6">
-            <label for="furigana" class="form-label">
-              ふりがな<span class="required">必須</span>
-            </label>
-            <input
-              type="text"
-              id="furigana"
-              name="furigana"
-              class="form-input"
-              placeholder="例：やまだ たろう"
-              required
-              aria-required="true"
-              aria-describedby="furigana-error"
-            >
-            <p id="furigana-error" class="form-error" role="alert" hidden></p>
-          </div>
+          <div class="card p-8 sm:p-10 lg:p-12 animate-on-scroll delay-2">
+            <!-- エラーメッセージ用aria-liveリージョン -->
+            <div id="form-errors" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-          <!-- メールアドレス -->
-          <div class="mb-6">
-            <label for="email" class="form-label">
-              メールアドレス<span class="required">必須</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-input"
-              placeholder="例：example@mail.com"
-              required
-              aria-required="true"
-              aria-describedby="email-error"
-              autocomplete="email"
-            >
-            <p id="email-error" class="form-error" role="alert" hidden></p>
-          </div>
+            <form id="entry-form" novalidate>
 
-          <!-- 電話番号 -->
-          <div class="mb-6">
-            <label for="phone" class="form-label">
-              電話番号<span class="required">必須</span>
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              class="form-input"
-              placeholder="例：090-1234-5678"
-              required
-              aria-required="true"
-              aria-describedby="phone-error"
-              autocomplete="tel"
-            >
-            <p id="phone-error" class="form-error" role="alert" hidden></p>
-          </div>
-
-          <!-- 年齢 -->
-          <div class="mb-6">
-            <label for="age" class="form-label">
-              年齢
-            </label>
-            <input
-              type="number"
-              id="age"
-              name="age"
-              class="form-input"
-              placeholder="例：25"
-              min="15"
-              max="99"
-            >
-          </div>
-
-          <!-- 希望職種 -->
-          <div class="mb-6">
-            <fieldset>
-              <legend class="form-label">希望職種</legend>
-              <div class="flex flex-wrap gap-6 mt-1">
-                <label class="flex items-center gap-2 cursor-pointer text-gray-700">
-                  <input
-                    type="radio"
-                    name="job_type"
-                    value="正社員"
-                    class="w-4 h-4 text-primary accent-primary"
-                  >
-                  <span>正社員</span>
+              <!-- お名前 -->
+              <div class="mb-6">
+                <label for="name" class="form-label">
+                  お名前<span class="required">必須</span>
                 </label>
-                <label class="flex items-center gap-2 cursor-pointer text-gray-700">
-                  <input
-                    type="radio"
-                    name="job_type"
-                    value="アルバイト"
-                    class="w-4 h-4 text-primary accent-primary"
-                  >
-                  <span>アルバイト</span>
-                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="例：山田 太郎"
+                  required
+                  aria-required="true"
+                  aria-describedby="name-error"
+                  autocomplete="name"
+                >
+                <p id="name-error" class="form-error" role="alert" hidden></p>
               </div>
-            </fieldset>
+
+              <!-- ふりがな -->
+              <div class="mb-6">
+                <label for="furigana" class="form-label">
+                  ふりがな<span class="required">必須</span>
+                </label>
+                <input
+                  type="text"
+                  id="furigana"
+                  name="furigana"
+                  class="form-input"
+                  placeholder="例：やまだ たろう"
+                  required
+                  aria-required="true"
+                  aria-describedby="furigana-error"
+                >
+                <p id="furigana-error" class="form-error" role="alert" hidden></p>
+              </div>
+
+              <!-- メールアドレス -->
+              <div class="mb-6">
+                <label for="email" class="form-label">
+                  メールアドレス<span class="required">必須</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="例：example@mail.com"
+                  required
+                  aria-required="true"
+                  aria-describedby="email-error"
+                  autocomplete="email"
+                >
+                <p id="email-error" class="form-error" role="alert" hidden></p>
+              </div>
+
+              <!-- 電話番号 -->
+              <div class="mb-6">
+                <label for="phone" class="form-label">
+                  電話番号<span class="required">必須</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="form-input"
+                  placeholder="例：090-1234-5678"
+                  required
+                  aria-required="true"
+                  aria-describedby="phone-error"
+                  autocomplete="tel"
+                >
+                <p id="phone-error" class="form-error" role="alert" hidden></p>
+              </div>
+
+              <!-- 年齢 -->
+              <div class="mb-6">
+                <label for="age" class="form-label">
+                  年齢
+                </label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  class="form-input"
+                  placeholder="例：25"
+                  min="15"
+                  max="99"
+                >
+              </div>
+
+              <!-- 希望職種 -->
+              <div class="mb-6">
+                <fieldset>
+                  <legend class="form-label">希望職種</legend>
+                  <div class="flex flex-wrap gap-6 mt-1">
+                    <label class="flex items-center gap-2 cursor-pointer text-gray-700">
+                      <input
+                        type="radio"
+                        name="job_type"
+                        value="正社員"
+                        class="w-4 h-4 text-primary accent-primary"
+                      >
+                      <span>正社員</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer text-gray-700">
+                      <input
+                        type="radio"
+                        name="job_type"
+                        value="アルバイト"
+                        class="w-4 h-4 text-primary accent-primary"
+                      >
+                      <span>アルバイト</span>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+
+              <!-- 希望勤務地 -->
+              <div class="mb-6">
+                <label for="location" class="form-label">
+                  希望勤務地
+                </label>
+                <select
+                  id="location"
+                  name="location"
+                  class="form-input"
+                >
+                  <option value="">選択してください</option>
+                  <option value="秋葉原店">秋葉原店</option>
+                  <option value="秋葉原2号店">秋葉原2号店</option>
+                  <option value="中野店">中野店</option>
+                  <option value="池袋店">池袋店</option>
+                  <option value="大阪日本橋店">大阪日本橋店</option>
+                  <option value="大阪日本橋2号店">大阪日本橋2号店</option>
+                  <option value="トレレン秋葉原店">トレレン秋葉原店</option>
+                </select>
+              </div>
+
+              <!-- 志望動機・自己PR -->
+              <div class="mb-6">
+                <label for="motivation" class="form-label">
+                  志望動機・自己PR
+                </label>
+                <textarea
+                  id="motivation"
+                  name="motivation"
+                  class="form-input"
+                  rows="5"
+                  placeholder="ポケモンカードとの関わりや、応募のきっかけなどを教えてください"
+                ></textarea>
+              </div>
+
+              <!-- その他ご質問 -->
+              <div class="mb-8">
+                <label for="questions" class="form-label">
+                  その他ご質問
+                </label>
+                <textarea
+                  id="questions"
+                  name="questions"
+                  class="form-input"
+                  rows="3"
+                  placeholder="ご質問やご要望があればご記入ください"
+                ></textarea>
+              </div>
+
+              <!-- 区切り線 -->
+              <hr class="border-gray-200 mb-8">
+
+              <!-- プライバシーポリシー同意 -->
+              <div class="mb-8">
+                <label class="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="privacy"
+                    name="privacy"
+                    class="mt-1 w-4 h-4 accent-primary flex-shrink-0"
+                    required
+                    aria-required="true"
+                    aria-describedby="privacy-error"
+                  >
+                  <span class="text-sm text-gray-600 leading-relaxed">
+                    <a href="#" class="text-primary-dark underline hover:text-accent transition-colors">プライバシーポリシー</a>に同意の上、送信してください。
+                    <span class="required">必須</span>
+                  </span>
+                </label>
+                <p id="privacy-error" class="form-error" role="alert" hidden></p>
+              </div>
+
+
+              <!-- 送信ボタン -->
+              <div class="text-center">
+                <button type="submit" class="btn-primary btn-primary-lg w-full sm:w-auto justify-center">
+                  この内容で応募する
+                </button>
+              </div>
+
+            </form>
           </div>
+        </div>
 
-          <!-- 希望勤務地 -->
-          <div class="mb-6">
-            <label for="location" class="form-label">
-              希望勤務地
-            </label>
-            <select
-              id="location"
-              name="location"
-              class="form-input"
-            >
-              <option value="">選択してください</option>
-              <option value="秋葉原店">秋葉原店</option>
-              <option value="秋葉原2号店">秋葉原2号店</option>
-              <option value="中野店">中野店</option>
-              <option value="池袋店">池袋店</option>
-              <option value="大阪日本橋店">大阪日本橋店</option>
-              <option value="大阪日本橋2号店">大阪日本橋2号店</option>
-              <option value="トレレン秋葉原店">トレレン秋葉原店</option>
-            </select>
+        <!-- 右カラム: キャラクター + メッセージ（デスクトップのみ） -->
+        <div class="hidden lg:flex lg:col-span-2 flex-col items-center justify-start sticky top-28 pt-4">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png"
+               alt="ニンニンキャラクター" class="w-56 xl:w-64 drop-shadow-lg mb-6">
+          <div class="bg-primary-light border-2 border-primary rounded-2xl px-6 py-5 text-center relative">
+            <!-- 吹き出しの三角 -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[12px] border-b-primary" aria-hidden="true"></div>
+            <p class="font-heading font-bold text-xl text-gray-900">キミの応募を<br>待ってるぜ!</p>
           </div>
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+               alt="" aria-hidden="true" class="w-20 mt-6 drop-shadow-md">
+        </div>
 
-          <!-- 志望動機・自己PR -->
-          <div class="mb-6">
-            <label for="motivation" class="form-label">
-              志望動機・自己PR
-            </label>
-            <textarea
-              id="motivation"
-              name="motivation"
-              class="form-input"
-              rows="5"
-              placeholder="ポケモンカードとの関わりや、応募のきっかけなどを教えてください"
-            ></textarea>
-          </div>
-
-          <!-- その他ご質問 -->
-          <div class="mb-8">
-            <label for="questions" class="form-label">
-              その他ご質問
-            </label>
-            <textarea
-              id="questions"
-              name="questions"
-              class="form-input"
-              rows="3"
-              placeholder="ご質問やご要望があればご記入ください"
-            ></textarea>
-          </div>
-
-          <!-- 区切り線 -->
-          <hr class="border-gray-200 mb-8">
-
-          <!-- プライバシーポリシー同意 -->
-          <div class="mb-8">
-            <label class="flex items-start gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                id="privacy"
-                name="privacy"
-                class="mt-1 w-4 h-4 accent-primary flex-shrink-0"
-                required
-                aria-required="true"
-                aria-describedby="privacy-error"
-              >
-              <span class="text-sm text-gray-600 leading-relaxed">
-                <a href="#" class="text-primary-dark underline hover:text-accent transition-colors">プライバシーポリシー</a>に同意の上、送信してください。
-                <span class="required">必須</span>
-              </span>
-            </label>
-            <p id="privacy-error" class="form-error" role="alert" hidden></p>
-          </div>
-
-
-          <!-- 送信ボタン -->
-          <div class="text-center">
-            <button type="submit" class="btn-primary btn-primary-lg w-full sm:w-auto justify-center">
-              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-              この内容で応募する
-            </button>
-          </div>
-
-        </form>
       </div>
 
       <!-- 補足情報 -->
-      <div class="mt-10 text-center animate-on-scroll delay-3">
-        <p class="text-sm text-gray-500 leading-relaxed">
-          お電話でのご応募・お問い合わせもお気軽にどうぞ。
-        </p>
-        <p class="mt-2">
-          <a href="tel:03-4363-7710" class="text-primary-dark font-bold text-lg hover:text-accent transition-colors">
-            03-4363-7710
-          </a>
-        </p>
-        <p class="text-xs text-gray-500 mt-1">受付時間：平日 10:00〜18:00</p>
+      <div class="mt-12 animate-on-scroll delay-3">
+        <div class="relative max-w-xl mx-auto rounded-2xl overflow-hidden">
+          <!-- 店内写真を背景に -->
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo01.png"
+               alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover opacity-10">
+          <div class="relative bg-bg-alt/90 p-8 text-center rounded-2xl border border-yellow-200">
+            <div class="flex items-center justify-center gap-3 mb-3">
+              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/icon02.png"
+                   alt="" aria-hidden="true" class="w-10 h-10">
+              <p class="text-sm text-gray-600">お電話でのご応募・お問い合わせもお気軽にどうぞ。</p>
+            </div>
+            <p>
+              <a href="tel:03-4363-7710" class="text-primary-dark font-bold text-2xl hover:text-accent transition-colors">
+                03-4363-7710
+              </a>
+            </p>
+            <p class="text-xs text-gray-500 mt-1">受付時間：平日 10:00〜18:00</p>
+          </div>
+        </div>
       </div>
 
     </div>
   </section>
 
   </main><!-- /main -->
+
+  <!-- ============ フッター上部バナー帯 ============ -->
+  <div class="relative overflow-hidden" aria-hidden="true">
+    <a href="https://nin-nin-pokeka.jp/" target="_blank" rel="noopener noreferrer" class="block">
+      <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_link02.png"
+           alt="ニンニン宅配買取" class="w-full h-auto object-cover max-h-24 lg:max-h-32">
+    </a>
+  </div>
 
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer py-16">
@@ -416,7 +471,7 @@
         <!-- Company -->
         <div class="md:col-span-2">
           <div class="flex items-center gap-2 mb-4">
-            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/logo.png" alt="ニンニン" class="h-10 w-auto brightness-0 invert">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/f_logo.png" alt="ニンニン" class="h-10 w-auto brightness-0 invert">
           </div>
           <p class="text-gray-400 text-sm leading-relaxed mb-4">
             株式会社NINJA<br>
@@ -456,7 +511,26 @@
     </div>
   </footer>
 
+  <!-- ページトップボタン -->
+  <a href="#" class="fixed bottom-6 right-6 z-40 opacity-0 pointer-events-none transition-opacity duration-300" id="page-top" aria-label="ページトップに戻る">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/page_top.png" alt="ページトップ" class="w-14 h-14 drop-shadow-lg hover:scale-110 transition-transform">
+  </a>
+
   <!-- JS -->
   <script src="js/main.js"></script>
+  <script>
+    var pageTopBtn = document.getElementById('page-top');
+    if (pageTopBtn) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+          pageTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+          pageTopBtn.classList.add('opacity-100');
+        } else {
+          pageTopBtn.classList.add('opacity-0', 'pointer-events-none');
+          pageTopBtn.classList.remove('opacity-100');
+        }
+      });
+    }
+  </script>
 </body>
 </html>
