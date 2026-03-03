@@ -7,9 +7,9 @@
   <meta name="description" content="ポケモンカード専門店ニンニンの求人・採用情報。全国7拠点（秋葉原・秋葉原2号・中野・池袋・大阪日本橋・大阪日本橋2号・トレレン秋葉原）でスタッフ募集中。正社員・アルバイト、未経験歓迎。">
   <meta name="robots" content="index, follow">
   <meta name="format-detection" content="telephone=no">
-  <meta name="theme-color" content="#1B2A4A">
+  <meta name="theme-color" content="#0B1628">
   <link rel="canonical" href="https://ninnin-recruit.jp/">
-  <link rel="icon" href="img/favicon.ico">
+  <link rel="icon" href="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2024/06/cropped-logo-32x32.png">
 
   <meta property="og:title" content="採用情報 | ポケモンカード専門店ニンニン">
   <meta property="og:description" content="ポケモンカード専門店ニンニンの求人・採用情報。全国7拠点でスタッフ募集中。">
@@ -35,11 +35,12 @@
       theme: {
         extend: {
           colors: {
-            primary: { DEFAULT: '#FFCB05', dark: '#B8930A', light: '#FFF7CC' },
-            accent: '#E8380D',
-            secondary: '#1B2A4A',
+            pika: { DEFAULT: '#FFCB05', dark: '#B8930A', light: '#FFF7CC', '50': '#FFFDF0' },
+            navy: { DEFAULT: '#1B2A4A', deep: '#0B1628', light: '#2A3F6A' },
+            accent: '#E63946',
             body: '#1D1D1B',
-            'bg-alt': '#F5F5F0',
+            cream: '#FAF6EE',
+            cool: '#EEF2F7',
           },
           fontFamily: {
             heading: ['Zen Kaku Gothic New', 'Noto Sans JP', 'sans-serif'],
@@ -112,60 +113,56 @@
   }]
   </script>
 </head>
-<body class="font-body">
+<body class="font-body text-body">
 
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
-  <!-- ===== ヘッダー上部バー ===== -->
-  <div class="header-top-bar hidden lg:block">
-    <div class="max-w-[1140px] mx-auto px-6">
-      <div class="flex items-center justify-between h-10">
-        <p class="text-xs tracking-wide">株式会社NINJA ｜ ポケモンカード専門店「ニンニン」採用サイト</p>
-        <div class="flex items-center gap-5">
-          <a href="tel:03-4363-7710" class="flex items-center gap-1.5 text-xs font-medium tracking-wide">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            03-4363-7710
-          </a>
-          <a href="entry.html" class="bg-primary text-gray-900 text-xs font-bold px-4 py-1.5 hover:opacity-80 transition-opacity tracking-wider">応募フォームへ</a>
-        </div>
+  <!-- ===== トップバー ===== -->
+  <div class="top-bar">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8 flex items-center justify-between h-9">
+      <p class="text-[11px] tracking-wider opacity-70">株式会社NINJA ｜ ポケモンカード専門店「ニンニン」</p>
+      <div class="flex items-center gap-4">
+        <a href="tel:03-4363-7710" class="text-[11px] font-medium tracking-wide hover:text-pika transition-colors">
+          <svg class="inline w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>03-4363-7710
+        </a>
+        <a href="entry.html" class="top-bar-cta">エントリー</a>
       </div>
     </div>
   </div>
 
   <!-- ===== ヘッダー ===== -->
-  <header class="site-header fixed top-0 lg:top-10 left-0 right-0 z-50">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
+  <header class="site-header">
+    <div class="max-w-[1200px] mx-auto px-4 lg:px-8">
       <div class="flex items-center justify-between h-16 lg:h-[72px]">
         <a href="index.html" class="flex items-center gap-3">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/logo.png" alt="ニンニン" class="h-9 w-auto">
-          <span class="text-[10px] sm:text-[11px] font-bold text-secondary border-l border-gray-300 pl-2 sm:pl-3 tracking-widest">採用情報</span>
+          <span class="header-recruit-badge">RECRUIT</span>
         </a>
 
-        <nav class="hidden lg:flex items-center" aria-label="メインナビゲーション">
+        <nav class="hidden lg:flex items-center gap-1" aria-label="メインナビゲーション">
           <a href="#about" class="nav-link">ニンニンとは</a>
           <a href="#features" class="nav-link">働く魅力</a>
           <a href="#stores" class="nav-link">店舗一覧</a>
           <a href="#interview" class="nav-link">先輩の声</a>
           <a href="#jobs" class="nav-link">募集要項</a>
+          <a href="entry.html" class="nav-cta">応募する</a>
         </nav>
 
-        <button id="menu-toggle" class="hamburger lg:hidden flex flex-col gap-1.5 p-2" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+        <button id="menu-toggle" class="hamburger lg:hidden" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
 
-    <div id="mobile-menu-overlay" class="mobile-menu-overlay fixed inset-0 bg-black/50 z-40 lg:hidden"></div>
-    <nav id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl lg:hidden" aria-label="モバイルナビゲーション" aria-hidden="true">
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+    <nav id="mobile-menu" class="mobile-menu" aria-label="モバイルナビゲーション" aria-hidden="true">
       <div class="p-6 pt-20">
-        <a href="#about" class="block py-3 px-4 text-sm font-bold text-gray-800 border-b border-gray-100">ニンニンとは</a>
-        <a href="#features" class="block py-3 px-4 text-sm font-bold text-gray-800 border-b border-gray-100">働く魅力</a>
-        <a href="#stores" class="block py-3 px-4 text-sm font-bold text-gray-800 border-b border-gray-100">店舗一覧</a>
-        <a href="#interview" class="block py-3 px-4 text-sm font-bold text-gray-800 border-b border-gray-100">先輩の声</a>
-        <a href="#jobs" class="block py-3 px-4 text-sm font-bold text-gray-800 border-b border-gray-100">募集要項</a>
-        <div class="pt-6 mt-4">
+        <a href="#about" class="mobile-menu-link">ニンニンとは</a>
+        <a href="#features" class="mobile-menu-link">働く魅力</a>
+        <a href="#stores" class="mobile-menu-link">店舗一覧</a>
+        <a href="#interview" class="mobile-menu-link">先輩の声</a>
+        <a href="#jobs" class="mobile-menu-link">募集要項</a>
+        <div class="pt-6 mt-4 border-t border-gray-200">
           <a href="tel:03-4363-7710" class="block text-center text-gray-800 font-bold text-lg mb-3">03-4363-7710</a>
           <a href="entry.html" class="btn-primary w-full justify-center">応募フォームへ</a>
         </div>
@@ -176,52 +173,84 @@
 
   <main id="main-content">
 
-  <!-- ===== ヒーロー ===== -->
-  <section class="hero pt-16 lg:pt-[112px]">
-    <div class="hero-inner">
-      <!-- 左: テキストエリア -->
-      <div class="hero-text">
-        <div class="max-w-[560px]">
-          <p class="hero-label">RECRUIT</p>
-          <h1 class="hero-title">好きを仕事に。<br>ポケカと生きる。</h1>
-          <div class="hero-divider"></div>
-          <p class="hero-desc">
-            ポケモンカードが好き。その気持ちが、いちばんの資格です。<br class="hidden sm:inline">未経験から始められる環境で、あなたの「好き」を仕事にしませんか？
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-grid-pattern" aria-hidden="true"></div>
+    <!-- 浮遊カード装飾 -->
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2024/06/ブラッキー-1.png" alt="" class="hero-float hero-float--1" aria-hidden="true" loading="lazy">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2024/07/036210_P_RATEIASURATEIOSUGX-734x1024.jpg" alt="" class="hero-float hero-float--2" aria-hidden="true" loading="lazy">
+
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8 relative z-10">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge font-num">RECRUIT 2026</div>
+          <h1 class="hero-title font-heading">
+            好きを仕事に。<br><span class="hero-title-accent">ポケカ</span>と生きる。
+          </h1>
+          <p class="hero-lead">
+            ポケモンカードが好き。その気持ちが、いちばんの資格です。<br class="hidden sm:inline">
+            未経験から始められる環境で、あなたの「好き」を仕事にしませんか？
           </p>
-          <div class="flex flex-wrap gap-3 mt-8">
-            <a href="entry.html" class="hero-cta-primary">応募フォームへ</a>
-            <a href="#jobs" class="hero-cta-ghost">募集要項を見る</a>
+          <div class="flex flex-wrap gap-3 mt-8 lg:mt-10">
+            <a href="entry.html" class="btn-hero-primary">
+              今すぐ応募する
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+            <a href="#jobs" class="btn-hero-ghost">募集要項を見る</a>
           </div>
-          <p class="hero-note">正社員・アルバイト募集中 ｜ 全国7拠点</p>
+          <div class="hero-tags">
+            <span>正社員募集</span>
+            <span>アルバイト募集</span>
+            <span>未経験歓迎</span>
+            <span>全国7拠点</span>
+          </div>
         </div>
-      </div>
-      <!-- 右: キャラクターエリア -->
-      <div class="hero-visual">
-        <div class="hero-visual-bg"></div>
-        <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="ニンニン忍者キャラクター" class="hero-chara">
+        <div class="hero-visual">
+          <div class="hero-card-frame">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="ニンニン忍者キャラクター" class="hero-chara">
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+
   <!-- ===== 数字で見るニンニン ===== -->
-  <section class="numbers-section py-10 lg:py-14">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6 relative z-10">
-      <div class="numbers-grid">
-        <div class="number-card">
-          <span class="number-card-value" data-count="7">0</span><span class="number-card-unit">拠点</span>
-          <span class="number-card-label">全国店舗数</span>
+  <section class="sec-stats">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="stats-grid">
+        <div class="stat-item fade-in">
+          <span class="stat-value font-num" data-count="7">0</span><span class="stat-unit">拠点</span>
+          <span class="stat-label">全国店舗数</span>
         </div>
-        <div class="number-card">
-          <span class="number-card-value" data-count="80">0</span><span class="number-card-unit">%</span>
-          <span class="number-card-label">ポケカプレイヤー率</span>
+        <div class="stat-item fade-in">
+          <span class="stat-value font-num" data-count="80">0</span><span class="stat-unit">%</span>
+          <span class="stat-label">ポケカプレイヤー率</span>
         </div>
-        <div class="number-card">
-          <span class="number-card-value" data-count="2">0</span><span class="number-card-unit">週間</span>
-          <span class="number-card-label">充実の研修期間</span>
+        <div class="stat-item fade-in">
+          <span class="stat-value font-num" data-count="26">0</span><span class="stat-unit">歳</span>
+          <span class="stat-label">スタッフ平均年齢</span>
         </div>
-        <div class="number-card">
-          <span class="number-card-value" data-count="10">0</span><span class="number-card-unit">分以内</span>
-          <span class="number-card-label">全店舗 駅から徒歩</span>
+        <div class="stat-item fade-in">
+          <span class="stat-value font-num" data-count="90">0</span><span class="stat-unit">%</span>
+          <span class="stat-label">正社員登用率</span>
+        </div>
+        <div class="stat-item fade-in">
+          <span class="stat-value font-num" data-count="2">0</span><span class="stat-unit">週間</span>
+          <span class="stat-label">充実の研修期間</span>
+        </div>
+        <div class="stat-item fade-in">
+          <span class="stat-value font-num" data-count="10">0</span><span class="stat-unit">分以内</span>
+          <span class="stat-label">全店舗 駅チカ</span>
+        </div>
+        <div class="stat-item fade-in">
+          <span class="stat-value font-num">6:4</span>
+          <span class="stat-label">男女比率</span>
+        </div>
+        <div class="stat-item fade-in">
+          <span class="stat-value font-num" data-count="120">0</span><span class="stat-unit">%</span>
+          <span class="stat-label">年間売上成長率</span>
         </div>
       </div>
     </div>
@@ -229,63 +258,43 @@
 
 
   <!-- ===== ニンニンとは ===== -->
-  <section id="about" class="py-14 lg:py-20 bg-white">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="section-heading fade-in">
-        <h2>ニンニンとは</h2>
-        <p>ポケモンカード専門店として全国7拠点を展開</p>
-      </div>
+  <section id="about" class="py-20 lg:py-28 bg-white relative overflow-hidden">
+    <div class="sec-deco-line sec-deco-line--right" aria-hidden="true"></div>
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="sec-label fade-in">ABOUT US</div>
+      <h2 class="sec-title fade-in">ニンニンとは</h2>
+      <p class="sec-sub fade-in">ポケモンカード専門店として全国7拠点を展開</p>
 
-      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start mt-14">
-        <!-- 写真 -->
-        <div class="about-photo-grid">
-          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="ニンニン秋葉原店" class="main-photo" loading="lazy">
-          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo01.png" alt="カード買取の様子" loading="lazy">
-          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo02.png" alt="接客の様子" loading="lazy">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start mt-14">
+        <div class="about-photos fade-in">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="ニンニン秋葉原店の店内" class="about-photo-main" loading="lazy">
+          <div class="about-photo-sub-grid">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo01.png" alt="カード買取の受付" loading="lazy">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo02.png" alt="査定と接客" loading="lazy">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo03.png" alt="買取完了" loading="lazy">
+          </div>
         </div>
 
-        <!-- テキスト -->
-        <div>
-          <p class="text-[15px] text-gray-600 leading-[1.9] mb-5">
-            株式会社NINJAが運営する「ニンニン」は、ポケモンカードゲームの専門店です。シングルカード販売・買取からオリパ（オリジナルパック）、対戦スペースまで、ポケカファンのためのすべてが揃う場所を提供しています。
+        <div class="fade-in">
+          <p class="text-[15px] text-gray-600 leading-[2] mb-6">
+            株式会社NINJAが運営する<strong class="text-body">「ニンニン」</strong>は、ポケモンカードゲームの専門店です。シングルカード販売・買取からオリパ（オリジナルパック）、対戦スペースまで、ポケカファンのためのすべてが揃う場所を提供しています。
           </p>
-          <p class="text-[15px] text-gray-600 leading-[1.9] mb-5">
-            2019年の秋葉原1号店オープンから、東京・大阪の主要エリアに7拠点まで拡大。ECサイトや宅配買取にも力を入れ、全国のお客様にサービスを届けています。
+          <p class="text-[15px] text-gray-600 leading-[2] mb-6">
+            2019年の秋葉原1号店オープンから、東京・大阪の主要エリアに<strong class="text-body">7拠点まで拡大</strong>。ECサイトや宅配買取にも力を入れ、全国のお客様にサービスを届けています。
           </p>
-          <p class="text-[15px] text-gray-600 leading-[1.9] mb-8">
-            「好きなことで人を笑顔にする」をモットーに、お客様一人ひとりに寄り添った接客を大切にしています。スタッフの8割以上がポケカプレイヤー。好きなことを仕事にできる、そんな職場環境がここにはあります。
+          <p class="text-[15px] text-gray-600 leading-[2] mb-10">
+            「好きなことで人を笑顔にする」をモットーに、お客様一人ひとりに寄り添った接客を大切にしています。スタッフの<strong class="text-body">8割以上がポケカプレイヤー</strong>。好きなことを仕事にできる、そんな職場環境がここにはあります。
           </p>
 
-          <!-- 会社概要 -->
-          <div class="border border-[#C8C8C0] mt-8">
-            <div class="bg-bg-alt border-b border-[#C8C8C0] px-4 py-2.5">
-              <h3 class="font-bold text-sm text-body">会社概要</h3>
-            </div>
-            <table class="w-full text-sm border-collapse">
-              <tr class="border-b border-gray-200">
-                <th class="text-left py-2.5 px-4 text-gray-500 font-medium w-24 bg-bg-alt border-r border-gray-200">社名</th>
-                <td class="py-2.5 px-4 text-gray-700">株式会社NINJA</td>
-              </tr>
-              <tr class="border-b border-gray-200">
-                <th class="text-left py-2.5 px-4 text-gray-500 font-medium bg-bg-alt border-r border-gray-200">設立</th>
-                <td class="py-2.5 px-4 text-gray-700">2019年</td>
-              </tr>
-              <tr class="border-b border-gray-200">
-                <th class="text-left py-2.5 px-4 text-gray-500 font-medium bg-bg-alt border-r border-gray-200">事業</th>
-                <td class="py-2.5 px-4 text-gray-700">トレーディングカード販売・買取・EC運営</td>
-              </tr>
-              <tr class="border-b border-gray-200">
-                <th class="text-left py-2.5 px-4 text-gray-500 font-medium bg-bg-alt border-r border-gray-200">店舗数</th>
-                <td class="py-2.5 px-4 text-gray-700">全国7拠点（東京5店舗・大阪2店舗）</td>
-              </tr>
-              <tr class="border-b border-gray-200">
-                <th class="text-left py-2.5 px-4 text-gray-500 font-medium bg-bg-alt border-r border-gray-200">従業員数</th>
-                <td class="py-2.5 px-4 text-gray-700">50名以上（正社員・アルバイト含む）</td>
-              </tr>
-              <tr>
-                <th class="text-left py-2.5 px-4 text-gray-500 font-medium bg-bg-alt border-r border-gray-200">許可</th>
-                <td class="py-2.5 px-4 text-gray-700">古物商許可 第303262120770号</td>
-              </tr>
+          <div class="company-table">
+            <h3 class="company-table-header">会社概要</h3>
+            <table>
+              <tr><th>社名</th><td>株式会社NINJA</td></tr>
+              <tr><th>設立</th><td>2019年</td></tr>
+              <tr><th>事業</th><td>トレーディングカード販売・買取・EC運営</td></tr>
+              <tr><th>店舗数</th><td>全国7拠点（東京5・大阪2）</td></tr>
+              <tr><th>従業員</th><td>50名以上（正社員・アルバイト含む）</td></tr>
+              <tr><th>許可</th><td>古物商許可 第303262120770号</td></tr>
             </table>
           </div>
         </div>
@@ -294,71 +303,234 @@
   </section>
 
 
-  <hr class="section-separator">
-
-  <!-- ===== 3つの魅力 ===== -->
-  <section id="features" class="bg-primary-band">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6 py-16 lg:py-24">
-      <div class="section-heading section-heading--center fade-in">
-        <h2>ニンニンで働く魅力</h2>
-        <p>私たちが大切にしていること</p>
-      </div>
-
-      <div class="mt-12 space-y-5">
-        <div class="feature-card fade-in">
-          <div class="feature-card-accent"></div>
-          <div class="feature-card-body">
-            <h3 class="font-heading font-bold text-[17px] text-body mb-2">ポケカ好きの仲間がいる</h3>
-            <p class="text-sm text-gray-600 leading-[1.85]">スタッフの8割以上がポケカプレイヤー。休憩時間にデッキの話で盛り上がったり、新弾の情報交換をしたり。月1回のスタッフ対戦会や、社員限定の先行販売情報共有も。好きなものを語り合える仲間がいます。</p>
-          </div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card-accent"></div>
-          <div class="feature-card-body">
-            <h3 class="font-heading font-bold text-[17px] text-body mb-2">未経験OK・研修が充実</h3>
-            <p class="text-sm text-gray-600 leading-[1.85]">入社後2週間の集中研修で、カードの種類・レアリティ・相場観・買取査定の基礎を学べます。先輩がマンツーマンでサポートするOJT制度あり。接客マナーやPOSシステムの操作もゼロから丁寧に教えます。</p>
-          </div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card-accent"></div>
-          <div class="feature-card-body">
-            <h3 class="font-heading font-bold text-[17px] text-body mb-2">全国7拠点・駅チカで通いやすい</h3>
-            <p class="text-sm text-gray-600 leading-[1.85]">秋葉原・中野・池袋・大阪日本橋の主要エリアに出店。全店舗が最寄り駅から徒歩10分以内。自宅から近い店舗を選べるので、通勤の負担を最小限に。アルバイトはシフト自由で学業やWワークとの両立も可能です。</p>
+  <!-- ===== 代表メッセージ ===== -->
+  <section class="sec-message">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="message-inner fade-in">
+        <div class="message-quote-mark" aria-hidden="true">"</div>
+        <div class="sec-label">MESSAGE</div>
+        <h2 class="sec-title sec-title--white">代表メッセージ</h2>
+        <blockquote class="message-quote">
+          <p>ポケモンカードとの出会いが、私の人生を変えました。</p>
+          <p>2019年、秋葉原の小さなスペースから始まったニンニンは、今では全国7拠点を展開する専門店へと成長しました。この成長を支えてくれたのは、「ポケカが好き」という共通の想いを持ったスタッフたちです。</p>
+          <p>カードの知識や販売経験以上に、私たちが大切にしているのは<strong>「好きなことで人を笑顔にしたい」</strong>という気持ち。知識は入社してから身につけられます。大切なのは、あなたの「好き」という熱量です。</p>
+          <p>あなたの「好き」を、一緒にカタチにしませんか。</p>
+        </blockquote>
+        <div class="message-author">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/sub/chara_satei.png" alt="" class="message-author-img" aria-hidden="true">
+          <div>
+            <span class="message-author-role">株式会社NINJA 代表取締役</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 安心ポイント ===== -->
-  <section class="reassurance-section py-12 lg:py-16 bg-white">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="section-heading section-heading--center fade-in">
-        <h2>はじめてでも大丈夫</h2>
-        <p>応募前の不安にお答えします</p>
+
+  <!-- ===== 働く魅力 ===== -->
+  <section id="features" class="sec-features">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="text-center fade-in">
+        <div class="sec-label sec-label--dark">WHY NINNIN</div>
+        <h2 class="sec-title sec-title--dark">ニンニンで働く<span class="text-navy">3</span>つの魅力</h2>
       </div>
 
-      <div class="reassurance-grid mt-12">
-        <div class="reassurance-card fade-in">
-          <div class="reassurance-card-icon" aria-hidden="true">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      <div class="feature-list">
+        <div class="feature-card holo-card fade-in">
+          <div class="feature-num font-num">01</div>
+          <div class="feature-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
           </div>
-          <h3>ポケカ知識ゼロでOK</h3>
-          <p>入社後の研修でカードの種類・レアリティ・相場観を学べます。「ポケカに興味がある」その気持ちだけで十分です。</p>
+          <h3 class="feature-title font-heading">ポケカ好きの仲間がいる</h3>
+          <p class="feature-desc">スタッフの8割以上がポケカプレイヤー。休憩時間にデッキの話で盛り上がったり、新弾の情報交換をしたり。月1回のスタッフ対戦会や、社員限定の先行販売情報共有も。好きなものを語り合える仲間がいる職場です。</p>
+          <ul class="feature-tags">
+            <li>月1回スタッフ対戦会</li>
+            <li>新弾先行情報</li>
+            <li>社員割引あり</li>
+          </ul>
         </div>
-        <div class="reassurance-card">
-          <div class="reassurance-card-icon" aria-hidden="true">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+
+        <div class="feature-card holo-card fade-in">
+          <div class="feature-num font-num">02</div>
+          <div class="feature-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
           </div>
-          <h3>先輩がマンツーマンで指導</h3>
-          <p>OJT研修で先輩が丁寧にサポート。レジ操作・接客マナー・買取査定の基礎をゼロから段階的に学べます。</p>
+          <h3 class="feature-title font-heading">未経験OK・研修が充実</h3>
+          <p class="feature-desc">入社後2週間の集中研修で、カードの種類・レアリティ・相場観・買取査定の基礎を学べます。先輩がマンツーマンでサポートするOJT制度あり。接客マナーやPOSシステムの操作もゼロから丁寧に教えます。</p>
+          <ul class="feature-tags">
+            <li>2週間集中研修</li>
+            <li>マンツーマンOJT</li>
+            <li>マニュアル完備</li>
+          </ul>
         </div>
-        <div class="reassurance-card">
-          <div class="reassurance-card-icon" aria-hidden="true">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+
+        <div class="feature-card holo-card fade-in">
+          <div class="feature-num font-num">03</div>
+          <div class="feature-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
-          <h3>シフトは柔軟に調整</h3>
-          <p>学業やWワークとの両立も応援。テスト期間のシフト調整にも対応しています。週2日・1日4時間からOKです。</p>
+          <h3 class="feature-title font-heading">全国7拠点・駅チカで通いやすい</h3>
+          <p class="feature-desc">秋葉原・中野・池袋・大阪日本橋の主要エリアに出店。全店舗が最寄り駅から徒歩10分以内。自宅から近い店舗を選べるので、通勤の負担を最小限に。シフト自由で学業やWワークとの両立も可能です。</p>
+          <ul class="feature-tags">
+            <li>全店駅チカ</li>
+            <li>シフト自由</li>
+            <li>Wワーク可</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== キャリアパス ===== -->
+  <section class="py-20 lg:py-28 bg-white relative">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="text-center fade-in">
+        <div class="sec-label">CAREER PATH</div>
+        <h2 class="sec-title">あなたの成長を応援します</h2>
+        <p class="sec-sub mx-auto">アルバイトから店長・エリアマネージャーまで。明確なキャリアステップを用意しています。</p>
+      </div>
+
+      <div class="career-timeline">
+        <div class="career-step fade-in">
+          <div class="career-step-marker font-num">1</div>
+          <h3 class="career-step-title font-heading">アルバイト</h3>
+          <p class="career-step-period font-num">入社〜</p>
+          <p class="career-step-desc">接客・販売の基礎、レジ操作、カードの知識を習得。先輩のOJTで着実にスキルアップ。</p>
+        </div>
+        <div class="career-step fade-in">
+          <div class="career-step-marker font-num">2</div>
+          <h3 class="career-step-title font-heading">正社員</h3>
+          <p class="career-step-period font-num">6ヶ月〜</p>
+          <p class="career-step-desc">買取査定・在庫管理・EC出品を担当。正社員登用制度で安定した雇用へ。</p>
+        </div>
+        <div class="career-step fade-in">
+          <div class="career-step-marker font-num">3</div>
+          <h3 class="career-step-title font-heading">副店長</h3>
+          <p class="career-step-period font-num">2年〜</p>
+          <p class="career-step-desc">新人教育・シフト管理・売上管理を担う。店長の右腕としてマネジメントを学ぶ。</p>
+        </div>
+        <div class="career-step fade-in">
+          <div class="career-step-marker font-num">4</div>
+          <h3 class="career-step-title font-heading">店長</h3>
+          <p class="career-step-period font-num">3年〜</p>
+          <p class="career-step-desc">店舗経営全般を統括。売上目標の設定、スタッフの採用・育成、イベント企画まで。</p>
+        </div>
+        <div class="career-step fade-in">
+          <div class="career-step-marker career-step-marker--goal font-num">★</div>
+          <h3 class="career-step-title font-heading">エリアマネージャー</h3>
+          <p class="career-step-period font-num">5年〜</p>
+          <p class="career-step-desc">複数店舗を統括。新店舗の立ち上げ、事業戦略の策定に携わる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== 福利厚生 ===== -->
+  <section class="sec-benefits">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="text-center fade-in">
+        <div class="sec-label">BENEFITS</div>
+        <h2 class="sec-title">充実の福利厚生</h2>
+        <p class="sec-sub mx-auto">ポケカ好きならではの特典から、安心して働ける制度まで。</p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-item fade-in">
+          <div class="benefit-icon benefit-icon--special">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+          </div>
+          <h3>社員割引</h3>
+          <p>カード購入時に社員割引適用。推しカードをお得にゲットできます。</p>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="benefit-icon benefit-icon--special">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3>スタッフ対戦会</h3>
+          <p>月1回、勤務時間内で開催。スタッフ同士でバトルを楽しめます。</p>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="benefit-icon benefit-icon--special">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3>新弾先行情報</h3>
+          <p>新商品の入荷情報をいち早くキャッチ。誰よりも早く最新弾をチェック。</p>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="benefit-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3>社会保険完備</h3>
+          <p>健康保険・厚生年金・雇用保険・労災保険。安心して働ける体制。</p>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="benefit-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+          </div>
+          <h3>交通費全額支給</h3>
+          <p>通勤にかかる交通費を全額サポート。どの店舗でも安心です。</p>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="benefit-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <h3>昇給・賞与</h3>
+          <p>年1回の昇給・年2回の賞与。頑張りをしっかり評価する制度です。</p>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="benefit-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3>有給休暇</h3>
+          <p>法定通りの有給休暇を付与。取得を積極的に推奨しています。</p>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="benefit-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"/></svg>
+          </div>
+          <h3>正社員登用制度</h3>
+          <p>アルバイトから正社員へ。登用率90%の実績があります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== 職場の雰囲気 ===== -->
+  <section class="sec-gallery">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="text-center fade-in">
+        <div class="sec-label sec-label--light">GALLERY</div>
+        <h2 class="sec-title sec-title--white">職場の雰囲気</h2>
+        <p class="sec-sub sec-sub--light mx-auto">実際の店舗やスタッフの様子をご紹介します</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-item--large fade-in">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/mainimg1.jpg" alt="ニンニンの店内風景" loading="lazy">
+          <span class="gallery-caption">充実の品揃え</span>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo01.png" alt="買取カウンター" loading="lazy">
+          <span class="gallery-caption">買取受付</span>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo02.png" alt="査定作業" loading="lazy">
+          <span class="gallery-caption">丁寧な査定</span>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/mainimg2.jpg" alt="カードディスプレイ" loading="lazy">
+          <span class="gallery-caption">ショーケース</span>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo03.png" alt="接客風景" loading="lazy">
+          <span class="gallery-caption">お客様対応</span>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/mainimg3.jpg" alt="店舗外観" loading="lazy">
+          <span class="gallery-caption">秋葉原本店</span>
         </div>
       </div>
     </div>
@@ -366,262 +538,254 @@
 
 
   <!-- ===== 店舗一覧 ===== -->
-  <section id="stores" class="py-16 lg:py-24 bg-white">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="section-heading fade-in">
-        <h2>店舗一覧</h2>
-        <p>全国7拠点でお待ちしています</p>
+  <section id="stores" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="fade-in">
+        <div class="sec-label">STORES</div>
+        <h2 class="sec-title">店舗一覧</h2>
+        <p class="sec-sub">全国7拠点。あなたの街のニンニンで働きませんか？</p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-12">
-
-        <div class="store-item store-item--featured">
-          <div class="store-item-img relative">
-            <span class="store-item-badge">本店</span>
+      <div class="store-grid">
+        <div class="store-card store-card--featured holo-card fade-in">
+          <div class="store-img">
+            <span class="store-badge">本店</span>
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="ニンニン秋葉原店" loading="lazy">
           </div>
-          <div class="store-item-info">
-            <h3>ニンニン 秋葉原店</h3>
-            <p class="addr">東京都千代田区外神田3-8-7 フジビル 2F</p>
-            <p class="station">JR秋葉原駅 徒歩3分</p>
+          <div class="store-info">
+            <h3 class="store-name">ニンニン 秋葉原店</h3>
+            <p class="store-addr">東京都千代田区外神田3-8-7 フジビル 2F</p>
+            <p class="store-station">JR秋葉原駅 徒歩3分</p>
           </div>
         </div>
-
-        <div class="store-item">
-          <div class="store-item-img">
+        <div class="store-card holo-card fade-in">
+          <div class="store-img">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara2.jpg" alt="ニンニン秋葉原2号店" loading="lazy">
           </div>
-          <div class="store-item-info">
-            <h3>ニンニン 秋葉原2号店</h3>
-            <p class="addr">東京都千代田区外神田3丁目15 麻野ビル 2F</p>
-            <p class="station">JR秋葉原駅 徒歩5分</p>
+          <div class="store-info">
+            <h3 class="store-name">ニンニン 秋葉原2号店</h3>
+            <p class="store-addr">東京都千代田区外神田3丁目15 麻野ビル 2F</p>
+            <p class="store-station">JR秋葉原駅 徒歩5分</p>
           </div>
         </div>
-
-        <div class="store-item">
-          <div class="store-item-img">
+        <div class="store-card holo-card fade-in">
+          <div class="store-img">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="ニンニン中野店" loading="lazy">
           </div>
-          <div class="store-item-info">
-            <h3>ニンニン 中野店</h3>
-            <p class="addr">東京都中野区中野5-60-6 中野サンモール共同ビル4F</p>
-            <p class="station">JR中野駅 徒歩3分</p>
+          <div class="store-info">
+            <h3 class="store-name">ニンニン 中野店</h3>
+            <p class="store-addr">東京都中野区中野5-60-6 中野サンモール共同ビル4F</p>
+            <p class="store-station">JR中野駅 徒歩3分</p>
           </div>
         </div>
-
-        <div class="store-item">
-          <div class="store-item-img">
+        <div class="store-card holo-card fade-in">
+          <div class="store-img">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="ニンニン池袋店" loading="lazy">
           </div>
-          <div class="store-item-info">
-            <h3>ニンニン 池袋店</h3>
-            <p class="addr">東京都豊島区東池袋1-23-13 第一岡村ビル3階</p>
-            <p class="station">JR池袋駅 徒歩5分</p>
+          <div class="store-info">
+            <h3 class="store-name">ニンニン 池袋店</h3>
+            <p class="store-addr">東京都豊島区東池袋1-23-13 第一岡村ビル3階</p>
+            <p class="store-station">JR池袋駅 徒歩5分</p>
           </div>
         </div>
-
-        <div class="store-item">
-          <div class="store-item-img">
+        <div class="store-card holo-card fade-in">
+          <div class="store-img">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_oosaka.png" alt="ニンニン大阪日本橋店" loading="lazy">
           </div>
-          <div class="store-item-info">
-            <h3>ニンニン 大阪日本橋店</h3>
-            <p class="addr">大阪府大阪市浪速区日本橋3-8-26 稲原ビル1階</p>
-            <p class="station">南海なんば駅 徒歩8分</p>
+          <div class="store-info">
+            <h3 class="store-name">ニンニン 大阪日本橋店</h3>
+            <p class="store-addr">大阪府大阪市浪速区日本橋3-8-26 稲原ビル1階</p>
+            <p class="store-station">南海なんば駅 徒歩8分</p>
           </div>
         </div>
-
-        <div class="store-item">
-          <div class="store-item-img">
+        <div class="store-card holo-card fade-in">
+          <div class="store-img">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nihonbashi2.jpg" alt="ニンニン大阪日本橋2号店" loading="lazy">
           </div>
-          <div class="store-item-info">
-            <h3>ニンニン 大阪日本橋2号店</h3>
-            <p class="addr">大阪府大阪市浪速区日本橋西1丁目2-25 St難波ビル2F</p>
-            <p class="station">南海なんば駅 徒歩10分</p>
+          <div class="store-info">
+            <h3 class="store-name">ニンニン 大阪日本橋2号店</h3>
+            <p class="store-addr">大阪府大阪市浪速区日本橋西1丁目2-25 St難波ビル2F</p>
+            <p class="store-station">南海なんば駅 徒歩10分</p>
           </div>
         </div>
-
-        <div class="store-item">
-          <div class="store-item-img relative">
-            <span class="store-item-badge" style="background:#1B2A4A;color:#fff;">新店</span>
+        <div class="store-card holo-card fade-in">
+          <div class="store-img">
+            <span class="store-badge store-badge--new">NEW</span>
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_toreren.jpg" alt="トレレン秋葉原店" loading="lazy">
           </div>
-          <div class="store-item-info">
-            <h3>ニンニン トレレン秋葉原店</h3>
-            <p class="addr">東京都千代田区外神田3-10-6 ホープビル5F</p>
-            <p class="station">JR秋葉原駅 徒歩5分</p>
+          <div class="store-info">
+            <h3 class="store-name">ニンニン トレレン秋葉原店</h3>
+            <p class="store-addr">東京都千代田区外神田3-10-6 ホープビル5F</p>
+            <p class="store-station">JR秋葉原駅 徒歩5分</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
 
-  <hr class="section-separator">
-
   <!-- ===== 先輩の声 ===== -->
-  <section id="interview" class="py-14 lg:py-20 bg-bg-alt bg-accent-left">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="section-heading section-heading--large fade-in">
-        <h2>先輩スタッフの声</h2>
-        <p>実際に働いているスタッフに聞きました</p>
+  <section id="interview" class="sec-interview">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="fade-in">
+        <div class="sec-label">INTERVIEW</div>
+        <h2 class="sec-title sec-title--xl font-heading">先輩スタッフの声</h2>
+        <p class="sec-sub">実際に働いているスタッフのリアルな声をお届けします</p>
       </div>
 
-        <div class="interview-grid">
+      <div class="interview-grid">
+        <a href="interview.html" class="interview-card interview-card--featured fade-in">
+          <div class="interview-photo">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="秋葉原本店" loading="lazy">
+            <div class="interview-photo-overlay">
+              <span class="interview-num font-num">INTERVIEW 01</span>
+            </div>
+          </div>
+          <div class="interview-body">
+            <h3 class="interview-name font-heading">山本 翔太</h3>
+            <p class="interview-role">秋葉原本店 店長 / 入社5年目 / 中途</p>
+            <p class="interview-quote">前職はアパレル販売員。趣味のポケカが高じて「好きを仕事にしたい」と思い切って転職。入社当時は買取査定もわからなかったけれど、今は50名のスタッフをまとめる店長に。「好き」の力は本当にすごいと実感しています。</p>
+            <span class="interview-more">インタビューを読む →</span>
+          </div>
+        </a>
 
-          <a href="interview.html" class="interview-card fade-in">
-            <div class="interview-card-photo">
-              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="秋葉原本店" loading="lazy">
+        <a href="interview.html" class="interview-card fade-in">
+          <div class="interview-photo">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="池袋店" loading="lazy">
+            <div class="interview-photo-overlay">
+              <span class="interview-num font-num">INTERVIEW 02</span>
             </div>
-            <div class="interview-card-body">
-              <div class="interview-card-num">INTERVIEW 01</div>
-              <h3>田中 太郎</h3>
-              <p class="role">秋葉原本店 店長 / 入社5年目 / 中途採用</p>
-              <p class="quote">前職はアパレル販売。ポケカが好きすぎて転職を決意。今は店長として50名のスタッフをまとめています。</p>
-              <span class="more">インタビューを読む →</span>
-            </div>
-          </a>
+          </div>
+          <div class="interview-body">
+            <h3 class="interview-name font-heading">木村 美咲</h3>
+            <p class="interview-role">池袋店 スタッフ / 入社2年目 / 新卒</p>
+            <p class="interview-quote">大学時代にポケカにハマり、就活で見つけたのがニンニン。接客もカードも未経験でしたが、2週間の研修と先輩のサポートで不安なく始められました。今は買取査定も任されています。</p>
+            <span class="interview-more">インタビューを読む →</span>
+          </div>
+        </a>
 
-          <a href="interview.html" class="interview-card">
-            <div class="interview-card-photo">
-              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="池袋店" loading="lazy">
+        <a href="interview.html" class="interview-card fade-in">
+          <div class="interview-photo">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="中野店" loading="lazy">
+            <div class="interview-photo-overlay">
+              <span class="interview-num font-num">INTERVIEW 03</span>
             </div>
-            <div class="interview-card-body">
-              <div class="interview-card-num">INTERVIEW 02</div>
-              <h3>佐藤 花子</h3>
-              <p class="role">池袋店 スタッフ / 入社2年目 / 新卒採用</p>
-              <p class="quote">接客もカードも未経験でしたが、2週間の研修と先輩のサポートで不安なく始められました。今は買取査定も任されています。</p>
-              <span class="more">インタビューを読む →</span>
-            </div>
-          </a>
-
-          <a href="interview.html" class="interview-card">
-            <div class="interview-card-photo">
-              <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="中野店" loading="lazy">
-            </div>
-            <div class="interview-card-body">
-              <div class="interview-card-num">INTERVIEW 03</div>
-              <h3>鈴木 健太</h3>
-              <p class="role">中野店 バイトリーダー / 入社1年目 / 大学生</p>
-              <p class="quote">週3日勤務で学業と両立。テスト前のシフト調整も柔軟で助かっています。スタッフ対戦会が毎月の楽しみ。</p>
-              <span class="more">インタビューを読む →</span>
-            </div>
-          </a>
-
-        </div>
+          </div>
+          <div class="interview-body">
+            <h3 class="interview-name font-heading">中村 大輝</h3>
+            <p class="interview-role">中野店 バイトリーダー / 入社1年目 / 大学生</p>
+            <p class="interview-quote">週3日勤務で学業と完全両立。テスト前のシフト調整も柔軟で助かっています。毎月のスタッフ対戦会が楽しみで、仕事のモチベーションにもなっています。</p>
+            <span class="interview-more">インタビューを読む →</span>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
 
   <!-- ===== 募集要項 ===== -->
-  <section id="jobs" class="py-16 lg:py-24 bg-white">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="section-heading fade-in">
-        <h2>募集要項</h2>
-        <p>あなたに合った働き方を見つけてください</p>
+  <section id="jobs" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="fade-in">
+        <div class="sec-label">JOBS</div>
+        <h2 class="sec-title">募集要項</h2>
+        <p class="sec-sub">あなたに合った働き方を見つけてください</p>
       </div>
 
-      <div class="grid lg:grid-cols-2 gap-6 mt-12 max-w-5xl">
-
-        <!-- 正社員 -->
-        <div class="job-block fade-in">
-          <div class="job-block-header bg-primary">
-            <div>
-              <div class="type-label text-gray-800">FULL-TIME</div>
-              <h3 class="text-gray-900">店舗スタッフ（正社員）</h3>
-            </div>
+      <div class="job-grid">
+        <div class="job-card fade-in">
+          <div class="job-header job-header--full">
+            <span class="job-type font-num">FULL-TIME</span>
+            <h3 class="job-title font-heading">店舗スタッフ（正社員）</h3>
           </div>
-          <div class="job-block-body">
-            <table>
+          <div class="job-body">
+            <table class="job-table">
               <tr><th>給与</th><td>月給 22万円〜35万円（経験・能力による）</td></tr>
               <tr><th>勤務時間</th><td>10:00〜20:00（実働8時間・シフト制）</td></tr>
               <tr><th>休日</th><td>週休2日制（シフト制）・有給休暇あり</td></tr>
               <tr><th>待遇</th><td>社会保険完備・交通費全額支給・昇給年1回・賞与年2回</td></tr>
               <tr><th>仕事内容</th><td>カード販売・買取査定・在庫管理・オリパ企画・EC運営・SNS発信</td></tr>
+              <tr><th>応募資格</th><td>学歴不問・未経験歓迎・ポケカ好き大歓迎</td></tr>
             </table>
           </div>
-          <div class="job-block-footer">
-            <a href="jobs.html" class="btn-dark">詳細を見る →</a>
+          <div class="job-footer">
+            <a href="jobs.html" class="btn-primary">詳細を見る →</a>
           </div>
         </div>
 
-        <!-- アルバイト -->
-        <div class="job-block">
-          <div class="job-block-header bg-secondary">
-            <div>
-              <div class="type-label text-white">PART-TIME</div>
-              <h3 class="text-white">店舗スタッフ（アルバイト）</h3>
-            </div>
+        <div class="job-card fade-in">
+          <div class="job-header job-header--part">
+            <span class="job-type font-num">PART-TIME</span>
+            <h3 class="job-title font-heading">店舗スタッフ（アルバイト）</h3>
           </div>
-          <div class="job-block-body">
-            <table>
+          <div class="job-body">
+            <table class="job-table">
               <tr><th>給与</th><td>時給 1,100円〜1,500円（経験考慮）</td></tr>
               <tr><th>勤務時間</th><td>10:00〜20:00の間でシフト制</td></tr>
               <tr><th>日数</th><td>週2日〜・1日4時間〜OK（土日祝勤務歓迎）</td></tr>
               <tr><th>待遇</th><td>社員割引・交通費規定支給・制服貸与・正社員登用あり</td></tr>
               <tr><th>対象</th><td>大学生・フリーター・Wワーク歓迎（高校生不可）</td></tr>
+              <tr><th>応募資格</th><td>未経験歓迎・ポケカ好きなら尚歓迎</td></tr>
             </table>
           </div>
-          <div class="job-block-footer">
+          <div class="job-footer">
             <a href="jobs.html#part-time" class="btn-dark">詳細を見る →</a>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
 
   <!-- ===== 1日の流れ ===== -->
-  <section id="schedule" class="py-12 lg:py-18 bg-white">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="section-heading section-heading--minimal fade-in">
-        <h2>1日の流れ</h2>
-        <p>正社員スタッフの1日をご紹介します</p>
+  <section class="py-16 lg:py-24 bg-cool">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="fade-in">
+        <div class="sec-label">DAILY SCHEDULE</div>
+        <h2 class="sec-title">1日の流れ</h2>
+        <p class="sec-sub">正社員スタッフの1日をご紹介します</p>
       </div>
 
-      <div class="mt-12 max-w-3xl">
+      <div class="schedule-list">
         <div class="schedule-item fade-in">
-          <div class="schedule-time">09:50</div>
+          <div class="schedule-time font-num">09:50</div>
           <div class="schedule-content">
-            <h3>出勤・開店準備</h3>
+            <h3 class="font-heading font-bold text-body">出勤・開店準備</h3>
             <p>店内清掃、ショーケースの整理、レジの準備。新入荷カードの陳列作業を行います。</p>
           </div>
         </div>
-        <div class="schedule-item">
-          <div class="schedule-time">10:00</div>
+        <div class="schedule-item fade-in">
+          <div class="schedule-time font-num">10:00</div>
           <div class="schedule-content">
-            <h3>開店・接客業務</h3>
+            <h3 class="font-heading font-bold text-body">開店・接客業務</h3>
             <p>お客様への接客対応。カードの販売・買取相談に応じます。シングルカードの査定も担当。</p>
           </div>
         </div>
-        <div class="schedule-item">
-          <div class="schedule-time">13:00</div>
+        <div class="schedule-item fade-in">
+          <div class="schedule-time font-num">13:00</div>
           <div class="schedule-content">
-            <h3>休憩（1時間）</h3>
-            <p>交代で昼食。スタッフルームでデッキの話で盛り上がることも。近隣の飲食店を開拓するのも楽しみのひとつ。</p>
+            <h3 class="font-heading font-bold text-body">休憩（1時間）</h3>
+            <p>交代で昼食。スタッフルームでデッキの話で盛り上がることも。近隣の飲食店を開拓するのも楽しみ。</p>
           </div>
         </div>
-        <div class="schedule-item">
-          <div class="schedule-time">14:00</div>
+        <div class="schedule-item fade-in">
+          <div class="schedule-time font-num">14:00</div>
           <div class="schedule-content">
-            <h3>午後の業務</h3>
-            <p>買取カードの検品・値付け、ECサイトへの商品登録、在庫データの更新など。オリパ企画の打ち合わせも。</p>
+            <h3 class="font-heading font-bold text-body">午後の業務</h3>
+            <p>買取カードの検品・値付け、ECサイトへの商品登録、在庫データの更新。オリパ企画の打ち合わせも。</p>
           </div>
         </div>
-        <div class="schedule-item">
-          <div class="schedule-time">17:00</div>
+        <div class="schedule-item fade-in">
+          <div class="schedule-time font-num">17:00</div>
           <div class="schedule-content">
-            <h3>夕方のピーク対応</h3>
+            <h3 class="font-heading font-bold text-body">夕方のピーク対応</h3>
             <p>学校帰り・仕事帰りのお客様で賑わう時間帯。対戦スペースの運営サポートも行います。</p>
           </div>
         </div>
-        <div class="schedule-item">
-          <div class="schedule-time">19:30</div>
+        <div class="schedule-item fade-in">
+          <div class="schedule-time font-num">19:30</div>
           <div class="schedule-content">
-            <h3>閉店作業・退勤</h3>
+            <h3 class="font-heading font-bold text-body">閉店作業・退勤</h3>
             <p>レジ締め、売上報告、翌日の準備。20時に閉店後、片付けを終えて退勤。お疲れさまでした。</p>
           </div>
         </div>
@@ -630,151 +794,158 @@
   </section>
 
 
-  <hr class="section-separator">
-
-  <!-- ===== よくある質問 ===== -->
-  <section id="faq" class="py-14 lg:py-20 bg-alt">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="section-heading fade-in">
-        <h2>よくある質問</h2>
-        <p>応募前に気になるポイントをまとめました</p>
+  <!-- ===== はじめてでも大丈夫 ===== -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="text-center fade-in">
+        <div class="sec-label">FOR BEGINNERS</div>
+        <h2 class="sec-title">はじめてでも大丈夫</h2>
+        <p class="sec-sub mx-auto">応募前の不安にお答えします</p>
       </div>
 
-      <div class="mt-12 max-w-3xl">
-      <div class="space-y-4 faq-grid">
+      <div class="reassurance-grid">
+        <div class="reassurance-card fade-in">
+          <div class="reassurance-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <h3>ポケカ知識ゼロでOK</h3>
+          <p>入社後の研修でカードの種類・レアリティ・相場観を学べます。「興味がある」その気持ちだけで十分です。</p>
+        </div>
+        <div class="reassurance-card fade-in">
+          <div class="reassurance-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3>先輩がマンツーマンで指導</h3>
+          <p>OJT研修で先輩が丁寧にサポート。レジ操作・接客マナー・買取査定の基礎をゼロから段階的に学べます。</p>
+        </div>
+        <div class="reassurance-card fade-in">
+          <div class="reassurance-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3>シフトは柔軟に調整</h3>
+          <p>学業やWワークとの両立も応援。テスト期間の調整にも対応。週2日・1日4時間からOKです。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== よくある質問 ===== -->
+  <section class="py-16 lg:py-24 bg-cool">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="fade-in">
+        <div class="sec-label">FAQ</div>
+        <h2 class="sec-title">よくある質問</h2>
+        <p class="sec-sub">応募前に気になるポイントをまとめました</p>
+      </div>
+
+      <div class="faq-list">
         <details class="faq-item fade-in">
           <summary class="faq-question">
             <span>ポケモンカードの知識がなくても応募できますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <div class="faq-answer">
-            <p>もちろん応募いただけます。入社後の研修でカードの種類・レアリティ・相場観などを丁寧にお教えします。現在活躍中のスタッフの中にも、入社時はポケカ初心者だった方が多数います。「好きになりたい」「興味がある」という気持ちがあれば十分です。</p>
-          </div>
+          <div class="faq-answer"><p>もちろん応募いただけます。入社後の研修でカードの種類・レアリティ・相場観などを丁寧にお教えします。現在活躍中のスタッフの中にも、入社時はポケカ初心者だった方が多数います。「興味がある」という気持ちがあれば十分です。</p></div>
         </details>
-
-        <details class="faq-item">
+        <details class="faq-item fade-in">
           <summary class="faq-question">
             <span>未経験でも応募できますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <div class="faq-answer">
-            <p>接客業や販売業の経験がなくても問題ありません。先輩スタッフによるOJT研修で、レジ操作・接客マナー・買取査定の基礎をゼロから学べます。当社のスタッフの多くが未経験からスタートしています。</p>
-          </div>
+          <div class="faq-answer"><p>接客業や販売業の経験がなくても問題ありません。先輩スタッフによるOJT研修で、レジ操作・接客マナー・買取査定の基礎をゼロから学べます。当社のスタッフの多くが未経験からスタートしています。</p></div>
         </details>
-
-        <details class="faq-item">
+        <details class="faq-item fade-in">
           <summary class="faq-question">
             <span>勤務地は選べますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <div class="faq-answer">
-            <p>はい、面接時にご希望の勤務地をお伺いします。自宅から通いやすい店舗への配属を基本としています。ただし、状況によりご希望に沿えない場合もございますので、複数の希望店舗をお伝えいただけると選考がスムーズです。</p>
-          </div>
+          <div class="faq-answer"><p>はい、面接時にご希望の勤務地をお伺いします。自宅から通いやすい店舗への配属を基本としています。複数の希望店舗をお伝えいただけると選考がスムーズです。</p></div>
         </details>
-
-        <details class="faq-item">
+        <details class="faq-item fade-in">
           <summary class="faq-question">
             <span>アルバイトから正社員になれますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <div class="faq-answer">
-            <p>正社員登用制度があります。アルバイトとして一定期間勤務後、本人の希望と勤務実績に応じて正社員への登用を行っています。実際にアルバイトから正社員、さらに店長へとキャリアアップしたスタッフもいます。</p>
-          </div>
+          <div class="faq-answer"><p>正社員登用制度があります。登用率は約90%。アルバイトから正社員、さらに店長へとキャリアアップしたスタッフもいます。</p></div>
         </details>
-
-        <details class="faq-item">
+        <details class="faq-item fade-in">
           <summary class="faq-question">
             <span>面接ではどんなことを聞かれますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <div class="faq-answer">
-            <p>志望動機やこれまでのご経験に加え、ポケモンカードとの関わりやお気に入りのカード・デッキなどをお聞きすることがあります。堅苦しい面接ではなく、お互いを知るための対話を大切にしています。服装もカジュアルでOKです。</p>
-          </div>
+          <div class="faq-answer"><p>志望動機やこれまでのご経験に加え、ポケモンカードとの関わりやお気に入りのカード・デッキなどをお聞きすることがあります。堅苦しい面接ではなく、お互いを知るための対話を大切にしています。服装もカジュアルでOKです。</p></div>
         </details>
-
-        <details class="faq-item">
+        <details class="faq-item fade-in">
           <summary class="faq-question">
             <span>社員割引はありますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <div class="faq-answer">
-            <p>はい、正社員・アルバイトともに社員割引制度があります。カードの購入時に割引が適用されるほか、新弾の入荷情報をいち早く知ることもできます。ポケカ好きにはたまらない福利厚生です。</p>
-          </div>
+          <div class="faq-answer"><p>はい、正社員・アルバイトともに社員割引制度があります。カードの購入時に割引が適用されるほか、新弾の入荷情報をいち早く知ることもできます。</p></div>
         </details>
-
-        <details class="faq-item">
+        <details class="faq-item fade-in">
           <summary class="faq-question">
             <span>学生ですがアルバイトできますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <div class="faq-answer">
-            <p>大学生・専門学校生の方は大歓迎です（高校生は不可）。週2日・1日4時間から勤務可能で、テスト期間のシフト調整にも柔軟に対応しています。学業との両立を応援する職場です。</p>
-          </div>
+          <div class="faq-answer"><p>大学生・専門学校生の方は大歓迎です（高校生は不可）。週2日・1日4時間から勤務可能で、テスト期間のシフト調整にも柔軟に対応しています。</p></div>
         </details>
-      </div>
       </div>
     </div>
   </section>
 
 
   <!-- ===== 応募の流れ ===== -->
-  <section id="flow" class="py-12 lg:py-16 bg-white">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="section-heading section-heading--minimal fade-in">
-        <h2>応募の流れ</h2>
-        <p>エントリーから入社まで最短2週間</p>
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+      <div class="text-center fade-in">
+        <div class="sec-label">FLOW</div>
+        <h2 class="sec-title">応募の流れ</h2>
+        <p class="sec-sub mx-auto">エントリーから入社まで最短2週間</p>
       </div>
 
-      <div class="mt-12 border border-[#C8C8C0] bg-white">
-        <div class="bg-bg-alt border-b border-[#C8C8C0] px-4 py-2.5">
-          <h3 class="font-bold text-sm text-body">選考プロセス</h3>
+      <div class="flow-steps">
+        <div class="flow-step fade-in">
+          <div class="flow-step-num font-num">01</div>
+          <h3 class="font-heading font-bold text-body text-lg mb-1">エントリー</h3>
+          <p class="text-sm text-gray-500">当サイトの応募フォーム、またはお電話にてご応募ください。</p>
         </div>
-        <table class="w-full text-sm border-collapse">
-          <tr class="border-b border-gray-200">
-            <th class="text-left py-3 px-4 text-gray-500 font-medium bg-bg-alt border-r border-gray-200 w-28 align-top">STEP 1</th>
-            <td class="py-3 px-4">
-              <span class="font-bold text-body">エントリー</span>
-              <span class="block text-gray-500 mt-0.5">当サイトの応募フォーム、またはお電話にてご応募ください。</span>
-            </td>
-          </tr>
-          <tr class="border-b border-gray-200">
-            <th class="text-left py-3 px-4 text-gray-500 font-medium bg-bg-alt border-r border-gray-200 w-28 align-top">STEP 2</th>
-            <td class="py-3 px-4">
-              <span class="font-bold text-body">書類選考</span>
-              <span class="block text-gray-500 mt-0.5">履歴書をご提出いただき、書類選考を行います。1週間以内にご連絡いたします。</span>
-            </td>
-          </tr>
-          <tr class="border-b border-gray-200">
-            <th class="text-left py-3 px-4 text-gray-500 font-medium bg-bg-alt border-r border-gray-200 w-28 align-top">STEP 3</th>
-            <td class="py-3 px-4">
-              <span class="font-bold text-body">面接</span>
-              <span class="block text-gray-500 mt-0.5">店舗にて面接を実施します。服装はカジュアルでOKです。</span>
-            </td>
-          </tr>
-          <tr>
-            <th class="text-left py-3 px-4 text-gray-500 font-medium bg-bg-alt border-r border-gray-200 w-28 align-top">STEP 4</th>
-            <td class="py-3 px-4">
-              <span class="font-bold text-body">内定・入社</span>
-              <span class="block text-gray-500 mt-0.5">内定のご連絡後、入社日を調整。研修があるので未経験も安心です。</span>
-            </td>
-          </tr>
-        </table>
+        <div class="flow-step fade-in">
+          <div class="flow-step-num font-num">02</div>
+          <h3 class="font-heading font-bold text-body text-lg mb-1">書類選考</h3>
+          <p class="text-sm text-gray-500">履歴書をご提出いただき、1週間以内にご連絡いたします。</p>
+        </div>
+        <div class="flow-step fade-in">
+          <div class="flow-step-num font-num">03</div>
+          <h3 class="font-heading font-bold text-body text-lg mb-1">面接</h3>
+          <p class="text-sm text-gray-500">店舗にて面接を実施。服装はカジュアルでOKです。</p>
+        </div>
+        <div class="flow-step fade-in">
+          <div class="flow-step-num font-num">04</div>
+          <h3 class="font-heading font-bold text-body text-lg mb-1">内定・入社</h3>
+          <p class="text-sm text-gray-500">入社日を調整後、充実の研修からスタート。</p>
+        </div>
       </div>
     </div>
   </section>
 
 
-  <!-- ===== お問い合わせ・ご応募 ===== -->
-  <section class="cta-bar py-16 lg:py-20">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="flex items-center justify-center gap-8">
-        <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec06_img01.png" alt="" class="hidden md:block w-24 h-auto opacity-90" aria-hidden="true" loading="lazy">
+  <!-- ===== CTA ===== -->
+  <section class="sec-cta">
+    <div class="sec-cta-bg" aria-hidden="true"></div>
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8 relative z-10">
+      <div class="sec-cta-inner">
+        <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec06_img01.png" alt="" class="sec-cta-chara" aria-hidden="true" loading="lazy">
         <div class="text-center">
-          <p class="text-gray-400 text-xs tracking-wider mb-2">お電話でのお問い合わせ・ご応募</p>
-          <a href="tel:03-4363-7710" class="cta-phone block mb-2">03-4363-7710</a>
-          <p class="text-gray-400 text-xs mb-8">年中無休 / 受付時間 13:00〜20:00</p>
-          <a href="entry.html" class="btn-white">応募フォームへ進む</a>
-          <p class="text-gray-400 text-xs mt-6">ポケモンカードが好きな方、未経験の方も歓迎いたします。</p>
+          <p class="text-pika text-sm font-bold tracking-widest mb-2">JOIN OUR TEAM</p>
+          <h2 class="text-white font-heading font-black text-2xl lg:text-4xl mb-4 tracking-wide">あなたの「好き」を<br>仕事にしよう。</h2>
+          <p class="text-gray-400 text-xs mb-2">お電話でのお問い合わせ・ご応募</p>
+          <a href="tel:03-4363-7710" class="cta-phone font-num">03-4363-7710</a>
+          <p class="text-gray-500 text-xs mb-8">年中無休 / 受付時間 13:00〜20:00</p>
+          <a href="entry.html" class="btn-cta-large">
+            応募フォームへ進む
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+          <p class="text-gray-500 text-xs mt-6">ポケモンカードが好きな方、未経験の方も歓迎いたします。</p>
         </div>
       </div>
     </div>
@@ -785,18 +956,18 @@
 
 
   <!-- ===== フッター ===== -->
-  <footer class="site-footer py-14">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
+  <footer class="site-footer">
+    <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
       <div class="grid md:grid-cols-4 gap-8 mb-10">
         <div class="md:col-span-2">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/f_logo.png" alt="ニンニン" class="h-9 w-auto mb-4">
-          <p class="text-sm leading-relaxed">
+          <p class="text-sm leading-relaxed text-gray-400">
             株式会社NINJA<br>
             ポケモンカード専門店「ニンニン」を全国7拠点展開。<br>
             古物商許可：東京都公安委員会 第303262120770号
           </p>
         </div>
-        <nav aria-label="フッターナビゲーション - 採用情報">
+        <nav aria-label="フッターナビ - 採用情報">
           <h4 class="text-white font-bold text-sm mb-3">採用情報</h4>
           <ul class="space-y-1.5 text-sm">
             <li><a href="#about">ニンニンとは</a></li>
@@ -806,7 +977,7 @@
             <li><a href="#jobs">募集要項</a></li>
           </ul>
         </nav>
-        <nav aria-label="フッターナビゲーション - その他">
+        <nav aria-label="フッターナビ - その他">
           <h4 class="text-white font-bold text-sm mb-3">その他</h4>
           <ul class="space-y-1.5 text-sm">
             <li><a href="entry.html">応募フォーム</a></li>
@@ -816,16 +987,16 @@
         </nav>
       </div>
       <div class="border-t border-gray-800 pt-6 text-center">
-        <p class="text-gray-500 text-xs">&copy; 2026 株式会社NINJA All Rights Reserved.</p>
+        <p class="text-gray-600 text-xs">&copy; 2026 株式会社NINJA All Rights Reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- ===== フローティングCTA（モバイル） ===== -->
+  <!-- フローティングCTA -->
   <div class="floating-cta" id="floating-cta" aria-label="応募">
-    <a href="entry.html" class="floating-cta-btn">応募フォームへ</a>
-    <a href="tel:03-4363-7710" class="floating-cta-phone">
-      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+    <a href="entry.html" class="floating-cta-btn">今すぐ応募する</a>
+    <a href="tel:03-4363-7710" class="floating-cta-phone font-num">
+      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
       電話
     </a>
   </div>
