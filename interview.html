@@ -111,6 +111,7 @@
   </script>
 </head>
 <body class="font-body">
+  <div id="scroll-progress" class="scroll-progress"></div>
 
   <!-- スキップリンク -->
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
@@ -151,15 +152,19 @@
     </div>
     <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
     <nav id="mobile-menu" class="mobile-menu" aria-label="モバイルナビゲーション" aria-hidden="true">
-      <div class="p-6 pt-20">
+      <button class="mobile-menu__close" aria-label="メニューを閉じる" data-menu-close>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="mobile-menu__inner">
         <a href="index.html#about" class="mobile-menu-link">ニンニンとは</a>
         <a href="index.html#features" class="mobile-menu-link">働く魅力</a>
         <a href="index.html#stores" class="mobile-menu-link">店舗一覧</a>
         <a href="index.html#interview" class="mobile-menu-link">先輩の声</a>
         <a href="index.html#jobs" class="mobile-menu-link">募集要項</a>
-        <div class="pt-6 mt-4 border-t border-gray-200">
-          <a href="tel:03-4363-7710" class="block text-center text-gray-800 font-bold text-lg mb-3">03-4363-7710</a>
-          <a href="entry.html" class="btn-primary w-full justify-center">応募フォームへ</a>
+        <div class="mobile-menu__footer">
+          <a href="tel:03-4363-7710" class="mobile-menu__phone">03-4363-7710</a>
+          <p class="text-xs mt-1 mb-4" style="color: rgba(255,255,255,0.5);">年中無休 / 受付時間 13:00〜20:00</p>
+          <a href="entry.html" class="mobile-menu__cta">応募フォームへ</a>
         </div>
       </div>
     </nav>
@@ -214,6 +219,7 @@
           <p class="text-xs font-bold text-pika-dark tracking-widest font-num mb-2">INTERVIEW 01</p>
           <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 mb-6">田中 太郎</h2>
 
+          <div class="table-scroll-wrapper">
           <table class="job-table w-full">
             <tr>
               <th>所属</th>
@@ -236,6 +242,7 @@
               <td>ポケカデッキ構築・対戦</td>
             </tr>
           </table>
+          </div>
         </div>
       </div>
     </div>
@@ -247,7 +254,7 @@
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6 stagger-container">
 
       <!-- Q1: 左右レイアウト（写真左・回答右） -->
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-24 stagger-item">
+      <div class="grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center mb-12 lg:mb-24 stagger-item">
         <!-- 写真: 店内風景 -->
         <div class="photo-zoom aspect-[4/3] order-1">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo01.png" alt="ニンニン店内の様子" class="w-full h-full object-cover" loading="lazy">
@@ -267,7 +274,7 @@
       </div>
 
       <!-- Q2: 左右レイアウト（写真右・回答左） -->
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-24 stagger-item">
+      <div class="grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center mb-12 lg:mb-24 stagger-item">
         <!-- 写真: カード査定 -->
         <div class="photo-zoom aspect-[4/3] order-1 lg:order-2">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo02.png" alt="カード査定の様子" class="w-full h-full object-cover" loading="lazy">
@@ -286,7 +293,7 @@
       </div>
 
       <!-- Q3: 左右レイアウト（写真左・回答右） -->
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-24 stagger-item">
+      <div class="grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center mb-12 lg:mb-24 stagger-item">
         <!-- 写真: 接客風景 -->
         <div class="photo-zoom aspect-[4/3] order-1">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo03.png" alt="お客様との接客風景" class="w-full h-full object-cover" loading="lazy">
@@ -306,7 +313,7 @@
       </div>
 
       <!-- Q4: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24 fade-in tilt-card">
+      <div class="border border-[#C8C8C0] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">職場の雰囲気はどうですか？</h3>
         </div>
@@ -319,7 +326,7 @@
       </div>
 
       <!-- Q5: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24 fade-in tilt-card">
+      <div class="border border-[#C8C8C0] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">入社前と入社後でギャップはありましたか？</h3>
         </div>
@@ -352,7 +359,7 @@
 
 
       <!-- Q6: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24 fade-in tilt-card">
+      <div class="border border-[#C8C8C0] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">今後の目標を教えてください</h3>
         </div>
@@ -365,7 +372,7 @@
       </div>
 
       <!-- Q7: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24 fade-in tilt-card">
+      <div class="border border-[#C8C8C0] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">休日の過ごし方は？</h3>
         </div>
@@ -378,7 +385,7 @@
       </div>
 
       <!-- Q8: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-8 fade-in">
+      <div class="border border-[#C8C8C0] bg-white p-5 sm:p-8 lg:p-12 mb-8 fade-in">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">応募を考えている方にメッセージをお願いします</h3>
         </div>

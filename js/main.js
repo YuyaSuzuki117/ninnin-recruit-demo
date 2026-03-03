@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initMagneticButtons();
   initFloatingParticles();
   initFAQAccordion();
+  initActiveNavHighlight();
+  initScrollProgress();
 });
 
 /* --- スティッキーヘッダー（スクロール時影付加） --- */
@@ -99,6 +101,12 @@ function initMobileMenu() {
 
   if (overlay) {
     overlay.addEventListener('click', closeMenu);
+  }
+
+  // 閉じるボタン（メニュー内×ボタン）のクリックで閉じる
+  const closeBtn = menu.querySelector('[data-menu-close]');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeMenu);
   }
 
   // メニューリンクのクリックで閉じる
@@ -765,4 +773,79 @@ function initFAQAccordion() {
       });
     }
   });
+}
+
+/* --- アクティブセクションナビハイライト（IntersectionObserver） --- */
+function initActiveNavHighlight() {
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  if (navLinks.length === 0) return;
+
+  // ナビリンクのhrefからセクション要素を取得
+  const sections = [];
+  navLinks.forEach(link => {
+    const targetId = link.getAttribute('href');
+    if (targetId && targetId !== '#') {
+      const section = document.querySelector(targetId);
+      if (section) {
+        sections.push({ el: section, link: link });
+      }
+    }
+  });
+
+  if (sections.length === 0) return;
+
+  function clearActive() {
+    navLinks.forEach(link => link.classList.remove('nav-link--active'));
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        clearActive();
+        const match = sections.find(s => s.el === entry.target);
+        if (match) {
+          match.link.classList.add('nav-link--active');
+        }
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: '-80px 0px -40% 0px'
+  });
+
+  sections.forEach(s => observer.observe(s.el));
+}
+
+/* --- スクロールプログレスバー --- */
+function initScrollProgress() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  const progressBar = document.getElementById('scroll-progress');
+  if (!progressBar) return;
+
+  let ticking = false;
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) {
+      progressBar.style.width = '0%';
+      ticking = false;
+      return;
+    }
+    const progress = Math.min((scrollTop / docHeight) * 100, 100);
+    progressBar.style.width = progress + '%';
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateProgress);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // 初期値設定
+  updateProgress();
 }

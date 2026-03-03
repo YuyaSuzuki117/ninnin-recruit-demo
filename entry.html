@@ -100,6 +100,7 @@
   </script>
 </head>
 <body class="font-body">
+  <div id="scroll-progress" class="scroll-progress"></div>
 
   <!-- スキップリンク -->
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
@@ -140,15 +141,19 @@
     </div>
     <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
     <nav id="mobile-menu" class="mobile-menu" aria-label="モバイルナビゲーション" aria-hidden="true">
-      <div class="p-6 pt-20">
+      <button class="mobile-menu__close" aria-label="メニューを閉じる" data-menu-close>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="mobile-menu__inner">
         <a href="index.html#about" class="mobile-menu-link">ニンニンとは</a>
         <a href="index.html#features" class="mobile-menu-link">働く魅力</a>
         <a href="index.html#stores" class="mobile-menu-link">店舗一覧</a>
         <a href="index.html#interview" class="mobile-menu-link">先輩の声</a>
         <a href="index.html#jobs" class="mobile-menu-link">募集要項</a>
-        <div class="pt-6 mt-4 border-t border-gray-200">
-          <a href="tel:03-4363-7710" class="block text-center text-gray-800 font-bold text-lg mb-3">03-4363-7710</a>
-          <a href="entry.html" class="btn-primary w-full justify-center">応募フォームへ</a>
+        <div class="mobile-menu__footer">
+          <a href="tel:03-4363-7710" class="mobile-menu__phone">03-4363-7710</a>
+          <p class="text-xs mt-1 mb-4" style="color: rgba(255,255,255,0.5);">年中無休 / 受付時間 13:00〜20:00</p>
+          <a href="entry.html" class="mobile-menu__cta">応募フォームへ</a>
         </div>
       </div>
     </nav>
@@ -276,7 +281,7 @@
               <!-- 年齢 -->
               <div class="entry-field stagger-item fade-in">
                 <label for="age" class="form-label">年齢</label>
-                <input type="number" id="age" name="age" class="form-input w-32" placeholder="例：25" min="15" max="99">
+                <input type="number" id="age" name="age" class="form-input w-full sm:w-32" placeholder="例：25" min="15" max="99">
               </div>
 
               <!-- 希望職種 -->

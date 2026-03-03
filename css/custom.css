@@ -756,8 +756,9 @@ strong { color: var(--body); }
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .feature-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.12);
+  background: linear-gradient(135deg, #fff 0%, var(--pika-light, #FFF7CC) 100%);
 }
 
 .feature-num {
@@ -1068,7 +1069,7 @@ strong { color: var(--body); }
 }
 .store-card:hover {
   border-color: var(--pika);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 12px 32px rgba(255,203,5,0.15);
 }
 
 .store-img {
@@ -1188,6 +1189,7 @@ strong { color: var(--body); }
 .interview-card:hover {
   box-shadow: 0 12px 36px rgba(0,0,0,0.08);
   transform: translateY(-4px);
+  border-left: 4px solid var(--pika);
 }
 
 .interview-photo {
@@ -1713,13 +1715,13 @@ details[open] .faq-icon { transform: rotate(180deg); }
     justify-content: center;
     flex: 1;
     max-width: 280px;
-    padding: 12px 20px;
+    padding: 14px 24px;
     background: var(--pika);
     color: var(--navy-deep);
     font-weight: 800;
-    font-size: 15px;
+    font-size: 16px;
     text-decoration: none;
-    min-height: 48px;
+    min-height: 52px;
   }
 
   .floating-cta-phone {
@@ -1727,13 +1729,13 @@ details[open] .faq-icon { transform: rotate(180deg); }
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 12px 16px;
+    padding: 14px 18px;
     color: #fff;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;
     text-decoration: none;
     border: 1px solid rgba(255,255,255,0.2);
-    min-height: 48px;
+    min-height: 52px;
   }
 
   .site-footer { padding-bottom: 80px; }
@@ -1741,27 +1743,33 @@ details[open] .faq-icon { transform: rotate(180deg); }
 
 
 /* ========================================
-   MOBILE MENU
+   MOBILE MENU — Full-screen dark overlay
    ======================================== */
 .mobile-menu {
   position: fixed;
   top: 0;
+  left: 0;
   right: 0;
-  width: 300px;
-  max-width: 85vw;
-  height: 100%;
-  background: #fff;
+  bottom: 0;
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--navy-deep, #0B1628);
   z-index: 110;
-  box-shadow: -8px 0 32px rgba(0,0,0,0.15);
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .mobile-menu.open { transform: translateX(0); }
 
 .mobile-menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(11,22,40,0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 105;
   opacity: 0;
   pointer-events: none;
@@ -1769,17 +1777,110 @@ details[open] .faq-icon { transform: rotate(180deg); }
 }
 .mobile-menu-overlay.open { opacity: 1; pointer-events: auto; }
 
+/* --- メニュー内部レイアウト --- */
+.mobile-menu__inner {
+  padding: 24px;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* --- 閉じるボタン --- */
+.mobile-menu__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  z-index: 2;
+  padding: 0;
+  transition: color 0.2s, transform 0.2s;
+}
+.mobile-menu__close:hover,
+.mobile-menu__close:focus-visible {
+  color: var(--pika, #FFCB05);
+  transform: rotate(90deg);
+}
+.mobile-menu__close svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* --- メニューリンク --- */
 .mobile-menu-link {
   display: block;
-  padding: 14px 16px;
-  font-size: 15px;
+  padding: 16px 0;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--body);
+  color: #fff;
   text-decoration: none;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: color 0.2s, padding-left 0.2s;
 }
-.mobile-menu-link:hover { background: var(--pika-50); color: var(--navy); }
+.mobile-menu-link:hover,
+.mobile-menu-link:active,
+.mobile-menu-link:focus-visible {
+  color: var(--pika, #FFCB05);
+  padding-left: 8px;
+}
 
+/* --- メニュー内 電話番号 --- */
+.mobile-menu__phone {
+  color: #fff;
+  font-family: var(--font-num, 'Sora', sans-serif);
+  font-size: 20px;
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 2px solid var(--pika, #FFCB05);
+  padding-bottom: 4px;
+  transition: color 0.2s;
+}
+.mobile-menu__phone:hover,
+.mobile-menu__phone:focus-visible {
+  color: var(--pika, #FFCB05);
+}
+
+/* --- メニュー内 CTAボタン --- */
+.mobile-menu__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px;
+  background: var(--pika, #FFCB05);
+  color: var(--navy-deep, #0B1628);
+  font-size: 16px;
+  font-weight: 900;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.mobile-menu__cta:hover,
+.mobile-menu__cta:focus-visible {
+  background: #FFD42A;
+  box-shadow: 0 4px 16px rgba(255,203,5,0.4);
+}
+
+/* --- メニュー内フッター情報 --- */
+.mobile-menu__footer {
+  padding-top: 24px;
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+/* --- ハンバーガーアイコン --- */
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -1795,6 +1896,9 @@ details[open] .faq-icon { transform: rotate(180deg); }
   height: 2px;
   background: var(--body);
   transition: all 0.2s;
+}
+.hamburger.active span {
+  background: #fff;
 }
 .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .hamburger.active span:nth-child(2) { opacity: 0; }
@@ -1820,18 +1924,18 @@ details[open] .faq-icon { transform: rotate(180deg); }
    ======================================== */
 .form-input {
   width: 100%;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border: 1px solid var(--border);
   font-family: var(--font-body);
   font-size: 15px;
   transition: border-color 0.2s, box-shadow 0.2s;
   background: #fff;
-  min-height: 44px;
+  min-height: 48px;
 }
 .form-input:focus {
   outline: none;
-  border-color: var(--pika);
-  box-shadow: 0 0 0 2px rgba(255,203,5,0.15);
+  border-color: var(--pika, #FFCB05);
+  box-shadow: 0 0 0 3px rgba(255,203,5,0.15);
 }
 .form-label {
   display: block;
@@ -2356,6 +2460,67 @@ details[open] .faq-icon { transform: rotate(180deg); }
 }
 
 /* ==========================================================
+   TABLE SCROLL WRAPPER — Horizontal scroll on mobile
+   ========================================================== */
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ==========================================================
+   BREADCRUMB — Mobile font size & spacing reduction
+   ========================================================== */
+.breadcrumb ol {
+  font-size: 14px;
+}
+@media (max-width: 640px) {
+  .breadcrumb ol { font-size: 12px; }
+  .breadcrumb ol li span[class*="mx-"] {
+    margin-left: 4px !important;
+    margin-right: 4px !important;
+  }
+}
+
+/* ==========================================================
+   TOUCH FEEDBACK — Active state for buttons & cards
+   ========================================================== */
+.btn-primary,
+.btn-dark,
+.btn-hero-primary,
+.btn-hero-ghost,
+.btn-cta-large,
+.nav-cta,
+.entry-submit-btn,
+.floating-cta-btn,
+.floating-cta-phone {
+  transition: all 0.2s, transform 0.1s;
+}
+.btn-primary:active,
+.btn-dark:active,
+.btn-hero-primary:active,
+.btn-hero-ghost:active,
+.btn-cta-large:active,
+.nav-cta:active,
+.entry-submit-btn:active,
+.floating-cta-btn:active,
+.floating-cta-phone:active {
+  transform: scale(0.97);
+}
+
+.feature-card,
+.interview-card,
+.tilt-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+@media (max-width: 767px) {
+  .feature-card:active,
+  .interview-card:active,
+  .tilt-card:active {
+    transform: scale(0.98);
+  }
+}
+
+/* ==========================================================
    RESPONSIVE — New components
    ========================================================== */
 @media (max-width: 767px) {
@@ -2365,6 +2530,90 @@ details[open] .faq-icon { transform: rotate(180deg); }
   .subpage-hero { padding: 36px 0 44px; }
   .entry-step-line { width: 32px; }
   .pull-quote { font-size: 15px; padding-left: 16px; }
+
+  /* Mobile padding unification */
+  .py-14 { padding-top: 48px; padding-bottom: 48px; }
+  .py-16 { padding-top: 48px; padding-bottom: 48px; }
+}
+
+/* ==========================================================
+   TABLE ROW HOVER — Pikachu highlight on job/company tables
+   ========================================================== */
+.job-table tbody tr {
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.job-table tbody tr:hover {
+  background: var(--pika-light, #FFF7CC);
+  border-left: 3px solid var(--pika, #FFCB05);
+}
+.company-table tbody tr {
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.company-table tbody tr:hover {
+  background: var(--pika-light, #FFF7CC);
+  border-left: 3px solid var(--pika, #FFCB05);
+}
+
+/* ==========================================================
+   BUTTON ARROW ANIMATION — Slide right on hover
+   ========================================================== */
+.btn-hero-primary svg,
+.btn-primary svg,
+.btn-dark svg,
+.btn-cta-large svg,
+.entry-submit-btn svg,
+.magnetic-btn svg,
+.nav-cta svg {
+  transition: transform 0.3s ease;
+}
+.btn-hero-primary:hover svg,
+.btn-primary:hover svg,
+.btn-dark:hover svg,
+.btn-cta-large:hover svg,
+.entry-submit-btn:hover svg,
+.magnetic-btn:hover svg,
+.nav-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* ==========================================================
+   SELECT CUSTOM ARROW — Pikachu-colored dropdown arrow
+   ========================================================== */
+select.form-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23FFCB05' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px 8px;
+  padding-right: 40px;
+}
+
+/* ==========================================================
+   NAV LINK ACTIVE — Section highlight via IntersectionObserver
+   ========================================================== */
+.nav-link--active {
+  color: var(--pika-dark, #B8930A);
+}
+.nav-link--active::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ==========================================================
+   SCROLL PROGRESS BAR — Top-of-page reading indicator
+   ========================================================== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--pika, #FFCB05);
+  z-index: 9999;
+  transition: none;
+  pointer-events: none;
 }
 
 /* ==========================================================
@@ -2384,4 +2633,29 @@ details[open] .faq-icon { transform: rotate(180deg); }
   .icon-pulse:hover { animation: none; }
   .faq-item-content { transition: none; }
   .faq-chevron { transition: none; }
+  .mobile-menu { transition: none; }
+  .mobile-menu-overlay { transition: none; }
+  .mobile-menu-link { transition: none; }
+  .mobile-menu__close { transition: none; }
+  .scroll-progress { display: none; }
+  .btn-hero-primary svg,
+  .btn-primary svg,
+  .btn-dark svg,
+  .btn-cta-large svg,
+  .entry-submit-btn svg,
+  .magnetic-btn svg,
+  .nav-cta svg { transition: none; }
+  /* Disable touch feedback scale */
+  .btn-primary:active,
+  .btn-dark:active,
+  .btn-hero-primary:active,
+  .btn-hero-ghost:active,
+  .btn-cta-large:active,
+  .nav-cta:active,
+  .entry-submit-btn:active,
+  .floating-cta-btn:active,
+  .floating-cta-phone:active,
+  .feature-card:active,
+  .interview-card:active,
+  .tilt-card:active { transform: none; }
 }
