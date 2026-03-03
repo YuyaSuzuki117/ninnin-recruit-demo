@@ -136,24 +136,32 @@
   <main id="main-content">
 
   <!-- ===== ヒーロー ===== -->
-  <section class="hero-section pt-16 lg:pt-[112px]">
-    <div class="absolute inset-0">
-      <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/mainimg1.jpg" alt="" class="w-full h-full object-cover" aria-hidden="true">
-      <div class="hero-overlay"></div>
-      <div class="hero-accent"></div>
-    </div>
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6 py-16 lg:py-24 relative z-10">
-      <div class="max-w-xl">
-        <div class="hero-badge mb-6">正社員・アルバイト募集中</div>
-        <h1 class="font-heading font-black text-3xl sm:text-4xl lg:text-[44px] text-white leading-[1.35] mb-5 tracking-wide">
-          好きを仕事に。<br>ポケカと生きる。
-        </h1>
-        <p class="text-[15px] text-gray-300 leading-relaxed mb-8 max-w-md">
-          ポケモンカードが好き。その気持ちが、いちばんの資格です。未経験から始められる環境で、あなたの「好き」を仕事にしませんか？
-        </p>
-        <div class="flex flex-wrap gap-3">
-          <a href="entry.html" class="btn-primary btn-primary-lg">応募フォームへ</a>
-          <a href="#jobs" class="btn-outline border-white/40 text-white hover:bg-white/10 hover:border-white/60">募集要項を見る</a>
+  <section class="hero-clean pt-16 lg:pt-[112px]">
+    <!-- ポケモンカード装飾（左下・右上） -->
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec06_bg02.png" alt="" class="hero-cards-left" aria-hidden="true">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec06_bg03.png" alt="" class="hero-cards-right" aria-hidden="true">
+    <div class="max-w-[1140px] mx-auto px-4 lg:px-6 py-14 lg:py-20 relative z-10">
+      <div class="flex items-center justify-between gap-8">
+        <div class="max-w-lg">
+          <div class="hero-badge mb-5">正社員・アルバイト募集中</div>
+          <h1 class="font-heading font-black text-3xl sm:text-4xl lg:text-[44px] text-secondary leading-[1.35] mb-5 tracking-wide">
+            好きを仕事に。<br>ポケカと生きる。
+          </h1>
+          <p class="text-[15px] text-gray-600 leading-relaxed mb-8 max-w-md">
+            ポケモンカードが好き。その気持ちが、いちばんの資格です。未経験から始められる環境で、あなたの「好き」を仕事にしませんか？
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="entry.html" class="btn-primary btn-primary-lg">応募フォームへ</a>
+            <a href="#jobs" class="btn-outline">募集要項を見る</a>
+          </div>
+          <!-- モバイル用キャラクター（CTAの下） -->
+          <div class="block md:hidden mt-10 text-center">
+            <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="ニンニン忍者キャラクター" class="hero-chara inline-block w-[200px] h-auto drop-shadow-lg">
+          </div>
+        </div>
+        <!-- デスクトップ用キャラクター（右側） -->
+        <div class="hidden md:block flex-shrink-0">
+          <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="ニンニン忍者キャラクター" class="hero-chara w-[260px] lg:w-[320px] h-auto drop-shadow-lg">
         </div>
       </div>
     </div>
@@ -161,7 +169,8 @@
 
 
   <!-- ===== ニンニンとは ===== -->
-  <section id="about" class="py-16 lg:py-24 bg-white">
+  <section id="about" class="py-16 lg:py-24 bg-white relative overflow-hidden">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/sub/chara_satei.png" alt="" class="hidden xl:block absolute -right-4 bottom-12 w-28 h-auto opacity-20" aria-hidden="true">
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
       <div class="section-heading fade-in">
         <h2>ニンニンとは</h2>
@@ -356,7 +365,8 @@
 
 
   <!-- ===== 先輩の声 ===== -->
-  <section id="interview" class="py-16 lg:py-24 bg-bg-alt">
+  <section id="interview" class="py-16 lg:py-24 bg-bg-alt relative overflow-hidden">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/sub/chara_satei.png" alt="" class="hidden lg:block absolute -left-6 bottom-6 w-24 h-auto opacity-15 -scale-x-100" aria-hidden="true">
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
       <div class="section-heading fade-in">
         <h2>先輩スタッフの声</h2>
@@ -532,7 +542,9 @@
         <p>応募前に気になるポイントをまとめました</p>
       </div>
 
-      <div class="mt-12 max-w-3xl space-y-4">
+      <div class="mt-12 max-w-3xl relative">
+        <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec02_img01.png" alt="" class="hidden lg:block absolute -right-48 top-8 w-32 h-auto opacity-60" aria-hidden="true">
+      <div class="space-y-4">
         <details class="faq-item fade-in">
           <summary class="faq-question">
             <span>ポケモンカードの知識がなくても応募できますか？</span>
@@ -603,12 +615,14 @@
           </div>
         </details>
       </div>
+      </div>
     </div>
   </section>
 
 
   <!-- ===== 応募の流れ ===== -->
-  <section id="flow" class="py-16 lg:py-24 bg-white">
+  <section id="flow" class="py-16 lg:py-24 bg-white relative overflow-hidden">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="" class="hidden xl:block absolute -right-8 top-16 w-32 h-auto opacity-10" aria-hidden="true">
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
       <div class="section-heading fade-in">
         <h2>応募の流れ</h2>
@@ -657,12 +671,15 @@
   <!-- ===== お問い合わせ・ご応募 ===== -->
   <section class="cta-bar py-16 lg:py-20">
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="text-center">
-        <p class="text-gray-400 text-xs tracking-wider mb-2">お電話でのお問い合わせ・ご応募</p>
-        <a href="tel:03-4363-7710" class="cta-phone block mb-2">03-4363-7710</a>
-        <p class="text-gray-500 text-xs mb-8">年中無休 / 受付時間 13:00〜20:00</p>
-        <a href="entry.html" class="btn-white">応募フォームへ進む</a>
-        <p class="text-gray-600 text-xs mt-6">ポケモンカードが好きな方、未経験の方も歓迎いたします。</p>
+      <div class="flex items-center justify-center gap-8">
+        <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec06_img01.png" alt="" class="hidden md:block w-24 h-auto opacity-90" aria-hidden="true">
+        <div class="text-center">
+          <p class="text-gray-400 text-xs tracking-wider mb-2">お電話でのお問い合わせ・ご応募</p>
+          <a href="tel:03-4363-7710" class="cta-phone block mb-2">03-4363-7710</a>
+          <p class="text-gray-500 text-xs mb-8">年中無休 / 受付時間 13:00〜20:00</p>
+          <a href="entry.html" class="btn-white">応募フォームへ進む</a>
+          <p class="text-gray-600 text-xs mt-6">ポケモンカードが好きな方、未経験の方も歓迎いたします。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -672,8 +689,9 @@
 
 
   <!-- ===== フッター ===== -->
-  <footer class="site-footer py-14">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
+  <footer class="site-footer py-14 relative overflow-hidden">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec02_img01.png" alt="" class="hidden lg:block absolute right-8 bottom-6 w-20 h-auto opacity-10" aria-hidden="true">
+    <div class="max-w-[1140px] mx-auto px-4 lg:px-6 relative z-10">
       <div class="grid md:grid-cols-4 gap-8 mb-10">
         <div class="md:col-span-2">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/common/f_logo.png" alt="ニンニン" class="h-9 w-auto mb-4">

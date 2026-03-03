@@ -60,26 +60,47 @@ img { max-width: 100%; height: auto; }
 .nav-link:hover { background: var(--color-primary-light); color: var(--color-primary-dark); }
 
 /* ========== HERO ========== */
-.hero-section {
+.hero-clean {
   position: relative;
   overflow: hidden;
-  min-height: 520px;
-}
-@media (min-width: 1024px) { .hero-section { min-height: 600px; } }
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, rgba(27,42,74,0.92) 0%, rgba(27,42,74,0.75) 45%, rgba(27,42,74,0.25) 75%, transparent 100%);
+  background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 30%, var(--color-primary) 100%);
+  border-bottom: 5px solid var(--color-primary);
 }
 
-.hero-accent {
+.hero-chara {
+  animation: hero-float 3s ease-in-out infinite;
+}
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ポケモンカード装飾（ヒーロー背景） */
+.hero-cards-left {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: var(--color-primary);
+  left: -40px;
+  bottom: -20px;
+  width: 200px;
+  height: auto;
+  opacity: 0.12;
+  transform: rotate(15deg);
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-cards-right {
+  position: absolute;
+  right: -30px;
+  top: -10px;
+  width: 180px;
+  height: auto;
+  opacity: 0.1;
+  transform: rotate(-10deg);
+  pointer-events: none;
+  z-index: 1;
+}
+@media (max-width: 767px) {
+  .hero-cards-left,
+  .hero-cards-right { display: none; }
 }
 
 .hero-badge {
