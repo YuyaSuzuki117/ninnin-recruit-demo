@@ -19,6 +19,19 @@
   --font-heading: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
   --font-body: 'Noto Sans JP', sans-serif;
   --font-num: 'Sora', sans-serif;
+
+  /* Semantic color aliases (CLAUDE.md design tokens) */
+  --color-primary: #FFCB05;
+  --color-secondary: #1B2A4A;
+  --color-primary-dark: #B8930A;
+  --color-primary-light: #FFF7CC;
+  --color-accent: #E8380D;
+  --color-text: #1D1D1B;
+  --color-body: #333;
+  --color-bg: #fff;
+  --color-bg-alt: #F5F5F0;
+  --color-border: #C8C8C0;
+  --color-dark: #1A1A1A;
 }
 
 /* --- Reset & Base --- */
@@ -557,7 +570,7 @@ strong { color: var(--body); }
 
 .sec-sub {
   font-size: 14px;
-  color: #888;
+  color: #666;
   margin-top: 6px;
   max-width: 560px;
 }
@@ -880,7 +893,7 @@ strong { color: var(--body); }
 }
 .career-step-desc {
   font-size: 13px;
-  color: #888;
+  color: #666;
   line-height: 1.6;
 }
 
@@ -967,7 +980,7 @@ strong { color: var(--body); }
 }
 .benefit-item p {
   font-size: 13px;
-  color: #888;
+  color: #666;
   line-height: 1.6;
 }
 
@@ -1120,7 +1133,7 @@ strong { color: var(--body); }
 }
 .store-addr {
   font-size: 13px;
-  color: #888;
+  color: #666;
   line-height: 1.5;
 }
 .store-station {
@@ -1402,7 +1415,7 @@ strong { color: var(--body); }
 }
 .schedule-content p {
   font-size: 13px;
-  color: #888;
+  color: #666;
   line-height: 1.7;
 }
 
@@ -1465,7 +1478,7 @@ strong { color: var(--body); }
 }
 .reassurance-card p {
   font-size: 14px;
-  color: #888;
+  color: #666;
   line-height: 1.75;
 }
 
@@ -1502,48 +1515,8 @@ strong { color: var(--body); }
   border-color: var(--pika);
 }
 
-.faq-question {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 16px 20px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--body);
-  list-style: none;
-  min-height: 44px;
-  transition: background 0.2s;
-}
-.faq-question::-webkit-details-marker { display: none; }
-.faq-question::marker { display: none; content: ''; }
-.faq-question:hover { background: var(--cool); }
-
-details[open] .faq-question {
-  background: var(--pika-50);
-  color: var(--navy);
-}
-
-.faq-icon {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  color: var(--pika-dark);
-  transition: transform 0.25s;
-}
-details[open] .faq-icon { transform: rotate(180deg); }
-
-.faq-answer {
-  padding: 0 20px 16px;
-  border-top: 1px solid #eee;
-}
-.faq-answer p {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.85;
-  padding-top: 12px;
-}
+/* Old FAQ classes (.faq-question, .faq-icon, .faq-answer) removed —
+   replaced by .faq-item-header / .faq-chevron / .faq-item-content */
 
 
 /* ========================================
@@ -2580,6 +2553,77 @@ details[open] .faq-icon { transform: rotate(180deg); }
 }
 
 /* ==========================================================
+   SALARY CARD — 給与ハイライトカード（正社員・アルバイト共通）
+   ========================================================== */
+.salary-card {
+  border: 2px solid var(--pika);
+  background: linear-gradient(135deg, var(--pika-light) 0%, #fff 100%);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.salary-card--secondary {
+  border-color: var(--navy);
+  background: linear-gradient(135deg, var(--cool) 0%, #fff 100%);
+}
+.salary-card__label {
+  font-family: var(--font-num);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--pika-dark);
+  margin-bottom: 8px;
+}
+.salary-card--secondary .salary-card__label {
+  color: var(--navy);
+}
+.salary-card__amount {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--navy-deep);
+  line-height: 1.2;
+}
+.salary-card__amount .num {
+  font-family: var(--font-num);
+}
+.salary-card__amount .unit {
+  font-size: 0.5em;
+  color: #333;
+}
+.salary-card__amount .separator {
+  margin: 0 4px;
+  color: var(--pika-dark);
+}
+.salary-card--secondary .salary-card__amount .separator {
+  color: var(--navy);
+}
+.salary-card__amount .period {
+  font-size: 0.35em;
+  color: #666;
+}
+.salary-card__meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: #666;
+  flex-wrap: wrap;
+}
+.salary-card__meta .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--pika);
+  display: inline-block;
+}
+.salary-card--secondary .salary-card__meta .dot {
+  background: var(--navy);
+}
+
+/* ==========================================================
    ENTRY FLOW STEPS — Pikachu-styled step indicator
    ========================================================== */
 .entry-step-indicator {
@@ -2619,7 +2663,7 @@ details[open] .faq-icon { transform: rotate(180deg); }
 .entry-step__label {
   font-size: 11px;
   font-weight: 700;
-  color: #888;
+  color: #666;
   margin-top: 6px;
   white-space: nowrap;
 }
@@ -2667,7 +2711,7 @@ details[open] .faq-icon { transform: rotate(180deg); }
 }
 .sidebar-stat__label {
   font-size: 11px;
-  color: #888;
+  color: #666;
 }
 
 /* ==========================================================
@@ -2826,6 +2870,181 @@ select.form-input {
   transition: none;
   pointer-events: none;
 }
+
+/* ==========================================================
+   A. MISSING CLASS DEFINITIONS — btn-white, cta-bar, section-heading, btn-primary-lg
+   ========================================================== */
+
+/* CTA Bar — Full-width pika background bar (jobs.html, interview.html) */
+.cta-bar {
+  background: var(--pika);
+  padding: 48px 0;
+  text-align: center;
+}
+
+/* White CTA Button — Inverse of .btn-primary (jobs.html, interview.html) */
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: #fff;
+  color: var(--navy-deep);
+  font-weight: 800;
+  font-size: 15px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.btn-white:hover {
+  background: var(--pika-50);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+/* Section Heading Block — Centered heading container (interview.html) */
+.section-heading {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.section-heading--large .sec-title {
+  font-size: 32px;
+}
+@media (min-width: 768px) {
+  .section-heading--large .sec-title {
+    font-size: 40px;
+  }
+}
+
+/* Large Primary Button — Bigger variant of .btn-primary (jobs.html) */
+.btn-primary-lg {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--pika);
+  color: var(--body);
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+}
+.btn-primary-lg:hover {
+  background: #FFD42A;
+  box-shadow: 0 6px 20px rgba(255,203,5,0.3);
+  transform: translateY(-2px);
+}
+
+
+/* ==========================================================
+   E. TABLET BREAKPOINT — 768px - 1023px grid rules
+   ========================================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Career timeline: 3 columns on tablet */
+  .career-timeline {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Flow steps: 2 columns on tablet */
+  .flow-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .flow-steps::before { display: none; }
+
+  /* Feature list: 2 columns on tablet (override 3-col desktop) */
+  .feature-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Reassurance grid: 2 columns on tablet */
+  .reassurance-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Career path section padding reduction (30% cut via Tailwind override) */
+@media (min-width: 1024px) {
+  section:has(.career-timeline) {
+    padding-top: 4.9rem;  /* ~30% less than py-28 = 7rem */
+    padding-bottom: 4.9rem;
+  }
+}
+@media (max-width: 1023px) {
+  section:has(.career-timeline) {
+    padding-top: 3.5rem;  /* ~30% less than py-20 = 5rem */
+    padding-bottom: 3.5rem;
+  }
+}
+
+
+/* ==========================================================
+   F. MOBILE HERO ENHANCEMENTS — Character visible + min-height
+   ========================================================== */
+@media (max-width: 767px) {
+  .hero {
+    min-height: 75vh;
+  }
+
+  /* Show hero visual at small size on mobile */
+  .hero-visual {
+    display: block;
+    margin: 24px auto 0;
+  }
+  .hero-card-frame {
+    width: 150px;
+    height: 190px;
+    margin: 0 auto;
+  }
+  .hero-chara {
+    width: 120px;
+  }
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-tags {
+    justify-content: center;
+  }
+
+  /* .hero-ninja alias (if used in HTML) */
+  .hero-ninja {
+    display: block;
+    width: 130px;
+    height: auto;
+    margin: 16px auto 0;
+    opacity: 0.9;
+  }
+}
+
+
+/* ==========================================================
+   G. ENTRY.HTML MOBILE OPTIMIZATIONS
+   ========================================================== */
+
+/* Hide floating CTA on entry page (form page has its own submit) */
+.page-entry .floating-cta {
+  display: none !important;
+}
+
+/* Textarea auto-grow foundation */
+textarea.form-input {
+  min-height: 120px;
+  resize: vertical;
+  overflow: hidden;
+  field-sizing: content;        /* Modern browsers auto-grow */
+}
+/* Fallback for browsers without field-sizing */
+@supports not (field-sizing: content) {
+  textarea.form-input {
+    overflow-y: auto;
+    min-height: 120px;
+    max-height: 400px;
+  }
+}
+
 
 /* ==========================================================
    prefers-reduced-motion — Disable new animations

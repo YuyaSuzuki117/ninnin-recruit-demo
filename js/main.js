@@ -213,6 +213,12 @@ function initFloatingCTA() {
   const cta = document.getElementById('floating-cta');
   if (!cta) return;
 
+  // entry.html（応募フォームページ）ではフローティングCTAを非表示にする
+  if (document.body.classList.contains('page-entry')) {
+    cta.style.display = 'none';
+    return;
+  }
+
   let lastScroll = 0;
   let ticking = false;
 
@@ -247,6 +253,120 @@ function initFormValidation() {
   // aria-live リージョン（フォームエラー通知用）
   const liveRegion = document.getElementById('form-errors');
 
+  // --- URLパラメータでフォーム自動入力（jobs.html → entry.html 引き継ぎ） ---
+  const params = new URLSearchParams(window.location.search);
+  const jobType = params.get('type');
+  if (jobType) {
+    const radio = form.querySelector(`input[name="job_type"][value="${jobType}"]`);
+    if (radio) radio.checked = true;
+  }
+  const locationParam = params.get('location');
+  if (locationParam) {
+    const locationSelect = form.querySelector('#location');
+    if (locationSelect) {
+      const option = locationSelect.querySelector(`option[value="${locationParam}"]`);
+      if (option) locationSelect.value = locationParam;
+    }
+  }
+
+  // --- textarea 自動伸長 ---
+  form.querySelectorAll('textarea').forEach(ta => {
+    ta.addEventListener('input', () => {
+      ta.style.height = 'auto';
+      ta.style.height = ta.scrollHeight + 'px';
+    });
+  });
+
+  // --- 個別フィールドバリデーション（blur + submit 共通） ---
+  function validateField(field) {
+    const name = field.getAttribute('name') || field.id;
+    const value = field.value ? field.value.trim() : '';
+    let error = '';
+
+    // チェックボックスの必須判定
+    if (field.type === 'checkbox') {
+      if (field.hasAttribute('required') && !field.checked) {
+        error = 'この項目は必須です';
+      }
+      showFieldError(field, error);
+      return !error;
+    }
+
+    // 必須チェック
+    if (field.hasAttribute('required') && !value) {
+      error = 'この項目は必須です';
+    }
+    // メール形式チェック
+    else if ((field.type === 'email' || name === 'email') && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      error = '有効なメールアドレスを入力してください';
+    }
+    // 電話番号形式チェック
+    else if ((field.type === 'tel' || name === 'phone') && value && !/^[\d\-+() ]{10,}$/.test(value)) {
+      error = '有効な電話番号を入力してください';
+    }
+    // ふりがなチェック（ひらがな・スペースのみ）
+    else if (name === 'furigana' && value && !/^[\u3040-\u309F\u30FC\s]+$/.test(value)) {
+      error = 'ひらがなで入力してください';
+    }
+    // 年齢チェック
+    else if (name === 'age' && value) {
+      const age = parseInt(value, 10);
+      if (isNaN(age) || age < 15 || age > 99) {
+        error = '15〜99の数値を入力してください';
+      }
+    }
+
+    showFieldError(field, error);
+    return !error;
+  }
+
+  function showFieldError(field, message) {
+    // まずエラーをクリア
+    clearFieldError(field);
+
+    if (!message) return;
+
+    field.setAttribute('aria-invalid', 'true');
+    field.classList.add('border-red-500');
+
+    // 対応する error 要素があれば使う
+    const errorId = field.id + '-error';
+    const errorEl = document.getElementById(errorId);
+    if (errorEl) {
+      errorEl.textContent = message;
+      errorEl.hidden = false;
+    } else {
+      // フォールバック: 動的にエラー要素を作成
+      const error = document.createElement('p');
+      error.className = 'error-message form-error';
+      error.textContent = message;
+      error.setAttribute('role', 'alert');
+      field.parentNode.appendChild(error);
+    }
+  }
+
+  // --- blurイベントで個別バリデーション ---
+  const blurTargets = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea');
+  blurTargets.forEach(field => {
+    field.addEventListener('blur', () => {
+      // 一度も入力されていない空フィールドはblur時にバリデーションしない（UX考慮）
+      // ただし、一度エラーが出た後は再バリデーションする
+      if (!field.value.trim() && field.getAttribute('aria-invalid') !== 'true' && !field._blurValidated) {
+        return;
+      }
+      field._blurValidated = true;
+      validateField(field);
+    });
+  });
+
+  // チェックボックスはchange時にバリデーション
+  form.querySelectorAll('input[type="checkbox"][required]').forEach(field => {
+    field.addEventListener('change', () => {
+      validateField(field);
+    });
+  });
+
+  // --- submit バリデーション ---
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -256,39 +376,19 @@ function initFormValidation() {
     // 前回のエラーをクリア
     clearAllErrors(form);
 
-    // 必須フィールドのバリデーション
-    const requiredFields = form.querySelectorAll('[required]');
-    requiredFields.forEach(field => {
-      // チェックボックスの場合は checked で判定
-      const isEmpty = field.type === 'checkbox' ? !field.checked : !field.value.trim();
-      if (isEmpty) {
+    // 全フィールドをバリデーション
+    const validatableFields = form.querySelectorAll('input[required], textarea[required], input[type="email"], input[type="tel"], input[name="age"]');
+    validatableFields.forEach(field => {
+      const fieldValid = validateField(field);
+      if (!fieldValid) {
         isValid = false;
-        setFieldError(field, 'この項目は必須です');
-        errorMessages.push(`${getFieldLabel(field)}: この項目は必須です`);
+        const label = getFieldLabel(field);
+        const errorId = field.id + '-error';
+        const errorEl = document.getElementById(errorId);
+        const msg = errorEl && errorEl.textContent ? errorEl.textContent : 'この項目は必須です';
+        errorMessages.push(`${label}: ${msg}`);
       }
     });
-
-    // メールバリデーション
-    const emailField = form.querySelector('[type="email"]');
-    if (emailField && emailField.value.trim()) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailField.value)) {
-        isValid = false;
-        setFieldError(emailField, '有効なメールアドレスを入力してください');
-        errorMessages.push('メールアドレス: 有効なメールアドレスを入力してください');
-      }
-    }
-
-    // 電話番号バリデーション
-    const phoneField = form.querySelector('[type="tel"]');
-    if (phoneField && phoneField.value.trim()) {
-      const phoneRegex = /^[\d\-+() ]{10,}$/;
-      if (!phoneRegex.test(phoneField.value)) {
-        isValid = false;
-        setFieldError(phoneField, '有効な電話番号を入力してください');
-        errorMessages.push('電話番号: 有効な電話番号を入力してください');
-      }
-    }
 
     if (isValid) {
       // 成功メッセージ
@@ -322,41 +422,13 @@ function initFormValidation() {
     }
   });
 
-  // リアルタイムでエラーをクリア（入力時）
+  // リアルタイムでエラーをクリア（入力時）— エラー表示中のフィールドのみ再バリデーション
   form.addEventListener('input', (e) => {
     const field = e.target;
     if (field.getAttribute('aria-invalid') === 'true') {
-      clearFieldError(field);
+      validateField(field);
     }
   });
-
-  // チェックボックスの変更時もエラーをクリア
-  form.addEventListener('change', (e) => {
-    const field = e.target;
-    if (field.type === 'checkbox' && field.getAttribute('aria-invalid') === 'true') {
-      clearFieldError(field);
-    }
-  });
-
-  function setFieldError(field, message) {
-    field.setAttribute('aria-invalid', 'true');
-    field.classList.add('border-red-500');
-
-    // 対応する error 要素があれば使う
-    const errorId = field.id + '-error';
-    const errorEl = document.getElementById(errorId);
-    if (errorEl) {
-      errorEl.textContent = message;
-      errorEl.hidden = false;
-    } else {
-      // フォールバック: 動的にエラー要素を作成
-      const error = document.createElement('p');
-      error.className = 'error-message form-error';
-      error.textContent = message;
-      error.setAttribute('role', 'alert');
-      field.parentNode.appendChild(error);
-    }
-  }
 
   function clearFieldError(field) {
     field.removeAttribute('aria-invalid');
@@ -469,6 +541,11 @@ function initCountUpAnimated() {
 
     requestAnimationFrame(step);
   }
+
+  // ビューポート外の要素は初期表示を「--」にしてアニメーション待機
+  elements.forEach(el => {
+    el.textContent = '--';
+  });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -711,6 +788,12 @@ function initFAQAccordion() {
   const items = document.querySelectorAll('.faq-item');
 
   if (items.length === 0) return;
+
+  // 最初のFAQ項目をデフォルトで開く
+  const firstItem = items[0];
+  if (firstItem && !firstItem.classList.contains('is-open')) {
+    firstItem.classList.add('is-open');
+  }
 
   items.forEach(item => {
     const header = item.querySelector('.faq-item-header');
