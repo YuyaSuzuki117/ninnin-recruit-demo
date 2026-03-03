@@ -60,57 +60,155 @@ img { max-width: 100%; height: auto; }
 .nav-link:hover { background: var(--color-primary-light); color: var(--color-primary-dark); }
 
 /* ========== HERO ========== */
-.hero-clean {
+.hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 30%, var(--color-primary) 100%);
-  border-bottom: 5px solid var(--color-primary);
+  background: var(--color-secondary);
 }
 
-.hero-chara {
-  animation: hero-float 3s ease-in-out infinite;
-}
-@keyframes hero-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+.hero-inner {
+  display: flex;
+  min-height: 480px;
 }
 
-/* ポケモンカード装飾（ヒーロー背景） */
-.hero-cards-left {
-  position: absolute;
-  left: -40px;
-  bottom: -20px;
-  width: 200px;
-  height: auto;
-  opacity: 0.12;
-  transform: rotate(15deg);
-  pointer-events: none;
-  z-index: 1;
-}
-.hero-cards-right {
-  position: absolute;
-  right: -30px;
-  top: -10px;
-  width: 180px;
-  height: auto;
-  opacity: 0.1;
-  transform: rotate(-10deg);
-  pointer-events: none;
-  z-index: 1;
-}
-@media (max-width: 767px) {
-  .hero-cards-left,
-  .hero-cards-right { display: none; }
+/* 左: テキストエリア */
+.hero-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 48px 60px 48px calc((100vw - 1140px) / 2 + 24px);
 }
 
-.hero-badge {
-  display: inline-block;
+.hero-label {
+  font-family: var(--font-num);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1.35;
+  color: #fff;
+  letter-spacing: 0.03em;
+}
+
+.hero-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--color-primary);
+  margin: 20px 0;
+}
+
+.hero-desc {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #B0B8C8;
+}
+
+.hero-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 36px;
   background: var(--color-primary);
   color: var(--color-text);
   font-weight: 800;
+  font-size: 15px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: opacity var(--transition);
+}
+.hero-cta-primary:hover { opacity: 0.85; }
+
+.hero-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 36px;
+  background: transparent;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border: 1px solid rgba(255,255,255,0.3);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: all var(--transition);
+}
+.hero-cta-ghost:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+.hero-note {
   font-size: 12px;
-  padding: 5px 14px;
-  letter-spacing: 0.08em;
+  color: #6B7A90;
+  margin-top: 20px;
+  letter-spacing: 0.06em;
+}
+
+/* 右: ビジュアルエリア */
+.hero-visual {
+  position: relative;
+  width: 420px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-visual-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--color-primary);
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.hero-chara {
+  position: relative;
+  z-index: 2;
+  width: 280px;
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+  animation: hero-float 4s ease-in-out infinite;
+}
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* モバイル対応 */
+@media (max-width: 767px) {
+  .hero-inner {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .hero-text {
+    padding: 40px 20px 32px;
+    max-width: none;
+    margin-left: 0;
+    padding-right: 20px;
+  }
+  .hero-title { font-size: 28px; }
+  .hero-visual {
+    width: 100%;
+    height: 240px;
+  }
+  .hero-visual-bg {
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
+  }
+  .hero-chara { width: 180px; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-visual { width: 320px; }
+  .hero-text { padding-right: 40px; }
+  .hero-chara { width: 220px; }
+}
+
+@media (min-width: 1024px) {
+  .hero-title { font-size: 42px; }
+  .hero-inner { min-height: 520px; }
 }
 
 /* ========== SECTION HEADINGS ========== */
