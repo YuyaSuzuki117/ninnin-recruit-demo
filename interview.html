@@ -185,8 +185,10 @@
   </div>
 
   <!-- ページヘッダー -->
-  <div class="bg-navy py-10 lg:py-14">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
+  <div class="subpage-hero">
+    <div class="particle-container" aria-hidden="true"></div>
+    <span class="sec-bg-num sec-bg-num--right" data-parallax-speed="-0.3" aria-hidden="true">VOICE</span>
+    <div class="max-w-[1140px] mx-auto px-4 lg:px-6 subpage-hero__content">
       <div class="flex items-center gap-4">
         <div class="w-1 h-10 bg-pika flex-shrink-0"></div>
         <div>
@@ -203,7 +205,7 @@
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
       <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start fade-in">
         <!-- 店舗写真 -->
-        <div class="photo-gallery-item aspect-[4/3]">
+        <div class="photo-zoom aspect-[4/3]">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="秋葉原本店" class="w-full h-full object-cover">
         </div>
 
@@ -242,12 +244,12 @@
 
   <!-- Q&Aセクション -->
   <section class="bg-cream py-16 lg:py-24">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
+    <div class="max-w-[1140px] mx-auto px-4 lg:px-6 stagger-container">
 
       <!-- Q1: 左右レイアウト（写真左・回答右） -->
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-24 fade-in">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-24 stagger-item">
         <!-- 写真: 店内風景 -->
-        <div class="photo-gallery-item aspect-[4/3] order-1">
+        <div class="photo-zoom aspect-[4/3] order-1">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo01.png" alt="ニンニン店内の様子" class="w-full h-full object-cover" loading="lazy">
         </div>
         <!-- 質問と回答 -->
@@ -265,9 +267,9 @@
       </div>
 
       <!-- Q2: 左右レイアウト（写真右・回答左） -->
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-24">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-24 stagger-item">
         <!-- 写真: カード査定 -->
-        <div class="photo-gallery-item aspect-[4/3] order-1 lg:order-2">
+        <div class="photo-zoom aspect-[4/3] order-1 lg:order-2">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo02.png" alt="カード査定の様子" class="w-full h-full object-cover" loading="lazy">
         </div>
         <!-- 質問と回答 -->
@@ -284,9 +286,9 @@
       </div>
 
       <!-- Q3: 左右レイアウト（写真左・回答右） -->
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-24">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-24 stagger-item">
         <!-- 写真: 接客風景 -->
-        <div class="photo-gallery-item aspect-[4/3] order-1">
+        <div class="photo-zoom aspect-[4/3] order-1">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo03.png" alt="お客様との接客風景" class="w-full h-full object-cover" loading="lazy">
         </div>
         <!-- 質問と回答 -->
@@ -304,7 +306,7 @@
       </div>
 
       <!-- Q4: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24">
+      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">職場の雰囲気はどうですか？</h3>
         </div>
@@ -317,7 +319,7 @@
       </div>
 
       <!-- Q5: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24">
+      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">入社前と入社後でギャップはありましたか？</h3>
         </div>
@@ -331,18 +333,18 @@
 
 
       <!-- フォトギャラリー -->
-      <div class="mb-16 lg:mb-24">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="photo-gallery-item aspect-square">
+      <div class="mb-16 lg:mb-24 fade-in">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 stagger-container">
+          <div class="photo-zoom aspect-square stagger-item">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="秋葉原本店" class="w-full h-full object-cover" loading="lazy">
           </div>
-          <div class="photo-gallery-item aspect-square">
+          <div class="photo-zoom aspect-square stagger-item">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="中野店" class="w-full h-full object-cover" loading="lazy">
           </div>
-          <div class="photo-gallery-item aspect-square">
+          <div class="photo-zoom aspect-square stagger-item">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="池袋店" class="w-full h-full object-cover" loading="lazy">
           </div>
-          <div class="photo-gallery-item aspect-square">
+          <div class="photo-zoom aspect-square stagger-item">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo01.png" alt="店内の様子" class="w-full h-full object-cover" loading="lazy">
           </div>
         </div>
@@ -350,7 +352,7 @@
 
 
       <!-- Q6: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24">
+      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">今後の目標を教えてください</h3>
         </div>
@@ -363,7 +365,7 @@
       </div>
 
       <!-- Q7: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24">
+      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-16 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">休日の過ごし方は？</h3>
         </div>
@@ -376,15 +378,16 @@
       </div>
 
       <!-- Q8: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-8">
+      <div class="border border-[#C8C8C0] bg-white p-8 lg:p-12 mb-8 fade-in">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">応募を考えている方にメッセージをお願いします</h3>
         </div>
+        <p class="pull-quote">大事なのは「ポケカが好き」「人と接するのが好き」という気持ちだけ。</p>
         <p class="text-gray-600 leading-relaxed">
           「好きなことを仕事にするのは難しい」とよく言われますが、ニンニンではそれが自然にできる環境があります。
           もちろん楽しいことばかりではなく、忙しい日もありますし、覚えることも多いです。でも、好きなポケカに関わる仕事だからこそ頑張れるし、お客様の笑顔がモチベーションになります。
           接客経験やカード知識がなくても全く問題ありません。入社後の研修がしっかりしていますし、何より周りのスタッフが全力でサポートしてくれます。
-          大事なのは「ポケカが好き」「人と接するのが好き」という気持ちだけ。少しでも興味があるなら、ぜひ一歩踏み出してみてください。一緒に最高の店舗を作りましょう！
+          少しでも興味があるなら、ぜひ一歩踏み出してみてください。一緒に最高の店舗を作りましょう！
         </p>
       </div>
 
@@ -399,9 +402,9 @@
         <h2>他の先輩の声</h2>
       </div>
 
-      <div class="interview-grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="interview-grid stagger-container" style="grid-template-columns: 1fr 1fr;">
         <!-- インタビュー02: 佐藤花子（池袋店） -->
-        <a href="interview.html" class="interview-card group fade-in">
+        <a href="interview.html" class="interview-card group tilt-card stagger-item">
           <div class="interview-card-photo">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="池袋店" class="w-full h-full object-cover" loading="lazy">
           </div>
@@ -414,7 +417,7 @@
         </a>
 
         <!-- インタビュー03: 鈴木健太（中野店） -->
-        <a href="interview.html" class="interview-card group">
+        <a href="interview.html" class="interview-card group tilt-card stagger-item">
           <div class="interview-card-photo">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="中野店" class="w-full h-full object-cover" loading="lazy">
           </div>
@@ -433,11 +436,11 @@
   <!-- 応募誘導セクション -->
   <section class="cta-bar py-16 lg:py-20">
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="text-center">
+      <div class="text-center fade-in">
         <p class="text-gray-400 text-xs tracking-wider mb-2">お電話でのお問い合わせ・ご応募</p>
         <a href="tel:03-4363-7710" class="cta-phone block mb-2">03-4363-7710</a>
         <p class="text-gray-400 text-xs mb-8">年中無休 / 受付時間 13:00〜20:00</p>
-        <a href="entry.html" class="btn-white">応募フォームへ進む</a>
+        <a href="entry.html" class="btn-white cta-shimmer magnetic-btn">応募フォームへ進む</a>
         <p class="text-gray-400 text-xs mt-6">ポケモンカードが好きな方、未経験の方も歓迎いたします。</p>
       </div>
     </div>

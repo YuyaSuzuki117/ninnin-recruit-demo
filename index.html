@@ -145,7 +145,7 @@
           <a href="#stores" class="nav-link">店舗一覧</a>
           <a href="#interview" class="nav-link">先輩の声</a>
           <a href="#jobs" class="nav-link">募集要項</a>
-          <a href="entry.html" class="nav-cta">応募する</a>
+          <a href="entry.html" class="nav-cta cta-shimmer">応募する</a>
         </nav>
 
         <button id="menu-toggle" class="hamburger lg:hidden" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
@@ -164,7 +164,7 @@
         <a href="#jobs" class="mobile-menu-link">募集要項</a>
         <div class="pt-6 mt-4 border-t border-gray-200">
           <a href="tel:03-4363-7710" class="block text-center text-gray-800 font-bold text-lg mb-3">03-4363-7710</a>
-          <a href="entry.html" class="btn-primary w-full justify-center">応募フォームへ</a>
+          <a href="entry.html" class="btn-primary cta-shimmer w-full justify-center">応募フォームへ</a>
         </div>
       </div>
     </nav>
@@ -175,25 +175,26 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero">
-    <div class="hero-bg-overlay"></div>
+    <div class="particle-container" aria-hidden="true"></div>
+    <div class="hero-bg-overlay" data-parallax-speed="0.3"></div>
     <div class="hero-grid-pattern" aria-hidden="true"></div>
     <!-- 浮遊カード装飾 -->
-    <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2024/06/ブラッキー-1.png" alt="" class="hero-float hero-float--1" aria-hidden="true" loading="lazy">
-    <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2024/07/036210_P_RATEIASURATEIOSUGX-734x1024.jpg" alt="" class="hero-float hero-float--2" aria-hidden="true" loading="lazy">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2024/06/ブラッキー-1.png" alt="" class="hero-float hero-float--1" aria-hidden="true" loading="lazy" data-parallax-speed="0.5">
+    <img src="https://nin-nin-pokeka.jp/develop/wp-content/uploads/2024/07/036210_P_RATEIASURATEIOSUGX-734x1024.jpg" alt="" class="hero-float hero-float--2" aria-hidden="true" loading="lazy" data-parallax-speed="0.5">
 
     <div class="max-w-[1200px] mx-auto px-5 lg:px-8 relative z-10">
       <div class="hero-inner">
         <div class="hero-content">
           <div class="hero-badge font-num">RECRUIT 2026</div>
           <h1 class="hero-title font-heading">
-            好きを仕事に。<br><span class="hero-title-accent">ポケカ</span>と生きる。
+            好きを仕事に。<br><span class="hero-title-accent text-gradient-pika">ポケカ</span>と生きる。
           </h1>
           <p class="hero-lead">
             ポケモンカードが好き。その気持ちが、いちばんの資格です。<br class="hidden sm:inline">
             未経験から始められる環境で、あなたの「好き」を仕事にしませんか？
           </p>
           <div class="flex flex-wrap gap-3 mt-8 lg:mt-10">
-            <a href="entry.html" class="btn-hero-primary">
+            <a href="entry.html" class="btn-hero-primary magnetic-btn cta-shimmer">
               今すぐ応募する
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
             </a>
@@ -206,12 +207,16 @@
             <span>全国7拠点</span>
           </div>
         </div>
-        <div class="hero-visual">
-          <div class="hero-card-frame">
+        <div class="hero-visual" data-parallax-speed="0.2">
+          <div class="hero-card-frame tilt-card">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/main_visual_img.png" alt="ニンニン忍者キャラクター" class="hero-chara">
           </div>
         </div>
       </div>
+    </div>
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <span class="hero-scroll-indicator__text">Scroll</span>
+      <span class="hero-scroll-indicator__line"></span>
     </div>
   </section>
 
@@ -219,36 +224,36 @@
   <!-- ===== 数字で見るニンニン ===== -->
   <section class="sec-stats">
     <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
-      <div class="stats-grid">
-        <div class="stat-item fade-in">
+      <div class="stats-grid stagger-container">
+        <div class="stat-item stagger-item fade-in">
           <span class="stat-value font-num" data-count="7">0</span><span class="stat-unit">拠点</span>
           <span class="stat-label">全国店舗数</span>
         </div>
-        <div class="stat-item fade-in">
+        <div class="stat-item stagger-item fade-in">
           <span class="stat-value font-num" data-count="80">0</span><span class="stat-unit">%</span>
           <span class="stat-label">ポケカプレイヤー率</span>
         </div>
-        <div class="stat-item fade-in">
+        <div class="stat-item stagger-item fade-in">
           <span class="stat-value font-num" data-count="26">0</span><span class="stat-unit">歳</span>
           <span class="stat-label">スタッフ平均年齢</span>
         </div>
-        <div class="stat-item fade-in">
+        <div class="stat-item stagger-item fade-in">
           <span class="stat-value font-num" data-count="90">0</span><span class="stat-unit">%</span>
           <span class="stat-label">正社員登用率</span>
         </div>
-        <div class="stat-item fade-in">
+        <div class="stat-item stagger-item fade-in">
           <span class="stat-value font-num" data-count="2">0</span><span class="stat-unit">週間</span>
           <span class="stat-label">充実の研修期間</span>
         </div>
-        <div class="stat-item fade-in">
+        <div class="stat-item stagger-item fade-in">
           <span class="stat-value font-num" data-count="10">0</span><span class="stat-unit">分以内</span>
           <span class="stat-label">全店舗 駅チカ</span>
         </div>
-        <div class="stat-item fade-in">
+        <div class="stat-item stagger-item fade-in">
           <span class="stat-value font-num">6:4</span>
           <span class="stat-label">男女比率</span>
         </div>
-        <div class="stat-item fade-in">
+        <div class="stat-item stagger-item fade-in">
           <span class="stat-value font-num" data-count="120">0</span><span class="stat-unit">%</span>
           <span class="stat-label">年間売上成長率</span>
         </div>
@@ -256,9 +261,15 @@
     </div>
   </section>
 
+  <div class="section-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+    </svg>
+  </div>
 
   <!-- ===== ニンニンとは ===== -->
   <section id="about" class="py-20 lg:py-28 bg-white relative overflow-hidden">
+    <span class="sec-bg-num sec-bg-num--right" aria-hidden="true">01</span>
     <div class="sec-deco-line sec-deco-line--right" aria-hidden="true"></div>
     <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
       <div class="sec-label fade-in">ABOUT US</div>
@@ -328,15 +339,16 @@
 
 
   <!-- ===== 働く魅力 ===== -->
-  <section id="features" class="sec-features">
+  <section id="features" class="sec-features relative">
+    <span class="sec-bg-num sec-bg-num--left" aria-hidden="true">02</span>
     <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
       <div class="text-center fade-in">
         <div class="sec-label sec-label--dark">WHY NINNIN</div>
         <h2 class="sec-title sec-title--dark">ニンニンで働く<span class="text-navy">3</span>つの魅力</h2>
       </div>
 
-      <div class="feature-list">
-        <div class="feature-card holo-card fade-in">
+      <div class="feature-list stagger-container">
+        <div class="feature-card holo-card stagger-item tilt-card fade-in">
           <div class="feature-num font-num">01</div>
           <div class="feature-icon">
             <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
@@ -350,7 +362,7 @@
           </ul>
         </div>
 
-        <div class="feature-card holo-card fade-in">
+        <div class="feature-card holo-card stagger-item tilt-card fade-in">
           <div class="feature-num font-num">02</div>
           <div class="feature-icon">
             <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
@@ -364,7 +376,7 @@
           </ul>
         </div>
 
-        <div class="feature-card holo-card fade-in">
+        <div class="feature-card holo-card stagger-item tilt-card fade-in">
           <div class="feature-num font-num">03</div>
           <div class="feature-icon">
             <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -381,9 +393,15 @@
     </div>
   </section>
 
+  <div class="section-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+    </svg>
+  </div>
 
   <!-- ===== キャリアパス ===== -->
-  <section class="py-20 lg:py-28 bg-white relative">
+  <section class="py-20 lg:py-28 bg-white relative overflow-hidden">
+    <span class="sec-bg-num sec-bg-num--right" aria-hidden="true">03</span>
     <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
       <div class="text-center fade-in">
         <div class="sec-label">CAREER PATH</div>
@@ -438,56 +456,56 @@
 
       <div class="benefits-grid">
         <div class="benefit-item fade-in">
-          <div class="benefit-icon benefit-icon--special">
+          <div class="benefit-icon benefit-icon--special icon-pulse">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
           </div>
           <h3>社員割引</h3>
           <p>カード購入時に社員割引適用。推しカードをお得にゲットできます。</p>
         </div>
         <div class="benefit-item fade-in">
-          <div class="benefit-icon benefit-icon--special">
+          <div class="benefit-icon benefit-icon--special icon-pulse">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <h3>スタッフ対戦会</h3>
           <p>月1回、勤務時間内で開催。スタッフ同士でバトルを楽しめます。</p>
         </div>
         <div class="benefit-item fade-in">
-          <div class="benefit-icon benefit-icon--special">
+          <div class="benefit-icon benefit-icon--special icon-pulse">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
           <h3>新弾先行情報</h3>
           <p>新商品の入荷情報をいち早くキャッチ。誰よりも早く最新弾をチェック。</p>
         </div>
         <div class="benefit-item fade-in">
-          <div class="benefit-icon">
+          <div class="benefit-icon icon-pulse">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
           <h3>社会保険完備</h3>
           <p>健康保険・厚生年金・雇用保険・労災保険。安心して働ける体制。</p>
         </div>
         <div class="benefit-item fade-in">
-          <div class="benefit-icon">
+          <div class="benefit-icon icon-pulse">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
           </div>
           <h3>交通費全額支給</h3>
           <p>通勤にかかる交通費を全額サポート。どの店舗でも安心です。</p>
         </div>
         <div class="benefit-item fade-in">
-          <div class="benefit-icon">
+          <div class="benefit-icon icon-pulse">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
           </div>
           <h3>昇給・賞与</h3>
           <p>年1回の昇給・年2回の賞与。頑張りをしっかり評価する制度です。</p>
         </div>
         <div class="benefit-item fade-in">
-          <div class="benefit-icon">
+          <div class="benefit-icon icon-pulse">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           </div>
           <h3>有給休暇</h3>
           <p>法定通りの有給休暇を付与。取得を積極的に推奨しています。</p>
         </div>
         <div class="benefit-item fade-in">
-          <div class="benefit-icon">
+          <div class="benefit-icon icon-pulse">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"/></svg>
           </div>
           <h3>正社員登用制度</h3>
@@ -547,7 +565,7 @@
       </div>
 
       <div class="store-grid">
-        <div class="store-card store-card--featured holo-card fade-in">
+        <div class="store-card store-card--featured holo-card store-card-hover tilt-card fade-in">
           <div class="store-img">
             <span class="store-badge">本店</span>
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="ニンニン秋葉原店" loading="lazy">
@@ -558,7 +576,7 @@
             <p class="store-station">JR秋葉原駅 徒歩3分</p>
           </div>
         </div>
-        <div class="store-card holo-card fade-in">
+        <div class="store-card holo-card store-card-hover tilt-card fade-in">
           <div class="store-img">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara2.jpg" alt="ニンニン秋葉原2号店" loading="lazy">
           </div>
@@ -568,7 +586,7 @@
             <p class="store-station">JR秋葉原駅 徒歩5分</p>
           </div>
         </div>
-        <div class="store-card holo-card fade-in">
+        <div class="store-card holo-card store-card-hover tilt-card fade-in">
           <div class="store-img">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="ニンニン中野店" loading="lazy">
           </div>
@@ -578,7 +596,7 @@
             <p class="store-station">JR中野駅 徒歩3分</p>
           </div>
         </div>
-        <div class="store-card holo-card fade-in">
+        <div class="store-card holo-card store-card-hover tilt-card fade-in">
           <div class="store-img">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="ニンニン池袋店" loading="lazy">
           </div>
@@ -588,7 +606,7 @@
             <p class="store-station">JR池袋駅 徒歩5分</p>
           </div>
         </div>
-        <div class="store-card holo-card fade-in">
+        <div class="store-card holo-card store-card-hover tilt-card fade-in">
           <div class="store-img">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_oosaka.png" alt="ニンニン大阪日本橋店" loading="lazy">
           </div>
@@ -598,7 +616,7 @@
             <p class="store-station">南海なんば駅 徒歩8分</p>
           </div>
         </div>
-        <div class="store-card holo-card fade-in">
+        <div class="store-card holo-card store-card-hover tilt-card fade-in">
           <div class="store-img">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nihonbashi2.jpg" alt="ニンニン大阪日本橋2号店" loading="lazy">
           </div>
@@ -608,7 +626,7 @@
             <p class="store-station">南海なんば駅 徒歩10分</p>
           </div>
         </div>
-        <div class="store-card holo-card fade-in">
+        <div class="store-card holo-card store-card-hover tilt-card fade-in">
           <div class="store-img">
             <span class="store-badge store-badge--new">NEW</span>
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_toreren.jpg" alt="トレレン秋葉原店" loading="lazy">
@@ -634,7 +652,7 @@
       </div>
 
       <div class="interview-grid">
-        <a href="interview.html" class="interview-card interview-card--featured fade-in">
+        <a href="interview.html" class="interview-card interview-card--featured interview-card-hover fade-in">
           <div class="interview-photo">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="秋葉原本店" loading="lazy">
             <div class="interview-photo-overlay">
@@ -649,7 +667,7 @@
           </div>
         </a>
 
-        <a href="interview.html" class="interview-card fade-in">
+        <a href="interview.html" class="interview-card interview-card-hover fade-in">
           <div class="interview-photo">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="池袋店" loading="lazy">
             <div class="interview-photo-overlay">
@@ -664,7 +682,7 @@
           </div>
         </a>
 
-        <a href="interview.html" class="interview-card fade-in">
+        <a href="interview.html" class="interview-card interview-card-hover fade-in">
           <div class="interview-photo">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="中野店" loading="lazy">
             <div class="interview-photo-overlay">
@@ -840,55 +858,55 @@
       </div>
 
       <div class="faq-list">
-        <details class="faq-item fade-in">
-          <summary class="faq-question">
+        <div class="faq-item fade-in">
+          <div class="faq-item-header" role="button" tabindex="0" aria-expanded="false">
             <span>ポケモンカードの知識がなくても応募できますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <div class="faq-answer"><p>もちろん応募いただけます。入社後の研修でカードの種類・レアリティ・相場観などを丁寧にお教えします。現在活躍中のスタッフの中にも、入社時はポケカ初心者だった方が多数います。「興味がある」という気持ちがあれば十分です。</p></div>
-        </details>
-        <details class="faq-item fade-in">
-          <summary class="faq-question">
+            <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="faq-item-content"><p>もちろん応募いただけます。入社後の研修でカードの種類・レアリティ・相場観などを丁寧にお教えします。現在活躍中のスタッフの中にも、入社時はポケカ初心者だった方が多数います。「興味がある」という気持ちがあれば十分です。</p></div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-item-header" role="button" tabindex="0" aria-expanded="false">
             <span>未経験でも応募できますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <div class="faq-answer"><p>接客業や販売業の経験がなくても問題ありません。先輩スタッフによるOJT研修で、レジ操作・接客マナー・買取査定の基礎をゼロから学べます。当社のスタッフの多くが未経験からスタートしています。</p></div>
-        </details>
-        <details class="faq-item fade-in">
-          <summary class="faq-question">
+            <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="faq-item-content"><p>接客業や販売業の経験がなくても問題ありません。先輩スタッフによるOJT研修で、レジ操作・接客マナー・買取査定の基礎をゼロから学べます。当社のスタッフの多くが未経験からスタートしています。</p></div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-item-header" role="button" tabindex="0" aria-expanded="false">
             <span>勤務地は選べますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <div class="faq-answer"><p>はい、面接時にご希望の勤務地をお伺いします。自宅から通いやすい店舗への配属を基本としています。複数の希望店舗をお伝えいただけると選考がスムーズです。</p></div>
-        </details>
-        <details class="faq-item fade-in">
-          <summary class="faq-question">
+            <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="faq-item-content"><p>はい、面接時にご希望の勤務地をお伺いします。自宅から通いやすい店舗への配属を基本としています。複数の希望店舗をお伝えいただけると選考がスムーズです。</p></div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-item-header" role="button" tabindex="0" aria-expanded="false">
             <span>アルバイトから正社員になれますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <div class="faq-answer"><p>正社員登用制度があります。登用率は約90%。アルバイトから正社員、さらに店長へとキャリアアップしたスタッフもいます。</p></div>
-        </details>
-        <details class="faq-item fade-in">
-          <summary class="faq-question">
+            <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="faq-item-content"><p>正社員登用制度があります。登用率は約90%。アルバイトから正社員、さらに店長へとキャリアアップしたスタッフもいます。</p></div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-item-header" role="button" tabindex="0" aria-expanded="false">
             <span>面接ではどんなことを聞かれますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <div class="faq-answer"><p>志望動機やこれまでのご経験に加え、ポケモンカードとの関わりやお気に入りのカード・デッキなどをお聞きすることがあります。堅苦しい面接ではなく、お互いを知るための対話を大切にしています。服装もカジュアルでOKです。</p></div>
-        </details>
-        <details class="faq-item fade-in">
-          <summary class="faq-question">
+            <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="faq-item-content"><p>志望動機やこれまでのご経験に加え、ポケモンカードとの関わりやお気に入りのカード・デッキなどをお聞きすることがあります。堅苦しい面接ではなく、お互いを知るための対話を大切にしています。服装もカジュアルでOKです。</p></div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-item-header" role="button" tabindex="0" aria-expanded="false">
             <span>社員割引はありますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <div class="faq-answer"><p>はい、正社員・アルバイトともに社員割引制度があります。カードの購入時に割引が適用されるほか、新弾の入荷情報をいち早く知ることもできます。</p></div>
-        </details>
-        <details class="faq-item fade-in">
-          <summary class="faq-question">
+            <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="faq-item-content"><p>はい、正社員・アルバイトともに社員割引制度があります。カードの購入時に割引が適用されるほか、新弾の入荷情報をいち早く知ることもできます。</p></div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-item-header" role="button" tabindex="0" aria-expanded="false">
             <span>学生ですがアルバイトできますか？</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <div class="faq-answer"><p>大学生・専門学校生の方は大歓迎です（高校生は不可）。週2日・1日4時間から勤務可能で、テスト期間のシフト調整にも柔軟に対応しています。</p></div>
-        </details>
+            <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="faq-item-content"><p>大学生・専門学校生の方は大歓迎です（高校生は不可）。週2日・1日4時間から勤務可能で、テスト期間のシフト調整にも柔軟に対応しています。</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -941,7 +959,7 @@
           <p class="text-gray-400 text-xs mb-2">お電話でのお問い合わせ・ご応募</p>
           <a href="tel:03-4363-7710" class="cta-phone font-num">03-4363-7710</a>
           <p class="text-gray-500 text-xs mb-8">年中無休 / 受付時間 13:00〜20:00</p>
-          <a href="entry.html" class="btn-cta-large">
+          <a href="entry.html" class="btn-cta-large magnetic-btn cta-shimmer">
             応募フォームへ進む
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
           </a>
@@ -994,7 +1012,7 @@
 
   <!-- フローティングCTA -->
   <div class="floating-cta" id="floating-cta" aria-label="応募">
-    <a href="entry.html" class="floating-cta-btn">今すぐ応募する</a>
+    <a href="entry.html" class="floating-cta-btn cta-shimmer">今すぐ応募する</a>
     <a href="tel:03-4363-7710" class="floating-cta-phone font-num">
       <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
       電話

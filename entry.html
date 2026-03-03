@@ -172,8 +172,10 @@
   </div>
 
   <!-- ページヘッダー -->
-  <div class="bg-navy py-10 lg:py-14">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
+  <div class="subpage-hero">
+    <div class="particle-container" aria-hidden="true"></div>
+    <span class="sec-bg-num sec-bg-num--right" data-parallax-speed="-0.3" aria-hidden="true">ENTRY</span>
+    <div class="max-w-[1140px] mx-auto px-4 lg:px-6 subpage-hero__content">
       <div class="flex items-center gap-4">
         <div class="w-1 h-10 bg-pika flex-shrink-0"></div>
         <div>
@@ -188,6 +190,29 @@
   <!-- フォームセクション -->
   <section class="py-14 lg:py-20 bg-white">
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
+
+      <!-- ステップインジケーター -->
+      <div class="entry-step-indicator fade-in">
+        <div class="entry-step entry-step--active">
+          <span class="entry-step__num">1</span>
+          <span class="entry-step__label">フォーム入力</span>
+        </div>
+        <div class="entry-step-line"></div>
+        <div class="entry-step">
+          <span class="entry-step__num">2</span>
+          <span class="entry-step__label">書類選考</span>
+        </div>
+        <div class="entry-step-line"></div>
+        <div class="entry-step">
+          <span class="entry-step__num">3</span>
+          <span class="entry-step__label">面接</span>
+        </div>
+        <div class="entry-step-line"></div>
+        <div class="entry-step">
+          <span class="entry-step__num">4</span>
+          <span class="entry-step__label">内定</span>
+        </div>
+      </div>
 
       <!-- 説明テキスト -->
       <div class="mb-10 fade-in">
@@ -210,10 +235,10 @@
             <!-- エラーメッセージ用aria-liveリージョン -->
             <div id="form-errors" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-            <form id="entry-form" class="px-6 lg:px-8 py-8" novalidate>
+            <form id="entry-form" class="px-6 lg:px-8 py-8 stagger-container" novalidate>
 
               <!-- お名前 -->
-              <div class="entry-field">
+              <div class="entry-field stagger-item fade-in">
                 <label for="name" class="form-label">
                   お名前<span class="required">必須</span>
                 </label>
@@ -222,7 +247,7 @@
               </div>
 
               <!-- ふりがな -->
-              <div class="entry-field">
+              <div class="entry-field stagger-item fade-in">
                 <label for="furigana" class="form-label">
                   ふりがな<span class="required">必須</span>
                 </label>
@@ -231,7 +256,7 @@
               </div>
 
               <!-- メールアドレス -->
-              <div class="entry-field">
+              <div class="entry-field stagger-item fade-in">
                 <label for="email" class="form-label">
                   メールアドレス<span class="required">必須</span>
                 </label>
@@ -240,7 +265,7 @@
               </div>
 
               <!-- 電話番号 -->
-              <div class="entry-field">
+              <div class="entry-field stagger-item fade-in">
                 <label for="phone" class="form-label">
                   電話番号<span class="required">必須</span>
                 </label>
@@ -249,13 +274,13 @@
               </div>
 
               <!-- 年齢 -->
-              <div class="entry-field">
+              <div class="entry-field stagger-item fade-in">
                 <label for="age" class="form-label">年齢</label>
                 <input type="number" id="age" name="age" class="form-input w-32" placeholder="例：25" min="15" max="99">
               </div>
 
               <!-- 希望職種 -->
-              <div class="entry-field">
+              <div class="entry-field stagger-item fade-in">
                 <fieldset>
                   <legend class="form-label">希望職種</legend>
                   <div class="flex flex-wrap gap-4 mt-2">
@@ -276,7 +301,7 @@
               </div>
 
               <!-- 希望勤務地 -->
-              <div class="entry-field">
+              <div class="entry-field stagger-item fade-in">
                 <label for="location" class="form-label">希望勤務地</label>
                 <select id="location" name="location" class="form-input">
                   <option value="">選択してください</option>
@@ -291,13 +316,13 @@
               </div>
 
               <!-- 志望動機・自己PR -->
-              <div class="entry-field">
+              <div class="entry-field stagger-item fade-in">
                 <label for="motivation" class="form-label">志望動機・自己PR</label>
                 <textarea id="motivation" name="motivation" class="form-input" rows="5" placeholder="ポケモンカードとの関わりや、応募のきっかけなどを教えてください"></textarea>
               </div>
 
               <!-- その他ご質問 -->
-              <div class="entry-field">
+              <div class="entry-field stagger-item fade-in">
                 <label for="questions" class="form-label">その他ご質問</label>
                 <textarea id="questions" name="questions" class="form-input" rows="3" placeholder="ご質問やご要望があればご記入ください"></textarea>
               </div>
@@ -306,7 +331,7 @@
               <div class="border-t border-[#C8C8C0] my-8"></div>
 
               <!-- プライバシーポリシー同意 -->
-              <div class="mb-8">
+              <div class="mb-8 fade-in">
                 <label class="flex items-start gap-3 cursor-pointer">
                   <input type="checkbox" id="privacy" name="privacy" class="mt-0.5 w-5 h-5 accent-[#FFCB05] flex-shrink-0" required aria-required="true" aria-describedby="privacy-error">
                   <span class="text-sm text-gray-700 leading-relaxed">
@@ -318,8 +343,8 @@
               </div>
 
               <!-- 送信ボタン -->
-              <div class="text-center pt-2">
-                <button type="submit" class="entry-submit-btn">
+              <div class="text-center pt-2 fade-in">
+                <button type="submit" class="entry-submit-btn cta-shimmer magnetic-btn">
                   <span>この内容で応募する</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </button>
@@ -354,6 +379,42 @@
                 <li><span class="entry-flow-num">3</span>面接（店舗）</li>
                 <li><span class="entry-flow-num">4</span>内定・入社</li>
               </ol>
+            </div>
+          </div>
+
+          <!-- 数字で見るニンニン -->
+          <div class="border border-[#C8C8C0] bg-white mb-5">
+            <div class="bg-pika px-5 py-3">
+              <h3 class="font-bold text-sm text-navy-deep">数字で見るニンニン</h3>
+            </div>
+            <div class="px-2 py-2">
+              <div class="sidebar-stat">
+                <div class="sidebar-stat__icon">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                </div>
+                <div>
+                  <div class="sidebar-stat__value">7</div>
+                  <div class="sidebar-stat__label">全国店舗数</div>
+                </div>
+              </div>
+              <div class="sidebar-stat">
+                <div class="sidebar-stat__icon">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <div>
+                  <div class="sidebar-stat__value">50+</div>
+                  <div class="sidebar-stat__label">従業員数</div>
+                </div>
+              </div>
+              <div class="sidebar-stat">
+                <div class="sidebar-stat__icon">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div>
+                  <div class="sidebar-stat__value">3日</div>
+                  <div class="sidebar-stat__label">選考結果通知</div>
+                </div>
+              </div>
             </div>
           </div>
 
