@@ -169,7 +169,7 @@
       <nav class="breadcrumb" aria-label="パンくずリスト">
         <ol class="flex items-center flex-wrap text-sm">
           <li><a href="index.html">ホーム</a></li>
-          <li><span class="mx-2">&gt;</span></li>
+          <li><span class="mx-2" aria-hidden="true">&gt;</span></li>
           <li aria-current="page"><span>応募フォーム</span></li>
         </ol>
       </nav>
@@ -326,7 +326,7 @@
                 <!-- 年齢 -->
                 <div class="entry-field stagger-item fade-in">
                   <label for="age" class="form-label">年齢</label>
-                  <input type="number" id="age" name="age" class="form-input w-full sm:w-32" placeholder="例：25" min="15" max="99">
+                  <input type="number" id="age" name="age" class="form-input w-full sm:w-32" placeholder="例：25" min="18" max="99">
                 </div>
               </fieldset>
 
@@ -359,7 +359,7 @@
                 <div class="entry-field stagger-item fade-in">
                   <label for="location" class="form-label">希望勤務地<span class="required">必須</span></label>
                   <select id="location" name="location" class="form-input" required aria-required="true" aria-describedby="location-error">
-                    <option value="">選択してください</option>
+                    <option value="" disabled selected>選択してください</option>
                     <option value="秋葉原店">秋葉原店</option>
                     <option value="秋葉原2号店">秋葉原2号店</option>
                     <option value="中野店">中野店</option>
@@ -516,7 +516,7 @@
     <div class="max-w-[800px] mx-auto px-5 text-center relative z-10">
       <p class="text-sm font-num tracking-widest text-white/60 mb-4">JOIN OUR TEAM</p>
       <h2 class="text-2xl lg:text-4xl font-heading font-black text-white mb-6">あなたの「好き」を<br>仕事にしよう。</h2>
-      <a href="entry.html" class="btn-cta-large cta-shimmer inline-block">応募フォームへ進む</a>
+      <a href="#entry-form" class="btn-cta-large cta-shimmer inline-block">フォーム入力へ戻る ↑</a>
       <p class="text-white/50 text-sm mt-6">ポケモンカードが好きな方、未経験の方も歓迎いたします。</p>
     </div>
   </section>

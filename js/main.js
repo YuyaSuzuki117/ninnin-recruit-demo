@@ -322,8 +322,8 @@ function initFormValidation() {
     // 年齢チェック
     else if (name === 'age' && value) {
       const age = parseInt(value, 10);
-      if (isNaN(age) || age < 15 || age > 99) {
-        error = '15〜99の数値を入力してください';
+      if (isNaN(age) || age < 18 || age > 99) {
+        error = '18〜99の数値を入力してください';
       }
     }
 
@@ -866,6 +866,14 @@ function initFAQAccordion() {
       }
     });
 
+    // キーボード対応: Enter / Space でアコーディオン開閉
+    header.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        header.click();
+      }
+    });
+
     // transitionend でoverflow制御
     if (!prefersReducedMotion) {
       content.addEventListener('transitionend', () => {
@@ -877,14 +885,40 @@ function initFAQAccordion() {
   });
 }
 
-/* --- アクティブセクションナビハイライト（IntersectionObserver） --- */
+/* --- アクティブセクションナビハイライト（IntersectionObserver + サブページ対応） --- */
 function initActiveNavHighlight() {
-  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-  if (navLinks.length === 0) return;
+  const allNavLinks = document.querySelectorAll('.nav-link');
+  const hashNavLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+  // --- サブページ対応: 現在のページに対応するナビリンクをハイライト ---
+  const currentPath = window.location.pathname;
+  const currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+
+  // サブページ → 対応するナビリンクのhrefハッシュマッピング
+  const pageToHashMap = {
+    'jobs.html': '#jobs',
+    'interview.html': '#interview'
+  };
+
+  const matchHash = pageToHashMap[currentPage];
+  if (matchHash) {
+    allNavLinks.forEach(link => {
+      const href = link.getAttribute('href') || '';
+      // index.html#jobs や index.html#interview にマッチ
+      if (href.endsWith(matchHash)) {
+        link.classList.add('nav-link--active');
+      }
+    });
+    // サブページでは IntersectionObserver によるハイライトは不要なので終了
+    return;
+  }
+
+  // --- index.html: IntersectionObserver でセクション単位のハイライト ---
+  if (hashNavLinks.length === 0) return;
 
   // ナビリンクのhrefからセクション要素を取得
   const sections = [];
-  navLinks.forEach(link => {
+  hashNavLinks.forEach(link => {
     const targetId = link.getAttribute('href');
     if (targetId && targetId !== '#') {
       const section = document.querySelector(targetId);
@@ -897,7 +931,7 @@ function initActiveNavHighlight() {
   if (sections.length === 0) return;
 
   function clearActive() {
-    navLinks.forEach(link => link.classList.remove('nav-link--active'));
+    allNavLinks.forEach(link => link.classList.remove('nav-link--active'));
   }
 
   const observer = new IntersectionObserver((entries) => {

@@ -1290,6 +1290,8 @@ strong { color: var(--body); }
   gap: 24px;
   margin-top: 48px;
   max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (min-width: 768px) {
@@ -1373,7 +1375,7 @@ strong { color: var(--body); }
    ======================================== */
 .schedule-list {
   max-width: 700px;
-  margin-top: 48px;
+  margin: 48px auto 0;
 }
 
 .schedule-item {
@@ -1516,6 +1518,8 @@ strong { color: var(--body); }
   gap: 12px;
   margin-top: 48px;
   max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (min-width: 1024px) {
