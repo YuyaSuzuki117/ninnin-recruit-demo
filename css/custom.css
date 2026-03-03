@@ -1467,6 +1467,20 @@ strong { color: var(--body); }
   margin: 0 auto 16px;
 }
 
+.reassurance-icon--character {
+  width: 120px;
+  height: 120px;
+  background: none;
+  border-radius: 0;
+  margin: 0 auto 12px;
+}
+
+.reassurance-icon--character img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .reassurance-card h3 {
   font-family: var(--font-heading);
   font-weight: 800;
