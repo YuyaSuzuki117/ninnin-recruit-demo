@@ -132,7 +132,7 @@
           <a href="index.html#stores" class="nav-link">店舗一覧</a>
           <a href="index.html#interview" class="nav-link">先輩の声</a>
           <a href="index.html#jobs" class="nav-link">募集要項</a>
-          <a href="entry.html" class="nav-cta">応募する</a>
+          <a href="entry.html" class="nav-cta cta-shimmer">応募する</a>
         </nav>
         <button id="menu-toggle" class="hamburger lg:hidden" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
           <span></span><span></span><span></span>
@@ -244,11 +244,27 @@
           </div>
         </div>
         <div class="entry-reassurance__item">
-          <svg class="w-6 h-6 flex-shrink-0 text-[#B8930A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div class="w-10 h-10 flex-shrink-0">
+            <img src="img/ninja-book-sm.png" alt="" width="128" height="138" class="w-full h-full object-contain">
+          </div>
           <div>
             <p class="font-bold text-sm text-gray-900">未経験OK・服装自由</p>
             <p class="text-xs text-gray-500">気軽にご応募ください</p>
           </div>
+        </div>
+      </div>
+
+      <!-- モバイル: 選考の流れ -->
+      <div class="lg:hidden mb-8 p-5 bg-white rounded-lg border border-[var(--border)]">
+        <h3 class="font-heading font-bold text-base mb-4">選考の流れ</h3>
+        <div class="flex justify-between text-center text-xs">
+          <div><div class="w-8 h-8 bg-[var(--pika)] rounded-full flex items-center justify-center font-bold mx-auto mb-1">1</div>応募</div>
+          <div class="text-gray-300">→</div>
+          <div><div class="w-8 h-8 bg-[var(--cool)] rounded-full flex items-center justify-center font-bold mx-auto mb-1">2</div>書類選考</div>
+          <div class="text-gray-300">→</div>
+          <div><div class="w-8 h-8 bg-[var(--cool)] rounded-full flex items-center justify-center font-bold mx-auto mb-1">3</div>面接</div>
+          <div class="text-gray-300">→</div>
+          <div><div class="w-8 h-8 bg-[var(--cool)] rounded-full flex items-center justify-center font-bold mx-auto mb-1">4</div>内定</div>
         </div>
       </div>
 
@@ -321,10 +337,10 @@
                 <!-- 希望職種 -->
                 <div class="entry-field stagger-item fade-in">
                   <fieldset>
-                    <legend class="form-label">希望職種</legend>
+                    <legend class="form-label">希望職種<span class="required">必須</span></legend>
                     <div class="flex flex-wrap gap-4 mt-2">
                       <label class="entry-radio">
-                        <input type="radio" name="job_type" value="正社員">
+                        <input type="radio" name="job_type" value="正社員" required>
                         <span>正社員</span>
                       </label>
                       <label class="entry-radio">
@@ -341,8 +357,8 @@
 
                 <!-- 希望勤務地 -->
                 <div class="entry-field stagger-item fade-in">
-                  <label for="location" class="form-label">希望勤務地</label>
-                  <select id="location" name="location" class="form-input">
+                  <label for="location" class="form-label">希望勤務地<span class="required">必須</span></label>
+                  <select id="location" name="location" class="form-input" required aria-required="true" aria-describedby="location-error">
                     <option value="">選択してください</option>
                     <option value="秋葉原店">秋葉原店</option>
                     <option value="秋葉原2号店">秋葉原2号店</option>
@@ -351,7 +367,9 @@
                     <option value="大阪日本橋店">大阪日本橋店</option>
                     <option value="大阪日本橋2号店">大阪日本橋2号店</option>
                     <option value="トレレン秋葉原店">トレレン秋葉原店</option>
+                    <option value="どこでも可">どこでも可</option>
                   </select>
+                  <p id="location-error" class="form-error" role="alert" hidden></p>
                 </div>
               </fieldset>
 
@@ -362,6 +380,7 @@
                 <!-- 志望動機・自己PR -->
                 <div class="entry-field stagger-item fade-in">
                   <label for="motivation" class="form-label">志望動機・自己PR</label>
+                  <p class="text-xs text-gray-400 mt-1 mb-2">※ 入力すると選考がスムーズです</p>
                   <textarea id="motivation" name="motivation" class="form-input" rows="5" placeholder="ポケモンカードとの関わりや、応募のきっかけなどを教えてください"></textarea>
                 </div>
 
@@ -488,6 +507,17 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="sec-cta">
+    <div class="sec-cta-bg"></div>
+    <div class="max-w-[800px] mx-auto px-5 text-center relative z-10">
+      <p class="text-sm font-num tracking-widest text-white/60 mb-4">JOIN OUR TEAM</p>
+      <h2 class="text-2xl lg:text-4xl font-heading font-black text-white mb-6">あなたの「好き」を<br>仕事にしよう。</h2>
+      <a href="entry.html" class="btn-cta-large cta-shimmer inline-block">応募フォームへ進む</a>
+      <p class="text-white/50 text-sm mt-6">ポケモンカードが好きな方、未経験の方も歓迎いたします。</p>
     </div>
   </section>
 

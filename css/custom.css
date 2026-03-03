@@ -32,6 +32,11 @@
   --color-bg-alt: #F5F5F0;
   --color-border: #C8C8C0;
   --color-dark: #1A1A1A;
+  --color-muted: #666;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
 }
 
 /* --- Reset & Base --- */
@@ -62,9 +67,9 @@ strong { color: var(--body); }
   background: linear-gradient(
     105deg,
     transparent 38%,
-    rgba(255,203,5,0.08) 42%,
+    rgba(255,203,5,0.15) 42%,
     rgba(255,255,255,0.18) 50%,
-    rgba(255,203,5,0.08) 58%,
+    rgba(255,203,5,0.15) 58%,
     transparent 62%
   );
   transform: translateX(-150%);
@@ -168,6 +173,7 @@ strong { color: var(--body); }
   font-weight: 800;
   text-decoration: none;
   letter-spacing: 0.04em;
+  border-radius: var(--radius-sm);
   margin-left: 8px;
   transition: box-shadow 0.2s, background 0.2s;
 }
@@ -305,8 +311,8 @@ strong { color: var(--body); }
 .hero-tags span {
   font-size: 12px;
   font-weight: 600;
-  color: rgba(255,255,255,0.5);
-  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.2);
   padding: 4px 12px;
   letter-spacing: 0.04em;
 }
@@ -398,6 +404,7 @@ strong { color: var(--body); }
   font-size: 15px;
   text-decoration: none;
   letter-spacing: 0.04em;
+  border-radius: var(--radius-sm);
   box-shadow: 0 4px 24px rgba(255,203,5,0.25);
   transition: all 0.2s;
 }
@@ -439,6 +446,7 @@ strong { color: var(--body); }
   font-size: 14px;
   text-decoration: none;
   letter-spacing: 0.04em;
+  border-radius: var(--radius-sm);
   transition: all 0.2s;
 }
 .btn-primary:hover {
@@ -733,7 +741,7 @@ strong { color: var(--body); }
    ======================================== */
 .sec-features {
   background: var(--pika);
-  padding: 80px 0 100px;
+  padding: 100px 0 120px;
   position: relative;
 }
 /* 上部の斜めカット */
@@ -1512,8 +1520,10 @@ strong { color: var(--body); }
 
 @media (min-width: 1024px) {
   .faq-list {
-    max-width: 100%;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     gap: 16px;
   }
 }
@@ -1652,6 +1662,7 @@ strong { color: var(--body); }
   font-size: 16px;
   text-decoration: none;
   letter-spacing: 0.06em;
+  border-radius: var(--radius-sm);
   box-shadow: 0 4px 24px rgba(255,203,5,0.2);
   transition: all 0.2s;
 }
@@ -1872,7 +1883,7 @@ strong { color: var(--body); }
   font-size: 16px;
   font-weight: 900;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   transition: background 0.2s, box-shadow 0.2s;
 }
 .mobile-menu__cta:hover,
@@ -2010,6 +2021,17 @@ strong { color: var(--body); }
 .form-error { color: #DC2626; font-size: 13px; margin-top: 4px; }
 .form-input[aria-invalid="true"] { border-color: #DC2626; }
 
+/* Validation visual feedback */
+.form-input[aria-invalid="true"],
+.form-input:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: #DC2626;
+  background: #FEF2F2;
+}
+
+.form-input:not(:placeholder-shown):valid:not(:focus) {
+  border-color: #16A34A;
+}
+
 /* Entry Submit Button — Base style */
 .entry-submit-btn {
   display: inline-flex;
@@ -2023,7 +2045,7 @@ strong { color: var(--body); }
   letter-spacing: 0.04em;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   transition: all 0.2s ease;
   box-shadow: 0 4px 24px rgba(255,203,5,0.2);
 }
@@ -2219,10 +2241,14 @@ strong { color: var(--body); }
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-num);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.15em;
   color: var(--pika-dark);
+  background: var(--pika-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
   white-space: nowrap;
 }
 
@@ -2473,7 +2499,7 @@ strong { color: var(--body); }
   font-size: clamp(100px, 18vw, 260px);
   font-weight: 900;
   color: var(--pika);
-  opacity: 0.03;
+  opacity: 0.06;
   line-height: 1;
   pointer-events: none;
   user-select: none;
@@ -2543,7 +2569,7 @@ strong { color: var(--body); }
 }
 .subpage-hero .particle-container { z-index: 1; }
 .subpage-hero .sec-bg-num {
-  opacity: 0.04;
+  opacity: 0.06;
   z-index: 1;
 }
 .subpage-hero__content {
@@ -3154,3 +3180,19 @@ textarea.form-input {
   .interview-card:active,
   .tilt-card:active { transform: none; }
 }
+
+
+/* ==========================================================
+   TABLE SCROLL WRAPPER — Horizontal scroll for wide tables
+   ========================================================== */
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* ==========================================================
+   BREADCRUMB — Navigation trail links
+   ========================================================== */
+.breadcrumb a { color: var(--color-muted); transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--pika-dark); }

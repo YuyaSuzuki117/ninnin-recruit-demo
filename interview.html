@@ -143,7 +143,7 @@
           <a href="index.html#stores" class="nav-link">店舗一覧</a>
           <a href="index.html#interview" class="nav-link">先輩の声</a>
           <a href="index.html#jobs" class="nav-link">募集要項</a>
-          <a href="entry.html" class="nav-cta">応募する</a>
+          <a href="entry.html" class="nav-cta cta-shimmer">応募する</a>
         </nav>
         <button id="menu-toggle" class="hamburger lg:hidden" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
           <span></span><span></span><span></span>
@@ -219,6 +219,15 @@
           <p class="text-xs font-bold text-pika-dark tracking-widest font-num mb-2">INTERVIEW 01</p>
           <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 mb-6">田中 太郎</h2>
 
+          <div class="flex flex-wrap gap-3 mt-6">
+            <span class="inline-flex items-center gap-1.5 px-4 py-2 bg-[var(--pika-light)] rounded-full text-sm font-bold">📍 秋葉原本店</span>
+            <span class="inline-flex items-center gap-1.5 px-4 py-2 bg-[var(--cool)] rounded-full text-sm">店長</span>
+            <span class="inline-flex items-center gap-1.5 px-4 py-2 bg-[var(--cool)] rounded-full text-sm">入社5年目</span>
+            <span class="inline-flex items-center gap-1.5 px-4 py-2 bg-[var(--cool)] rounded-full text-sm">中途入社</span>
+            <span class="inline-flex items-center gap-1.5 px-4 py-2 bg-[var(--cool)] rounded-full text-sm">前職: アパレル販売</span>
+          </div>
+          <!-- テーブルフォールバック -->
+          <div class="hidden">
           <div class="table-scroll-wrapper">
           <table class="job-table w-full">
             <tr>
@@ -242,6 +251,7 @@
               <td>ポケカデッキ構築・対戦</td>
             </tr>
           </table>
+          </div>
           </div>
         </div>
       </div>
@@ -326,7 +336,7 @@
       </div>
 
       <!-- Q5: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] border-l-4 border-l-[#FFCB05] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
+      <div class="bg-[var(--cream)] rounded-xl p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900"><span class="font-num text-pika-dark font-bold text-sm tracking-widest">Q5.</span> 入社前と入社後でギャップはありましたか？</h3>
         </div>
@@ -342,17 +352,29 @@
       <!-- フォトギャラリー -->
       <div class="mb-16 lg:mb-24 scale-in">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 stagger-container">
-          <div class="photo-zoom aspect-square stagger-item">
-            <img src="img/index/ph_akihabara.png" alt="秋葉原本店" class="w-full h-full object-cover" loading="lazy">
+          <div class="relative overflow-hidden rounded-lg photo-zoom aspect-square stagger-item">
+            <img src="img/index/ph_akihabara.png" alt="店内の様子" class="w-full h-full object-cover" loading="lazy">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+              <span class="text-white text-xs font-bold">店内の様子</span>
+            </div>
           </div>
-          <div class="photo-zoom aspect-square stagger-item">
-            <img src="img/index/ph_nakano.png" alt="中野店" class="w-full h-full object-cover" loading="lazy">
+          <div class="relative overflow-hidden rounded-lg photo-zoom aspect-square stagger-item">
+            <img src="img/index/ph_nakano.png" alt="カード査定" class="w-full h-full object-cover" loading="lazy">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+              <span class="text-white text-xs font-bold">カード査定</span>
+            </div>
           </div>
-          <div class="photo-zoom aspect-square stagger-item">
-            <img src="img/index/ph_ikebukuro.png" alt="池袋店" class="w-full h-full object-cover" loading="lazy">
+          <div class="relative overflow-hidden rounded-lg photo-zoom aspect-square stagger-item">
+            <img src="img/index/ph_ikebukuro.png" alt="対戦スペース" class="w-full h-full object-cover" loading="lazy">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+              <span class="text-white text-xs font-bold">対戦スペース</span>
+            </div>
           </div>
-          <div class="photo-zoom aspect-square stagger-item">
-            <img src="img/index/sec03_photo01.png" alt="店内の様子" class="w-full h-full object-cover" loading="lazy">
+          <div class="relative overflow-hidden rounded-lg photo-zoom aspect-square stagger-item">
+            <img src="img/index/sec03_photo01.png" alt="チームの雰囲気" class="w-full h-full object-cover" loading="lazy">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+              <span class="text-white text-xs font-bold">チームの雰囲気</span>
+            </div>
           </div>
         </div>
       </div>
@@ -372,7 +394,7 @@
       </div>
 
       <!-- Q7: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] border-l-4 border-l-[#FFCB05] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
+      <div class="bg-[var(--cream)] rounded-xl p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
           <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900"><span class="font-num text-pika-dark font-bold text-sm tracking-widest">Q7.</span> 休日の過ごし方は？</h3>
         </div>
@@ -411,30 +433,30 @@
 
       <div class="interview-grid stagger-container">
         <!-- インタビュー02: 佐藤花子（池袋店） -->
-        <div class="interview-card group tilt-card stagger-item opacity-60" aria-disabled="true">
+        <div class="interview-card group tilt-card stagger-item opacity-40 pointer-events-none" aria-disabled="true">
           <div class="interview-card-photo relative">
-            <div class="absolute top-3 right-3 bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1 z-10 rounded">準備中</div>
-            <img src="img/index/ph_ikebukuro.png" alt="池袋店" class="w-full h-full object-cover" loading="lazy">
+            <div class="absolute top-3 right-3 bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1.5 z-10 rounded-full animate-pulse">Coming Soon</div>
+            <img src="img/index/ph_ikebukuro.png" alt="池袋店" class="w-full h-full object-cover blur-[1px]" loading="lazy">
           </div>
-          <div class="interview-card-body">
+          <div class="interview-card-body blur-[1px]">
             <div class="interview-card-num">INTERVIEW 02</div>
             <h3>佐藤 花子</h3>
             <p class="role">池袋店 スタッフ / 入社2年目</p>
-            <span class="more">準備中</span>
+            <span class="more">Coming Soon</span>
           </div>
         </div>
 
         <!-- インタビュー03: 鈴木健太（中野店） -->
-        <div class="interview-card group tilt-card stagger-item opacity-60" aria-disabled="true">
+        <div class="interview-card group tilt-card stagger-item opacity-40 pointer-events-none" aria-disabled="true">
           <div class="interview-card-photo relative">
-            <div class="absolute top-3 right-3 bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1 z-10 rounded">準備中</div>
-            <img src="img/index/ph_nakano.png" alt="中野店" class="w-full h-full object-cover" loading="lazy">
+            <div class="absolute top-3 right-3 bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1.5 z-10 rounded-full animate-pulse">Coming Soon</div>
+            <img src="img/index/ph_nakano.png" alt="中野店" class="w-full h-full object-cover blur-[1px]" loading="lazy">
           </div>
-          <div class="interview-card-body">
+          <div class="interview-card-body blur-[1px]">
             <div class="interview-card-num">INTERVIEW 03</div>
             <h3>鈴木 健太</h3>
             <p class="role">中野店 バイトリーダー / 入社1年目</p>
-            <span class="more">準備中</span>
+            <span class="more">Coming Soon</span>
           </div>
         </div>
       </div>
@@ -443,15 +465,13 @@
 
 
   <!-- 応募誘導セクション -->
-  <section class="cta-bar py-16 lg:py-20">
-    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="text-center fade-in">
-        <p class="text-gray-400 text-xs tracking-wider mb-2">お電話でのお問い合わせ・ご応募</p>
-        <a href="tel:03-4363-7710" class="cta-phone block mb-2">03-4363-7710</a>
-        <p class="text-gray-400 text-xs mb-8">年中無休 / 受付時間 13:00〜20:00</p>
-        <a href="entry.html" class="btn-white cta-shimmer magnetic-btn">応募フォームへ進む</a>
-        <p class="text-gray-400 text-xs mt-6">ポケモンカードが好きな方、未経験の方も歓迎いたします。</p>
-      </div>
+  <section class="sec-cta">
+    <div class="sec-cta-bg"></div>
+    <div class="max-w-[800px] mx-auto px-5 text-center relative z-10">
+      <p class="text-sm font-num tracking-widest text-white/60 mb-4">JOIN OUR TEAM</p>
+      <h2 class="text-2xl lg:text-4xl font-heading font-black text-white mb-6">あなたの「好き」を<br>仕事にしよう。</h2>
+      <a href="entry.html" class="btn-cta-large cta-shimmer inline-block">応募フォームへ進む</a>
+      <p class="text-white/50 text-sm mt-6">ポケモンカードが好きな方、未経験の方も歓迎いたします。</p>
     </div>
   </section>
 
