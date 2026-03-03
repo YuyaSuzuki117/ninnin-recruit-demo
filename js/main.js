@@ -168,7 +168,7 @@ function initScrollAnimations() {
   // prefers-reduced-motion を尊重
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const animClasses = '.fade-in, .slide-up, .slide-left, .slide-right, .scale-in, .animate-on-scroll';
+  const animClasses = '.fade-in, .animate-on-scroll';
   const elements = document.querySelectorAll(animClasses);
 
   if (elements.length === 0) return;
@@ -406,43 +406,9 @@ function initPageTopButton() {
   }, { passive: true });
 }
 
-/* --- 数字カウントアップアニメーション --- */
+/* --- 数字の即時表示（カウントアップ削除） --- */
 function initCountUp() {
-  const counters = document.querySelectorAll('[data-count]');
-  if (counters.length === 0) return;
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (prefersReducedMotion) {
-    counters.forEach(el => {
-      el.textContent = el.getAttribute('data-count');
-    });
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.getAttribute('data-count'), 10);
-        const duration = 1200;
-        const start = performance.now();
-
-        function update(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          // easeOutQuart
-          const eased = 1 - Math.pow(1 - progress, 4);
-          el.textContent = Math.round(eased * target);
-          if (progress < 1) {
-            requestAnimationFrame(update);
-          }
-        }
-        requestAnimationFrame(update);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  counters.forEach(el => observer.observe(el));
+  document.querySelectorAll('[data-count]').forEach(el => {
+    el.textContent = el.getAttribute('data-count');
+  });
 }
