@@ -227,11 +227,36 @@
         </p>
       </div>
 
+      <!-- 安心メッセージバナー -->
+      <div class="grid sm:grid-cols-3 gap-4 mb-8 fade-in">
+        <div class="entry-reassurance__item">
+          <svg class="w-6 h-6 flex-shrink-0" style="color: #B8930A;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <div>
+            <p class="font-bold text-sm text-gray-900">SSL暗号化通信</p>
+            <p class="text-xs text-gray-500">入力情報は安全に送信されます</p>
+          </div>
+        </div>
+        <div class="entry-reassurance__item">
+          <svg class="w-6 h-6 flex-shrink-0" style="color: #B8930A;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div>
+            <p class="font-bold text-sm text-gray-900">3営業日以内に返信</p>
+            <p class="text-xs text-gray-500">担当者が必ずご連絡します</p>
+          </div>
+        </div>
+        <div class="entry-reassurance__item">
+          <svg class="w-6 h-6 flex-shrink-0" style="color: #B8930A;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div>
+            <p class="font-bold text-sm text-gray-900">未経験OK・服装自由</p>
+            <p class="text-xs text-gray-500">気軽にご応募ください</p>
+          </div>
+        </div>
+      </div>
+
       <div class="lg:grid lg:grid-cols-3 lg:gap-14 lg:items-start">
 
         <!-- 左カラム: フォーム -->
         <div class="lg:col-span-2">
-          <div class="border border-[#C8C8C0] bg-white fade-in">
+          <div class="border border-[#C8C8C0] bg-white slide-left">
             <!-- フォームヘッダー -->
             <div class="bg-cool border-b border-[#C8C8C0] px-6 lg:px-8 py-4">
               <h2 class="font-heading font-bold text-base text-body">エントリー情報</h2>
@@ -360,7 +385,7 @@
         </div>
 
         <!-- 右カラム: 連絡先・補足情報（デスクトップ） -->
-        <div class="hidden lg:block lg:col-span-1 sticky top-28">
+        <div class="hidden lg:block lg:col-span-1 sticky top-28 slide-right">
           <!-- 電話お問い合わせ -->
           <div class="border border-[#C8C8C0] bg-white mb-5">
             <div class="bg-navy px-5 py-3">

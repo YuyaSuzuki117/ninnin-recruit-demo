@@ -182,7 +182,7 @@ function initScrollAnimations() {
   // prefers-reduced-motion を尊重
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const animClasses = '.fade-in, .animate-on-scroll';
+  const animClasses = '.fade-in, .slide-left, .slide-right, .scale-in, .slide-up, .animate-on-scroll';
   const elements = document.querySelectorAll(animClasses);
 
   if (elements.length === 0) return;

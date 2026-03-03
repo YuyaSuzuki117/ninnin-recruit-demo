@@ -208,14 +208,14 @@
   <!-- プロフィール -->
   <section class="bg-white py-12 lg:py-16">
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start fade-in">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
         <!-- 店舗写真 -->
-        <div class="photo-zoom aspect-[4/3]">
+        <div class="photo-zoom aspect-[4/3] slide-left">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="秋葉原本店" class="w-full h-full object-cover">
         </div>
 
         <!-- 基本情報 -->
-        <div>
+        <div class="slide-right">
           <p class="text-xs font-bold text-pika-dark tracking-widest font-num mb-2">INTERVIEW 01</p>
           <h2 class="font-heading font-bold text-3xl lg:text-4xl text-gray-900 mb-6">田中 太郎</h2>
 
@@ -254,7 +254,7 @@
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6 stagger-container">
 
       <!-- Q1: 左右レイアウト（写真左・回答右） -->
-      <div class="grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center mb-12 lg:mb-24 stagger-item">
+      <div class="grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center mb-12 lg:mb-24 slide-left">
         <!-- 写真: 店内風景 -->
         <div class="photo-zoom aspect-[4/3] order-1">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo01.png" alt="ニンニン店内の様子" class="w-full h-full object-cover" loading="lazy">
@@ -262,7 +262,7 @@
         <!-- 質問と回答 -->
         <div class="order-2">
           <div class="qa-block mb-4">
-            <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">ニンニンに入社したきっかけは？</h3>
+            <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900"><span class="font-num text-pika-dark font-bold text-sm tracking-widest">Q1.</span> ニンニンに入社したきっかけは？</h3>
           </div>
           <p class="text-gray-600 leading-relaxed">
             前職はアパレル販売だったのですが、もともと小学生の頃からポケモンカードが大好きで、社会人になってからも大会に出るほどハマっていました。
@@ -274,7 +274,7 @@
       </div>
 
       <!-- Q2: 左右レイアウト（写真右・回答左） -->
-      <div class="grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center mb-12 lg:mb-24 stagger-item">
+      <div class="grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center mb-12 lg:mb-24 slide-right">
         <!-- 写真: カード査定 -->
         <div class="photo-zoom aspect-[4/3] order-1 lg:order-2">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo02.png" alt="カード査定の様子" class="w-full h-full object-cover" loading="lazy">
@@ -282,7 +282,7 @@
         <!-- 質問と回答 -->
         <div class="order-2 lg:order-1">
           <div class="qa-block mb-4">
-            <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">現在の仕事内容を教えてください</h3>
+            <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900"><span class="font-num text-pika-dark font-bold text-sm tracking-widest">Q2.</span> 現在の仕事内容を教えてください</h3>
           </div>
           <p class="text-gray-600 leading-relaxed">
             店長として、店舗運営全般を担当しています。具体的には、シングルカードの買取査定、在庫管理、スタッフのシフト管理、売上分析などが主な業務です。
@@ -293,7 +293,7 @@
       </div>
 
       <!-- Q3: 左右レイアウト（写真左・回答右） -->
-      <div class="grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center mb-12 lg:mb-24 stagger-item">
+      <div class="grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center mb-12 lg:mb-24 slide-left">
         <!-- 写真: 接客風景 -->
         <div class="photo-zoom aspect-[4/3] order-1">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo03.png" alt="お客様との接客風景" class="w-full h-full object-cover" loading="lazy">
@@ -301,7 +301,7 @@
         <!-- 質問と回答 -->
         <div class="order-2">
           <div class="qa-block mb-4">
-            <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">仕事のやりがいは何ですか？</h3>
+            <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900"><span class="font-num text-pika-dark font-bold text-sm tracking-widest">Q3.</span> 仕事のやりがいは何ですか？</h3>
           </div>
           <p class="text-gray-600 leading-relaxed">
             やっぱりお客様に「探していたカードが見つかった！」と喜んでもらえた瞬間が一番嬉しいです。
@@ -313,9 +313,9 @@
       </div>
 
       <!-- Q4: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
+      <div class="border border-[#C8C8C0] border-l-4 border-l-[#FFCB05] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
-          <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">職場の雰囲気はどうですか？</h3>
+          <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900"><span class="font-num text-pika-dark font-bold text-sm tracking-widest">Q4.</span> 職場の雰囲気はどうですか？</h3>
         </div>
         <p class="text-gray-600 leading-relaxed">
           一言で言うと「和気あいあい」です。スタッフ全員がポケカ好きなので、新弾の情報が出るたびに「このカード強くない？」「あのイラストめちゃくちゃいい」と自然に会話が弾みます。
@@ -326,9 +326,9 @@
       </div>
 
       <!-- Q5: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
+      <div class="border border-[#C8C8C0] border-l-4 border-l-[#FFCB05] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
-          <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">入社前と入社後でギャップはありましたか？</h3>
+          <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900"><span class="font-num text-pika-dark font-bold text-sm tracking-widest">Q5.</span> 入社前と入社後でギャップはありましたか？</h3>
         </div>
         <p class="text-gray-600 leading-relaxed">
           正直なところ、入社前は「好きなカードに囲まれて楽しそう」というイメージが先行していました。
@@ -340,7 +340,7 @@
 
 
       <!-- フォトギャラリー -->
-      <div class="mb-16 lg:mb-24 fade-in">
+      <div class="mb-16 lg:mb-24 scale-in">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 stagger-container">
           <div class="photo-zoom aspect-square stagger-item">
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_akihabara.png" alt="秋葉原本店" class="w-full h-full object-cover" loading="lazy">
@@ -359,9 +359,9 @@
 
 
       <!-- Q6: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
+      <div class="border border-[#C8C8C0] border-l-4 border-l-[#FFCB05] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
-          <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">今後の目標を教えてください</h3>
+          <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900"><span class="font-num text-pika-dark font-bold text-sm tracking-widest">Q6.</span> 今後の目標を教えてください</h3>
         </div>
         <p class="text-gray-600 leading-relaxed">
           短期的には、秋葉原本店の売上を前年比120%に伸ばすことです。そのためにSNS発信の強化や、店内イベントの企画に力を入れています。
@@ -372,9 +372,9 @@
       </div>
 
       <!-- Q7: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
+      <div class="border border-[#C8C8C0] border-l-4 border-l-[#FFCB05] bg-white p-5 sm:p-8 lg:p-12 mb-12 lg:mb-24 fade-in tilt-card">
         <div class="qa-block mb-4">
-          <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">休日の過ごし方は？</h3>
+          <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900"><span class="font-num text-pika-dark font-bold text-sm tracking-widest">Q7.</span> 休日の過ごし方は？</h3>
         </div>
         <p class="text-gray-600 leading-relaxed">
           やっぱりポケカが中心です（笑）。週末には地元のカードショップで開催される大会に参加したり、自宅で新しいデッキの構築を試したりしています。
@@ -385,9 +385,9 @@
       </div>
 
       <!-- Q8: 全幅レイアウト -->
-      <div class="border border-[#C8C8C0] bg-white p-5 sm:p-8 lg:p-12 mb-8 fade-in">
+      <div class="border border-[#C8C8C0] border-l-4 border-l-[#FFCB05] bg-white p-5 sm:p-8 lg:p-12 mb-8 fade-in">
         <div class="qa-block mb-4">
-          <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900">応募を考えている方にメッセージをお願いします</h3>
+          <h3 class="font-heading font-bold text-xl lg:text-2xl text-gray-900"><span class="font-num text-pika-dark font-bold text-sm tracking-widest">Q8.</span> 応募を考えている方にメッセージをお願いします</h3>
         </div>
         <p class="pull-quote">大事なのは「ポケカが好き」「人と接するのが好き」という気持ちだけ。</p>
         <p class="text-gray-600 leading-relaxed">
@@ -411,28 +411,30 @@
 
       <div class="interview-grid stagger-container" style="grid-template-columns: 1fr 1fr;">
         <!-- インタビュー02: 佐藤花子（池袋店） -->
-        <a href="interview.html" class="interview-card group tilt-card stagger-item">
-          <div class="interview-card-photo">
+        <a href="#" class="interview-card group tilt-card stagger-item opacity-60 pointer-events-none">
+          <div class="interview-card-photo relative">
+            <div class="absolute top-3 right-3 bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1 z-10 rounded">準備中</div>
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="池袋店" class="w-full h-full object-cover" loading="lazy">
           </div>
           <div class="interview-card-body">
             <div class="interview-card-num">INTERVIEW 02</div>
             <h3>佐藤 花子</h3>
             <p class="role">池袋店 スタッフ / 入社2年目</p>
-            <span class="more">インタビューを読む →</span>
+            <span class="more">準備中</span>
           </div>
         </a>
 
         <!-- インタビュー03: 鈴木健太（中野店） -->
-        <a href="interview.html" class="interview-card group tilt-card stagger-item">
-          <div class="interview-card-photo">
+        <a href="#" class="interview-card group tilt-card stagger-item opacity-60 pointer-events-none">
+          <div class="interview-card-photo relative">
+            <div class="absolute top-3 right-3 bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1 z-10 rounded">準備中</div>
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="中野店" class="w-full h-full object-cover" loading="lazy">
           </div>
           <div class="interview-card-body">
             <div class="interview-card-num">INTERVIEW 03</div>
             <h3>鈴木 健太</h3>
             <p class="role">中野店 バイトリーダー / 入社1年目</p>
-            <span class="more">インタビューを読む →</span>
+            <span class="more">準備中</span>
           </div>
         </a>
       </div>

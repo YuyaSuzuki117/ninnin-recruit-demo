@@ -387,14 +387,14 @@
   <section class="bg-white py-10">
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 stagger-container">
-        <a href="#full-time" class="tilt-card stagger-item inline-flex items-center gap-3 px-6 py-4 hover:opacity-80 transition-opacity bg-white border border-[#C8C8C0] hover:border-pika hover:shadow-lg">
+        <a href="#full-time" class="tilt-card slide-left inline-flex items-center gap-3 px-6 py-4 hover:opacity-80 transition-opacity bg-white border border-[#C8C8C0] hover:border-pika hover:shadow-lg">
           <span class="inline-block bg-pika text-gray-900 text-xs font-bold px-3 py-1.5 tracking-wider flex-shrink-0">FULL-TIME</span>
           <div class="text-left">
             <p class="font-bold text-gray-900">店舗スタッフ（正社員）</p>
             <p class="text-xs text-gray-500 font-num">月給22万円〜35万円</p>
           </div>
         </a>
-        <a href="#part-time" class="tilt-card stagger-item inline-flex items-center gap-3 px-6 py-4 hover:opacity-80 transition-opacity bg-white border border-[#C8C8C0] hover:border-navy hover:shadow-lg">
+        <a href="#part-time" class="tilt-card slide-right inline-flex items-center gap-3 px-6 py-4 hover:opacity-80 transition-opacity bg-white border border-[#C8C8C0] hover:border-navy hover:shadow-lg">
           <span class="inline-block bg-navy text-white text-xs font-bold px-3 py-1.5 tracking-wider flex-shrink-0">PART-TIME</span>
           <div class="text-left">
             <p class="font-bold text-gray-900">店舗スタッフ（アルバイト）</p>
@@ -430,7 +430,7 @@
         <h3 class="font-heading font-bold text-xl text-gray-900 mb-6">仕事内容</h3>
 
         <!-- 店内写真 -->
-        <div class="overflow-hidden mb-6 aspect-[16/7] relative border border-[#C8C8C0]">
+        <div class="overflow-hidden mb-6 aspect-[16/7] relative border border-[#C8C8C0] slide-left">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo01.png" alt="ニンニン店内の様子" class="w-full h-full object-cover" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
         </div>
@@ -489,6 +489,22 @@
             まずはお気軽にご応募ください。
           </p>
           <p class="text-sm text-gray-500 font-medium">-- 採用チーム一同</p>
+        </div>
+      </div>
+
+      <!-- 給与ハイライトカード（正社員） -->
+      <div class="salary-card fade-in" style="border: 2px solid var(--color-primary); background: linear-gradient(135deg, #FFF7CC 0%, #fff 100%); padding: 32px; text-align: center; border-radius: 12px; margin-bottom: 24px;">
+        <div style="font-family: var(--font-num, 'Sora'); font-size: 11px; font-weight: 800; letter-spacing: 0.2em; color: #B8930A; margin-bottom: 8px;">SALARY</div>
+        <div style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: #0B1628; line-height: 1.2;">
+          <span style="font-family: var(--font-num, 'Sora');">22</span><span style="font-size: 0.5em; color: #333;">万円</span>
+          <span style="margin: 0 4px; color: #B8930A;">〜</span>
+          <span style="font-family: var(--font-num, 'Sora');">35</span><span style="font-size: 0.5em; color: #333;">万円</span>
+          <span style="font-size: 0.35em; color: #888;">/月</span>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 16px; font-size: 13px; color: #666;">
+          <span>賞与年2回</span><span style="width:4px;height:4px;border-radius:50%;background:#FFCB05;display:inline-block;"></span>
+          <span>昇給年1回</span><span style="width:4px;height:4px;border-radius:50%;background:#FFCB05;display:inline-block;"></span>
+          <span>交通費全額</span>
         </div>
       </div>
 
@@ -655,7 +671,7 @@
         <h3 class="font-heading font-bold text-xl text-gray-900 mb-6">仕事内容</h3>
 
         <!-- 店内写真 -->
-        <div class="overflow-hidden mb-6 aspect-[16/7] relative border border-[#C8C8C0]">
+        <div class="overflow-hidden mb-6 aspect-[16/7] relative border border-[#C8C8C0] slide-left">
           <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/sec03_photo02.png" alt="ニンニン店舗スタッフの様子" class="w-full h-full object-cover" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
         </div>
@@ -694,6 +710,22 @@
             先輩スタッフがマンツーマンで教えるので、アルバイト未経験でも安心。
             ポケカ好きの仲間と楽しく働けます。
           </p>
+        </div>
+      </div>
+
+      <!-- 給与ハイライトカード（アルバイト） -->
+      <div class="salary-card fade-in" style="border: 2px solid var(--color-secondary, #1B2A4A); background: linear-gradient(135deg, #EEF2F7 0%, #fff 100%); padding: 32px; text-align: center; border-radius: 12px; margin-bottom: 24px;">
+        <div style="font-family: var(--font-num, 'Sora'); font-size: 11px; font-weight: 800; letter-spacing: 0.2em; color: #1B2A4A; margin-bottom: 8px;">HOURLY WAGE</div>
+        <div style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: #0B1628; line-height: 1.2;">
+          <span style="font-family: var(--font-num, 'Sora');">1,100</span><span style="font-size: 0.5em; color: #333;">円</span>
+          <span style="margin: 0 4px; color: #1B2A4A;">〜</span>
+          <span style="font-family: var(--font-num, 'Sora');">1,500</span><span style="font-size: 0.5em; color: #333;">円</span>
+          <span style="font-size: 0.35em; color: #888;">/時</span>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 16px; font-size: 13px; color: #666; flex-wrap: wrap;">
+          <span>交通費月2万円まで</span><span style="width:4px;height:4px;border-radius:50%;background:#1B2A4A;display:inline-block;"></span>
+          <span>社員割引</span><span style="width:4px;height:4px;border-radius:50%;background:#1B2A4A;display:inline-block;"></span>
+          <span>正社員登用あり</span>
         </div>
       </div>
 

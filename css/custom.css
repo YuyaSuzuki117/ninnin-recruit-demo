@@ -279,7 +279,7 @@ strong { color: var(--body); }
 .hero-lead {
   font-size: 15px;
   line-height: 1.9;
-  color: #B0BAC8;
+  color: #D0D8E4;
   margin-top: 20px;
 }
 
@@ -360,7 +360,7 @@ strong { color: var(--body); }
 }
 
 @media (min-width: 1024px) {
-  .hero-title { font-size: 50px; }
+  .hero-title { font-size: 60px; }
   .hero-inner { gap: 60px; padding: 80px 0; }
 }
 
@@ -512,7 +512,7 @@ strong { color: var(--body); }
 .stat-label {
   display: block;
   font-size: 11px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.7);
   margin-top: 8px;
   letter-spacing: 0.06em;
 }
@@ -534,7 +534,7 @@ strong { color: var(--body); }
    ======================================== */
 .sec-label {
   font-family: var(--font-num);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.25em;
   color: var(--pika-dark);
@@ -546,7 +546,7 @@ strong { color: var(--body); }
 .sec-title {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 26px;
+  font-size: 30px;
   color: var(--body);
   line-height: 1.35;
   letter-spacing: 0.03em;
@@ -564,7 +564,7 @@ strong { color: var(--body); }
 .sec-sub--light { color: rgba(255,255,255,0.45); }
 
 @media (min-width: 768px) {
-  .sec-title { font-size: 30px; }
+  .sec-title { font-size: 36px; }
   .sec-title--xl { font-size: 38px; }
 }
 
@@ -754,6 +754,7 @@ strong { color: var(--body); }
   position: relative;
   box-shadow: 0 8px 32px rgba(0,0,0,0.06);
   transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 12px;
 }
 .feature-card:hover {
   transform: translateY(-8px) scale(1.01);
@@ -840,6 +841,7 @@ strong { color: var(--body); }
   text-align: center;
   position: relative;
   padding: 0 8px;
+  border-radius: 10px;
 }
 
 .career-step-marker {
@@ -871,13 +873,13 @@ strong { color: var(--body); }
   margin-bottom: 4px;
 }
 .career-step-period {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--pika-dark);
   font-weight: 700;
   margin-bottom: 8px;
 }
 .career-step-desc {
-  font-size: 12px;
+  font-size: 13px;
   color: #888;
   line-height: 1.6;
 }
@@ -934,6 +936,7 @@ strong { color: var(--body); }
   padding: 24px 20px;
   text-align: center;
   transition: border-color 0.3s, box-shadow 0.3s;
+  border-radius: 10px;
 }
 .benefit-item:hover {
   border-color: var(--pika);
@@ -963,7 +966,7 @@ strong { color: var(--body); }
   margin-bottom: 6px;
 }
 .benefit-item p {
-  font-size: 12px;
+  font-size: 13px;
   color: #888;
   line-height: 1.6;
 }
@@ -998,6 +1001,7 @@ strong { color: var(--body); }
   position: relative;
   overflow: hidden;
   aspect-ratio: 4/3;
+  border-radius: 10px;
 }
 .gallery-item--large {
   grid-column: span 2;
@@ -1066,6 +1070,7 @@ strong { color: var(--body); }
   background: #fff;
   overflow: hidden;
   transition: border-color 0.3s, box-shadow 0.3s;
+  border-radius: 12px;
 }
 .store-card:hover {
   border-color: var(--pika);
@@ -1114,12 +1119,12 @@ strong { color: var(--body); }
   margin-bottom: 4px;
 }
 .store-addr {
-  font-size: 12px;
+  font-size: 13px;
   color: #888;
   line-height: 1.5;
 }
 .store-station {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--pika-dark);
   font-weight: 600;
   margin-top: 4px;
@@ -1185,6 +1190,7 @@ strong { color: var(--body); }
   display: block;
   overflow: hidden;
   transition: box-shadow 0.3s, transform 0.3s;
+  border-radius: 12px;
 }
 .interview-card:hover {
   box-shadow: 0 12px 36px rgba(0,0,0,0.08);
@@ -1233,7 +1239,7 @@ strong { color: var(--body); }
   margin-bottom: 2px;
 }
 .interview-role {
-  font-size: 12px;
+  font-size: 13px;
   color: #999;
 }
 .interview-quote {
@@ -1358,6 +1364,7 @@ strong { color: var(--body); }
   padding: 20px 0;
   border-bottom: 1px solid #ddd;
   position: relative;
+  border-radius: 8px;
 }
 .schedule-item:last-child { border-bottom: none; }
 
@@ -1417,6 +1424,7 @@ strong { color: var(--body); }
   text-align: center;
   transition: border-color 0.3s, box-shadow 0.3s;
   position: relative;
+  border-radius: 10px;
 }
 .reassurance-card::after {
   content: '';
@@ -1488,6 +1496,7 @@ strong { color: var(--body); }
   border: 1px solid #D8DCE4;
   background: #fff;
   transition: border-color 0.2s;
+  border-radius: 10px;
 }
 .faq-item:hover, details[open].faq-item {
   border-color: var(--pika);
@@ -1910,10 +1919,50 @@ details[open] .faq-icon { transform: rotate(180deg); }
    ======================================== */
 .fade-in {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(32px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.slide-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.slide-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.scale-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.slide-up.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1994,6 +2043,164 @@ details[open] .faq-icon { transform: rotate(180deg); }
 }
 
 
+/* ========== SUBPAGE COMPONENTS (Missing definitions) ========== */
+
+/* Q&A Block — interview.html */
+.qa-block {
+  position: relative;
+  padding-left: 56px;
+  margin-bottom: 32px;
+}
+.qa-block::before {
+  content: 'Q';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--pika);
+  color: var(--navy-deep);
+  font-family: var(--font-num);
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Interview Card (other interviews section) — interview.html */
+.interview-card-photo {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+.interview-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.interview-card:hover .interview-card-photo img {
+  transform: scale(1.06);
+}
+.interview-card-body {
+  padding: 20px;
+}
+.interview-card-num {
+  font-family: var(--font-num);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--pika-dark);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+/* Entry Form — entry.html */
+.entry-field {
+  margin-bottom: 24px;
+}
+.entry-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+.entry-radio:has(input:checked) {
+  border-color: var(--pika);
+  background: var(--pika-50);
+  box-shadow: 0 0 0 3px rgba(255,203,5,0.15);
+}
+.entry-radio input[type="radio"] {
+  accent-color: var(--pika-dark);
+  width: 18px;
+  height: 18px;
+}
+.entry-flow-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.entry-flow-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+  color: var(--body);
+}
+.entry-flow-list li:last-child { border-bottom: none; }
+.entry-flow-num {
+  width: 28px;
+  height: 28px;
+  background: var(--navy);
+  color: var(--pika);
+  font-family: var(--font-num);
+  font-weight: 800;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Job Block — jobs.html */
+.job-block {
+  background: #fff;
+  border: 1px solid #E0E4EA;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  border-radius: 12px;
+}
+.job-block:hover {
+  border-color: var(--pika);
+  box-shadow: 0 8px 24px rgba(255,203,5,0.12);
+}
+
+/* Career Path — Rarity Badges (Pokemon Card metaphor) */
+.career-step-marker[data-rarity]::after {
+  content: attr(data-rarity);
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-num);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--pika-dark);
+  white-space: nowrap;
+}
+
+/* 福利厚生 — 上位3つ(ポケカ特有)のハイライト */
+.benefit-item--highlight {
+  background: linear-gradient(135deg, #fff 0%, var(--pika-50) 100%);
+  border-color: var(--pika);
+  border-width: 2px;
+}
+.benefit-item--highlight:hover {
+  border-color: var(--pika-dark);
+}
+
+/* Entry Reassurance Banner */
+.entry-reassurance__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: var(--pika-50, #FFF7CC);
+  border: 1px solid rgba(255,203,5,0.3);
+  border-radius: 8px;
+}
+
+
 /* ========================================
    REDUCED MOTION
    ======================================== */
@@ -2004,7 +2211,11 @@ details[open] .faq-icon { transform: rotate(180deg); }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .fade-in { opacity: 1; transform: none; }
+  .fade-in,
+  .slide-left,
+  .slide-right,
+  .scale-in,
+  .slide-up { opacity: 1; transform: none; }
   .holo-card::before { display: none; }
 }
 
