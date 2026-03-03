@@ -13,7 +13,10 @@
 
 ### 2. CSS整合性
 - `css/custom.css` の CSS変数（`:root`）と Tailwind config の色定義が一致しているか
+  - CSS変数に `--pika`（#FFCB05）, `--navy-deep`（#0B1628）, `--pika-light`（#FFF7CC）が含まれるか
+  - 標準の `--color-*` 変数との整合性も確認
 - 使用されているCSSクラスが `custom.css` に定義されているか
+  - 新規クラス: `.scroll-progress`, `.nav-link--active`, `.table-scroll-wrapper`, `.magnetic-btn`, `.tilt-card`, `.stagger-container` / `.stagger-item`, `.particle` が定義されているか
 - 未使用のCSSクラスがないか（主要コンポーネントのみ）
 - レスポンシブ対応: モバイル/タブレット/デスクトップのメディアクエリが適切か
 
@@ -25,8 +28,10 @@
 
 ### 4. コンテンツ品質
 - テキスト内にプレースホルダー（Lorem ipsum、「ここに〜」）が残っていないか
-- 電話番号が `03-6262-9556` で統一されているか
+- 電話番号が `03-4363-7710` で統一されているか
+- 受付時間が「年中無休 / 13:00〜20:00」で統一されているか
 - 店舗名・住所の表記が CLAUDE.md §7 と一致しているか
+- `js/main.js` の init 関数が16個あるか（initStickyHeader〜initScrollProgress）
 
 ## 出力フォーマット
 各項目ごとに ✅（問題なし）/ ⚠️（改善推奨）/ ❌（要修正）で評価し、修正が必要な箇所は具体的なファイル名・行番号・修正案を提示してください。

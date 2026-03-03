@@ -12,6 +12,10 @@
 - **/compact 運用:** 1機能完了ごとに `/compact` を実行してコンテキストを整理。
 - **ファイル読込制限:** HTML は1セッション2ファイルまで同時に読み込む（各ファイルが大きいため）。
 - **コミット単位:** 1機能 = 1コミット。4ページ一括変更時もまとめて1コミット。
+- **並列エージェント活用:** 独立したCSS/JS/HTML改修はサブエージェントを同時起動。大きなファイル変更はサブエージェントに委任。
+- **ファイル規模の目安（2026-03時点）:**
+  - `css/custom.css`: ~2,660行 / `js/main.js`: ~850行
+  - `index.html`: ~1,030行 / `jobs.html`: ~910行 / `interview.html`: ~505行 / `entry.html`: ~503行
 
 ## §2 鉄のルール
 1. **HTML Valid:** `<!DOCTYPE html>`, `<html lang="ja">`, 適切な `<head>` メタ情報を必ず含める。閉じタグ漏れ禁止。
@@ -36,9 +40,10 @@ ninnin-recruit-demo/
 │   └── custom.css      # ブランドスタイル（CSS変数・全コンポーネント定義・アニメーション・a11y）
 ├── js/
 │   └── main.js         # 全JS（ヘッダー・メニュー・スクロール・フォーム・カウントアップ等）
-├── img/                # 画像アセット（favicon, OGP, 店舗写真, キャラクター等）
+├── img/                # 画像アセット（現在は未使用。プレースホルダーは placehold.co を使用）
 └── .claude/
-    └── commands/       # Claude Code スキル定義
+    ├── settings.json   # プロジェクト権限設定
+    └── commands/       # Claude Code スキル定義（10スキル）
 ```
 
 ## §4 テックスタック & デザイントークン
@@ -101,6 +106,11 @@ ninnin-recruit-demo/
 - `prefers-reduced-motion` を必ず尊重（アニメーション・スクロール）
 - Intersection Observer パターンでスクロール連動処理
 - `{ passive: true }` でスクロールイベントを登録
+- **現在の init 関数一覧（16個）:**
+  `initStickyHeader`, `initMobileMenu`, `initSmoothScroll`, `initScrollAnimations`,
+  `initFloatingCTA`, `initFormValidation`, `initPageTopButton`, `initCountUpAnimated`,
+  `initParallax`, `initCardTilt`, `initStaggerReveal`, `initMagneticButtons`,
+  `initFloatingParticles`, `initFAQAccordion`, `initActiveNavHighlight`, `initScrollProgress`
 
 ## §6 SEO & アクセシビリティ
 
@@ -127,8 +137,8 @@ ninnin-recruit-demo/
 **会社情報:**
 - 会社名: 株式会社NINJA
 - ブランド名: ニンニン（ポケモンカード専門店）
-- 代表電話: 03-6262-9556（採用専用ダイヤル）
-- 受付時間: 平日 10:00〜18:00
+- 代表電話: 03-4363-7710（採用専用ダイヤル）
+- 受付時間: 年中無休 / 13:00〜20:00
 - 従業員数: 50名以上
 
 **店舗一覧（全7拠点）:**
@@ -148,12 +158,30 @@ ninnin-recruit-demo/
 - アルバイト: 店舗スタッフ
 - 共通: 未経験歓迎、社員割引あり、交通費支給
 
-## §8 デプロイ
+## §8 デプロイ & ローカル確認
 - **ホスティング:** GitHub Pages
 - **リポジトリ:** `YuyaSuzuki117/ninnin-recruit-demo`
+- **本番URL:** `https://yuyasuzuki117.github.io/ninnin-recruit-demo/`
 - **デプロイ方法:** `master` ブランチへの push で自動デプロイ
+- **ローカルサーバー:** `npx http-server -p 8765`（http://localhost:8765）
 - **デプロイ前チェック:**
   1. 全4ページをローカルで開いてリンク切れ確認
   2. ヘッダー/フッター/ナビが4ページで同一か確認
-  3. モバイル表示を確認（DevTools で 375px 幅）
-  4. コミットメッセージは英語プレフィクス付き
+  3. モバイル表示を確認（375px 幅）— Playwright MCP で `/visual-check` 推奨
+  4. コンソールエラー 0件を確認
+  5. コミットメッセージは英語プレフィクス付き（feat/fix/chore/refactor/style）
+
+## §9 利用可能スキル（/コマンド）
+
+| スキル | 用途 |
+|--------|------|
+| `/a11y-check` | WCAG 2.1 AA アクセシビリティ検証 |
+| `/consistency-check` | 4ページ間の整合性チェック |
+| `/mobile-check` | モバイル対応検証 |
+| `/page-audit` | ページ品質監査 |
+| `/perf-check` | パフォーマンス検証 |
+| `/seo-verify` | SEO 検証 |
+| `/deploy` | コミット + プッシュ + デプロイ確認 |
+| `/visual-check` | Playwright MCP でデスクトップ/モバイル目視QA |
+| `/sync-pages` | 4ページ共通要素（ヘッダー/フッター/ナビ）の同期 |
+| `/design-tokens` | デザイントークン一覧表示・更新 |

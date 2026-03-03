@@ -22,14 +22,22 @@
 ### 3. CSS 効率
 - `css/custom.css` のファイルサイズ確認
 - 未使用のCSSルールがないか（主要セレクタのみ）
-- `will-change` プロパティの使用が適切か（`.hero-chara` のみ）
+- `will-change` プロパティの使用が適切か（`.hero-chara` 等）
 - アニメーションが `transform` / `opacity` のみでGPU最適化されているか
+  - `initParallax`: translate3d でGPUコンポジットを使用しているか
+  - `initCardTilt` (`.tilt-card`): transform がGPU最適化されているか
+  - `.particle` アニメーション: GPUレイヤー昇格されているか
+- `backdrop-filter: blur(4px)` がモバイルメニューオーバーレイで使用 → モバイル端末での描画コスト評価
 - `@media (prefers-reduced-motion: reduce)` でアニメーションが無効化されているか
 
 ### 4. JavaScript 効率
 - `js/main.js` のファイルサイズ確認
-- DOMContentLoaded で初期化される関数の数と処理量
-- Intersection Observer が使い回されているか（不必要な複数インスタンスがないか）
+- DOMContentLoaded で初期化される関数の数（現在16個）と処理量
+- IntersectionObserver インスタンス数の確認（5個以上使用されている → 統合の余地がないか）
+  - `initScrollAnimations`, `initCountUpAnimated`, `initStaggerReveal`, `initActiveNavHighlight` 等
+- `.particle` の生成数に上限が設定されているか（過剰なDOM要素追加によるメモリリーク防止）
+- `initScrollProgress` が `requestAnimationFrame` でスロットリングされているか（毎フレームDOM更新を避ける）
+- `initMagneticButtons`: mousemove イベントの頻度制御がされているか
 - スクロールイベントに `{ passive: true }` が設定されているか
 - `requestAnimationFrame` でスクロール処理がスロットリングされているか
 - `<script>` に `defer` または `async` が設定されているか（head内の場合）
