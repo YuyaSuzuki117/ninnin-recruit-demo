@@ -28,18 +28,20 @@ function initStickyHeader() {
   const header = document.querySelector('.site-header');
   if (!header) return;
 
-  let lastScroll = 0;
+  let ticking = false;
 
   window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        ticking = false;
+      });
+      ticking = true;
     }
-
-    lastScroll = currentScroll;
   }, { passive: true });
 }
 
@@ -157,7 +159,13 @@ function initSmoothScroll() {
       const targetId = anchor.getAttribute('href');
       if (targetId === '#') return;
 
-      const target = document.querySelector(targetId);
+      // 不正なセレクタは無視
+      let target;
+      try {
+        target = document.querySelector(targetId);
+      } catch (e2) {
+        return;
+      }
       if (!target) return;
 
       e.preventDefault();
@@ -257,15 +265,18 @@ function initFormValidation() {
   const params = new URLSearchParams(window.location.search);
   const jobType = params.get('type');
   if (jobType) {
-    const radio = form.querySelector(`input[name="job_type"][value="${jobType}"]`);
-    if (radio) radio.checked = true;
+    const radios = form.querySelectorAll('input[name="job_type"]');
+    radios.forEach(radio => {
+      if (radio.value === jobType) radio.checked = true;
+    });
   }
   const locationParam = params.get('location');
   if (locationParam) {
     const locationSelect = form.querySelector('#location');
     if (locationSelect) {
-      const option = locationSelect.querySelector(`option[value="${locationParam}"]`);
-      if (option) locationSelect.value = locationParam;
+      const options = Array.from(locationSelect.options);
+      const match = options.find(opt => opt.value === locationParam);
+      if (match) locationSelect.value = locationParam;
     }
   }
 
@@ -481,13 +492,21 @@ function initPageTopButton() {
   const pageTopBtn = document.getElementById('page-top') || document.getElementById('page-top-btn');
   if (!pageTopBtn) return;
 
+  let ticking = false;
+
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      pageTopBtn.classList.remove('opacity-0', 'pointer-events-none');
-      pageTopBtn.classList.add('opacity-100');
-    } else {
-      pageTopBtn.classList.add('opacity-0', 'pointer-events-none');
-      pageTopBtn.classList.remove('opacity-100');
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        if (window.scrollY > 400) {
+          pageTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+          pageTopBtn.classList.add('opacity-100');
+        } else {
+          pageTopBtn.classList.add('opacity-0', 'pointer-events-none');
+          pageTopBtn.classList.remove('opacity-100');
+        }
+        ticking = false;
+      });
+      ticking = true;
     }
   }, { passive: true });
 }

@@ -99,7 +99,7 @@
   }
   </script>
 </head>
-<body class="font-body page-entry">
+<body class="font-body text-body page-entry">
   <div id="scroll-progress" class="scroll-progress"></div>
 
   <!-- スキップリンク -->
@@ -152,7 +152,7 @@
         <a href="index.html#jobs" class="mobile-menu-link">募集要項</a>
         <div class="mobile-menu__footer">
           <a href="tel:03-4363-7710" class="mobile-menu__phone">03-4363-7710</a>
-          <p class="text-xs mt-1 mb-4" style="color: rgba(255,255,255,0.5);">年中無休 / 受付時間 13:00〜20:00</p>
+          <p class="text-xs mt-1 mb-4 mobile-menu__hours">年中無休 / 受付時間 13:00〜20:00</p>
           <a href="entry.html" class="mobile-menu__cta">応募フォームへ</a>
         </div>
       </div>
@@ -230,21 +230,21 @@
       <!-- 安心メッセージバナー -->
       <div class="grid sm:grid-cols-3 gap-4 mb-8 fade-in">
         <div class="entry-reassurance__item">
-          <svg class="w-6 h-6 flex-shrink-0" style="color: #B8930A;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <svg class="w-6 h-6 flex-shrink-0 text-[#B8930A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
           <div>
             <p class="font-bold text-sm text-gray-900">SSL暗号化通信</p>
             <p class="text-xs text-gray-500">入力情報は安全に送信されます</p>
           </div>
         </div>
         <div class="entry-reassurance__item">
-          <svg class="w-6 h-6 flex-shrink-0" style="color: #B8930A;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <svg class="w-6 h-6 flex-shrink-0 text-[#B8930A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <div>
             <p class="font-bold text-sm text-gray-900">3営業日以内に返信</p>
             <p class="text-xs text-gray-500">担当者が必ずご連絡します</p>
           </div>
         </div>
         <div class="entry-reassurance__item">
-          <svg class="w-6 h-6 flex-shrink-0" style="color: #B8930A;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <svg class="w-6 h-6 flex-shrink-0 text-[#B8930A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <div>
             <p class="font-bold text-sm text-gray-900">未経験OK・服装自由</p>
             <p class="text-xs text-gray-500">気軽にご応募ください</p>
@@ -267,95 +267,110 @@
 
             <form id="entry-form" class="px-6 lg:px-8 py-8 stagger-container" novalidate>
 
-              <!-- お名前 -->
-              <div class="entry-field stagger-item fade-in">
-                <label for="name" class="form-label">
-                  お名前<span class="required">必須</span>
-                </label>
-                <input type="text" id="name" name="name" class="form-input" placeholder="例：山田 太郎" required aria-required="true" aria-describedby="name-error" autocomplete="name">
-                <p id="name-error" class="form-error" role="alert" hidden></p>
-              </div>
+              <!-- グループ1: 基本情報 -->
+              <fieldset class="form-group">
+                <legend class="form-group__legend">基本情報</legend>
 
-              <!-- ふりがな -->
-              <div class="entry-field stagger-item fade-in">
-                <label for="furigana" class="form-label">
-                  ふりがな<span class="required">必須</span>
-                </label>
-                <input type="text" id="furigana" name="furigana" class="form-input" placeholder="例：やまだ たろう" required aria-required="true" aria-describedby="furigana-error">
-                <p id="furigana-error" class="form-error" role="alert" hidden></p>
-              </div>
+                <!-- お名前 -->
+                <div class="entry-field stagger-item fade-in">
+                  <label for="name" class="form-label">
+                    お名前<span class="required">必須</span>
+                  </label>
+                  <input type="text" id="name" name="name" class="form-input" placeholder="例：山田 太郎" required aria-required="true" aria-describedby="name-error" autocomplete="name">
+                  <p id="name-error" class="form-error" role="alert" hidden></p>
+                </div>
 
-              <!-- メールアドレス -->
-              <div class="entry-field stagger-item fade-in">
-                <label for="email" class="form-label">
-                  メールアドレス<span class="required">必須</span>
-                </label>
-                <input type="email" id="email" name="email" class="form-input" placeholder="例：example@mail.com" required aria-required="true" aria-describedby="email-error" autocomplete="email">
-                <p id="email-error" class="form-error" role="alert" hidden></p>
-              </div>
+                <!-- ふりがな -->
+                <div class="entry-field stagger-item fade-in">
+                  <label for="furigana" class="form-label">
+                    ふりがな<span class="required">必須</span>
+                  </label>
+                  <input type="text" id="furigana" name="furigana" class="form-input" placeholder="例：やまだ たろう" required aria-required="true" aria-describedby="furigana-error">
+                  <p id="furigana-error" class="form-error" role="alert" hidden></p>
+                </div>
 
-              <!-- 電話番号 -->
-              <div class="entry-field stagger-item fade-in">
-                <label for="phone" class="form-label">
-                  電話番号<span class="required">必須</span>
-                </label>
-                <input type="tel" id="phone" name="phone" class="form-input" placeholder="例：090-1234-5678" required aria-required="true" aria-describedby="phone-error" autocomplete="tel">
-                <p id="phone-error" class="form-error" role="alert" hidden></p>
-              </div>
+                <!-- メールアドレス -->
+                <div class="entry-field stagger-item fade-in">
+                  <label for="email" class="form-label">
+                    メールアドレス<span class="required">必須</span>
+                  </label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="例：example@mail.com" required aria-required="true" aria-describedby="email-error" autocomplete="email">
+                  <p id="email-error" class="form-error" role="alert" hidden></p>
+                </div>
 
-              <!-- 年齢 -->
-              <div class="entry-field stagger-item fade-in">
-                <label for="age" class="form-label">年齢</label>
-                <input type="number" id="age" name="age" class="form-input w-full sm:w-32" placeholder="例：25" min="15" max="99">
-              </div>
+                <!-- 電話番号 -->
+                <div class="entry-field stagger-item fade-in">
+                  <label for="phone" class="form-label">
+                    電話番号<span class="required">必須</span>
+                  </label>
+                  <input type="tel" id="phone" name="phone" class="form-input" placeholder="例：090-1234-5678" required aria-required="true" aria-describedby="phone-error" autocomplete="tel">
+                  <p id="phone-error" class="form-error" role="alert" hidden></p>
+                </div>
 
-              <!-- 希望職種 -->
-              <div class="entry-field stagger-item fade-in">
-                <fieldset>
-                  <legend class="form-label">希望職種</legend>
-                  <div class="flex flex-wrap gap-4 mt-2">
-                    <label class="entry-radio">
-                      <input type="radio" name="job_type" value="正社員">
-                      <span>正社員</span>
-                    </label>
-                    <label class="entry-radio">
-                      <input type="radio" name="job_type" value="アルバイト">
-                      <span>アルバイト</span>
-                    </label>
-                    <label class="entry-radio">
-                      <input type="radio" name="job_type" value="どちらでも">
-                      <span>どちらでも</span>
-                    </label>
-                  </div>
-                </fieldset>
-              </div>
+                <!-- 年齢 -->
+                <div class="entry-field stagger-item fade-in">
+                  <label for="age" class="form-label">年齢</label>
+                  <input type="number" id="age" name="age" class="form-input w-full sm:w-32" placeholder="例：25" min="15" max="99">
+                </div>
+              </fieldset>
 
-              <!-- 希望勤務地 -->
-              <div class="entry-field stagger-item fade-in">
-                <label for="location" class="form-label">希望勤務地</label>
-                <select id="location" name="location" class="form-input">
-                  <option value="">選択してください</option>
-                  <option value="秋葉原店">秋葉原店</option>
-                  <option value="秋葉原2号店">秋葉原2号店</option>
-                  <option value="中野店">中野店</option>
-                  <option value="池袋店">池袋店</option>
-                  <option value="大阪日本橋店">大阪日本橋店</option>
-                  <option value="大阪日本橋2号店">大阪日本橋2号店</option>
-                  <option value="トレレン秋葉原店">トレレン秋葉原店</option>
-                </select>
-              </div>
+              <!-- グループ2: 希望条件 -->
+              <fieldset class="form-group">
+                <legend class="form-group__legend">希望条件</legend>
 
-              <!-- 志望動機・自己PR -->
-              <div class="entry-field stagger-item fade-in">
-                <label for="motivation" class="form-label">志望動機・自己PR</label>
-                <textarea id="motivation" name="motivation" class="form-input" rows="5" placeholder="ポケモンカードとの関わりや、応募のきっかけなどを教えてください"></textarea>
-              </div>
+                <!-- 希望職種 -->
+                <div class="entry-field stagger-item fade-in">
+                  <fieldset>
+                    <legend class="form-label">希望職種</legend>
+                    <div class="flex flex-wrap gap-4 mt-2">
+                      <label class="entry-radio">
+                        <input type="radio" name="job_type" value="正社員">
+                        <span>正社員</span>
+                      </label>
+                      <label class="entry-radio">
+                        <input type="radio" name="job_type" value="アルバイト">
+                        <span>アルバイト</span>
+                      </label>
+                      <label class="entry-radio">
+                        <input type="radio" name="job_type" value="どちらでも">
+                        <span>どちらでも</span>
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
 
-              <!-- その他ご質問 -->
-              <div class="entry-field stagger-item fade-in">
-                <label for="questions" class="form-label">その他ご質問</label>
-                <textarea id="questions" name="questions" class="form-input" rows="3" placeholder="ご質問やご要望があればご記入ください"></textarea>
-              </div>
+                <!-- 希望勤務地 -->
+                <div class="entry-field stagger-item fade-in">
+                  <label for="location" class="form-label">希望勤務地</label>
+                  <select id="location" name="location" class="form-input">
+                    <option value="">選択してください</option>
+                    <option value="秋葉原店">秋葉原店</option>
+                    <option value="秋葉原2号店">秋葉原2号店</option>
+                    <option value="中野店">中野店</option>
+                    <option value="池袋店">池袋店</option>
+                    <option value="大阪日本橋店">大阪日本橋店</option>
+                    <option value="大阪日本橋2号店">大阪日本橋2号店</option>
+                    <option value="トレレン秋葉原店">トレレン秋葉原店</option>
+                  </select>
+                </div>
+              </fieldset>
+
+              <!-- グループ3: 自己PR -->
+              <fieldset class="form-group">
+                <legend class="form-group__legend">自己PR</legend>
+
+                <!-- 志望動機・自己PR -->
+                <div class="entry-field stagger-item fade-in">
+                  <label for="motivation" class="form-label">志望動機・自己PR</label>
+                  <textarea id="motivation" name="motivation" class="form-input" rows="5" placeholder="ポケモンカードとの関わりや、応募のきっかけなどを教えてください"></textarea>
+                </div>
+
+                <!-- その他ご質問 -->
+                <div class="entry-field stagger-item fade-in">
+                  <label for="questions" class="form-label">その他ご質問</label>
+                  <textarea id="questions" name="questions" class="form-input" rows="3" placeholder="ご質問やご要望があればご記入ください"></textarea>
+                </div>
+              </fieldset>
 
               <!-- 区切り線 -->
               <div class="border-t border-[#C8C8C0] my-8"></div>

@@ -110,7 +110,7 @@
   }
   </script>
 </head>
-<body class="font-body">
+<body class="font-body text-body">
   <div id="scroll-progress" class="scroll-progress"></div>
 
   <!-- スキップリンク -->
@@ -163,7 +163,7 @@
         <a href="index.html#jobs" class="mobile-menu-link">募集要項</a>
         <div class="mobile-menu__footer">
           <a href="tel:03-4363-7710" class="mobile-menu__phone">03-4363-7710</a>
-          <p class="text-xs mt-1 mb-4" style="color: rgba(255,255,255,0.5);">年中無休 / 受付時間 13:00〜20:00</p>
+          <p class="text-xs mt-1 mb-4 mobile-menu__hours">年中無休 / 受付時間 13:00〜20:00</p>
           <a href="entry.html" class="mobile-menu__cta">応募フォームへ</a>
         </div>
       </div>
@@ -411,7 +411,7 @@
 
       <div class="interview-grid stagger-container">
         <!-- インタビュー02: 佐藤花子（池袋店） -->
-        <a href="#" class="interview-card group tilt-card stagger-item opacity-60 pointer-events-none">
+        <div class="interview-card group tilt-card stagger-item opacity-60" aria-disabled="true">
           <div class="interview-card-photo relative">
             <div class="absolute top-3 right-3 bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1 z-10 rounded">準備中</div>
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_ikebukuro.png" alt="池袋店" class="w-full h-full object-cover" loading="lazy">
@@ -422,10 +422,10 @@
             <p class="role">池袋店 スタッフ / 入社2年目</p>
             <span class="more">準備中</span>
           </div>
-        </a>
+        </div>
 
         <!-- インタビュー03: 鈴木健太（中野店） -->
-        <a href="#" class="interview-card group tilt-card stagger-item opacity-60 pointer-events-none">
+        <div class="interview-card group tilt-card stagger-item opacity-60" aria-disabled="true">
           <div class="interview-card-photo relative">
             <div class="absolute top-3 right-3 bg-[#1B2A4A] text-white text-xs font-bold px-3 py-1 z-10 rounded">準備中</div>
             <img src="https://nin-nin-pokeka.jp/develop/wp-content/themes/ninnin/img/index/ph_nakano.png" alt="中野店" class="w-full h-full object-cover" loading="lazy">
@@ -436,7 +436,7 @@
             <p class="role">中野店 バイトリーダー / 入社1年目</p>
             <span class="more">準備中</span>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </section>
