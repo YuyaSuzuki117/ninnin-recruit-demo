@@ -1467,3 +1467,233 @@ details[open] {
     font-size: 26px;
   }
 }
+
+
+/* ============================================
+   AI テンプレート感排除 — バリエーション追加
+   既存ルール変更なし / 新規追加のみ
+   ============================================ */
+
+/* ========== A. セクション見出しバリエーション ========== */
+
+/* センター型: Features, Reassurance で使用 */
+.section-heading--center {
+  text-align: center;
+  border-left: none;
+  padding-left: 0;
+}
+.section-heading--center::after {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 2px;
+  background: var(--color-primary);
+}
+.section-heading--center h2 {
+  font-size: 26px;
+}
+
+/* 大見出し型: Interview で使用 */
+.section-heading--large {
+  border-left: none;
+  padding-left: 0;
+}
+.section-heading--large::after { display: none; }
+.section-heading--large h2 {
+  font-size: 32px;
+  letter-spacing: 0.06em;
+}
+@media (min-width: 768px) {
+  .section-heading--large h2 { font-size: 38px; }
+}
+
+/* ミニマル型: Schedule, Flow で使用。装飾なし */
+.section-heading--minimal {
+  border-left: none;
+  padding-left: 0;
+  margin-bottom: 32px;
+}
+.section-heading--minimal::after { display: none; }
+.section-heading--minimal h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 0.08em;
+}
+.section-heading--minimal p { display: none; }
+
+
+/* ========== B. 店舗カード差別化: 本店フィーチャー ========== */
+
+/* 本店カードを2列分に拡大 */
+.store-item--featured {
+  grid-column: span 2;
+}
+.store-item--featured .store-item-img {
+  height: 220px;
+}
+@media (max-width: 639px) {
+  .store-item--featured {
+    grid-column: span 1;
+  }
+}
+
+
+/* ========== C. Feature カードにナンバリングとスタガー ========== */
+
+.feature-card {
+  counter-increment: feature;
+}
+.feature-card-body::before {
+  content: "0" counter(feature);
+  display: block;
+  font-family: var(--font-num);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: 12px;
+  opacity: 0.35;
+}
+/* デスクトップでスタガー（段差） */
+@media (min-width: 1024px) {
+  .feature-card:nth-child(2) { margin-left: 40px; }
+  .feature-card:nth-child(3) { margin-left: 80px; }
+}
+
+
+/* ========== D. インタビューカード差別化: 最初のカードを大きく ========== */
+
+@media (min-width: 768px) {
+  .interview-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+  }
+  .interview-grid .interview-card:first-child .interview-card-photo {
+    height: 180px;
+  }
+}
+
+
+/* ========== E. 数字セクションをインライン統計に変更 ========== */
+
+/* 数字セクションをコンパクトなインラインバーに */
+.numbers-grid {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  background: none;
+}
+.number-card {
+  padding: 24px 32px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+.number-card:last-child { border-right: none; }
+.number-card-value {
+  font-size: 40px;
+}
+.number-card-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@media (max-width: 767px) {
+  .numbers-grid {
+    flex-wrap: wrap;
+  }
+  .number-card {
+    width: 50%;
+    padding: 16px 12px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .number-card:nth-child(odd) {
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .number-card:nth-last-child(-n+2) { border-bottom: none; }
+  .number-card-value { font-size: 32px; }
+}
+
+
+/* ========== F. Reassurance カードに番号バッジ ========== */
+
+.reassurance-card {
+  counter-increment: reassure;
+  padding-top: 40px;
+}
+.reassurance-card::before {
+  content: counter(reassure);
+  position: absolute;
+  top: -1px;
+  left: 20px;
+  width: 32px;
+  height: 32px;
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  font-family: var(--font-num);
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ========== G. FAQ を左右レイアウトに ========== */
+
+/* FAQを2カラムに（PCのみ） */
+@media (min-width: 1024px) {
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+
+/* ========== H. CTA バーのユニーク化 ========== */
+
+.cta-bar {
+  /* 左端に太い黄色アクセント */
+  border-left: 6px solid var(--color-primary);
+}
+@media (min-width: 768px) {
+  .cta-bar .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+
+/* ========== I. セクション背景バリエーション ========== */
+
+/* Interview セクション: 左に黄色アクセントライン */
+.bg-accent-left {
+  position: relative;
+}
+.bg-accent-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--color-primary);
+}
+
+/* Jobs セクション: 上部に斜めカット */
+.bg-slant-top {
+  clip-path: polygon(0 24px, 100% 0, 100% 100%, 0 100%);
+  padding-top: calc(24px + 4rem);
+}
+@media (max-width: 767px) {
+  .bg-slant-top {
+    clip-path: polygon(0 12px, 100% 0, 100% 100%, 0 100%);
+    padding-top: calc(12px + 3rem);
+  }
+}
