@@ -253,6 +253,7 @@ strong { color: var(--body); }
   align-items: center;
   gap: 40px;
   padding: 60px 0;
+  position: relative;
 }
 
 .hero-content {
@@ -317,54 +318,37 @@ strong { color: var(--body); }
   letter-spacing: 0.04em;
 }
 
-/* Hero Visual — Card Frame */
+/* Hero Visual — Behind text as background character */
 .hero-visual {
-  display: none;
-  position: relative;
-  z-index: 5;
+  display: block;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.18;
 }
 
 .hero-card-frame {
-  width: 340px;
-  height: 440px;
-  background: linear-gradient(160deg, rgba(255,203,5,0.15) 0%, rgba(255,203,5,0.05) 100%);
-  border: 2px solid rgba(255,203,5,0.2);
-  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  box-shadow:
-    0 0 60px rgba(255,203,5,0.1),
-    0 20px 60px rgba(0,0,0,0.3);
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
-/* カードフレームの四隅装飾 */
+/* カードフレームの四隅装飾 — 非表示（背景配置のため不要） */
 .hero-card-frame::before,
 .hero-card-frame::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border: 2px solid var(--pika);
-}
-.hero-card-frame::before {
-  top: 12px;
-  left: 12px;
-  border-right: none;
-  border-bottom: none;
-}
-.hero-card-frame::after {
-  bottom: 12px;
-  right: 12px;
-  border-left: none;
-  border-top: none;
+  display: none;
 }
 
 .hero-chara {
-  width: 260px;
+  width: 320px;
   height: auto;
-  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.25));
+  filter: drop-shadow(0 8px 32px rgba(255,203,5,0.15));
   animation: heroChara 4s ease-in-out infinite;
 }
 
@@ -375,12 +359,15 @@ strong { color: var(--body); }
 
 @media (min-width: 768px) {
   .hero-title { font-size: 40px; }
-  .hero-visual { display: block; }
+  .hero-chara { width: 400px; }
+  .hero-visual { opacity: 0.2; right: 8%; }
 }
 
 @media (min-width: 1024px) {
   .hero-title { font-size: 60px; }
   .hero-inner { gap: 60px; padding: 80px 0; }
+  .hero-chara { width: 480px; }
+  .hero-visual { opacity: 0.22; right: 5%; }
 }
 
 @media (max-width: 767px) {
@@ -3091,18 +3078,13 @@ select.form-input {
     min-height: 75vh;
   }
 
-  /* Show hero visual at small size on mobile */
+  /* Hero visual behind text on mobile */
   .hero-visual {
-    display: block;
-    margin: 24px auto 0;
-  }
-  .hero-card-frame {
-    width: 150px;
-    height: 190px;
-    margin: 0 auto;
+    right: -10%;
+    opacity: 0.12;
   }
   .hero-chara {
-    width: 120px;
+    width: 220px;
   }
   .hero-inner {
     flex-direction: column;

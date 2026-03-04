@@ -26,17 +26,24 @@ document.addEventListener('DOMContentLoaded', () => {
 /* --- スティッキーヘッダー（スクロール時影付加） --- */
 function initStickyHeader() {
   const header = document.querySelector('.site-header');
+  const topBar = document.querySelector('.top-bar');
   if (!header) return;
 
+  const topBarHeight = topBar ? topBar.offsetHeight : 0;
   let ticking = false;
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(() => {
-        if (window.scrollY > 50) {
+        const sy = window.scrollY;
+        if (sy > 50) {
           header.classList.add('scrolled');
         } else {
           header.classList.remove('scrolled');
+        }
+        /* Desktop: smoothly follow top-bar out of view */
+        if (topBarHeight && window.innerWidth >= 1024) {
+          header.style.top = Math.max(0, topBarHeight - sy) + 'px';
         }
         ticking = false;
       });
