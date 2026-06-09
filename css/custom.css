@@ -486,7 +486,7 @@ strong { color: var(--body); }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: rgba(255,255,255,0.06);
 }
@@ -539,7 +539,7 @@ strong { color: var(--body); }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .stats-grid { grid-template-columns: repeat(3, 1fr); }
   .stat-value { font-size: 32px; }
 }
 
@@ -722,6 +722,15 @@ strong { color: var(--body); }
   height: 56px;
   object-fit: contain;
   filter: brightness(0.9);
+}
+.message-author-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 18px;
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
 }
 .message-author-role {
   font-size: 13px;
@@ -2248,6 +2257,12 @@ strong { color: var(--body); }
   display: inline-block;
   white-space: nowrap;
 }
+/* レアリティ別カラー（N→UR でポケカらしく格上げ） */
+.career-step-marker[data-rarity="N"]::after   { color:#5b6b7a; background:#e9eef3; }
+.career-step-marker[data-rarity="R"]::after   { color:#1565d8; background:#e4f0fd; }
+.career-step-marker[data-rarity="SR"]::after  { color:#7b3ff2; background:#efe6fe; }
+.career-step-marker[data-rarity="SAR"]::after { color:#a9791c; background:#fff1cc; }
+.career-step-marker[data-rarity="UR"]::after  { color:#fff; background:linear-gradient(135deg,#ff8a00,#e52e71 55%,#7b3ff2); border:0; }
 
 /* 福利厚生 — 上位3つ(ポケカ特有)のハイライト */
 .benefit-item--highlight {
@@ -2452,11 +2467,12 @@ strong { color: var(--body); }
   width: 50%;
   height: 100%;
   background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
-  animation: shimmer 3s ease-in-out infinite;
   pointer-events: none;
   will-change: transform;
   transform: translateX(-300%);
 }
+/* 常時ループではなく hover 時に1回だけ流す（量産感・視覚疲労を回避） */
+.cta-shimmer:hover::after { animation: shimmer 0.9s ease; }
 @keyframes shimmer {
   0% { transform: translateX(-300%); }
   100% { transform: translateX(600%); }
