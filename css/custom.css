@@ -37,6 +37,11 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-full: 9999px;
+  /* Motion easing tokens（上品な減速カーブ） */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.18s;
+  --dur-base: 0.3s;
 }
 
 /* --- Reset & Base --- */
@@ -154,14 +159,16 @@ strong { color: var(--body); }
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
-  width: 0;
+  left: 0;
+  width: 100%;
   height: 2px;
   background: var(--pika);
-  transition: width 0.3s, left 0.3s;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.28s var(--ease-out-quart);
 }
 .nav-link:hover { color: var(--navy); }
-.nav-link:hover::after { width: 100%; left: 0; }
+.nav-link:hover::after { transform: scaleX(1); }
 
 .nav-cta {
   display: inline-flex;
@@ -393,7 +400,7 @@ strong { color: var(--body); }
   letter-spacing: 0.04em;
   border-radius: var(--radius-sm);
   box-shadow: 0 4px 24px rgba(255,203,5,0.25);
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .btn-hero-primary:hover {
   background: #FFD42A;
@@ -434,7 +441,7 @@ strong { color: var(--body); }
   text-decoration: none;
   letter-spacing: 0.04em;
   border-radius: var(--radius-sm);
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .btn-primary:hover {
   background: #FFD42A;
@@ -451,7 +458,7 @@ strong { color: var(--body); }
   font-weight: 700;
   font-size: 14px;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .btn-dark:hover {
   background: var(--navy-light);
@@ -1655,7 +1662,7 @@ strong { color: var(--body); }
   letter-spacing: 0.06em;
   border-radius: var(--radius-sm);
   box-shadow: 0 4px 24px rgba(255,203,5,0.2);
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .btn-cta-large:hover {
   background: #FFD42A;
@@ -1670,11 +1677,11 @@ strong { color: var(--body); }
   box-shadow: 0 8px 30px rgba(255,203,5,0.4);
 }
 .floating-cta a:first-child {
-  animation: pulse-glow 2.5s ease-in-out infinite;
+  animation: pulse-glow 3.4s ease-in-out infinite;
 }
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 4px 15px rgba(255,203,5,0.3); }
-  50% { box-shadow: 0 4px 25px rgba(255,203,5,0.6); }
+  0%, 100% { box-shadow: 0 4px 14px rgba(255,203,5,0.22); }
+  50% { box-shadow: 0 6px 20px rgba(255,203,5,0.42); }
 }
 
 
@@ -1926,8 +1933,8 @@ strong { color: var(--body); }
    ======================================== */
 .fade-in {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(24px);
+  transition: opacity 0.5s var(--ease-out-quart), transform 0.5s var(--ease-out-quart);
 }
 .fade-in.visible {
   opacity: 1;
@@ -1936,8 +1943,8 @@ strong { color: var(--body); }
 
 .slide-left {
   opacity: 0;
-  transform: translateX(-30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateX(-20px);
+  transition: opacity 0.55s var(--ease-out-quart), transform 0.55s var(--ease-out-quart);
 }
 .slide-left.visible {
   opacity: 1;
@@ -1946,8 +1953,8 @@ strong { color: var(--body); }
 
 .slide-right {
   opacity: 0;
-  transform: translateX(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateX(20px);
+  transition: opacity 0.55s var(--ease-out-quart), transform 0.55s var(--ease-out-quart);
 }
 .slide-right.visible {
   opacity: 1;
@@ -1956,8 +1963,8 @@ strong { color: var(--body); }
 
 .scale-in {
   opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: scale(0.95);
+  transition: opacity 0.55s var(--ease-out-quart), transform 0.55s var(--ease-out-quart);
 }
 .scale-in.visible {
   opacity: 1;
@@ -1966,8 +1973,8 @@ strong { color: var(--body); }
 
 .slide-up {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(20px);
+  transition: opacity 0.55s var(--ease-out-quart), transform 0.55s var(--ease-out-quart);
 }
 .slide-up.visible {
   opacity: 1;
@@ -2037,7 +2044,7 @@ strong { color: var(--body); }
   border: none;
   cursor: pointer;
   border-radius: var(--radius-sm);
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   box-shadow: 0 4px 24px rgba(255,203,5,0.2);
 }
 .entry-submit-btn:hover {
@@ -2442,16 +2449,18 @@ strong { color: var(--body); }
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 50%;
   height: 100%;
   background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
   animation: shimmer 3s ease-in-out infinite;
   pointer-events: none;
+  will-change: transform;
+  transform: translateX(-300%);
 }
 @keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 200%; }
+  0% { transform: translateX(-300%); }
+  100% { transform: translateX(600%); }
 }
 
 /* --- Icon Pulse (benefits) --- */
@@ -2942,8 +2951,7 @@ select.form-input {
   color: var(--pika-dark, #B8930A);
 }
 .nav-link--active::after {
-  width: 100%;
-  left: 0;
+  transform: scaleX(1);
 }
 
 /* ==========================================================
@@ -2985,7 +2993,7 @@ select.form-input {
   text-decoration: none;
   letter-spacing: 0.04em;
   border-radius: 4px;
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .btn-white:hover {
   background: var(--pika-50);
@@ -3019,7 +3027,7 @@ select.form-input {
   font-size: 16px;
   text-decoration: none;
   letter-spacing: 0.04em;
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .btn-primary-lg:hover {
   background: #FFD42A;

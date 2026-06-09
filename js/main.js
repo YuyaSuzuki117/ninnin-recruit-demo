@@ -636,27 +636,37 @@ function initCardTilt() {
 
   cards.forEach(card => {
     card.style.transition = 'transform 0.15s ease-out';
-    card.style.willChange = 'transform';
+
+    let tiltRaf = null;
+
+    // インタラクション開始時のみ GPU 合成層へ昇格（アイドル時のメモリ浪費を回避）
+    card.addEventListener('mouseenter', () => {
+      card.style.willChange = 'transform';
+    });
 
     card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+      const clientX = e.clientX, clientY = e.clientY;
+      if (tiltRaf) return;
+      tiltRaf = requestAnimationFrame(() => {
+        tiltRaf = null;
+        const rect = card.getBoundingClientRect();
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
 
-      const rotateX = ((y - centerY) / centerY) * -maxDeg;
-      const rotateY = ((x - centerX) / centerX) * maxDeg;
+        const rotateX = ((clientY - rect.top - centerY) / centerY) * -maxDeg;
+        const rotateY = ((clientX - rect.left - centerX) / centerX) * maxDeg;
 
-      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
     });
 
     card.addEventListener('mouseleave', () => {
       card.style.transition = 'transform 0.4s ease-out';
       card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
-      // 復帰後に高速トランジションに戻す
+      // 復帰後に高速トランジションに戻し、合成層を解放
       setTimeout(() => {
         card.style.transition = 'transform 0.15s ease-out';
+        card.style.willChange = 'auto';
       }, 400);
     });
   });
@@ -687,9 +697,10 @@ function initStaggerReveal() {
         container.classList.add('is-visible');
         const items = container.querySelectorAll('.stagger-item');
         items.forEach((item, index) => {
+          // stagger 50ms 刻み・最大 6 段（=最大 300ms）にキャップし波を締める
           setTimeout(() => {
             item.classList.add('is-visible');
-          }, index * 80);
+          }, Math.min(index, 6) * 50);
         });
         observer.unobserve(container);
       }
@@ -717,20 +728,23 @@ function initMagneticButtons() {
   buttons.forEach(btn => {
     btn.style.transition = 'transform 0.2s ease-out';
 
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const deltaX = e.clientX - centerX;
-      const deltaY = e.clientY - centerY;
-      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    let magRaf = null;
 
-      if (distance < maxDistance) {
-        const strength = (maxDistance - distance) / maxDistance;
-        const moveX = deltaX * strength * (maxDisplacement / maxDistance);
-        const moveY = deltaY * strength * (maxDisplacement / maxDistance);
-        btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      }
+    btn.addEventListener('mousemove', (e) => {
+      const clientX = e.clientX, clientY = e.clientY;
+      if (magRaf) return;
+      magRaf = requestAnimationFrame(() => {
+        magRaf = null;
+        const rect = btn.getBoundingClientRect();
+        const deltaX = clientX - (rect.left + rect.width / 2);
+        const deltaY = clientY - (rect.top + rect.height / 2);
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+        if (distance < maxDistance) {
+          const strength = (maxDistance - distance) / maxDistance;
+          btn.style.transform = `translate(${deltaX * strength * (maxDisplacement / maxDistance)}px, ${deltaY * strength * (maxDisplacement / maxDistance)}px)`;
+        }
+      });
     });
 
     btn.addEventListener('mouseleave', () => {

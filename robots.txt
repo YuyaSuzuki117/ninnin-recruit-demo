@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yuyasuzuki117.github.io/ninnin-recruit-demo/sitemap.xml
