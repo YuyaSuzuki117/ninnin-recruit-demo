@@ -409,23 +409,7 @@ function initFormValidation() {
     });
 
     if (isValid) {
-      // 成功メッセージ
-      const successMsg = document.createElement('div');
-      successMsg.className = 'mt-6 p-4 bg-green-50 border border-green-200 rounded text-green-800 text-center';
-      successMsg.setAttribute('role', 'status');
-      successMsg.setAttribute('aria-live', 'polite');
-      successMsg.innerHTML = '<p class="font-bold text-lg mb-1">送信完了</p><p>ご応募ありがとうございます。担当者より折り返しご連絡いたします。</p>';
-      form.appendChild(successMsg);
-
-      const submitBtn = form.querySelector('button[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.classList.add('opacity-50');
-      submitBtn.setAttribute('aria-disabled', 'true');
-
-      // aria-live で送信完了を通知
-      if (liveRegion) {
-        liveRegion.textContent = '送信が完了しました。担当者より折り返しご連絡いたします。';
-      }
+      submitEntryForm();
     } else {
       // aria-live でエラー件数を通知
       if (liveRegion) {
@@ -439,6 +423,88 @@ function initFormValidation() {
       }
     }
   });
+
+  // --- フォーム送信（FormSubmit.co 経由で採用担当メールへ送信） ---
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/ninja.recruit.2020@gmail.com';
+
+  async function submitEntryForm() {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const btnLabel = submitBtn.querySelector('span');
+    const originalLabel = btnLabel ? btnLabel.textContent : '';
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 二重送信防止 + 送信中表示
+    submitBtn.disabled = true;
+    submitBtn.classList.add('opacity-50');
+    submitBtn.setAttribute('aria-disabled', 'true');
+    if (btnLabel) btnLabel.textContent = '送信中…';
+    if (liveRegion) liveRegion.textContent = '送信しています。しばらくお待ちください。';
+
+    // 前回の結果メッセージを削除
+    form.querySelectorAll('.form-submit-result').forEach(el => el.remove());
+
+    const fd = new FormData(form);
+    const jobTypeChecked = form.querySelector('input[name="job_type"]:checked');
+
+    let ok = false;
+    // ハニーポットに入力がある場合はボット判定 → 送信せず成功表示のみ
+    if ((fd.get('_honey') || '').toString().trim()) {
+      ok = true;
+    } else {
+      const payload = {
+        _subject: '【ニンニン採用】応募フォームから新しい応募が届きました',
+        _template: 'table',
+        _replyto: (fd.get('email') || '').toString(),
+        'お名前': (fd.get('name') || '').toString(),
+        'ふりがな': (fd.get('furigana') || '').toString(),
+        'メールアドレス': (fd.get('email') || '').toString(),
+        '電話番号': (fd.get('phone') || '').toString(),
+        '年齢': (fd.get('age') || '').toString() || '（未入力）',
+        '希望職種': jobTypeChecked ? jobTypeChecked.value : '',
+        '希望勤務地': (fd.get('location') || '').toString(),
+        '志望動機・自己PR': (fd.get('motivation') || '').toString() || '（未入力）',
+        'その他ご質問': (fd.get('questions') || '').toString() || '（未入力）',
+      };
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        ok = res.ok;
+      } catch (err) {
+        ok = false;
+      }
+    }
+
+    const msg = document.createElement('div');
+    msg.className = 'form-submit-result mt-6 p-4 border rounded text-center';
+    msg.setAttribute('role', 'status');
+    msg.setAttribute('aria-live', 'polite');
+
+    if (ok) {
+      msg.classList.add('bg-green-50', 'border-green-200', 'text-green-800');
+      msg.innerHTML = '<p class="font-bold text-lg mb-1">送信完了</p><p>ご応募ありがとうございます。担当者より3営業日以内にご連絡いたします。</p>';
+      if (btnLabel) btnLabel.textContent = '送信しました';
+      if (liveRegion) {
+        liveRegion.textContent = '送信が完了しました。担当者より折り返しご連絡いたします。';
+      }
+    } else {
+      msg.classList.add('bg-red-50', 'border-red-200', 'text-red-800');
+      msg.innerHTML = '<p class="font-bold text-lg mb-1">送信に失敗しました</p><p>お手数ですが時間をおいて再度お試しいただくか、<a href="tel:03-4363-7710" class="underline font-bold whitespace-nowrap">03-4363-7710</a>（年中無休 13:00〜20:00）までお電話ください。</p>';
+      if (liveRegion) {
+        liveRegion.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+      }
+      // 失敗時は再送信できるように復帰
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('opacity-50');
+      submitBtn.removeAttribute('aria-disabled');
+      if (btnLabel) btnLabel.textContent = originalLabel;
+    }
+
+    form.appendChild(msg);
+    msg.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
+  }
 
   // リアルタイムでエラーをクリア（入力時）— エラー表示中のフィールドのみ再バリデーション
   form.addEventListener('input', (e) => {

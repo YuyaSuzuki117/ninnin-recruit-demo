@@ -44,6 +44,15 @@
   --dur-base: 0.3s;
 }
 
+/* --- ハニーポット（スパムボット対策・視覚/AT 双方から隠す） --- */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* --- Reset & Base --- */
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 body {
@@ -1131,6 +1140,31 @@ strong { color: var(--body); }
 .store-badge--new {
   background: var(--navy);
   color: var(--pika);
+}
+.store-badge--soon {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* OPEN予定店舗（写真なしの COMING SOON カード） */
+.store-img--coming {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(255,203,5,0.18) 0%, transparent 45%),
+    linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+}
+.store-coming-text {
+  color: var(--pika);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  text-align: center;
+}
+.store-card--coming .store-addr {
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .store-info { padding: 14px 16px; }
