@@ -1210,6 +1210,34 @@ strong { color: var(--body); }
 
 
 /* ========================================
+   YOUTUBE（社長チャンネル動画一覧）
+   ======================================== */
+.yt-card {
+  display: block;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.yt-card:hover {
+  border-color: var(--pika);
+  box-shadow: 0 8px 24px rgba(255,203,5,0.18);
+}
+.yt-card-title {
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--body);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+/* ========================================
    INTERVIEWS
    ======================================== */
 .sec-interview {
