@@ -4,6 +4,8 @@
    アクセシビリティ対応
    ============================================ */
 
+initScrollResetOnNavigate();
+
 document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader();
   initMobileMenu();
@@ -22,6 +24,33 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNavHighlight();
   initScrollProgress();
 });
+
+/* --- iOS Safari スクロール位置引き継ぎ対策 ---
+   長いページの深い位置からリンク遷移すると、Safari が前ページの
+   スクロール量を新ページに引き継ぎ、短いページでは最下部に着地する。
+   通常の forward 遷移（hash なし）のみトップへリセットし、
+   戻る/進む・bfcache 復帰・ページ内アンカーは復元挙動を尊重する。 --- */
+function initScrollResetOnNavigate() {
+  const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  const isForwardNavigate = !nav || nav.type === 'navigate';
+
+  function resetToTop() {
+    if (location.hash || !isForwardNavigate) return;
+    if (window.scrollY === 0) return;
+    // CSS の scroll-behavior:smooth をバイパスして即時ジャンプ
+    const html = document.documentElement;
+    const prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    html.style.scrollBehavior = prev;
+  }
+
+  resetToTop();
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) return; // bfcache 復帰はそのまま
+    resetToTop();
+  });
+}
 
 /* --- スティッキーヘッダー（スクロール時影付加） --- */
 function initStickyHeader() {
