@@ -454,7 +454,7 @@ function initFormValidation() {
   });
 
   // --- フォーム送信（FormSubmit.co 経由で採用担当メールへ送信） ---
-  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/ninja.recruit.2020@gmail.com';
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/ninnin.nihonbasi@gmail.com';
 
   async function submitEntryForm() {
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -483,6 +483,7 @@ function initFormValidation() {
       const payload = {
         _subject: '【ニンニン採用】応募フォームから新しい応募が届きました',
         _template: 'table',
+        _cc: 'ninnin.nihonbashi2@gmail.com,ninja.recruit.2020@gmail.com',
         _replyto: (fd.get('email') || '').toString(),
         'お名前': (fd.get('name') || '').toString(),
         'ふりがな': (fd.get('furigana') || '').toString(),
