@@ -453,8 +453,21 @@ function initFormValidation() {
     }
   });
 
-  // --- フォーム送信（FormSubmit.co 経由で採用担当メールへ送信） ---
-  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/ninnin.nihonbasi@gmail.com';
+  // --- フォーム送信（Google フォームへ送信 → 採用管理シートへ自動取込） ---
+  const FORM_ENDPOINT = 'https://docs.google.com/forms/d/e/1FAIpQLSejyfjZMzDMjfIONjWN1ByoChy9wPReVtvh6913ag3kcmo7iw/formResponse';
+  // Google フォーム側の entry.ID（フォーム項目との対応・ninnin-recruit-form.json と一致）
+  const FORM_ENTRY = {
+    name: 'entry.1628432266',
+    furigana: 'entry.1049953475',
+    email: 'entry.66930341',
+    phone: 'entry.1288521894',
+    age: 'entry.1948866994',
+    job_type: 'entry.1942523993',
+    location: 'entry.542653453',
+    motivation: 'entry.1845980084',
+    questions: 'entry.1699287720',
+    source: 'entry.2023564994',
+  };
 
   async function submitEntryForm() {
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -480,28 +493,27 @@ function initFormValidation() {
     if ((fd.get('_honey') || '').toString().trim()) {
       ok = true;
     } else {
-      const payload = {
-        _subject: '【ニンニン採用】応募フォームから新しい応募が届きました',
-        _template: 'table',
-        _cc: 'ninnin.nihonbashi2@gmail.com,ninja.recruit.2020@gmail.com',
-        _replyto: (fd.get('email') || '').toString(),
-        'お名前': (fd.get('name') || '').toString(),
-        'ふりがな': (fd.get('furigana') || '').toString(),
-        'メールアドレス': (fd.get('email') || '').toString(),
-        '電話番号': (fd.get('phone') || '').toString(),
-        '年齢': (fd.get('age') || '').toString() || '（未入力）',
-        '希望職種': jobTypeChecked ? jobTypeChecked.value : '',
-        '希望勤務地': (fd.get('location') || '').toString(),
-        '志望動機・自己PR': (fd.get('motivation') || '').toString() || '（未入力）',
-        'その他ご質問': (fd.get('questions') || '').toString() || '（未入力）',
-      };
+      const params = new URLSearchParams();
+      params.set(FORM_ENTRY.name, (fd.get('name') || '').toString());
+      params.set(FORM_ENTRY.furigana, (fd.get('furigana') || '').toString());
+      params.set(FORM_ENTRY.email, (fd.get('email') || '').toString());
+      params.set(FORM_ENTRY.phone, (fd.get('phone') || '').toString());
+      params.set(FORM_ENTRY.age, (fd.get('age') || '').toString());
+      params.set(FORM_ENTRY.job_type, jobTypeChecked ? jobTypeChecked.value : '');
+      params.set(FORM_ENTRY.location, (fd.get('location') || '').toString());
+      params.set(FORM_ENTRY.motivation, (fd.get('motivation') || '').toString());
+      params.set(FORM_ENTRY.questions, (fd.get('questions') || '').toString());
+      params.set(FORM_ENTRY.source, '求人サイト');
       try {
-        const res = await fetch(FORM_ENDPOINT, {
+        // Google フォームの formResponse は CORS 非対応 → no-cors（不透明応答）で送信。
+        // ネットワーク成功で送信完了とみなす（応答内容は仕様上読めない）。
+        await fetch(FORM_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload),
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString(),
         });
-        ok = res.ok;
+        ok = true;
       } catch (err) {
         ok = false;
       }
