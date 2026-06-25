@@ -423,8 +423,8 @@ function initFormValidation() {
     // 前回のエラーをクリア
     clearAllErrors(form);
 
-    // 全フィールドをバリデーション
-    const validatableFields = form.querySelectorAll('input[required], textarea[required], input[type="email"], input[type="tel"], input[name="age"]');
+    // 全フィールドをバリデーション（select[required] を含む。radio は下のグループ検証で扱う）
+    const validatableFields = form.querySelectorAll('input[required]:not([type="radio"]), textarea[required], select[required], input[type="email"], input[type="tel"], input[name="age"]');
     validatableFields.forEach(field => {
       const fieldValid = validateField(field);
       if (!fieldValid) {
@@ -434,6 +434,27 @@ function initFormValidation() {
         const errorEl = document.getElementById(errorId);
         const msg = errorEl && errorEl.textContent ? errorEl.textContent : 'この項目は必須です';
         errorMessages.push(`${label}: ${msg}`);
+      }
+    });
+
+    // 必須ラジオグループ（希望職種）— novalidate 環境では標準検証が効かないため自前で「いずれか選択必須」
+    const requiredRadioNames = new Set();
+    form.querySelectorAll('input[type="radio"][required]').forEach(r => requiredRadioNames.add(r.name));
+    requiredRadioNames.forEach(groupName => {
+      const firstRadio = form.querySelector(`input[name="${groupName}"]`);
+      const checked = form.querySelector(`input[name="${groupName}"]:checked`);
+      const errorEl = document.getElementById(groupName + '-error');
+      const fs = firstRadio ? firstRadio.closest('fieldset') : null;
+      const legend = fs ? fs.querySelector('legend') : null;
+      const label = legend ? legend.textContent.replace('必須', '').trim() : (groupName || '選択項目');
+      if (!checked) {
+        isValid = false;
+        if (errorEl) { errorEl.textContent = 'いずれかを選択してください'; errorEl.hidden = false; }
+        if (firstRadio) firstRadio.setAttribute('aria-invalid', 'true');
+        errorMessages.push(`${label}: いずれかを選択してください`);
+      } else {
+        if (errorEl) { errorEl.textContent = ''; errorEl.hidden = true; }
+        if (firstRadio) firstRadio.removeAttribute('aria-invalid');
       }
     });
 
@@ -504,18 +525,25 @@ function initFormValidation() {
       params.set(FORM_ENTRY.motivation, (fd.get('motivation') || '').toString());
       params.set(FORM_ENTRY.questions, (fd.get('questions') || '').toString());
       params.set(FORM_ENTRY.source, '求人サイト');
+      // Google フォームの formResponse は CORS 非対応 → no-cors（不透明応答）。
+      // 応答内容は仕様上読めないため「サーバー側の受理可否」は直接判定できない。
+      // → 必須項目（勤務地 select / 希望職種 radio 含む）を送信前に厳格検証し、
+      //   ネットワーク失敗・タイムアウトは下の catch で確実に「失敗」扱いにする（成功を偽装しない）。
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 12000);
       try {
-        // Google フォームの formResponse は CORS 非対応 → no-cors（不透明応答）で送信。
-        // ネットワーク成功で送信完了とみなす（応答内容は仕様上読めない）。
         await fetch(FORM_ENDPOINT, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: params.toString(),
+          signal: controller.signal,
         });
         ok = true;
       } catch (err) {
-        ok = false;
+        ok = false; // ネットワーク失敗 / 12秒タイムアウト → 失敗としてエラー表示
+      } finally {
+        clearTimeout(timeoutId);
       }
     }
 
