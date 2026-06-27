@@ -510,9 +510,11 @@ function initFormValidation() {
     const jobTypeChecked = form.querySelector('input[name="job_type"]:checked');
 
     let ok = false;
+    let isBot = false;
     // ハニーポットに入力がある場合はボット判定 → 送信せず成功表示のみ
     if ((fd.get('_honey') || '').toString().trim()) {
       ok = true;
+      isBot = true;
     } else {
       const params = new URLSearchParams();
       params.set(FORM_ENTRY.name, (fd.get('name') || '').toString());
@@ -545,6 +547,13 @@ function initFormValidation() {
       } finally {
         clearTimeout(timeoutId);
       }
+    }
+
+    // 本物の応募が成功した場合のみ、CV 計測用の完了ページ（thanks.html）へ遷移する。
+    // ボット（ハニーポット検知）は遷移させず、CV を汚さない。
+    if (ok && !isBot) {
+      window.location.href = 'thanks.html';
+      return;
     }
 
     const msg = document.createElement('div');
