@@ -2600,12 +2600,20 @@ strong { color: var(--body); }
 .faq-item-header {
   cursor: pointer;
   transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 24px;
 }
 .faq-item-header:hover {
   background-color: rgba(255, 203, 5, 0.05);
 }
 .faq-chevron {
   transition: transform 0.3s ease;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
 .faq-item.is-open .faq-chevron {
   transform: rotate(180deg);
