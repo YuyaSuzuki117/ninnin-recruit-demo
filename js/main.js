@@ -5,6 +5,7 @@
    ============================================ */
 
 initScrollResetOnNavigate();
+const recruitAttribution = captureAttribution();
 
 document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader();
@@ -24,6 +25,48 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNavHighlight();
   initScrollProgress();
 });
+
+/* --- 流入経路の記録（ファーストタッチ90日保持 + 直近のUTM）---
+   応募時に Google フォーム「流入詳細」へ送る。例: first=x/post/omiya|lp=/recruit/|date=2026-09-23
+   公式TOPバナーは utm_source=ninnin_official、UTM なしは参照元ドメインで判定。 --- */
+function captureAttribution() {
+  const KEY = 'ninnin_recruit_attr';
+  const TTL_MS = 90 * 24 * 60 * 60 * 1000;
+  let params;
+  try { params = new URLSearchParams(location.search); } catch (e) { params = new URLSearchParams(); }
+  const utm = ['utm_source', 'utm_medium', 'utm_campaign'].map((k) => params.get(k) || '').filter(Boolean).join('/');
+
+  let refLabel = '直接';
+  try {
+    if (document.referrer) {
+      const ref = new URL(document.referrer);
+      const host = ref.hostname;
+      // 求人サイト内の移動は流入ではない（本番は公式と同一ドメインなので /recruit 配下のみ内部扱い）
+      if (host === location.hostname && (host !== 'nin-nin-pokeka.jp' || ref.pathname.indexOf('/recruit') === 0)) refLabel = '';
+      else if (host === 'nin-nin-pokeka.jp') refLabel = '公式サイト';
+      else if (/(^|\.)(t\.co|x\.com|twitter\.com)$/.test(host)) refLabel = 'X';
+      else if (/(^|\.)(google|yahoo|bing)\./.test(host)) refLabel = '検索(' + host + ')';
+      else refLabel = host;
+    }
+  } catch (e) { /* 参照元が読めなければ直接扱い */ }
+
+  let store = null;
+  try {
+    store = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (store && Date.now() - store.savedAt > TTL_MS) store = null;
+  } catch (e) { store = null; }
+  if (!store && (utm || refLabel)) {
+    store = { first: utm || refLabel, lp: location.pathname, date: new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10), savedAt: Date.now() };
+  }
+  if (store && utm) store.last = utm;
+  if (store) {
+    try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { /* 保存不可でも継続 */ }
+  }
+  if (!store) return '直接';
+  const parts = ['first=' + store.first, 'lp=' + store.lp, 'date=' + store.date];
+  if (store.last && store.last !== store.first) parts.push('last=' + store.last);
+  return parts.join('|').slice(0, 200);
+}
 
 /* --- iOS Safari スクロール位置引き継ぎ対策 ---
    長いページの深い位置からリンク遷移すると、Safari が前ページの
@@ -488,6 +531,7 @@ function initFormValidation() {
     motivation: 'entry.1845980084',
     questions: 'entry.1699287720',
     source: 'entry.2023564994',
+    source_detail: 'entry.157378797',
   };
 
   async function submitEntryForm() {
@@ -527,6 +571,7 @@ function initFormValidation() {
       params.set(FORM_ENTRY.motivation, (fd.get('motivation') || '').toString());
       params.set(FORM_ENTRY.questions, (fd.get('questions') || '').toString());
       params.set(FORM_ENTRY.source, '求人サイト');
+      params.set(FORM_ENTRY.source_detail, recruitAttribution);
       // Google フォームの formResponse は CORS 非対応 → no-cors（不透明応答）。
       // 応答内容は仕様上読めないため「サーバー側の受理可否」は直接判定できない。
       // → 必須項目（勤務地 select / 希望職種 radio 含む）を送信前に厳格検証し、
