@@ -28,13 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* --- 流入経路の記録（ファーストタッチ90日保持 + 直近のUTM）---
    応募時に Google フォーム「流入詳細」へ送る。例: first=x/post/omiya|lp=/recruit/|date=2026-09-23
-   公式TOPバナーは utm_source=ninnin_official、UTM なしは参照元ドメインで判定。 --- */
+   公式TOPバナーは utm_source=ninnin_official、X 広告は twclid で判定（UTM なしなら x/ad）、UTM なしは参照元ドメインで判定。 --- */
 function captureAttribution() {
   const KEY = 'ninnin_recruit_attr';
   const TTL_MS = 90 * 24 * 60 * 60 * 1000;
   let params;
   try { params = new URLSearchParams(location.search); } catch (e) { params = new URLSearchParams(); }
-  const utm = ['utm_source', 'utm_medium', 'utm_campaign'].map((k) => params.get(k) || '').filter(Boolean).join('/');
+  const utmTags = ['utm_source', 'utm_medium', 'utm_campaign'].map((k) => params.get(k) || '').filter(Boolean).join('/');
+  // X 広告のクリックは着地 URL に twclid が付く。UTM の無い広告でも「x/ad」として残す
+  const utm = params.get('twclid') ? (utmTags ? utmTags + '+twclid' : 'x/ad') : utmTags;
 
   let refLabel = '直接';
   try {
