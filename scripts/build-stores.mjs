@@ -43,7 +43,7 @@ const place = (s) => ({
 })
 const posting = (base, s) => ({
   ...base,
-  title: `${base.title.replace(/（/, `｜${s.name}（`)}`,
+  title: base.title,
   identifier: { ...base.identifier, value: `${base.identifier.value}-${s.slug}` },
   jobLocation: place(s),
   url: `${SITE}store-${s.slug}.html`,
@@ -53,7 +53,7 @@ const posting = (base, s) => ({
 
 const storeLinks = (current) => stores.map((s) => (s.slug === current
   ? `<li><span class="store-nav__current" aria-current="page">${s.name}</span></li>`
-  : `<li><a href="store-${s.slug}.html">${s.name}</a></li>`)).join('\n          ')
+  : `<li><a href="store-${s.slug}.html">${s.name}の求人</a></li>`)).join('\n          ')
 
 const faq = [
   ['勤務地は選べますか？', 'はい、面接時にご希望の勤務地をお伺いします。自宅から通いやすい店舗への配属を基本としています。複数の希望店舗をお伝えいただけると選考がスムーズです。'],
@@ -104,11 +104,13 @@ const page = (s) => {
             <span class="job-pick__role">店舗スタッフ（アルバイト）</span>
           </div>
           <p class="job-pick__pay font-num">時給1,400〜1,500円</p>
-          <p class="job-pick__cond">週3日以上・通し勤務<span class="job-pick__note">高校生不可・学生は応相談</span></p>
+          <p class="job-pick__cond">平日 12:45〜20:15／土日祝 10:45〜20:15</p>
+          <p class="job-pick__cond">週3日以上・通し勤務<span class="job-pick__note">高校生不可・学生は応相談・店舗により時短応相談</span></p>
           <div class="job-pick__actions">
             <a class="btn-primary job-pick__btn" data-cta="store-parttime" href="${typeParam.part}${loc}">${s.name}に応募する</a>
             <a class="job-pick__more" href="#part-time">詳細を見る ↓</a>
           </div>
+          <p class="job-pick__assure">履歴書は面接時にご持参（応募時は不要）・3営業日以内にご連絡</p>
         </div>
         <div class="job-pick">
           <div class="job-pick__head">
@@ -121,6 +123,7 @@ const page = (s) => {
             <a class="btn-primary job-pick__btn" data-cta="store-fulltime" href="${typeParam.full}${loc}">${s.name}に応募する</a>
             <a class="job-pick__more" href="#full-time">詳細を見る ↓</a>
           </div>
+          <p class="job-pick__assure">履歴書は面接時にご持参（応募時は不要）・3営業日以内にご連絡</p>
         </div>
       </div>`
 
@@ -255,7 +258,7 @@ ${tables}
       <div class="faq-list">
 ${faqHtml}
       </div>
-      <p class="mt-4 text-sm"><a href="index.html#faq" class="store-dl__map">すべての質問を見る →</a></p>
+      <p class="mt-4 text-sm"><a href="jobs.html#faq" class="store-dl__map">すべての質問を見る →</a></p>
     </div>
   </section>
 

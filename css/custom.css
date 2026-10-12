@@ -3525,3 +3525,74 @@ body { overflow-x: clip; }
 .store-coming-box__lead { font-weight: 700; font-size: 18px; margin-bottom: 8px; color: var(--body); }
 .store-coming-box .job-pick__actions { margin-top: 14px; }
 /* ==== /store-pages ==== */
+
+/* ========== RECRUIT UX 20261013 ========== */
+.job-pick__assure {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #666;
+}
+.area-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 16px;
+}
+.area-chips__label {
+  width: 100%;
+  margin-right: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.area-chips__item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 6px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--body);
+  text-decoration: none;
+  background: #fff;
+  transition: border-color .15s, background-color .15s;
+}
+.area-chips__item:hover,
+.area-chips__item:focus-visible {
+  border-color: var(--pika-text);
+  background-color: var(--cream);
+}
+@media (min-width: 1024px) {
+  .area-chips__label { width: auto; }
+}
+.entry-assure-mobile {
+  display: block;
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--body);
+  background: #FFF7CC;
+  border-left: 3px solid #FFCB05;
+  border-radius: 6px;
+}
+@media (min-width: 1024px) {
+  .entry-assure-mobile { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .area-chips__item { transition: none; }
+}
+.stagger-item > span > a[href^="store-"] {
+  color: var(--navy);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-border);
+}
+.stagger-item > span > a[href^="store-"]:hover,
+.stagger-item > span > a[href^="store-"]:focus-visible {
+  text-decoration-color: var(--pika-text);
+}

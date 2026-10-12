@@ -58,7 +58,7 @@
   </script>
 
   <!-- カスタムCSS -->
-  <link rel="stylesheet" href="css/custom.css?v=20261012b">
+  <link rel="stylesheet" href="css/custom.css?v=20261013a">
 
   <!-- Microsoft Clarity（ヒートマップ・行動記録）— ▼ "CLARITY_PROJECT_ID" を実プロジェクトIDに置換すると有効化 -->
   <script type="text/javascript">
@@ -244,15 +244,16 @@
           約1分で完了します。担当者より3営業日以内にご連絡いたします。<br>
           <span class="text-accent font-bold text-xs">*</span> のついた項目は必須です。
         </p>
+        <p class="entry-assure-mobile">面接は店舗にて行います。履歴書は面接時にご持参ください。</p>
       </div>
 
       <!-- 安心メッセージバナー -->
       <div class="entry-reassurance grid sm:grid-cols-3 gap-4 mb-8 fade-in">
         <div class="entry-reassurance__item">
-          <svg class="w-6 h-6 flex-shrink-0 text-[#B8930A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <svg class="w-6 h-6 flex-shrink-0 text-[#B8930A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           <div>
-            <p class="font-bold text-sm text-gray-900">SSL暗号化通信</p>
-            <p class="text-xs text-gray-500">入力情報は安全に送信されます</p>
+            <p class="font-bold text-sm text-gray-900">履歴書は面接時でOK</p>
+            <p class="text-xs text-gray-500">応募時は不要です</p>
           </div>
         </div>
         <div class="entry-reassurance__item">
@@ -330,6 +331,7 @@
                   <label for="phone" class="form-label">
                     電話番号<span class="required">必須</span>
                   </label>
+                  <p class="text-xs text-gray-600 mt-1 mb-2">面接日程のご連絡に使用します</p>
                   <input type="tel" id="phone" name="phone" class="form-input" placeholder="例：090-1234-5678" required aria-required="true" aria-describedby="phone-error" autocomplete="tel">
                   <p id="phone-error" class="form-error" role="alert" hidden></p>
                 </div>
@@ -338,7 +340,7 @@
                 <div class="entry-field stagger-item fade-in">
                   <label for="age" class="form-label">年齢</label>
                   <p class="text-xs text-gray-600 mt-1 mb-2">※ 高校生は不可です</p>
-                  <input type="number" id="age" name="age" class="form-input w-full sm:w-32" placeholder="例：25" min="18" max="99">
+                  <input type="text" inputmode="numeric" pattern="[0-9]*" id="age" name="age" class="form-input w-full sm:w-32" placeholder="例：25" min="18" max="99">
                 </div>
               </fieldset>
 
@@ -373,21 +375,30 @@
                   <label for="location" class="form-label">希望勤務地<span class="required">必須</span></label>
                   <select id="location" name="location" class="form-input" required aria-required="true" aria-describedby="location-error">
                     <option value="" disabled selected>選択してください</option>
-                    <option value="秋葉原店">秋葉原店</option>
-                    <option value="秋葉原2号店">秋葉原2号店</option>
-                    <option value="中野店">中野店</option>
-                    <option value="池袋店">池袋店</option>
-                    <option value="大阪日本橋店">大阪日本橋店</option>
-                    <option value="大阪日本橋2号店">大阪日本橋2号店</option>
-                    <option value="トレレン秋葉原店">トレレン秋葉原店</option>
-                    <option value="横浜店">横浜店</option>
-                    <option value="大宮店（2026年夏〜秋OPEN予定）">大宮店（2026年9月NEW OPEN）</option>
-                    <option value="沖縄店（2026年夏〜秋OPEN予定）">沖縄店（2026年9月NEW OPEN）</option>
+                    <optgroup label="大阪">
+                      <option value="大阪日本橋店">大阪日本橋店</option>
+                      <option value="大阪日本橋2号店">大阪日本橋2号店</option>
+                    </optgroup>
+                    <optgroup label="東京">
+                      <option value="秋葉原店">秋葉原店</option>
+                      <option value="秋葉原2号店">秋葉原2号店</option>
+                      <option value="中野店">中野店</option>
+                      <option value="池袋店">池袋店</option>
+                      <option value="トレレン秋葉原店">トレレン秋葉原店</option>
+                    </optgroup>
+                    <optgroup label="神奈川・埼玉">
+                      <option value="横浜店">横浜店</option>
+                      <option value="大宮店（2026年夏〜秋OPEN予定）">大宮店（2026年9月NEW OPEN）</option>
+                    </optgroup>
+                    <optgroup label="沖縄">
+                      <option value="沖縄店（2026年夏〜秋OPEN予定）">沖縄店（2026年9月NEW OPEN）</option>
+                    </optgroup>
                     <optgroup label="2026年OPEN予定（オープニングスタッフ）">
                       <option value="心斎橋店（2026年秋口OPEN予定）">心斎橋店（秋口OPEN予定）</option>
                     </optgroup>
                     <option value="どこでも可">どこでも可</option>
                   </select>
+                  <p class="text-xs text-gray-600 mt-2">近い店舗が分からない場合は「どこでも可」をお選びください</p>
                   <p id="location-error" class="form-error" role="alert" hidden></p>
                 </div>
               </fieldset>
@@ -399,14 +410,14 @@
                 <!-- 志望動機・自己PR -->
                 <div class="entry-field stagger-item fade-in">
                   <label for="motivation" class="form-label">志望動機・自己PR</label>
-                  <p class="text-xs text-gray-400 mt-1 mb-2">※ 入力すると選考がスムーズです</p>
-                  <textarea id="motivation" name="motivation" class="form-input" rows="5" placeholder="ポケモンカードとの関わりや、応募のきっかけなどを教えてください"></textarea>
+                  <p class="text-xs text-gray-600 mt-1 mb-2">ひと言でOKです。ポケカをやったことがない方も大丈夫です</p>
+                  <textarea id="motivation" name="motivation" class="form-input" rows="5" placeholder="例）昔カードを集めていた／YouTubeで見て気になった／接客が好き　など"></textarea>
                 </div>
 
                 <!-- その他ご質問 -->
                 <div class="entry-field stagger-item fade-in">
                   <label for="questions" class="form-label">その他ご質問</label>
-                  <textarea id="questions" name="questions" class="form-input" rows="3" placeholder="ご質問やご要望があればご記入ください"></textarea>
+                  <textarea id="questions" name="questions" class="form-input" rows="3" placeholder="例）勤務できる曜日のご相談、髪型・服装のこと　など"></textarea>
                 </div>
               </fieldset>
 
@@ -432,6 +443,7 @@
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </button>
               </div>
+              <p class="text-xs text-gray-500 text-center mt-3">入力情報はSSL暗号化通信で安全に送信されます</p>
               <p class="lg:hidden text-xs text-gray-500 text-center leading-relaxed">入力が難しい方はお電話でも応募できます <a href="tel:03-4363-7710" class="font-num font-bold text-navy underline underline-offset-2">03-4363-7710</a>（年中無休 13:00〜20:00）</p>
 
             </form>
@@ -590,6 +602,6 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="js/main.js?v=20261012a"></script>
+  <script src="js/main.js?v=20261013a"></script>
 </body>
 </html>

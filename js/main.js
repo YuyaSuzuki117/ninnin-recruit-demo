@@ -322,13 +322,33 @@ function initFloatingCTA() {
     cta.classList.toggle('hidden-down', visible.size > 0);
   }, { rootMargin: '0px 0px -72px 0px', threshold: 0.15 });
   targets.forEach((el) => io.observe(el));
+
+  // #part-time / #full-time のどちらが見えているかで、応募ボタンの ?type= を付ける（判定できない間は付けない）
+  const btn = cta.querySelector('.floating-cta-btn');
+  const sections = [['#part-time', '?type=%E3%82%A2%E3%83%AB%E3%83%90%E3%82%A4%E3%83%88'], ['#full-time', '?type=%E6%AD%A3%E7%A4%BE%E5%93%A1']]
+    .map((s) => [document.querySelector(s[0]), s[1]]).filter((s) => s[0]);
+  if (!btn || !sections.length) return;
+  const baseHref = btn.getAttribute('href') || 'entry.html';
+  const seen = new Map();
+  const typeIo = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => seen.set(entry.target, entry.intersectionRatio));
+    let best = null;
+    sections.forEach((s) => {
+      const r = seen.get(s[0]) || 0;
+      if (r > 0 && (!best || r > best[0])) best = [r, s[1]];
+    });
+    btn.setAttribute('href', best ? baseHref.split('?')[0] + best[1] : baseHref);
+  }, { threshold: [0, 0.1, 0.25, 0.5, 0.75] });
+  sections.forEach((s) => typeIo.observe(s[0]));
 }
 
 /* --- Clarity 計測（応募ボタンのクリック位置・jobs ページの到達セクション） --- */
+function sendClarity(name) {
+  try { if (typeof window.clarity === 'function') window.clarity('event', name); } catch (e) { /* 計測失敗は握りつぶす */ }
+}
+
 function initClarityEvents() {
-  const send = (name) => {
-    try { if (typeof window.clarity === 'function') window.clarity('event', name); } catch (e) { /* 計測失敗は握りつぶす */ }
-  };
+  const send = sendClarity;
   document.addEventListener('click', (e) => {
     try {
       const a = e.target && e.target.closest ? e.target.closest('a[href*="entry.html"]') : null;
@@ -376,6 +396,15 @@ function initFormValidation() {
     }
   }
 
+  // --- Clarity 計測（PII なし・イベント名のみ） ---
+  form.addEventListener('focusin', () => sendClarity('form_start'), { once: true });
+  const erroredFields = new Set();
+  function trackFieldError(name) {
+    if (!name || erroredFields.has(name)) return;
+    erroredFields.add(name);
+    sendClarity('err_' + name);
+  }
+
   // --- textarea 自動伸長 ---
   form.querySelectorAll('textarea').forEach(ta => {
     ta.addEventListener('input', () => {
@@ -406,6 +435,8 @@ function initFormValidation() {
         v = v.normalize('NFKC').trim();
       } else if (name === 'furigana') {
         v = v.normalize('NFKC').replace(/[ァ-ヶ]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));
+      } else if (name === 'age') {
+        v = v.normalize('NFKC').trim();
       }
       if (v !== field.value) field.value = v;
     }
@@ -441,7 +472,7 @@ function initFormValidation() {
     // 年齢チェック
     else if (name === 'age' && value) {
       const age = parseInt(value, 10);
-      if (isNaN(age) || age > 99) {
+      if (!/^\d+$/.test(value) || isNaN(age) || age > 99) {
         error = '18〜99の数値を入力してください';
       } else if (age < 18) {
         error = '18歳以上の方が対象です';
@@ -460,6 +491,7 @@ function initFormValidation() {
 
     field.setAttribute('aria-invalid', 'true');
     field.classList.add('border-red-500');
+    trackFieldError(field.name || field.id);
 
     // 対応する error 要素があれば使う
     const errorId = field.id + '-error';
@@ -501,6 +533,7 @@ function initFormValidation() {
   // --- submit バリデーション ---
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    sendClarity('submit_try');
 
     let isValid = true;
     const errorMessages = [];
@@ -537,6 +570,7 @@ function initFormValidation() {
         isValid = false;
         if (errorEl) { errorEl.textContent = 'いずれかを選択してください'; errorEl.hidden = false; }
         if (firstRadio) firstRadio.setAttribute('aria-invalid', 'true');
+        trackFieldError(groupName);
         errorMessages.push(`${label}: いずれかを選択してください`);
       } else {
         if (errorEl) { errorEl.textContent = ''; errorEl.hidden = true; }
@@ -545,6 +579,7 @@ function initFormValidation() {
     });
 
     if (isValid) {
+      sendClarity('submit_valid');
       submitEntryForm();
     } else {
       // aria-live でエラー件数を通知
@@ -657,6 +692,7 @@ function initFormValidation() {
         liveRegion.textContent = '送信が完了しました。担当者より折り返しご連絡いたします。';
       }
     } else {
+      sendClarity('submit_fail');
       msg.classList.add('bg-red-50', 'border-red-200', 'text-red-800');
       msg.innerHTML = '<p class="font-bold text-lg mb-1">送信に失敗しました</p><p>お手数ですが時間をおいて再度お試しいただくか、<a href="tel:03-4363-7710" class="underline font-bold whitespace-nowrap">03-4363-7710</a>（年中無休 13:00〜20:00）までお電話ください。</p>';
       if (liveRegion) {
