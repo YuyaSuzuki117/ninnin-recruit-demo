@@ -3275,3 +3275,235 @@ textarea.form-input {
    ========================================================== */
 .breadcrumb a { color: var(--color-muted); transition: color 0.2s; }
 .breadcrumb a:hover { color: var(--pika-dark); }
+
+/* ==== top-page-polish 2026-10-12 ==== */
+:root { --pika-text: #7A5F00; }
+.sec-label { color: var(--pika-text); }
+.sec-label.sec-label--dark { color: var(--navy); }
+.sec-label.sec-label--light { color: rgba(255,203,5,0.6); }
+.sec-label.sec-label--on-navy { color: var(--pika-dark); }
+.yt-card-title { padding: 10px 12px 0; margin-bottom: 10px; }
+@media (max-width: 767px) {
+  .fade-in { transform: translateY(12px); transition-duration: .35s; }
+  .fade-in.visible { transform: translateY(0); }
+  .floating-cta a:first-child { animation: pulse-glow 3.4s ease-in-out 2; }
+}
+@media (min-width: 1024px) {
+  .hero-scroll-indicator { bottom: 12px; }
+}
+/* ==== /top-page-polish ==== */
+
+/* ==== entry-form-cvr 2026-10-12 ==== */
+/* select は初期状態(未選択)で赤くしない。aria-invalid="true" が付いたら既存どおり赤 */
+select.form-input:invalid:not([aria-invalid="true"]):not(:focus) {
+  border-color: var(--border);
+  background-color: #fff;
+  color: #6b7280;
+}
+/* エラー時のスクロール先が固定ヘッダーに隠れない */
+.form-input, .entry-radio, #privacy { scroll-margin-top: 96px; }
+/* エラー表示(main.js が fieldset / 同意 label に .has-error を付与) */
+fieldset.has-error .entry-radio { border-color: #DC2626; }
+label.has-error { outline: 2px solid #DC2626; outline-offset: 4px; }
+
+@media (max-width: 767px) {
+  /* セクション余白を詰めてフォーム開始位置を上げる */
+  body.page-entry .entry-form-section { padding-top: 20px; padding-bottom: 40px; }
+  body.page-entry .entry-form-section .entry-step-indicator { margin-bottom: 16px; }
+  /* 安心バナー: 3 列の小チップ(アイコン上・太字 1 行・サブ文は非表示) */
+  body.page-entry .entry-reassurance {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  body.page-entry .entry-reassurance .entry-reassurance__item {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    gap: 4px;
+    padding: 8px 4px;
+  }
+  body.page-entry .entry-reassurance .entry-reassurance__item svg { width: 20px; height: 20px; }
+  body.page-entry .entry-reassurance .entry-reassurance__item > div:first-child { width: 20px; height: 20px; }
+  body.page-entry .entry-reassurance .entry-reassurance__item p:first-child {
+    font-size: 11px;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+  body.page-entry .entry-reassurance .entry-reassurance__item p:last-child { display: none; }
+  /* スクロール連動アニメーションを使わず即表示 */
+  body.page-entry .fade-in,
+  body.page-entry .stagger-item,
+  body.page-entry .slide-left,
+  body.page-entry .slide-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+/* ==== /entry-form-cvr ==== */
+
+/* ==== entry-form-cvr-select-arrow-2 2026-10-12 ==== */
+/* 既存の invalid 系ルール(0,4,0)が background shorthand で矢印を消すため、body.page-entry を付けて select の矢印を戻す */
+body.page-entry select.form-input:invalid:not(:focus),
+body.page-entry select.form-input[aria-invalid="true"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23FFCB05' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px 8px;
+}
+/* ==== /entry-form-cvr-select-arrow-2 ==== */
+
+/* ==== jobs-lp 2026-10-12 ==== */
+.jp-text { line-break: strict; text-wrap: pretty; word-break: auto-phrase; }
+
+/* ヒーロー: 1行リード */
+.subpage-hero__lead {
+  margin: 6px 0 0;
+  color: rgba(255,255,255,0.84);
+  font-size: 13px;
+  line-height: 1.5;
+}
+@media (min-width: 1024px) {
+  .subpage-hero__lead { margin-top: 8px; font-size: 15px; }
+}
+
+/* 応募の入口: 2択カード（アルバイトが先頭） */
+.job-pick-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.job-pick {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-bottom: 3px solid var(--color-border);
+  padding: 14px 16px 14px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.job-pick--main {
+  border: 2px solid var(--pika);
+  border-bottom: 4px solid var(--pika);
+  box-shadow: 0 8px 24px rgba(27,42,74,0.14);
+}
+.job-pick__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.job-pick__tag {
+  flex-shrink: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+}
+.job-pick__tag--pika { background: var(--pika); color: #111; }
+.job-pick__tag--navy { background: var(--navy); color: #fff; }
+.job-pick__role {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: #111;
+}
+.job-pick__pay {
+  margin: 8px 0 0;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--navy);
+  letter-spacing: 0.01em;
+}
+.job-pick__cond {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333;
+}
+.job-pick__note {
+  display: block;
+  font-size: 11px;
+  color: #666;
+}
+.job-pick__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+.job-pick__btn {
+  flex: 1;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 20px;
+  font-size: 15px;
+}
+.job-pick__more {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 10px 2px;
+}
+.job-pick__more:hover { color: var(--pika-dark); }
+
+@media (min-width: 768px) {
+  .job-pick-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .job-pick { padding: 20px 24px 22px; }
+  .job-pick__role { font-size: 15px; }
+  .job-pick__pay { margin-top: 12px; font-size: 26px; }
+  .job-pick__cond { margin-top: 6px; font-size: 14px; }
+  .job-pick__note { font-size: 12px; }
+  .job-pick__actions { padding-top: 16px; }
+}
+
+/* スマホ: 2枚のカードとボタンを最初の画面（固定CTAバーの上）に収める */
+@media (max-width: 767px) {
+  .subpage-hero.subpage-hero--lp { padding: 14px 0 16px; }
+  section.job-pick-sec { padding-top: 14px; padding-bottom: 18px; }
+}
+
+/* 先輩の声への回遊リンク */
+.job-voice-link {
+  background: var(--cream);
+  text-align: center;
+  padding: 18px 16px 22px;
+}
+.job-voice-link a {
+  display: inline-block;
+  padding: 10px 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.job-voice-link a:hover { color: var(--pika-dark); }
+/* ==== /jobs-lp ==== */
+
+/* ==== integrator 2026-10-12 ==== */
+/* スマホの slide-left/right 初期 transform(±20px)が layout viewport を 394px に広げて横スクロールが出るため、body で clip（scroll container は作らない） */
+body { overflow-x: clip; }
+/* PC ではヒーローのタグ列と SCROLL 表示が重なるため非表示（SP は従来どおり） */
+@media (min-width: 1024px) { .hero-scroll-indicator { display: none; } }
+/* ==== /integrator ==== */
+
+/* ==== integrator-320 2026-10-12 ==== */
+/* 320px 幅では 3 列チップが収まらないので 1 列に落とす */
+@media (max-width: 340px) {
+  body.page-entry .entry-reassurance { grid-template-columns: 1fr; }
+}
+/* ==== /integrator-320 ==== */

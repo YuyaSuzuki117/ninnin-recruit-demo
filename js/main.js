@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initScrollAnimations();
   initFloatingCTA();
+  initClarityEvents();
   initFormValidation();
   initPageTopButton();
   initCountUpAnimated();
@@ -297,7 +298,7 @@ function initScrollAnimations() {
   elements.forEach(el => observer.observe(el));
 }
 
-/* --- フローティングCTA（スクロール方向で表示/非表示） --- */
+/* --- フローティングCTA（常時表示・本文CTA/フッターが見えている間だけ隠す） --- */
 function initFloatingCTA() {
   const cta = document.getElementById('floating-cta');
   if (!cta) return;
@@ -308,30 +309,44 @@ function initFloatingCTA() {
     return;
   }
 
-  let lastScroll = 0;
-  let ticking = false;
+  // 常時表示。本文内の主CTA・最終CTA・フッターが画面内にある間だけ隠す（重複表示を避ける）
+  if (!('IntersectionObserver' in window)) return;
+  const targets = document.querySelectorAll('.btn-primary-lg, .sec-cta, .site-footer, .btn-hero-primary, .btn-cta-large, .job-pick');
+  if (!targets.length) return;
+  const visible = new Set();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) visible.add(entry.target);
+      else visible.delete(entry.target);
+    });
+    cta.classList.toggle('hidden-down', visible.size > 0);
+  }, { rootMargin: '0px 0px -72px 0px', threshold: 0.15 });
+  targets.forEach((el) => io.observe(el));
+}
 
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const currentScroll = window.scrollY;
+/* --- Clarity 計測（応募ボタンのクリック位置・jobs ページの到達セクション） --- */
+function initClarityEvents() {
+  const send = (name) => {
+    try { if (typeof window.clarity === 'function') window.clarity('event', name); } catch (e) { /* 計測失敗は握りつぶす */ }
+  };
+  document.addEventListener('click', (e) => {
+    try {
+      const a = e.target && e.target.closest ? e.target.closest('a[href*="entry.html"]') : null;
+      if (a) send('cta_' + ((a.dataset && a.dataset.cta) || 'other'));
+    } catch (err) { /* 遷移は妨げない */ }
+  });
 
-        if (currentScroll < 200) {
-          cta.classList.add('hidden-down');
-        } else if (currentScroll > lastScroll + 5) {
-          // 下スクロール
-          cta.classList.add('hidden-down');
-        } else if (currentScroll < lastScroll - 5) {
-          // 上スクロール
-          cta.classList.remove('hidden-down');
-        }
-
-        lastScroll = currentScroll;
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
+  if (!('IntersectionObserver' in window) || !document.getElementById('full-time')) return;
+  const reach = [['#full-time', 'reach_fulltime'], ['#part-time', 'reach_parttime'], ['.sec-cta', 'reach_cta']];
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const hit = reach.find((r) => document.querySelector(r[0]) === entry.target);
+      if (hit) send(hit[1]);
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.1 });
+  reach.forEach((r) => { const el = document.querySelector(r[0]); if (el) io.observe(el); });
 }
 
 /* --- フォームバリデーション（アクセシビリティ対応） --- */
@@ -369,24 +384,47 @@ function initFormValidation() {
     });
   });
 
+  // --- 必須エラー文言（項目別） ---
+  const REQUIRED_MESSAGES = {
+    name: 'お名前を入力してください',
+    furigana: 'ふりがなを入力してください',
+    email: 'メールアドレスを入力してください',
+    phone: '電話番号を入力してください',
+    location: '希望勤務地を選択してください',
+    privacy: 'プライバシーポリシーへの同意が必要です',
+  };
+
   // --- 個別フィールドバリデーション（blur + submit 共通） ---
   function validateField(field) {
     const name = field.getAttribute('name') || field.id;
+    // 全角・カタカナ入力の正規化（blur・submit 共通。値を書き戻して表示も揃える）
+    if (field.type !== 'checkbox' && field.type !== 'radio' && field.type !== 'select-one' && typeof field.value === 'string' && field.value) {
+      let v = field.value;
+      if (field.type === 'tel' || name === 'phone') {
+        v = v.normalize('NFKC').replace(/[ー－―‐−]/g, '-');
+      } else if (field.type === 'email' || name === 'email') {
+        v = v.normalize('NFKC').trim();
+      } else if (name === 'furigana') {
+        v = v.normalize('NFKC').replace(/[ァ-ヶ]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));
+      }
+      if (v !== field.value) field.value = v;
+    }
     const value = field.value ? field.value.trim() : '';
     let error = '';
 
     // チェックボックスの必須判定
     if (field.type === 'checkbox') {
       if (field.hasAttribute('required') && !field.checked) {
-        error = 'この項目は必須です';
+        error = name === 'privacy' ? 'プライバシーポリシーへの同意が必要です' : 'この項目は必須です';
       }
+      if (field.closest('label')) field.closest('label').classList.toggle('has-error', !!error);
       showFieldError(field, error);
       return !error;
     }
 
     // 必須チェック
     if (field.hasAttribute('required') && !value) {
-      error = 'この項目は必須です';
+      error = REQUIRED_MESSAGES[name] || 'この項目は必須です';
     }
     // メール形式チェック
     else if ((field.type === 'email' || name === 'email') && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
@@ -403,8 +441,10 @@ function initFormValidation() {
     // 年齢チェック
     else if (name === 'age' && value) {
       const age = parseInt(value, 10);
-      if (isNaN(age) || age < 18 || age > 99) {
+      if (isNaN(age) || age > 99) {
         error = '18〜99の数値を入力してください';
+      } else if (age < 18) {
+        error = '18歳以上の方が対象です';
       }
     }
 
@@ -492,6 +532,7 @@ function initFormValidation() {
       const fs = firstRadio ? firstRadio.closest('fieldset') : null;
       const legend = fs ? fs.querySelector('legend') : null;
       const label = legend ? legend.textContent.replace('必須', '').trim() : (groupName || '選択項目');
+      if (fs) fs.classList.toggle('has-error', !checked);
       if (!checked) {
         isValid = false;
         if (errorEl) { errorEl.textContent = 'いずれかを選択してください'; errorEl.hidden = false; }
@@ -632,9 +673,21 @@ function initFormValidation() {
     msg.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
   }
 
+  // 希望職種を選んだらエラー表示を外す
+  form.querySelectorAll('input[type="radio"]').forEach((r) => {
+    r.addEventListener('change', () => {
+      const fs = r.closest('fieldset');
+      if (fs) fs.classList.remove('has-error');
+      const errorEl = document.getElementById(r.name + '-error');
+      if (errorEl) { errorEl.textContent = ''; errorEl.hidden = true; }
+      form.querySelectorAll('input[name="' + r.name + '"]').forEach((x) => x.removeAttribute('aria-invalid'));
+    });
+  });
+
   // リアルタイムでエラーをクリア（入力時）— エラー表示中のフィールドのみ再バリデーション
   form.addEventListener('input', (e) => {
     const field = e.target;
+    if (e.isComposing) return; // IME 変換中は正規化しない（確定後の input で再検証）
     if (field.getAttribute('aria-invalid') === 'true') {
       validateField(field);
     }
@@ -669,6 +722,7 @@ function initFormValidation() {
       el.classList.remove('border-red-500');
       el.removeAttribute('aria-invalid');
     });
+    form.querySelectorAll('.has-error').forEach(el => el.classList.remove('has-error'));
   }
 
   function getFieldLabel(field) {
