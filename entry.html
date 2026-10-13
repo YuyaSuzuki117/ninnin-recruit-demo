@@ -419,6 +419,22 @@
                   <label for="questions" class="form-label">その他ご質問</label>
                   <textarea id="questions" name="questions" class="form-input" rows="3" placeholder="例）勤務できる曜日のご相談、髪型・服装のこと　など"></textarea>
                 </div>
+
+                <!-- 何で知ったか（任意。value は対応メモの流入行にそのまま出る） -->
+                <div class="entry-field stagger-item fade-in">
+                  <label for="heard_from" class="form-label">この求人を何で知りましたか？</label>
+                  <select id="heard_from" name="heard_from" class="form-input">
+                    <option value="" selected>選択してください（任意）</option>
+                    <option value="Xの広告">X（旧Twitter）の広告</option>
+                    <option value="Xの投稿">X（旧Twitter）の投稿</option>
+                    <option value="Instagram・YouTube">Instagram・YouTube</option>
+                    <option value="公式サイト">ニンニンの公式サイト</option>
+                    <option value="店頭・スタッフ">店頭・スタッフから</option>
+                    <option value="友人・知人の紹介">友人・知人の紹介</option>
+                    <option value="検索">Google などの検索</option>
+                    <option value="その他">その他</option>
+                  </select>
+                </div>
               </fieldset>
 
               <!-- 区切り線 -->
@@ -602,6 +618,6 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="js/main.js?v=20261013b"></script>
+  <script src="js/main.js?v=20261014a"></script>
 </body>
 </html>

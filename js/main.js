@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
    応募時に Google フォーム「流入詳細」へ、そのまま読める日本語で送る（シートの対応メモ・通知メールに出る）。
    例: X広告（横浜）｜初回 10/13 横浜店ページに着地｜応募元 横浜店ページ
    先頭の「｜」までが流入元の名前（週次サマリはここで数える）。
+   応募フォームの「何で知りましたか」（任意）の回答は末尾に「｜本人回答 Xの広告」と付き、
+   自動の記録が不明のときだけ先頭の名前が「友人・知人の紹介（本人回答）」のように回答に替わる。
    公式サイトのバナーは utm_source=ninnin_official、X 広告は twclid で判定（UTM なしなら x/ad）、UTM なしは参照元ドメインで判定。
    保存するのは目印（UTM・参照元）のままで、名前への変換は attributionLabel() だけが行う。 --- */
 function attributionLabel(raw) {
@@ -702,7 +704,12 @@ function initFormValidation() {
       params.set(FORM_ENTRY.motivation, (fd.get('motivation') || '').toString());
       params.set(FORM_ENTRY.questions, (fd.get('questions') || '').toString());
       params.set(FORM_ENTRY.source, '求人サイト');
-      params.set(FORM_ENTRY.source_detail, recruitAttribution);
+      // 「何で知りましたか」（任意）の回答を流入詳細に足す。自動の記録が不明なら、回答を流入元の名前にする
+      const heard = (fd.get('heard_from') || '').toString();
+      const unknownSource = attributionLabel('直接');
+      params.set(FORM_ENTRY.source_detail, !heard ? recruitAttribution
+        : recruitAttribution.startsWith(unknownSource) ? heard + '（本人回答）' + recruitAttribution.slice(unknownSource.length)
+        : recruitAttribution + '｜本人回答 ' + heard);
       // Google フォームの formResponse は CORS 非対応 → no-cors（不透明応答）。
       // 応答内容は仕様上読めないため「サーバー側の受理可否」は直接判定できない。
       // → 必須項目（勤務地 select / 希望職種 radio 含む）を送信前に厳格検証し、
