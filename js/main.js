@@ -27,9 +27,38 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollProgress();
 });
 
-/* --- 流入経路の記録（ファーストタッチ90日保持 + 直近のUTM）---
-   応募時に Google フォーム「流入詳細」へ送る。例: first=x/post/omiya|lp=/recruit/|date=2026-09-23
-   公式TOPバナーは utm_source=ninnin_official、X 広告は twclid で判定（UTM なしなら x/ad）、UTM なしは参照元ドメインで判定。 --- */
+/* --- 流入経路の記録（ファーストタッチ90日保持 + 直近の流入）---
+   応募時に Google フォーム「流入詳細」へ、そのまま読める日本語で送る（シートの対応メモ・通知メールに出る）。
+   例: X広告（横浜）｜初回 10/13 横浜店ページに着地｜応募元 横浜店ページ
+   先頭の「｜」までが流入元の名前（週次サマリはここで数える）。
+   公式サイトのバナーは utm_source=ninnin_official、X 広告は twclid で判定（UTM なしなら x/ad）、UTM なしは参照元ドメインで判定。
+   保存するのは目印（UTM・参照元）のままで、名前への変換は attributionLabel() だけが行う。 --- */
+function attributionLabel(raw) {
+  const AD = { osaka: '大阪', yokohama: '横浜', toreren: 'トレレン秋葉原', akihabara: '秋葉原' };
+  const BANNER = { top_shop: 'TOP下バナー', kakaku: '買取価格表下バナー', header: 'ヘッダー' };
+  const tags = raw.replace(/\+twclid$/, '').split('/');
+  if (/\+twclid$/.test(raw) || (tags[0] === 'x' && tags[1] === 'ad')) return 'X広告' + (tags[2] ? '（' + (AD[tags[2]] || tags[2]) + '）' : '');
+  if (tags[0] === 'ninnin_official') return '公式サイト（' + (BANNER[tags[2]] || tags[2] || 'バナー') + '）';
+  if (tags[0] === 'x' && tags[1] === 'post') return 'X投稿' + (tags[2] ? '（' + tags[2] + '）' : '');
+  if (raw === '直接') return '不明（参照元なし）';
+  if (raw === '公式サイト') return '公式サイト（バナー以外）';
+  if (raw === 'X' || raw === 'com.twitter.android') return 'X（広告以外）';
+  const search = /^検索\(.*?(google|yahoo|bing)\./.exec(raw);
+  if (search) return '検索（' + { google: 'Google', yahoo: 'Yahoo!', bing: 'Bing' }[search[1]] + '）';
+  if (/instagram/i.test(raw)) return 'Instagram';
+  if (/youtube/i.test(raw)) return 'YouTube';
+  if (/facebook/i.test(raw)) return 'Facebook';
+  return raw;
+}
+
+function recruitPageName(path) {
+  const STORES = { akihabara: '秋葉原店', 'akihabara-2': '秋葉原2号店', nakano: '中野店', ikebukuro: '池袋店', 'osaka-nipponbashi': '大阪日本橋店', 'osaka-nipponbashi-2': '大阪日本橋2号店', 'toreren-akihabara': 'トレレン秋葉原店', yokohama: '横浜店', omiya: '大宮店', okinawa: '沖縄店', shinsaibashi: '心斎橋店' };
+  const file = path.split('/').pop().replace(/\.html$/, '');
+  const store = /^store-(.+)$/.exec(file);
+  if (store) return (STORES[store[1]] || store[1]) + 'ページ';
+  return { '': 'トップ', index: 'トップ', jobs: '募集要項', interview: 'インタビュー', entry: '応募フォーム' }[file] || file;
+}
+
 function captureAttribution() {
   const KEY = 'ninnin_recruit_attr';
   const TTL_MS = 90 * 24 * 60 * 60 * 1000;
@@ -40,35 +69,59 @@ function captureAttribution() {
   const utm = params.get('twclid') ? (utmTags ? utmTags + '+twclid' : 'x/ad') : utmTags;
 
   let refLabel = '直接';
+  let fromPage = ''; // 応募フォームを開く直前に見ていたサイト内のページ
   try {
     if (document.referrer) {
       const ref = new URL(document.referrer);
       const host = ref.hostname;
       // 求人サイト内の移動は流入ではない（本番は公式と同一ドメインなので /recruit 配下のみ内部扱い）
-      if (host === location.hostname && (host !== 'nin-nin-pokeka.jp' || ref.pathname.indexOf('/recruit') === 0)) refLabel = '';
+      if (host === location.hostname && (host !== 'nin-nin-pokeka.jp' || ref.pathname.indexOf('/recruit') === 0)) {
+        refLabel = '';
+        if (/entry\.html$/.test(location.pathname)) fromPage = ref.pathname;
+      }
       else if (host === 'nin-nin-pokeka.jp') refLabel = '公式サイト';
-      else if (/(^|\.)(t\.co|x\.com|twitter\.com)$/.test(host)) refLabel = 'X';
+      else if (/(^|\.)(t\.co|x\.com|twitter\.com)$|^com\.twitter\.android$/.test(host)) refLabel = 'X';
       else if (/(^|\.)(google|yahoo|bing)\./.test(host)) refLabel = '検索(' + host + ')';
       else refLabel = host;
+    } else {
+      // 参照元を渡さないアプリ内ブラウザは、UA に出るアプリ名で補う
+      const ua = navigator.userAgent;
+      if (/Twitter for iP|TwitterAndroid/.test(ua)) refLabel = 'X';
+      else if (/\bLine\//.test(ua)) refLabel = 'LINE';
+      else if (/Instagram/.test(ua)) refLabel = 'Instagram';
     }
   } catch (e) { /* 参照元が読めなければ直接扱い */ }
 
+  const today = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
   let store = null;
   try {
     store = JSON.parse(localStorage.getItem(KEY) || 'null');
     if (store && Date.now() - store.savedAt > TTL_MS) store = null;
   } catch (e) { store = null; }
   if (!store && (utm || refLabel)) {
-    store = { first: utm || refLabel, lp: location.pathname, date: new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10), savedAt: Date.now() };
+    store = { first: utm || refLabel, lp: location.pathname, date: today, savedAt: Date.now() };
   }
-  if (store && utm) store.last = utm;
+  // 直近の流入（参照元なしの再訪では上書きしない）
+  const touch = utm || (refLabel !== '直接' ? refLabel : '');
+  if (store && touch) { store.last = touch; store.lastDate = today; }
   if (store) {
-    try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { /* 保存不可でも継続 */ }
+    try {
+      // 訪問回数: ブラウザを開き直すごとに 1 回
+      if (!sessionStorage.getItem(KEY)) { sessionStorage.setItem(KEY, '1'); store.visits = (store.visits || 0) + 1; }
+      localStorage.setItem(KEY, JSON.stringify(store));
+    } catch (e) { /* 保存不可でも継続 */ }
   }
-  if (!store) return '直接';
-  const parts = ['first=' + store.first, 'lp=' + store.lp, 'date=' + store.date];
-  if (store.last && store.last !== store.first) parts.push('last=' + store.last);
-  return parts.join('|').slice(0, 200);
+  const unknown = attributionLabel('直接');
+  if (!store) return unknown;
+  const md = (d) => Number(d.slice(5, 7)) + '/' + Number(d.slice(8, 10));
+  const first = attributionLabel(store.first);
+  const last = store.last ? attributionLabel(store.last) : first;
+  // 先頭 = 流入元の名前。初回が不明で、後から分かった流入があればそちらを採る
+  const parts = [first === unknown ? last : first, '初回 ' + md(store.date) + ' ' + recruitPageName(store.lp) + 'に着地' + (first === unknown && last !== first ? '（参照元なし）' : '')];
+  if (last !== first) parts.push('再訪 ' + (store.lastDate ? md(store.lastDate) + ' ' : '') + last);
+  if (fromPage) parts.push('応募元 ' + recruitPageName(fromPage));
+  if (store.visits > 1) parts.push('訪問' + store.visits + '回');
+  return parts.join('｜').slice(0, 200);
 }
 
 /* --- iOS Safari スクロール位置引き継ぎ対策 ---
