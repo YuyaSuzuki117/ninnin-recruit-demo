@@ -133,6 +133,22 @@
     "note": "2026年9月にオープンした新しい店舗です。"
   },
   {
+    "slug": "osaka-nipponbashi-1-5",
+    "name": "大阪日本橋1.5号店",
+    "area": "大阪・日本橋",
+    "pref": "大阪府",
+    "city": "大阪市浪速区",
+    "street": "難波中2-4-3 村上ビル1F",
+    "postal": "556-0011",
+    "access": "南海なんば駅 徒歩5分以内",
+    "photo": "img/index/ph_nihonbashi15.webp",
+    "formValue": "大阪日本橋1.5号店",
+    "badge": "NEW OPEN",
+    "note": "2026年10月にオープンした新しい店舗です。",
+    "interview": "interview.html#osaka",
+    "interviewLabel": "大阪店 店長のインタビューを読む"
+  },
+  {
     "slug": "shinsaibashi",
     "name": "心斎橋店",
     "area": "大阪・心斎橋",

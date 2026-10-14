@@ -54,7 +54,7 @@ function attributionLabel(raw) {
 }
 
 function recruitPageName(path) {
-  const STORES = { akihabara: '秋葉原店', 'akihabara-2': '秋葉原2号店', nakano: '中野店', ikebukuro: '池袋店', 'osaka-nipponbashi': '大阪日本橋店', 'osaka-nipponbashi-2': '大阪日本橋2号店', 'toreren-akihabara': 'トレレン秋葉原店', yokohama: '横浜店', omiya: '大宮店', okinawa: '沖縄店', shinsaibashi: '心斎橋店' };
+  const STORES = { akihabara: '秋葉原店', 'akihabara-2': '秋葉原2号店', nakano: '中野店', ikebukuro: '池袋店', 'osaka-nipponbashi': '大阪日本橋店', 'osaka-nipponbashi-2': '大阪日本橋2号店', 'toreren-akihabara': 'トレレン秋葉原店', yokohama: '横浜店', omiya: '大宮店', okinawa: '沖縄店', 'osaka-nipponbashi-1-5': '大阪日本橋1.5号店', shinsaibashi: '心斎橋店' };
   const file = path.split('/').pop().replace(/\.html$/, '');
   const store = /^store-(.+)$/.exec(file);
   if (store) return (STORES[store[1]] || store[1]) + 'ページ';
