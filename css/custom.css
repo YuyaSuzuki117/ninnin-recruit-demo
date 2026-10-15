@@ -377,8 +377,7 @@ strong { color: var(--body); }
 @media (min-width: 768px) {
   .hero-title { font-size: 40px; }
   .hero-chara { width: 400px; }
-  /* タブレットは本文の背面に残るので薄く（文字の読みやすさ優先） */
-  .hero-visual { opacity: 0.18; right: 8%; }
+  .hero-visual { opacity: 0.5; right: 8%; }
 }
 
 @media (min-width: 1024px) {
@@ -3163,9 +3162,13 @@ select.form-input {
     min-height: 75vh;
   }
 
-  /* スマホはキャラが本文に重なって読みにくいので出さない（ロゴに同じキャラがいる・2026-10-15） */
+  /* 背景のニンジャは消さない（鈴木さん指示・2026-10-15） */
   .hero-visual {
-    display: none;
+    right: -10%;
+    opacity: 0.35;
+  }
+  .hero-chara {
+    width: 220px;
   }
   .hero-inner {
     flex-direction: column;
