@@ -48,7 +48,7 @@ const posting = (base, s) => ({
   jobLocation: place(s),
   url: `${SITE}store-${s.slug}.html`,
   applicationContact: { ...base.applicationContact, url: `${SITE}entry.html` },
-  description: `${base.description} 勤務地はニンニン ${s.name}（${s.access}）です。`,
+  description: `${base.description}<p>勤務地はニンニン ${s.name}（${s.access}）です。</p>`,
 })
 
 const storeLinks = (current) => stores.map((s) => (s.slug === current
@@ -73,7 +73,7 @@ const page = (s) => {
   const addr = s.street ? `${s.pref}${s.city}${s.street}` : ''
   const title = s.comingSoon
     ? `${full}（2026年秋口OPEN予定）のオープニングスタッフ求人｜ポケカ専門店ニンニン採用`
-    : `${full}のアルバイト・正社員求人｜ポケカ専門のカードショップ｜${s.access}`
+    : `${full}のアルバイト・正社員求人｜時給1,400円〜｜ポケカ専門カードショップ｜${s.access}`
   // 求職者の検索語（「カードショップ バイト」「トレカ 求人」）も入れる
   const desc = s.comingSoon
     ? `ポケモンカード専門のカードショップ「ニンニン」の${s.name}は2026年秋口にオープン予定。オープニングスタッフ（アルバイト・正社員）の募集を予定しています。未経験歓迎、ポケカの知識は入社後に学べます。`
@@ -82,7 +82,7 @@ const page = (s) => {
   const loc = `&location=${encodeURIComponent(s.formValue)}`
   const breadcrumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'ホーム', item: `${SITE}` },
-    { '@type': 'ListItem', position: 2, name: '店舗一覧', item: `${SITE}index.html#stores` },
+    { '@type': 'ListItem', position: 2, name: '店舗一覧', item: `${SITE}#stores` },
     { '@type': 'ListItem', position: 3, name: full, item: url },
   ] }
   const ldBlocks = [breadcrumb, ...(s.comingSoon ? [] : [posting(jobFull, s), posting(jobPart, s)])]
@@ -183,7 +183,7 @@ const page = (s) => {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(desc)}">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="${s.comingSoon ? 'noindex, follow' : 'index, follow'}">
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#0B1628">
   <link rel="canonical" href="https://nin-nin-pokeka.jp/recruit/store-${s.slug}.html">
@@ -196,13 +196,13 @@ const page = (s) => {
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="ニンニン採用情報">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:image" content="${SITE}img/ogp.png">
+  <meta property="og:image" content="${SITE}img/ogp.png?v=20261015">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${esc(title)}">
   <meta name="twitter:description" content="${esc(desc)}">
-  <meta name="twitter:image" content="${SITE}img/ogp.png">
+  <meta name="twitter:image" content="${SITE}img/ogp.png?v=20261015">
 
 ${headCommon}
 
@@ -230,7 +230,7 @@ ${bodyTop}
   <!-- ページヘッダー -->
   <div class="subpage-hero subpage-hero--lp">
     <div class="particle-container" aria-hidden="true"></div>
-    <span class="sec-bg-num sec-bg-num--right" data-parallax-speed="-0.3" aria-hidden="true">STORE</span>
+    <span class="sec-bg-num sec-bg-num--right" aria-hidden="true">STORE</span>
     <div class="max-w-[1140px] mx-auto px-4 lg:px-6 subpage-hero__content">
       <div class="flex items-center gap-4">
         <div class="w-1 h-10 bg-pika flex-shrink-0"></div>
@@ -309,7 +309,8 @@ console.log(`wrote ${stores.length} store pages`)
 // sitemap.xml: 店舗 URL を差し替え（<!-- stores --> 〜 <!-- /stores --> の間）
 const today = new Date().toISOString().slice(0, 10)
 const sm = read('sitemap.xml')
-const block = stores.map((s) => `  <url>\n    <loc>${SITE}store-${s.slug}.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`).join('\n')
+// OPEN 前（comingSoon）の店舗は noindex なので sitemap に載せない
+const block = stores.filter((s) => !s.comingSoon).map((s) => `  <url>\n    <loc>${SITE}store-${s.slug}.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`).join('\n')
 const next = sm.includes('<!-- stores -->')
   ? sm.replace(/<!-- stores -->[\s\S]*?<!-- \/stores -->/, `<!-- stores -->\n${block}\n  <!-- /stores -->`)
   : sm.replace('</urlset>', `  <!-- stores -->\n${block}\n  <!-- /stores -->\n</urlset>`)

@@ -52,7 +52,7 @@ ninnin-recruit-demo/
 
 **テックスタック:**
 - HTML5 + Tailwind CSS（事前ビルド `css/tailwind.css`・`npm run build:css`）+ Custom CSS + Vanilla JS
-- フォント: Google Fonts (Zen Kaku Gothic New, Noto Sans JP, Sora)
+- フォント: Google Fonts は Zen Kaku Gothic New（700/900・見出し）と Sora（数字）だけ。本文は端末の日本語フォント（2026-10-15 に Noto Sans JP の Web フォントを外した・広告流入の 9 割がスマホのため）
 - デプロイ: GitHub Pages (master push)
 
 **カラーパレット（`:root` CSS変数）:**
@@ -76,7 +76,7 @@ ninnin-recruit-demo/
 | 変数名 | フォント | 用途 |
 |--------|---------|------|
 | `--font-heading` | Zen Kaku Gothic New | 見出し（font-weight: 900） |
-| `--font-body` | Noto Sans JP | 本文 |
+| `--font-body` | 端末の日本語フォント（ヒラギノ / Noto Sans CJK / メイリオ） | 本文 |
 | `--font-num` | Sora | 数字・英字ラベル |
 
 **ブレイクポイント:**
@@ -108,11 +108,10 @@ ninnin-recruit-demo/
 - `prefers-reduced-motion` を必ず尊重（アニメーション・スクロール）
 - Intersection Observer パターンでスクロール連動処理
 - `{ passive: true }` でスクロールイベントを登録
-- **現在の init 関数一覧（16個）:**
+- **現在の init 関数一覧（14個・2026-10-15 にパララックス/カードチルト/パーティクル/カウントアップを削除）:**
   `initStickyHeader`, `initMobileMenu`, `initSmoothScroll`, `initScrollAnimations`,
-  `initFloatingCTA`, `initFormValidation`, `initPageTopButton`, `initCountUpAnimated`,
-  `initParallax`, `initCardTilt`, `initStaggerReveal`, `initMagneticButtons`,
-  `initFloatingParticles`, `initFAQAccordion`, `initActiveNavHighlight`, `initScrollProgress`
+  `initFloatingCTA`, `initClarityEvents`, `initTelTracking`, `initFormValidation`, `initPageTopButton`,
+  `initStaggerReveal`, `initMagneticButtons`, `initFAQAccordion`, `initActiveNavHighlight`, `initScrollProgress`
 
 ## §6 SEO & アクセシビリティ
 
