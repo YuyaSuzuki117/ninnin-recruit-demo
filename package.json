@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "sharp": "^0.34.5"
+  },
+  "scripts": {
+    "build:css": "npx -y tailwindcss@3.4.17 -c tailwind.config.js -i css/tailwind.src.css -o css/tailwind.css --minify"
   }
 }

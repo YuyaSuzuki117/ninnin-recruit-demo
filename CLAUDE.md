@@ -20,10 +20,11 @@
 ## §2 鉄のルール
 1. **HTML Valid:** `<!DOCTYPE html>`, `<html lang="ja">`, 適切な `<head>` メタ情報を必ず含める。閉じタグ漏れ禁止。
 2. **Tailwind + Custom CSS 分離:**
-   - レイアウト・スペーシング → Tailwind ユーティリティクラス（CDN版）
+   - レイアウト・スペーシング → Tailwind ユーティリティクラス（事前ビルドの `css/tailwind.css`・2026-10-15 に CDN から切替）
    - ブランド固有スタイル・コンポーネント → `css/custom.css`（CSS変数 + BEMライクなクラス名）
-   - Tailwind の `tailwind.config` を変更したら**全4ページ**の `<script>` を同期すること
-3. **JS 1ファイル集約:** JavaScript は `js/main.js` に集約。外部ライブラリ追加禁止（Tailwind CDN を除く）。
+   - HTML / main.js / build-stores.mjs で**新しい Tailwind クラスを使ったら `npm run build:css` で作り直し**、全ページの `tailwind.css?v=` を上げる（作り直さないとそのクラスは効かない）。テーマ設定は `tailwind.config.js`
+   - `tailwind.css` の link は `custom.css` の**後ろ**に置く（CDN 時代と同じ優先順位）
+3. **JS 1ファイル集約:** JavaScript は `js/main.js` に集約。外部ライブラリ追加禁止。
 4. **4ページ統一:** ヘッダー・フッター・ナビゲーション・フローティングCTA は4ページで完全同一にすること。
 5. **画像参照:** 画像は `img/` ディレクトリから参照。存在しない画像パスを書かない。プレースホルダーは `https://placehold.co/` を使用。
 6. **言語:** 思考・説明・報告は全て日本語。コミットメッセージのみ英語（feat/fix/chore 等のプレフィクス付き）。
@@ -50,7 +51,7 @@ ninnin-recruit-demo/
 ## §4 テックスタック & デザイントークン
 
 **テックスタック:**
-- HTML5 + Tailwind CSS (CDN) + Custom CSS + Vanilla JS
+- HTML5 + Tailwind CSS（事前ビルド `css/tailwind.css`・`npm run build:css`）+ Custom CSS + Vanilla JS
 - フォント: Google Fonts (Zen Kaku Gothic New, Noto Sans JP, Sora)
 - デプロイ: GitHub Pages (master push)
 

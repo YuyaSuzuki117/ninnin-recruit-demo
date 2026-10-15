@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initFloatingCTA();
   initClarityEvents();
+  initTelTracking();
   initFormValidation();
   initPageTopButton();
   initCountUpAnimated();
@@ -422,6 +423,28 @@ function initClarityEvents() {
     });
   }, { threshold: 0.1 });
   reach.forEach((r) => { const el = document.querySelector(r[0]); if (el) io.observe(el); });
+}
+
+/* --- 電話ボタンのタップ計測 ---
+   tel: リンクは通信が起きずアクセスログに残らないので、タップ時に img/t.gif を読みに行かせて記録する。
+   ログの例: GET /recruit/img/t.gif?ev=tel&pos=floating&pg=jobs&src=X広告 （集計は tmp/ninnin-yokohama/access-log-agg.mjs）
+   pos = floating（画面下の固定ボタン）/ menu（スマホのメニュー内）/ cta（ページ下の応募案内）/ header（PC のヘッダー）/ inline（本文中）
+   電話アプリへ切り替わってもページは閉じないので、画像の読み込みで足りる --- */
+function initTelTracking() {
+  document.addEventListener('click', (e) => {
+    try {
+      const a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
+      if (!a) return;
+      const pos = a.classList.contains('floating-cta-phone') ? 'floating'
+        : a.classList.contains('mobile-menu__phone') ? 'menu'
+        : a.classList.contains('cta-phone') ? 'cta'
+        : a.closest('header') ? 'header' : 'inline';
+      const pg = location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
+      sendClarity('tel_' + pos);
+      new Image().src = 'img/t.gif?ev=tel&pos=' + pos + '&pg=' + encodeURIComponent(pg)
+        + '&src=' + encodeURIComponent(String(recruitAttribution).split('｜')[0]) + '&r=' + Date.now();
+    } catch (err) { /* 発信は妨げない */ }
+  });
 }
 
 /* --- フォームバリデーション（アクセシビリティ対応） --- */

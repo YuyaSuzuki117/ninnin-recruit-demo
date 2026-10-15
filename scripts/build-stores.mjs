@@ -73,10 +73,11 @@ const page = (s) => {
   const addr = s.street ? `${s.pref}${s.city}${s.street}` : ''
   const title = s.comingSoon
     ? `${full}（2026年秋口OPEN予定）のオープニングスタッフ求人｜ポケカ専門店ニンニン採用`
-    : `${full}のアルバイト・正社員求人｜ポケカ専門店｜${s.access}`
+    : `${full}のアルバイト・正社員求人｜ポケカ専門のカードショップ｜${s.access}`
+  // 求職者の検索語（「カードショップ バイト」「トレカ 求人」）も入れる
   const desc = s.comingSoon
-    ? `ポケモンカード専門店ニンニンの${s.name}は2026年秋口にオープン予定。オープニングスタッフ（アルバイト・正社員）の募集を予定しています。未経験歓迎、ポケカの知識は入社後に学べます。`
-    : `ポケモンカード専門店ニンニン${s.name}（${addr}・${s.access}）の求人。アルバイトは時給1,400〜1,500円、正社員は月給25万円〜50万円。未経験歓迎、ポケカの知識は入社後に学べます。`
+    ? `ポケモンカード専門のカードショップ「ニンニン」の${s.name}は2026年秋口にオープン予定。オープニングスタッフ（アルバイト・正社員）の募集を予定しています。未経験歓迎、ポケカの知識は入社後に学べます。`
+    : `ポケモンカード専門のカードショップ「ニンニン」${s.name}（${addr}・${s.access}）のトレカ販売・買取スタッフ求人。アルバイトは時給1,400〜1,500円、正社員は月給25万円〜50万円。未経験歓迎、履歴書は面接時でOK。`
   const url = `${SITE}store-${s.slug}.html`
   const loc = `&location=${encodeURIComponent(s.formValue)}`
   const breadcrumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
@@ -134,7 +135,7 @@ const page = (s) => {
         <div>
           <p class="sec-label">STORE</p>
           <h2 id="store-info-title" class="font-heading font-bold text-2xl lg:text-3xl text-gray-900 mb-4">${full}について</h2>
-          <p class="jp-text text-gray-700 leading-relaxed mb-5">${s.area}でポケカのアルバイト・正社員を探している方へ。${full}は${s.comingSoon ? '2026年秋口にオープン予定の' : `${s.access}の`}ポケモンカード専門店です。${s.comingSoon || !s.note ? '' : s.note}カードの販売・買取・査定、オリパの企画、対戦スペースの運営など、お客様の「好き」を支える仕事をお任せします。</p>
+          <p class="jp-text text-gray-700 leading-relaxed mb-5">${s.area}でポケカ・トレカのカードショップのアルバイトや正社員を探している方へ。${full}は${s.comingSoon ? '2026年秋口にオープン予定の' : `${s.access}の`}ポケモンカード専門店です。${s.comingSoon || !s.note ? '' : s.note}カードの販売・買取・査定、オリパの企画、対戦スペースの運営など、お客様の「好き」を支える仕事をお任せします。</p>
           <dl class="store-dl">
             <dt>店舗名</dt><dd>${full}</dd>
             ${addr ? `<dt>住所</dt><dd>${addr}${mapUrl ? `<br><a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="store-dl__map">Googleマップで見る</a>` : ''}</dd>` : ''}

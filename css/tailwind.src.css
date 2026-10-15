@@ -1,0 +1,4 @@
+/* Tailwind の入力。出力は css/tailwind.css（npm run build:css）。直接編集しない */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
