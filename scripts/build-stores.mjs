@@ -1,7 +1,7 @@
 // 店舗別求人ページ生成: data/stores.json → store-<slug>.html
 // ヘッダー・フッター・フローティング CTA・head の共通部分・募集条件テーブル・JobPosting の雛形は jobs.html から切り出す（4 ページ統一を保つ）
 // 使い方: node scripts/build-stores.mjs   （repo 直下で実行。sitemap.xml の店舗 URL も更新する）
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -79,6 +79,8 @@ const page = (s) => {
     ? `ポケモンカード専門のカードショップ「ニンニン」の${s.name}は2026年秋口にオープン予定。オープニングスタッフ（アルバイト・正社員）の募集を予定しています。未経験歓迎、ポケカの知識は入社後に学べます。`
     : `ポケモンカード専門のカードショップ「ニンニン」${s.name}（${addr}・${s.access}）のトレカ販売・買取スタッフ求人。アルバイトは時給1,400〜1,500円、正社員は月給25万円〜50万円。未経験歓迎、履歴書は面接時でOK。`
   const url = `${SITE}store-${s.slug}.html`
+  // X の投稿にリンクを貼ったときのカード画像: 店舗ごとの絵（tmp/ninnin-yokohama/ogp-store-render.mjs で描く）が無ければ共通の ogp.png
+  const ogImage = existsSync(join(ROOT, `img/ogp/store-${s.slug}.jpg`)) ? `${SITE}img/ogp/store-${s.slug}.jpg?v=20261024` : `${SITE}img/ogp.png?v=20261015`
   const loc = `&location=${encodeURIComponent(s.formValue)}`
   const breadcrumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'ホーム', item: `${SITE}` },
@@ -196,13 +198,13 @@ const page = (s) => {
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="ニンニン採用情報">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:image" content="${SITE}img/ogp.png?v=20261015">
+  <meta property="og:image" content="${ogImage}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${esc(title)}">
   <meta name="twitter:description" content="${esc(desc)}">
-  <meta name="twitter:image" content="${SITE}img/ogp.png?v=20261015">
+  <meta name="twitter:image" content="${ogImage}">
 
 ${headCommon}
 

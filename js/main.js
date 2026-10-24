@@ -4,6 +4,9 @@
    アクセシビリティ対応
    ============================================ */
 
+// 店舗ページの slug → 店名（流入記録のページ名・店舗 X 投稿の名前に使う。captureAttribution() より前に定義する）
+const RECRUIT_STORES = { akihabara: '秋葉原店', 'akihabara-2': '秋葉原2号店', nakano: '中野店', ikebukuro: '池袋店', 'osaka-nipponbashi': '大阪日本橋店', 'osaka-nipponbashi-2': '大阪日本橋2号店', 'toreren-akihabara': 'トレレン秋葉原店', yokohama: '横浜店', omiya: '大宮店', okinawa: '沖縄店', 'osaka-nipponbashi-1-5': '大阪日本橋1.5号店', shinsaibashi: '心斎橋店' };
+
 initScrollResetOnNavigate();
 const recruitAttribution = captureAttribution();
 
@@ -31,14 +34,22 @@ document.addEventListener('DOMContentLoaded', () => {
    応募フォームの「何で知りましたか」（任意）の回答は末尾に「｜本人回答 Xの広告」と付き、
    自動の記録が不明のときだけ先頭の名前が「友人・知人の紹介（本人回答）」のように回答に替わる。
    公式サイトのバナーは utm_source=ninnin_official、X 広告は twclid で判定（UTM なしなら x/ad）、UTM なしは参照元ドメインで判定。
+   店舗 X の通常投稿のリンクは utm_source=x&utm_medium=post&utm_campaign=<店舗ページの slug>&utm_content=<投稿の目印> → 「X投稿（大阪日本橋店・1026）」。
+   同じ投稿を宣伝（Quick promote 等）に回すとクリックに twclid が付くので「X広告（…・投稿の宣伝）」になり、広告に数える。
    保存するのは目印（UTM・参照元）のままで、名前への変換は attributionLabel() だけが行う。 --- */
 function attributionLabel(raw) {
-  const AD = { osaka: '大阪', yokohama: '横浜', toreren: 'トレレン秋葉原', akihabara: '秋葉原' };
+  const AD = { osaka: '大阪', yokohama: '横浜', omiya: '大宮', toreren: 'トレレン秋葉原', akihabara: '秋葉原' };
   const BANNER = { top_shop: 'TOP下バナー', kakaku: '買取価格表下バナー', header: 'ヘッダー' };
   const tags = raw.replace(/\+twclid$/, '').split('/');
-  if (/\+twclid$/.test(raw) || (tags[0] === 'x' && tags[1] === 'ad')) return 'X広告' + (tags[2] ? '（' + (AD[tags[2]] || tags[2]) + '）' : '');
+  // 広告の utm_campaign はエリア名（osaka 等）、投稿は店舗ページの slug を店名にする
+  const place = tags[1] === 'post' ? RECRUIT_STORES[tags[2]] || AD[tags[2]] : AD[tags[2]] || RECRUIT_STORES[tags[2]];
+  const detail = tags[2] ? (place || tags[2]) + (tags[3] ? '・' + tags[3] : '') : '';
+  if (/\+twclid$/.test(raw) || (tags[0] === 'x' && tags[1] === 'ad')) {
+    if (tags[1] === 'post') return 'X広告（' + (detail ? detail + '・' : '') + '投稿の宣伝）';
+    return 'X広告' + (detail ? '（' + detail + '）' : '');
+  }
   if (tags[0] === 'ninnin_official') return '公式サイト（' + (BANNER[tags[2]] || tags[2] || 'バナー') + '）';
-  if (tags[0] === 'x' && tags[1] === 'post') return 'X投稿' + (tags[2] ? '（' + tags[2] + '）' : '');
+  if (tags[0] === 'x' && tags[1] === 'post') return 'X投稿' + (detail ? '（' + detail + '）' : '');
   if (raw === '直接') return '不明（参照元なし）';
   if (raw === '公式サイト') return '公式サイト（バナー以外）';
   if (raw === 'X' || raw === 'com.twitter.android') return 'X（広告以外）';
@@ -51,10 +62,9 @@ function attributionLabel(raw) {
 }
 
 function recruitPageName(path) {
-  const STORES = { akihabara: '秋葉原店', 'akihabara-2': '秋葉原2号店', nakano: '中野店', ikebukuro: '池袋店', 'osaka-nipponbashi': '大阪日本橋店', 'osaka-nipponbashi-2': '大阪日本橋2号店', 'toreren-akihabara': 'トレレン秋葉原店', yokohama: '横浜店', omiya: '大宮店', okinawa: '沖縄店', 'osaka-nipponbashi-1-5': '大阪日本橋1.5号店', shinsaibashi: '心斎橋店' };
   const file = path.split('/').pop().replace(/\.html$/, '');
   const store = /^store-(.+)$/.exec(file);
-  if (store) return (STORES[store[1]] || store[1]) + 'ページ';
+  if (store) return (RECRUIT_STORES[store[1]] || store[1]) + 'ページ';
   return { '': 'トップ', index: 'トップ', jobs: '募集要項', interview: 'インタビュー', entry: '応募フォーム' }[file] || file;
 }
 
@@ -63,7 +73,7 @@ function captureAttribution() {
   const TTL_MS = 90 * 24 * 60 * 60 * 1000;
   let params;
   try { params = new URLSearchParams(location.search); } catch (e) { params = new URLSearchParams(); }
-  const utmTags = ['utm_source', 'utm_medium', 'utm_campaign'].map((k) => params.get(k) || '').filter(Boolean).join('/');
+  const utmTags = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].map((k) => params.get(k) || '').filter(Boolean).join('/');
   // X 広告のクリックは着地 URL に twclid が付く。UTM の無い広告でも「x/ad」として残す
   const utm = params.get('twclid') ? (utmTags ? utmTags + '+twclid' : 'x/ad') : utmTags;
 
