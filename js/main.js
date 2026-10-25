@@ -6,6 +6,8 @@
 
 // 店舗ページの slug → 店名（流入記録のページ名・店舗 X 投稿の名前に使う。captureAttribution() より前に定義する）
 const RECRUIT_STORES = { akihabara: '秋葉原店', 'akihabara-2': '秋葉原2号店', nakano: '中野店', ikebukuro: '池袋店', 'osaka-nipponbashi': '大阪日本橋店', 'osaka-nipponbashi-2': '大阪日本橋2号店', 'toreren-akihabara': 'トレレン秋葉原店', yokohama: '横浜店', omiya: '大宮店', okinawa: '沖縄店', 'osaka-nipponbashi-1-5': '大阪日本橋1.5号店', shinsaibashi: '心斎橋店' };
+// AI の回答（ChatGPT 等）のリンクから来た人。ChatGPT はリンクに utm_source=chatgpt.com を付け、他は参照元のドメインで分かる
+const AI_SOURCES = { 'chatgpt.com': 'ChatGPT', 'chat.openai.com': 'ChatGPT', 'perplexity.ai': 'Perplexity', perplexity: 'Perplexity', 'gemini.google.com': 'Gemini', 'copilot.microsoft.com': 'Copilot', 'claude.ai': 'Claude' };
 
 initScrollResetOnNavigate();
 const recruitAttribution = captureAttribution();
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
    応募フォームの「何で知りましたか」（任意）の回答は末尾に「｜本人回答 Xの広告」と付き、
    自動の記録が不明のときだけ先頭の名前が「友人・知人の紹介（本人回答）」のように回答に替わる。
    公式サイトのバナーは utm_source=ninnin_official、X 広告は twclid で判定（UTM なしなら x/ad）、UTM なしは参照元ドメインで判定。
+   AI の回答からのリンクは「AI（ChatGPT）」のように数える（Gemini は google ドメインなので検索より先に判定）。
    店舗 X の通常投稿のリンクは utm_source=x&utm_medium=post&utm_campaign=<店舗ページの slug>&utm_content=<投稿の目印> → 「X投稿（大阪日本橋店・1026）」。
    同じ投稿を宣伝（Quick promote 等）に回すとクリックに twclid が付くので「X広告（…・投稿の宣伝）」になり、広告に数える。
    保存するのは目印（UTM・参照元）のままで、名前への変換は attributionLabel() だけが行う。 --- */
@@ -50,6 +53,7 @@ function attributionLabel(raw) {
   }
   if (tags[0] === 'ninnin_official') return '公式サイト（' + (BANNER[tags[2]] || tags[2] || 'バナー') + '）';
   if (tags[0] === 'x' && tags[1] === 'post') return 'X投稿' + (detail ? '（' + detail + '）' : '');
+  if (AI_SOURCES[tags[0]]) return 'AI（' + AI_SOURCES[tags[0]] + '）';
   if (raw === '直接') return '不明（参照元なし）';
   if (raw === '公式サイト') return '公式サイト（バナー以外）';
   if (raw === 'X' || raw === 'com.twitter.android') return 'X（広告以外）';
@@ -90,6 +94,7 @@ function captureAttribution() {
       }
       else if (host === 'nin-nin-pokeka.jp') refLabel = '公式サイト';
       else if (/(^|\.)(t\.co|x\.com|twitter\.com)$|^com\.twitter\.android$/.test(host)) refLabel = 'X';
+      else if (AI_SOURCES[host.replace(/^www\./, '')]) refLabel = host.replace(/^www\./, '');
       else if (/(^|\.)(google|yahoo|bing)\./.test(host)) refLabel = '検索(' + host + ')';
       else refLabel = host;
     } else {
