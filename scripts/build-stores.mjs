@@ -107,12 +107,14 @@ const page = (s) => {
             <span class="job-pick__role">店舗スタッフ（アルバイト）</span>
           </div>
           <p class="job-pick__pay font-num">時給1,400〜1,500円</p>
+          <p class="job-pick__step">試用期間 1,400円 → 本採用 1,500円（最短3ヶ月・最長1年）</p>
           <p class="job-pick__cond">平日 12:45〜20:15／土日祝 10:45〜20:15</p>
           <p class="job-pick__cond">週3日以上・通し勤務<span class="job-pick__note">高校生不可・学生は応相談・店舗により時短応相談</span></p>
           <div class="job-pick__actions">
             <a class="btn-primary job-pick__btn" data-cta="store-parttime" href="${typeParam.part}${loc}">${s.name}に応募する</a>
             <a class="job-pick__more" href="#part-time">詳細を見る ↓</a>
           </div>
+          <ul class="job-pick__perks" aria-label="待遇"><li>研修制度</li><li>制服貸与</li><li>正社員登用あり</li><li>交通費一部支給（上限あり）</li></ul>
           <p class="job-pick__assure">履歴書は面接時にご持参（応募時は不要）・3営業日以内にご連絡</p>
         </div>
         <div class="job-pick">
@@ -126,6 +128,7 @@ const page = (s) => {
             <a class="btn-primary job-pick__btn" data-cta="store-fulltime" href="${typeParam.full}${loc}">${s.name}に応募する</a>
             <a class="job-pick__more" href="#full-time">詳細を見る ↓</a>
           </div>
+          <ul class="job-pick__perks" aria-label="待遇"><li>社会保険完備</li><li>賞与年2回</li><li>昇給年1回</li><li>研修制度</li></ul>
           <p class="job-pick__assure">履歴書は面接時にご持参（応募時は不要）・3営業日以内にご連絡</p>
         </div>
       </div>`
@@ -239,7 +242,7 @@ ${bodyTop}
         <div>
           <p class="text-pika text-xs font-bold tracking-widest font-num mb-1">${s.area.toUpperCase()}</p>
           <h1 class="font-heading font-black text-2xl lg:text-3xl text-white tracking-wide">${s.comingSoon ? `${full}のオープニングスタッフ求人` : `${full}のアルバイト・正社員求人`}</h1>
-          <p class="subpage-hero__lead"><span class="whitespace-nowrap">ポケモンカード専門店｜</span><span class="whitespace-nowrap">${s.access}</span></p>
+          <p class="subpage-hero__lead"><span class="whitespace-nowrap">大好きなポケモンカードに囲まれて働ける｜</span><span class="whitespace-nowrap">${s.access}</span></p>
         </div>
       </div>
     </div>

@@ -3589,3 +3589,40 @@ body { overflow-x: clip; }
 .stagger-item > span > a[href^="store-"]:focus-visible {
   text-decoration-color: var(--pika-text);
 }
+
+/* ==== audit r4 2026-10-25 ==== */
+/* 2 択カード: 試用期間→本採用の時給と、既存の待遇をチップで（カードの中で「選ぶ理由」が分かるように） */
+.job-pick__step {
+  margin: 2px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #444;
+}
+.job-pick__perks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.job-pick__perks li {
+  padding: 2px 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--navy);
+  background: #FFF7CC;
+  border-radius: 999px;
+}
+.job-pick:not(.job-pick--main) .job-pick__perks li { background: #EEF1F6; }
+@media (min-width: 768px) {
+  .job-pick__step { font-size: 13px; }
+  .job-pick__perks li { font-size: 12.5px; }
+}
+/* entry（スマホ）: 見出し帯を細くして最初の入力欄を上げる。h1・パンくずは残す */
+@media (max-width: 767px) {
+  body.page-entry .subpage-hero { padding: 16px 0 18px; }
+  body.page-entry .subpage-hero h1 { font-size: 20px; }
+}
+/* ==== /audit r4 ==== */
