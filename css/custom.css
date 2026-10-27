@@ -3626,3 +3626,15 @@ body { overflow-x: clip; }
   body.page-entry .subpage-hero h1 { font-size: 20px; }
 }
 /* ==== /audit r4 ==== */
+/* ==== local seo 2026-10-28: 店舗ページの店長の声・お仕事ガイド ==== */
+.store-quote { margin: 0 0 20px; padding: 12px 16px; border-left: 4px solid var(--pika); background: #fff; }
+.store-quote p { margin: 0 0 6px; color: #333; line-height: 1.7; }
+.store-quote cite { font-style: normal; font-size: 13px; color: #666; }
+.store-quote cite a { color: var(--pika-text); text-decoration: underline; }
+.guide-summary { padding: 16px 18px; background: #FFF7CC; border: 1px solid #F0DF8A; }
+.guide-summary__ttl { margin: 0 0 8px; font-weight: 700; color: var(--navy); }
+.guide-list { margin: 0 0 16px; padding: 0; list-style: none; }
+.guide-list li { position: relative; padding-left: 1.2em; margin-bottom: 8px; line-height: 1.75; }
+.guide-list li::before { content: ""; position: absolute; left: 0.2em; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: var(--pika-dark); }
+.guide-summary .guide-list { margin-bottom: 0; }
+/* ==== /local seo 2026-10-28 ==== */

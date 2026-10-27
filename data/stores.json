@@ -7,12 +7,17 @@
     "city": "千代田区",
     "street": "外神田3-8-7 フジビル 2F",
     "postal": "101-0021",
-    "access": "JR秋葉原駅 徒歩3分",
+    "access": "末広町駅 徒歩1分・JR秋葉原駅 徒歩9分",
     "photo": "img/index/ph_akihabara.webp",
     "formValue": "秋葉原店",
     "badge": "本店",
     "interview": "interview.html#akihabara",
-    "interviewLabel": "秋葉原店 店長のインタビューを読む"
+    "interviewLabel": "秋葉原店 店長のインタビューを読む",
+    "stations": "東京メトロ銀座線 末広町駅 徒歩1分／JR山手線・京浜東北線・総武線 秋葉原駅 徒歩9分（つくばエクスプレス秋葉原駅も利用可）",
+    "x": "kaitori_ninnin",
+    "titles": "ポケモン",
+    "quote": "カード知識よりも大切なのは、お客様を楽しませたいという気持ちです。",
+    "quoteBy": "秋葉原店 店長"
   },
   {
     "slug": "akihabara-2",
@@ -22,11 +27,16 @@
     "city": "千代田区",
     "street": "外神田3丁目15 麻野ビル 2F",
     "postal": "101-0021",
-    "access": "JR秋葉原駅 徒歩5分",
+    "access": "末広町駅 徒歩2分・JR秋葉原駅 徒歩6分",
     "photo": "img/index/ph_akihabara2.webp",
     "formValue": "秋葉原2号店",
     "interview": "interview.html#akihabara",
-    "interviewLabel": "秋葉原店 店長のインタビューを読む"
+    "interviewLabel": "秋葉原店 店長のインタビューを読む",
+    "stations": "東京メトロ銀座線 末広町駅 徒歩2分／JR山手線・京浜東北線・総武線 秋葉原駅 徒歩6分（つくばエクスプレス秋葉原駅も利用可）",
+    "x": "ninnin_akiba2",
+    "titles": "ポケモン",
+    "quote": "カード知識よりも大切なのは、お客様を楽しませたいという気持ちです。",
+    "quoteBy": "秋葉原店 店長"
   },
   {
     "slug": "nakano",
@@ -38,7 +48,11 @@
     "postal": "164-0001",
     "access": "JR中野駅 徒歩3分",
     "photo": "img/index/ph_nakano.webp",
-    "formValue": "中野店"
+    "formValue": "中野店",
+    "stations": "JR中央線・総武線／東京メトロ東西線 中野駅",
+    "x": "nin_nin_toreca2",
+    "titles": "ポケモン／ワンピース",
+    "kind": "ポケモンカードとワンピースカードを扱うカードショップ"
   },
   {
     "slug": "ikebukuro",
@@ -50,7 +64,11 @@
     "postal": "170-0013",
     "access": "JR池袋駅 徒歩5分",
     "photo": "img/index/ph_ikebukuro.webp",
-    "formValue": "池袋店"
+    "formValue": "池袋店",
+    "stations": "JR・東京メトロ・西武・東武 池袋駅／東京メトロ有楽町線 東池袋駅 徒歩5分",
+    "x": "ninninikebukuro",
+    "titles": "ポケモン／遊戯王",
+    "kind": "ポケモンカードと遊戯王を扱うカードショップ"
   },
   {
     "slug": "osaka-nipponbashi",
@@ -64,7 +82,12 @@
     "photo": "img/index/ph_oosaka.webp",
     "formValue": "大阪日本橋店",
     "interview": "interview.html#osaka",
-    "interviewLabel": "大阪店 店長のインタビューを読む"
+    "interviewLabel": "大阪店 店長のインタビューを読む",
+    "stations": "南海本線・高野線 難波駅／Osaka Metro 堺筋線・千日前線 日本橋駅・近鉄日本橋駅 徒歩8分",
+    "x": "ninnin_osaka",
+    "titles": "ポケモン",
+    "quote": "大会運営や買取、SNS発信など幅広い仕事に関われるため、毎日変化があって飽きません。",
+    "quoteBy": "大阪店 店長"
   },
   {
     "slug": "osaka-nipponbashi-2",
@@ -78,7 +101,12 @@
     "photo": "img/index/ph_nihonbashi2.webp",
     "formValue": "大阪日本橋2号店",
     "interview": "interview.html#osaka",
-    "interviewLabel": "大阪店 店長のインタビューを読む"
+    "interviewLabel": "大阪店 店長のインタビューを読む",
+    "stations": "南海本線・高野線 難波駅／Osaka Metro 堺筋線 恵美須町駅 徒歩9分／Osaka Metro 御堂筋線 なんば駅 徒歩9分",
+    "x": "ninnnin_osaka2",
+    "titles": "ポケモン",
+    "quote": "大会運営や買取、SNS発信など幅広い仕事に関われるため、毎日変化があって飽きません。",
+    "quoteBy": "大阪店 店長"
   },
   {
     "slug": "toreren-akihabara",
@@ -88,11 +116,15 @@
     "city": "千代田区",
     "street": "外神田3-10-6 ホープビル5F",
     "postal": "101-0021",
-    "access": "JR秋葉原駅 徒歩5分",
+    "access": "末広町駅 徒歩3分・JR秋葉原駅 徒歩7分",
     "photo": "img/index/ph_toreren.webp",
     "formValue": "トレレン秋葉原店",
     "badge": "NEW",
-    "note": "トレカのレンタルスペースを併設した店舗です。"
+    "note": "トレカのレンタルスペースを併設した店舗です。",
+    "stations": "東京メトロ銀座線 末広町駅 徒歩3分／JR山手線・京浜東北線・総武線 秋葉原駅 徒歩7分（つくばエクスプレス秋葉原駅も利用可）",
+    "x": "treren_akiba",
+    "titles": "さまざまなタイトル",
+    "kind": "さまざまなタイトルのトレカを扱うカードショップ"
   },
   {
     "slug": "yokohama",
@@ -104,7 +136,11 @@
     "postal": "220-0005",
     "access": "JR横浜駅 西口 徒歩5分以内",
     "photo": "img/index/ph_yokohama.webp",
-    "formValue": "横浜店"
+    "formValue": "横浜店",
+    "stations": "JR・東急東横線・京急・相鉄・みなとみらい線・横浜市営地下鉄 横浜駅",
+    "x": "ninninyokohama",
+    "titles": "ポケモン",
+    "note": "2026年3月にグランドオープンした店舗です。"
   },
   {
     "slug": "omiya",
@@ -118,7 +154,10 @@
     "photo": "img/index/ph_omiya.webp",
     "formValue": "大宮店（2026年夏〜秋OPEN予定）",
     "badge": "NEW OPEN",
-    "note": "2026年9月にオープンした新しい店舗です。"
+    "note": "2026年9月にオープンした新しい店舗です。",
+    "stations": "JR各線・東武アーバンパークライン・ニューシャトル 大宮駅",
+    "x": "ninninomiya",
+    "titles": "ポケモン"
   },
   {
     "slug": "okinawa",
@@ -132,7 +171,10 @@
     "photo": "img/index/ph_okinawa.webp",
     "formValue": "沖縄店（2026年夏〜秋OPEN予定）",
     "badge": "NEW OPEN",
-    "note": "2026年9月にオープンした新しい店舗です。"
+    "note": "2026年9月にオープンした新しい店舗です。",
+    "stations": "ゆいレール 美栄橋駅／ゆいレール 牧志駅 徒歩11分",
+    "x": "ninnin_okinawa",
+    "titles": "ポケモン"
   },
   {
     "slug": "osaka-nipponbashi-1-5",
@@ -148,7 +190,12 @@
     "badge": "NEW OPEN",
     "note": "2026年10月にオープンした新しい店舗です。",
     "interview": "interview.html#osaka",
-    "interviewLabel": "大阪店 店長のインタビューを読む"
+    "interviewLabel": "大阪店 店長のインタビューを読む",
+    "stations": "南海本線・高野線 難波駅／Osaka Metro 堺筋線・千日前線 日本橋駅・近鉄日本橋駅 徒歩8分",
+    "x": "ninnihonbashi15",
+    "titles": "ポケモン",
+    "quote": "大会運営や買取、SNS発信など幅広い仕事に関われるため、毎日変化があって飽きません。",
+    "quoteBy": "大阪店 店長"
   },
   {
     "slug": "shinsaibashi",
