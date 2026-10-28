@@ -55,6 +55,7 @@ function attributionLabel(raw) {
   if (tags[0] === 'x' && tags[1] === 'post') return 'X投稿' + (detail ? '（' + detail + '）' : '');
   if (AI_SOURCES[tags[0]]) return 'AI（' + AI_SOURCES[tags[0]] + '）';
   if (raw === '直接') return '不明（参照元なし）';
+  if (raw === '公式サイト/TOP') return '公式サイト（TOPの店舗カード）';
   if (raw === '公式サイト') return '公式サイト（バナー以外）';
   if (raw === 'X' || raw === 'com.twitter.android') return 'X（広告以外）';
   const search = /^検索\(.*?(google|yahoo|bing)\./.exec(raw);
@@ -92,7 +93,8 @@ function captureAttribution() {
         refLabel = '';
         if (/entry\.html$/.test(location.pathname)) fromPage = ref.pathname;
       }
-      else if (host === 'nin-nin-pokeka.jp') refLabel = '公式サイト';
+      // 公式 TOP の店舗カードのリンクは UTM なし（検索の評価を店舗ページへ渡すため）なので、TOP からの参照元で見分ける
+      else if (host === 'nin-nin-pokeka.jp') refLabel = ref.pathname === '/' ? '公式サイト/TOP' : '公式サイト';
       else if (/(^|\.)(t\.co|x\.com|twitter\.com)$|^com\.twitter\.android$/.test(host)) refLabel = 'X';
       else if (AI_SOURCES[host.replace(/^www\./, '')]) refLabel = host.replace(/^www\./, '');
       else if (/(^|\.)(google|yahoo|bing)\./.test(host)) refLabel = '検索(' + host + ')';
