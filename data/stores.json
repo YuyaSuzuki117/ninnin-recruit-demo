@@ -198,6 +198,27 @@
     "quoteBy": "大阪店 店長"
   },
   {
+    "slug": "osaka-nipponbashi-2nd",
+    "name": "2nd遊戯王専門店",
+    "area": "大阪・日本橋",
+    "pref": "大阪府",
+    "city": "大阪市浪速区",
+    "street": "難波中2-4-3 村上ビル2F",
+    "postal": "556-0011",
+    "access": "南海なんば駅 徒歩5分以内",
+    "formValue": "2nd遊戯王専門店",
+    "badge": "11月OPEN",
+    "opening": "2026年11月OPEN",
+    "genre": "遊戯王",
+    "kind": "遊戯王専門のカードショップ",
+    "note": "2026年11月のオープンに向けて、オープニングスタッフを募集しています。同じビルの1Fには大阪日本橋1.5号店があります。",
+    "interview": "interview.html#osaka",
+    "interviewLabel": "大阪店 店長のインタビューを読む",
+    "stations": "南海本線・高野線 難波駅／Osaka Metro 堺筋線・千日前線 日本橋駅・近鉄日本橋駅 徒歩8分",
+    "x": "ninn2nd",
+    "titles": "遊戯王"
+  },
+  {
     "slug": "shinsaibashi",
     "name": "心斎橋店",
     "area": "大阪・心斎橋",

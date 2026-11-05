@@ -77,11 +77,11 @@ const page = (s) => {
   const addr = s.street ? `${s.pref}${s.city}${s.street}` : ''
   const title = s.comingSoon
     ? `${full}（2026年秋口OPEN予定）のオープニングスタッフ求人｜ポケカ専門店ニンニン採用`
-    : `${full}のアルバイト・正社員求人｜時給1,400円〜｜ポケカ・トレカのカードショップ｜${s.access.split('・')[0]}` // 駅が 2 つある店は title には最寄りだけ
+    : `${full}${s.opening ? 'のオープニングスタッフ求人' : 'のアルバイト・正社員求人'}｜時給1,400円〜｜ポケカ・トレカのカードショップ｜${s.access.split('・')[0]}` // 駅が 2 つある店は title には最寄りだけ
   // 求職者の検索語（「カードショップ バイト」「トレカ 求人」）も入れる
   const desc = s.comingSoon
     ? `ポケモンカード専門のカードショップ「ニンニン」の${s.name}は2026年秋口にオープン予定。オープニングスタッフ（アルバイト・正社員）の募集を予定しています。未経験歓迎、ポケカの知識は入社後に学べます。`
-    : `ポケモンカード専門のカードショップ「ニンニン」${s.name}（${addr}・${s.access}）のトレカ販売・買取スタッフ求人。アルバイトは時給1,400〜1,500円、正社員は月給25万円〜50万円。未経験歓迎、履歴書は面接時でOK。`
+    : `${s.opening ? `${s.opening}・オープニングスタッフ募集。` : ''}ポケモンカード専門のカードショップ「ニンニン」${s.name}（${addr}・${s.access}）のトレカ販売・買取スタッフ求人。アルバイトは時給1,400〜1,500円、正社員は月給25万円〜50万円。未経験歓迎、履歴書は面接時でOK。`
   const url = `${SITE}store-${s.slug}.html`
   // X の投稿にリンクを貼ったときのカード画像: 店舗ごとの絵（tmp/ninnin-yokohama/ogp-store-render.mjs で描く）が無ければ共通の ogp.png
   const ogImage = existsSync(join(ROOT, `img/ogp/store-${s.slug}.jpg`)) ? `${SITE}img/ogp/store-${s.slug}.jpg?v=20261024` : `${SITE}img/ogp.png?v=20261015`
@@ -161,7 +161,7 @@ const page = (s) => {
             ${s.stations ? `<dt>周辺の駅</dt><dd>${s.stations}${s.stations.includes('徒歩') ? '<br><span class="text-xs text-gray-500">※徒歩時間はGoogleマップの徒歩ルートによる目安</span>' : ''}</dd>` : ''}
             ${s.titles ? `<dt>取扱タイトル</dt><dd>${s.titles}</dd>` : ''}
             ${s.x ? `<dt>店舗の公式X</dt><dd><a href="https://x.com/${s.x}" target="_blank" rel="noopener noreferrer" class="store-dl__map">@${s.x}</a>（店内の様子・入荷情報）</dd>` : ''}
-            <dt>募集職種</dt><dd>${s.comingSoon ? 'オープニングスタッフ（アルバイト・正社員）募集予定' : '店舗スタッフ（アルバイト・正社員）'}</dd>
+            <dt>募集職種</dt><dd>${s.comingSoon ? 'オープニングスタッフ（アルバイト・正社員）募集予定' : s.opening ? 'オープニングスタッフ（アルバイト・正社員）' : '店舗スタッフ（アルバイト・正社員）'}</dd>
             <dt>募集状況</dt><dd>${s.comingSoon ? '募集予定' : `募集中（${updated} 更新）`}</dd>
             ${siblings ? `<dt>近くの店舗</dt><dd>${siblings}<br><span class="text-xs text-gray-500">面接で複数の店舗を希望として伝えられます</span></dd>` : ''}
             <dt>採用ダイヤル</dt><dd><a href="tel:03-4363-7710" class="font-num">03-4363-7710</a>（年中無休 13:00〜20:00）</dd>
@@ -259,7 +259,7 @@ ${bodyTop}
         <div class="w-1 h-10 bg-pika flex-shrink-0"></div>
         <div>
           <p class="text-pika text-xs font-bold tracking-widest font-num mb-1">${s.area.toUpperCase()}</p>
-          <h1 class="font-heading font-black text-2xl lg:text-3xl text-white tracking-wide">${s.comingSoon ? `${full}のオープニングスタッフ求人` : `${full}のアルバイト・正社員求人`}</h1>
+          <h1 class="font-heading font-black text-2xl lg:text-3xl text-white tracking-wide">${s.comingSoon || s.opening ? `${full}のオープニングスタッフ求人` : `${full}のアルバイト・正社員求人`}</h1>
           <p class="subpage-hero__lead"><span class="whitespace-nowrap">大好きなポケモンカードに囲まれて働ける｜</span><span class="whitespace-nowrap">${s.access}</span></p>
         </div>
       </div>
@@ -327,7 +327,17 @@ ${bodyBottom}
 `
 }
 
-for (const s of stores) writeFileSync(join(ROOT, `store-${s.slug}.html`), page(s))
+// ポケカ以外の専門店（ニンニン2nd＝遊戯王）: 店舗固有の部分だけ「ポケモンカード／ポケカ」をその店のジャンルに置き換える。
+// 共通ヘッダー・フッター（会社としてのポケカ専門店の紹介）は触らない。開店前の店に「活躍中のスタッフ」の話は書けないので外す
+const genreSwap = (html, g) => {
+  const keep = [headCommon, bodyTop, bodyBottom]
+  let out = html
+  keep.forEach((k, i) => { out = out.split(k).join(`@@KEEP${i}@@`) })
+  out = out.split('現在活躍中のスタッフの中にも、入社時はポケカ初心者だった方が多数います。').join('').replace(/ポケモンカード|ポケカ/g, g)
+  keep.forEach((k, i) => { out = out.split(`@@KEEP${i}@@`).join(k) })
+  return out
+}
+for (const s of stores) writeFileSync(join(ROOT, `store-${s.slug}.html`), s.genre ? genreSwap(page(s), s.genre) : page(s))
 console.log(`wrote ${stores.length} store pages`)
 
 // --- お仕事ガイド: 求職者が応募前に検索する疑問（仕事内容・知識・きつい・時給・学生・面接）に、募集要項と店長インタビューの事実だけで答える ---

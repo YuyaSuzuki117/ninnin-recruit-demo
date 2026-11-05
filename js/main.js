@@ -5,7 +5,7 @@
    ============================================ */
 
 // 店舗ページの slug → 店名（流入記録のページ名・店舗 X 投稿の名前に使う。captureAttribution() より前に定義する）
-const RECRUIT_STORES = { akihabara: '秋葉原店', 'akihabara-2': '秋葉原2号店', nakano: '中野店', ikebukuro: '池袋店', 'osaka-nipponbashi': '大阪日本橋店', 'osaka-nipponbashi-2': '大阪日本橋2号店', 'toreren-akihabara': 'トレレン秋葉原店', yokohama: '横浜店', omiya: '大宮店', okinawa: '沖縄店', 'osaka-nipponbashi-1-5': '大阪日本橋1.5号店', shinsaibashi: '心斎橋店' };
+const RECRUIT_STORES = { akihabara: '秋葉原店', 'akihabara-2': '秋葉原2号店', nakano: '中野店', ikebukuro: '池袋店', 'osaka-nipponbashi': '大阪日本橋店', 'osaka-nipponbashi-2': '大阪日本橋2号店', 'toreren-akihabara': 'トレレン秋葉原店', yokohama: '横浜店', omiya: '大宮店', okinawa: '沖縄店', 'osaka-nipponbashi-1-5': '大阪日本橋1.5号店', 'osaka-nipponbashi-2nd': '2nd遊戯王専門店', shinsaibashi: '心斎橋店' };
 // AI の回答（ChatGPT 等）のリンクから来た人。ChatGPT はリンクに utm_source=chatgpt.com を付け、他は参照元のドメインで分かる
 const AI_SOURCES = { 'chatgpt.com': 'ChatGPT', 'chat.openai.com': 'ChatGPT', 'perplexity.ai': 'Perplexity', perplexity: 'Perplexity', 'gemini.google.com': 'Gemini', 'copilot.microsoft.com': 'Copilot', 'claude.ai': 'Claude' };
 
