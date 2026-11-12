@@ -28,6 +28,8 @@ const jobFull = ld.find((j) => j['@type'] === 'JobPosting' && j.employmentType =
 const jobPart = ld.find((j) => j['@type'] === 'JobPosting' && j.employmentType === 'PART_TIME')
 const SITE = 'https://yuyasuzuki117.github.io/ninnin-recruit-demo/' // deploy-recruit.mjs が本番 URL に置換する
 const GUIDE = 'cardshop-job-guide.html' // 「カードショップ バイト きつい／内容／知識」型の検索に答えるお仕事ガイド（このスクリプトの末尾で生成）
+const GUIDE_FULL = 'cardshop-seishain-guide.html' // 「カードショップ 正社員 きつい／給料／年収」
+const GUIDE_INTERVIEW = 'cardshop-mensetsu-guide.html' // 「カードショップ 面接 聞かれること／志望動機」
 // 「募集中（○月○日 更新）」に出す日付 = 生成した日（JST）。AI の回答や求職者が「古い求人か」を判断する材料
 const jst = new Date(Date.now() + 9 * 3600e3)
 const updated = `${jst.getUTCFullYear()}年${jst.getUTCMonth() + 1}月${jst.getUTCDate()}日`
@@ -284,6 +286,7 @@ ${faqHtml}
       </div>
       <p class="mt-4 text-sm"><a href="jobs.html#faq" class="store-dl__map">すべての質問を見る →</a></p>
       <p class="mt-2 text-sm"><a href="${GUIDE}" class="store-dl__map">カードショップのバイトってどんな仕事？（仕事内容・大変なところ・面接）→</a></p>
+      <p class="mt-2 text-sm"><a href="${GUIDE_INTERVIEW}" class="store-dl__map">面接では何を聞かれる？（志望動機・服装・持ち物）→</a>　<a href="${GUIDE_FULL}" class="store-dl__map">正社員の仕事・給料・休日 →</a></p>
     </div>
   </section>
 
@@ -342,25 +345,29 @@ console.log(`wrote ${stores.length} store pages`)
 
 // --- お仕事ガイド: 求職者が応募前に検索する疑問（仕事内容・知識・きつい・時給・学生・面接）に、募集要項と店長インタビューの事実だけで答える ---
 // 本文の事実の出どころ: jobs.html の募集要項・FAQ／interview.html の店長の発言（引用は原文のまま）
-const guidePage = () => {
-  const url = `${SITE}${GUIDE}`
-  const title = 'カードショップのバイトはきつい？仕事内容・知識・時給をポケカ専門店が解説｜ニンニン採用'
-  const desc = 'カードショップ（トレカショップ）のバイトの仕事内容、ポケカの知識は必要か、大変なところ、時給・給料、高校生や大学生は働けるか、面接で聞かれることを、全国11拠点のポケカ専門店ニンニンの募集条件と店長の声をもとにまとめました。'
-  const h1 = 'カードショップのバイトってどんな仕事？'
+// ガイドは 3 本（検索語ごとに 1 ページ）: バイト全般（GUIDE）／正社員（GUIDE_FULL）／面接・志望動機（GUIDE_INTERVIEW）。枠は guidePage が共通で出す
+const q = (text, by, href) => `<blockquote class="store-quote"><p>「${text}」</p><cite>${by}（<a href="${href}">インタビューを読む</a>）</cite></blockquote>`
+const list = (items) => `<ul class="guide-list">${items.map((i) => `<li>${i}</li>`).join('')}</ul>`
+const h2 = (id, text) => `<h2 id="${id}" class="font-heading font-bold text-xl lg:text-2xl text-gray-900 mt-10 mb-4">${text}</h2>`
+const h3 = (text) => `<h3 class="font-bold text-gray-900 mt-6 mb-2">${text}</h3>`
+const glink = (href, text) => `<a href="${href}" class="store-dl__map">${text}</a>`
+const storeItems = stores.map((o) => `<li><a href="store-${o.slug}.html">${o.name}${o.comingSoon ? '（OPEN予定）' : `（${o.access}）`}</a></li>`).join('\n          ')
+const guideNote = `<p class="text-xs text-gray-500 mt-3">株式会社NINJA（ポケモンカード専門店ニンニン）採用チームが、募集要項と店長インタビューをもとに作成しました。最終更新 ${updated}</p>`
+const related = (items) => `${h2('related', 'あわせて読む')}
+      ${list(items.map(([href, text]) => glink(href, text)))}`
+
+const guidePage = ({ file, title, desc, h1, lead, crumb, tag, published, cta, body }) => {
+  const url = `${SITE}${file}`
   const isoDay = jst.toISOString().slice(0, 10)
   const org = { '@type': 'Organization', name: '株式会社NINJA', url: 'https://nin-nin-pokeka.jp/', logo: `${SITE}img/common/logo-square.png` }
   const ldBlocks = [
-    { '@context': 'https://schema.org', '@type': 'Article', headline: h1, description: desc, inLanguage: 'ja', datePublished: '2026-10-28', dateModified: isoDay, author: org, publisher: org, image: `${SITE}img/index/gallery_cards.webp`, mainEntityOfPage: url },
+    { '@context': 'https://schema.org', '@type': 'Article', headline: h1, description: desc, inLanguage: 'ja', datePublished: published, dateModified: isoDay, author: org, publisher: org, image: `${SITE}img/index/gallery_cards.webp`, mainEntityOfPage: url },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'ホーム', item: SITE },
       { '@type': 'ListItem', position: 2, name: '募集要項', item: `${SITE}jobs.html` },
       { '@type': 'ListItem', position: 3, name: h1, item: url },
     ] },
   ].map((j) => `  <script type="application/ld+json">\n${JSON.stringify(j, null, 2)}\n  </script>`).join('\n')
-  const q = (text, by, href) => `<blockquote class="store-quote"><p>「${text}」</p><cite>${by}（<a href="${href}">インタビューを読む</a>）</cite></blockquote>`
-  const list = (items) => `<ul class="guide-list">${items.map((i) => `<li>${i}</li>`).join('')}</ul>`
-  const h2 = (id, text) => `<h2 id="${id}" class="font-heading font-bold text-xl lg:text-2xl text-gray-900 mt-10 mb-4">${text}</h2>`
-  const storeItems = stores.map((o) => `<li><a href="store-${o.slug}.html">${o.name}${o.comingSoon ? '（OPEN予定）' : `（${o.access}）`}</a></li>`).join('\n          ')
 
   return `<!DOCTYPE html>
 <html lang="ja">
@@ -372,7 +379,7 @@ const guidePage = () => {
   <meta name="robots" content="index, follow">
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#0B1628">
-  <link rel="canonical" href="https://nin-nin-pokeka.jp/recruit/${GUIDE}">
+  <link rel="canonical" href="https://nin-nin-pokeka.jp/recruit/${file}">
   <link rel="icon" href="img/favicon.png">
 
   <!-- OGPメタタグ -->
@@ -407,7 +414,7 @@ ${bodyTop}
           <li><span class="mx-2" aria-hidden="true">&gt;</span></li>
           <li><a href="jobs.html">募集要項</a></li>
           <li><span class="mx-2" aria-hidden="true">&gt;</span></li>
-          <li aria-current="page"><span>お仕事ガイド</span></li>
+          <li aria-current="page"><span>${crumb}</span></li>
         </ol>
       </nav>
     </div>
@@ -421,9 +428,9 @@ ${bodyTop}
       <div class="flex items-center gap-4">
         <div class="w-1 h-10 bg-pika flex-shrink-0"></div>
         <div>
-          <p class="text-pika text-xs font-bold tracking-widest font-num mb-1">JOB GUIDE</p>
+          <p class="text-pika text-xs font-bold tracking-widest font-num mb-1">${tag}</p>
           <h1 class="font-heading font-black text-2xl lg:text-3xl text-white tracking-wide">${h1}</h1>
-          <p class="subpage-hero__lead">仕事内容・知識・大変なところ・時給・面接をポケカ専門店ニンニンが解説</p>
+          <p class="subpage-hero__lead">${lead}</p>
         </div>
       </div>
     </div>
@@ -432,7 +439,33 @@ ${bodyTop}
   <article class="py-10 lg:py-14 bg-white">
     <div class="max-w-[800px] mx-auto px-4 lg:px-6 jp-text text-gray-700 leading-relaxed">
 
-      <div class="guide-summary">
+      ${body}
+    </div>
+  </article>
+
+  <!-- CTA -->
+  <section class="sec-cta">
+    <div class="sec-cta-bg" aria-hidden="true"></div>
+    <div class="max-w-[800px] mx-auto px-5 text-center relative z-10">
+      <p class="text-sm font-num tracking-widest text-white/60 mb-4">JOIN OUR TEAM</p>
+      <h2 class="text-2xl lg:text-4xl font-heading font-black text-white mb-4 tracking-wide">ポケカが好きなら、<br>まずは話を聞きに来てください。</h2>
+      <p class="text-gray-400 text-xs mb-2">お電話でのお問い合わせ・ご応募</p>
+      <a href="tel:03-4363-7710" class="cta-phone font-num">03-4363-7710</a>
+      <p class="text-gray-500 text-xs mb-8">年中無休 / 受付時間 13:00〜20:00</p>
+      <a href="entry.html" class="btn-cta-large magnetic-btn cta-shimmer" data-cta="${cta}">
+        応募フォームへ進む
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </a>
+      <p class="text-gray-500 text-xs mt-6"><a href="jobs.html" class="underline">募集要項を見る</a></p>
+    </div>
+  </section>
+
+  </main>
+
+${bodyBottom}
+`
+}
+const jobGuideBody = `<div class="guide-summary">
         <p class="guide-summary__ttl">先に結論</p>
         ${list([
     '<strong>仕事内容</strong>：カードの販売・接客、買取査定、在庫管理・値付け、対戦スペースやイベントの運営など。アルバイトはレジ・陳列・仕分けから始めて、慣れたら買取査定の補助へ進みます。',
@@ -441,7 +474,7 @@ ${bodyTop}
     '<strong>応募</strong>：履歴書は面接時でOK。応募から3営業日以内に担当者よりご連絡します。',
   ])}
       </div>
-      <p class="text-xs text-gray-500 mt-3">株式会社NINJA（ポケモンカード専門店ニンニン）採用チームが、募集要項と店長インタビューをもとに作成しました。最終更新 ${updated}</p>
+      ${guideNote}
 
       ${h2('work', 'カードショップのバイトの仕事内容')}
       <p class="mb-4">カードショップ（トレカショップ）の仕事は、レジに立つだけではありません。ポケモンカードの場合、シングルカード（1枚売り）やパックの販売、お客様が持ち込んだカードの買取査定、値付けと在庫の管理、対戦スペースや大会の運営まで、お店を回す仕事が幅広くあります。ニンニンの募集要項にある仕事は次のとおりです。</p>
@@ -458,7 +491,7 @@ ${bodyTop}
       <p class="mb-4">面接ではポケモンカードとの関わりやお気に入りのカード・デッキを聞くことがありますが、詳しくなくても大丈夫です。「興味がある」という気持ちがあれば十分です。</p>
 
       ${h2('hard', '「きつい」と言われるのはどんなところ？')}
-      <p class="mb-4">「カードショップのバイトはきつい」という声を見かけることもあります。ニンニンで働く場合に、応募前に知っておいてほしい点を正直にまとめました。</p>
+      <p class="mb-4">「カードショップのバイトはきつい」「やめとけ」という声を見かけることもあります。ニンニンで働く場合に、応募前に知っておいてほしい点を正直にまとめました。</p>
       ${list([
     '<strong>基本は通し勤務です。</strong>アルバイトは平日12:45〜20:15、土日祝10:45〜20:15が基本で、週3日以上働ける方を募集しています（店舗により時短勤務は応相談）。週1〜2日・短時間だけ働きたい方には合わないかもしれません。',
     '<strong>土日に勤務できる方を優遇しています。</strong>',
@@ -500,9 +533,12 @@ ${bodyTop}
     '勤務地は面接でご希望をお伺いします。自宅から通いやすい店舗への配属が基本で、複数の店舗を希望として伝えられます。',
   ])}
 
+      <p class="mb-4">${glink(GUIDE_INTERVIEW, 'カードショップの面接で聞かれること・志望動機の考え方・当日の持ち物をくわしく見る →')}</p>
+
       ${h2('fulltime', '正社員として働くには？')}
       <p class="mb-4">正社員（店舗スタッフ）も募集しています。販売・買取に加えて、オリパの企画、ECサイトの運営、SNS運用など、お店づくり全体に関われます。アルバイトから正社員への登用制度もあります。</p>
       ${q('「こうした方がお客様に喜ばれる」「こんなイベントをやりたい」という提案を積極的に聞いてもらえるため、やらされる仕事ではなく、自分でお店を作っている感覚があります。', '秋葉原店 店長', 'interview.html#akihabara')}
+      <p class="mb-4">${glink(GUIDE_FULL, 'カードショップの正社員の仕事内容・給料・休日・大変なところをくわしく見る →')}</p>
 
       ${h2('stores', 'ニンニンで働ける店舗')}
       <p class="mb-4">東京（秋葉原・中野・池袋）・横浜・大宮・大阪（日本橋）・沖縄の全国11拠点で募集しています。店舗ごとの住所・最寄り駅と応募条件は各店舗の求人ページにまとめています。</p>
@@ -511,33 +547,196 @@ ${bodyTop}
           ${storeItems}
         </ul>
       </nav>
-    </div>
-  </article>
-
-  <!-- CTA -->
-  <section class="sec-cta">
-    <div class="sec-cta-bg" aria-hidden="true"></div>
-    <div class="max-w-[800px] mx-auto px-5 text-center relative z-10">
-      <p class="text-sm font-num tracking-widest text-white/60 mb-4">JOIN OUR TEAM</p>
-      <h2 class="text-2xl lg:text-4xl font-heading font-black text-white mb-4 tracking-wide">ポケカが好きなら、<br>まずは話を聞きに来てください。</h2>
-      <p class="text-gray-400 text-xs mb-2">お電話でのお問い合わせ・ご応募</p>
-      <a href="tel:03-4363-7710" class="cta-phone font-num">03-4363-7710</a>
-      <p class="text-gray-500 text-xs mb-8">年中無休 / 受付時間 13:00〜20:00</p>
-      <a href="entry.html" class="btn-cta-large magnetic-btn cta-shimmer" data-cta="guide-bottom">
-        応募フォームへ進む
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-      </a>
-      <p class="text-gray-500 text-xs mt-6"><a href="jobs.html" class="underline">募集要項を見る</a></p>
-    </div>
-  </section>
-
-  </main>
-
-${bodyBottom}
 `
-}
-writeFileSync(join(ROOT, GUIDE), guidePage())
-console.log(`wrote ${GUIDE}`)
+
+const storesBlock = `<nav aria-label="店舗別求人">
+        <ul class="store-nav">
+          ${storeItems}
+        </ul>
+      </nav>`
+const flowList = list([
+  '<strong>1. エントリー</strong>：Webの<a href="entry.html" class="store-dl__map">応募フォーム</a>か、採用ダイヤル（<a href="tel:03-4363-7710" class="font-num">03-4363-7710</a>・年中無休 13:00〜20:00）から応募します。履歴書は応募時には不要です。',
+  '<strong>2. 担当者よりご連絡</strong>：応募内容を確認し、3営業日以内に担当者からご連絡します。',
+  '<strong>3. 面接</strong>：店舗で面接を行います。服装はカジュアルでOK。履歴書はこの日にご持参ください。',
+  '<strong>4. 内定・入社</strong>：入社日を調整し、研修からスタートします。エントリーから入社までは最短2週間です。',
+])
+
+// 正社員ガイド: 事実の出どころ = jobs.html 正社員の募集要項・index.html の FAQ と選考の流れ・interview.html（引用は原文のまま）
+const fullGuideBody = `<div class="guide-summary">
+        <p class="guide-summary__ttl">先に結論</p>
+        ${list([
+    '<strong>仕事内容</strong>：販売・接客に加えて、買取査定・値付け・在庫管理、オリパの企画、対戦スペースやイベントの運営、ECサイト、SNSまで担当します。覚えることは多いですが、お店づくり全体に関われます。',
+    '<strong>大変なところ</strong>：休みは曜日固定ではなくシフトで決まる週休2日制です。買取査定と値付けにはカードの相場の知識が要ります（入社後の研修で学べます）。',
+    '<strong>給料（ニンニンの場合）</strong>：月給25万〜50万円（経験・能力による）。賞与 年2回・昇給 年1回、役職手当・残業手当があります。',
+    '<strong>未経験</strong>：応募できます。アルバイトから正社員への登用制度もあります。',
+  ])}
+      </div>
+      ${guideNote}
+
+      ${h2('work', 'カードショップの正社員の仕事内容')}
+      <p class="mb-4">カードショップ（トレカショップ）の正社員は、売場に立つだけでなく、仕入れにあたる買取から値付け、売場づくり、イベント、ネット販売まで、お店を回す仕事を広く受け持ちます。ニンニンの正社員（店舗スタッフ）の募集要項にある仕事は次のとおりです。</p>
+      ${list(['ポケモンカードのシングル販売・パック販売の接客対応', 'カードの買取査定・在庫管理・値付け作業', 'オリパ（オリジナルパック）の企画・作成', '対戦スペースの運営・イベントの企画サポート', 'ECサイトへの商品登録・発送業務', '店舗ディスプレイの作成・SNS運用'])}
+      ${h3('アルバイトとの違い')}
+      <p class="mb-4">アルバイトはレジ・陳列・カードの仕分けから始めて、慣れてきたら買取査定の補助へ進みます。正社員はそれに加えて、買取査定と値付け、オリパやイベントの企画、ECサイトやSNSの運用まで担当します。アルバイトの仕事は${glink(GUIDE, 'カードショップのバイトの仕事内容')}にまとめています。</p>
+
+      ${h2('hard', '「きつい」と言われるのはどんなところ？')}
+      <p class="mb-4">「カードショップの正社員はきつい」という声を見かけることもあります。ニンニンで正社員として働く場合に、応募前に知っておいてほしい点を正直にまとめました。</p>
+      ${list([
+    '<strong>休みは曜日固定ではありません。</strong>週休2日制ですが、休日はシフトで決まります。土日祝もお店は営業しています。',
+    '<strong>勤務は10:00〜20:00のシフト制です。</strong>このうち実働は8時間です。',
+    '<strong>仕事の幅が広く、覚えることが多い仕事です。</strong>接客・販売、買取査定、値付け、オリパの企画、イベント、ECサイト、SNSと、担当する範囲が広くなります。',
+    '<strong>買取査定と値付けにはカードの相場の知識が要ります。</strong>カードの種類・レアリティ・相場観は入社後の研修で学べます。',
+    '<strong>社員割引はありません。</strong>店舗商品のスタッフ購入もできません。交通費は一部支給（上限あり）です。',
+  ])}
+      <p class="mb-4">一方で、仕事の幅が広いことを「飽きない」「自分でお店を作っている」と感じて働いている店長もいます。</p>
+      ${q('大会運営や買取、SNS発信など幅広い仕事に関われるため、毎日変化があって飽きません。', '大阪店 店長', 'interview.html#osaka')}
+      ${q('「こうした方がお客様に喜ばれる」「こんなイベントをやりたい」という提案を積極的に聞いてもらえるため、やらされる仕事ではなく、自分でお店を作っている感覚があります。', '秋葉原店 店長', 'interview.html#akihabara')}
+
+      ${h2('pay', '給料・年収・賞与はどのくらい？')}
+      <dl class="store-dl">
+        <dt>月給</dt><dd>25万円〜50万円（経験・能力による）</dd>
+        <dt>賞与</dt><dd>年2回（7月・12月）※業績により6ヶ月分の支給実績あり</dd>
+        <dt>昇給</dt><dd>年1回（4月）</dd>
+        <dt>手当</dt><dd>役職手当、残業手当</dd>
+        <dt>交通費</dt><dd>一部支給（上限あり）</dd>
+      </dl>
+      <p class="mt-4 mb-4">年収は、月給の12か月分に賞与と手当を加えた額になります。月給分だけで計算すると、月給25万円なら年300万円、月給50万円なら年600万円で、ここに賞与（年2回）と役職手当・残業手当が加わります。実際の月給は経験・能力によって決まります。</p>
+
+      ${h2('holiday', '勤務時間・休日・保険')}
+      <dl class="store-dl">
+        <dt>勤務時間</dt><dd>10:00〜20:00（実働8時間・シフト制）</dd>
+        <dt>休日・休暇</dt><dd>週休2日制（シフト制）・年末年始・有給休暇</dd>
+        <dt>加入保険</dt><dd>雇用保険・労災保険・健康保険・厚生年金（社会保険完備）</dd>
+        <dt>待遇</dt><dd>研修制度・有給休暇</dd>
+      </dl>
+      <p class="mt-4 mb-4">くわしい条件は${glink('jobs.html#full-time', '正社員の募集要項')}をご覧ください。</p>
+
+      ${h2('beginner', '未経験からカードショップの正社員になれる？')}
+      <p class="mb-4">未経験の方も応募できます。ポケモンカードの知識がなくても、入社後の研修でカードの種類・レアリティ・相場観など、仕事に必要な知識を学べます。接客や販売の経験がない方も、先輩スタッフによるOJT研修でレジ操作・接客・買取査定の基礎から学べます。</p>
+      <p class="mb-4">アルバイトとして入社してから正社員になる道もあります。ニンニンには正社員登用制度があり、アルバイトから正社員、さらに店長へとキャリアアップしたスタッフもいます。</p>
+      ${q('ニンニンは年齢や経験に関係なく挑戦できる環境があります。', '秋葉原店 店長', 'interview.html#akihabara')}
+
+      ${h2('fit', 'どんな人が向いている？')}
+      <p class="mb-4">ニンニンの採用チームが募集要項で伝えているのは、知識や経験よりも「好き」という気持ちです。</p>
+      <blockquote class="store-quote"><p>「カードの知識や接客経験は入社後にいくらでも身につけられますが、「好き」という気持ちだけは教えることができません。」</p><cite>採用チーム（<a href="jobs.html#full-time">正社員の募集要項</a>）</cite></blockquote>
+      ${q('成果や頑張りを見てもらえる環境なので、モチベーション高く働けています。', '秋葉原店 店長', 'interview.html#akihabara')}
+      <p class="mb-4">カードゲームが好きな方、人と接するのが好きな方、売場やイベントを自分で考えて形にしたい方に向いている仕事です。</p>
+
+      ${h2('flow', '応募から入社までの流れ')}
+      ${flowList}
+      <p class="mb-4">面接で聞かれることや志望動機の考え方は${glink(GUIDE_INTERVIEW, 'カードショップの面接で聞かれること')}にまとめています。</p>
+
+      ${h2('stores', '正社員を募集している店舗')}
+      <p class="mb-4">東京（秋葉原・中野・池袋）・横浜・大宮・大阪（日本橋）・沖縄の全国11拠点のいずれかに配属となります。勤務地は面接でご希望をお伺いし、自宅から通いやすい店舗への配属を基本としています。</p>
+      ${storesBlock}
+
+      ${related([
+    [GUIDE, 'カードショップのバイトってどんな仕事？（仕事内容・知識・大変なところ・時給）'],
+    [GUIDE_INTERVIEW, 'カードショップの面接では何を聞かれる？（志望動機・服装・持ち物）'],
+    ['interview.html', '店長インタビュー（大阪店・秋葉原店）'],
+    ['jobs.html#full-time', '正社員の募集要項'],
+  ])}
+`
+
+// 面接ガイド: 事実の出どころ = jobs.html / index.html の FAQ・選考の流れ・募集要項、interview.html。志望動機の「例」は一般的な書き方の例で、会社の事実ではない
+const interviewGuideBody = `<div class="guide-summary">
+        <p class="guide-summary__ttl">先に結論</p>
+        ${list([
+    '<strong>聞かれること</strong>：志望動機、これまでのご経験、ポケモンカードとの関わりやお気に入りのカード・デッキ。',
+    '<strong>知識</strong>：詳しくなくても大丈夫です。カードの知識は入社後の研修で学べます。',
+    '<strong>服装・持ち物</strong>：服装はカジュアルでOK。履歴書は応募時には不要で、面接の日に持参します。',
+    '<strong>流れ</strong>：応募 → 3営業日以内に担当者からご連絡 → 店舗で面接 → 内定・入社。エントリーから入社までは最短2週間です。',
+  ])}
+      </div>
+      ${guideNote}
+
+      ${h2('questions', 'カードショップの面接で聞かれること')}
+      <p class="mb-4">ニンニンの面接でお聞きするのは、主に次の3つです。堅苦しい面接ではなく、お互いを知るための対話を大切にしています。</p>
+      ${list([
+    '<strong>志望動機</strong>：なぜカードショップ（ポケモンカード専門店）で働きたいのか。',
+    '<strong>これまでのご経験</strong>：アルバイトやお仕事の経験。接客や販売の経験がなくても応募できます。',
+    '<strong>ポケモンカードとの関わり</strong>：ふだんの遊び方や、お気に入りのカード・デッキをお聞きすることがあります。',
+  ])}
+      <p class="mb-4">あわせて、ご希望の勤務地もお伺いします。自宅から通いやすい店舗への配属が基本で、希望の店舗を複数伝えていただくと選考がスムーズです。</p>
+
+      ${h2('motive', '志望動機はどう考える？')}
+      <p class="mb-4">ニンニンの採用チームと店長が大切にしていると話しているのは、知識の量よりも気持ちの部分です。</p>
+      <blockquote class="store-quote"><p>「ニンニンでは、ポケカへの「好き」という気持ちを何より大切にしています。」</p><cite>採用チーム（<a href="jobs.html#full-time">募集要項</a>）</cite></blockquote>
+      ${q('カード知識よりも大切なのは、お客様を楽しませたいという気持ちです。', '秋葉原店 店長', 'interview.html#akihabara')}
+      <p class="mb-4">ですから、志望動機は次の3点を自分の言葉で話せれば十分です。</p>
+      ${list([
+    '<strong>なぜカードショップか。</strong>カードが好き、好きなものに囲まれて働きたい、接客の仕事がしたい、など。',
+    '<strong>お客様にどう接したいか。</strong>自分がお店で嬉しかった経験があれば、それを話すと伝わります。',
+    '<strong>どのくらい働けるか。</strong>アルバイトは週3日以上・通し勤務が基本で、土日に勤務できる方を優遇しています。働ける曜日と時間を整理しておくと話が早く進みます。',
+  ])}
+      ${h3('志望動機の例')}
+      <p class="mb-2">書き方の一例です。そのまま使うのではなく、ご自身の経験に置き換えてください。</p>
+      ${list([
+    '<strong>ポケカにあまり詳しくない方の例</strong>：「人と話す仕事がしたくて接客の仕事を探していました。ポケモンカードは詳しくありませんが、入社後の研修で学べると知り、好きになれる商品を扱うお店で長く働きたいと思い応募しました。週4日、土日も勤務できます。」',
+    '<strong>ポケカが好きな方の例</strong>：「ふだんからポケモンカードで遊んでいて、カードを探しに来るお客様の気持ちが分かります。自分がお店で嬉しかった接客を、今度は自分がしたいと思い応募しました。」',
+  ])}
+
+      ${h2('knowledge', 'ポケカに詳しくないと不利？')}
+      <p class="mb-4">詳しくなくても大丈夫です。「興味がある」という気持ちがあれば十分で、カードの種類・レアリティ・相場観は入社後の研修で学べます。大阪店の店長によると、ニンニン大阪ではスタッフの8割がトレカ未経験から始めて活躍しています。</p>
+      ${q('未経験だから、トレカ自体に触れた事がないから心配だ、等心配になる方もいらっしゃるかもしれません。ですがニンニン大阪は8割がそういった未経験のスタッフが現在活躍しております！', '大阪店 店長', 'interview.html#osaka')}
+
+      ${h2('dress', '面接の服装と持ち物')}
+      ${list([
+    '<strong>服装</strong>：カジュアルでOKです。',
+    '<strong>持ち物</strong>：履歴書をご持参ください。応募の時点では履歴書は不要です。',
+  ])}
+
+      ${h2('flow', '応募から面接・入社までの流れ')}
+      ${flowList}
+
+      ${h2('who', '学生・フリーター・未経験でも応募できる？')}
+      ${list([
+    '<strong>高校生</strong>：ご応募いただけません。',
+    '<strong>大学生・専門学校生</strong>：応相談です。基本は週3日以上の通し勤務のため、長く安定して働ける方を優先しています。',
+    '<strong>フリーター</strong>：歓迎です。',
+    '<strong>接客・販売が未経験の方</strong>：応募できます。先輩スタッフによるOJT研修で、レジ操作・接客・買取査定の基礎から学べます。',
+  ])}
+
+      ${h2('conditions', '面接の前に確認しておきたい条件')}
+      ${h3('アルバイト')}
+      <dl class="store-dl">
+        <dt>時給</dt><dd>1,400〜1,500円（試用期間は時給1,400円。最短3ヶ月・最長1年で本採用の時給1,500円に自動更新）</dd>
+        <dt>勤務時間</dt><dd>平日 12:45〜20:15／土日祝 10:45〜20:15（基本は通し勤務・週3日以上。店舗により時短勤務は応相談）</dd>
+      </dl>
+      ${h3('正社員')}
+      <dl class="store-dl">
+        <dt>月給</dt><dd>25万円〜50万円（経験・能力による）</dd>
+        <dt>勤務時間・休日</dt><dd>10:00〜20:00（実働8時間・シフト制）／週休2日制（シフト制）</dd>
+      </dl>
+      <p class="mt-4 mb-4">くわしい条件は${glink('jobs.html#part-time', 'アルバイトの募集要項')}・${glink('jobs.html#full-time', '正社員の募集要項')}をご覧ください。</p>
+
+      ${h2('stores', '面接を受けられる店舗')}
+      <p class="mb-4">面接は店舗で行います。東京（秋葉原・中野・池袋）・横浜・大宮・大阪（日本橋）・沖縄の全国11拠点で募集しています。</p>
+      ${storesBlock}
+
+      ${related([
+    [GUIDE, 'カードショップのバイトってどんな仕事？（仕事内容・知識・大変なところ・時給）'],
+    [GUIDE_FULL, 'カードショップの正社員はきつい？（仕事内容・給料・休日）'],
+    ['interview.html', '店長インタビュー（大阪店・秋葉原店）'],
+    ['jobs.html', '募集要項（アルバイト・正社員）'],
+  ])}
+`
+
+const guides = [
+  { file: GUIDE, published: '2026-10-28', cta: 'guide-bottom', tag: 'JOB GUIDE', crumb: 'お仕事ガイド', body: jobGuideBody,
+    title: 'カードショップのバイトはきつい？仕事内容・知識・時給をポケカ専門店が解説｜ニンニン採用',
+    desc: 'カードショップ（トレカショップ）のバイトの仕事内容、ポケカの知識は必要か、大変なところ、時給・給料、高校生や大学生は働けるか、面接で聞かれることを、全国11拠点のポケカ専門店ニンニンの募集条件と店長の声をもとにまとめました。',
+    h1: 'カードショップのバイトってどんな仕事？', lead: '仕事内容・知識・大変なところ・時給・面接をポケカ専門店ニンニンが解説' },
+  { file: GUIDE_FULL, published: '2026-11-12', cta: 'guide-full-bottom', tag: 'FULL-TIME GUIDE', crumb: '正社員ガイド', body: fullGuideBody,
+    title: 'カードショップの正社員はきつい？仕事内容・給料・休日をポケカ専門店が解説｜ニンニン採用',
+    desc: 'カードショップ（トレカショップ）の正社員の仕事内容、きついと言われる点、月給・賞与・年収の考え方、勤務時間と休日、未経験やアルバイトから正社員になれるかを、全国11拠点のポケカ専門店ニンニンの募集条件と店長の声をもとにまとめました。',
+    h1: 'カードショップの正社員はきつい？仕事・給料・休日', lead: '仕事内容・大変なところ・月給と賞与・勤務時間をポケカ専門店ニンニンが解説' },
+  { file: GUIDE_INTERVIEW, published: '2026-11-12', cta: 'guide-interview-bottom', tag: 'INTERVIEW GUIDE', crumb: '面接ガイド', body: interviewGuideBody,
+    title: 'カードショップの面接で聞かれること｜志望動機・服装・持ち物をポケカ専門店が解説｜ニンニン採用',
+    desc: 'カードショップ（トレカショップ）のバイト・正社員の面接で聞かれること、志望動機の考え方と例、ポケカの知識は必要か、服装と持ち物、応募から入社までの流れを、全国11拠点のポケカ専門店ニンニンの採用チームがまとめました。',
+    h1: 'カードショップの面接では何を聞かれる？', lead: '聞かれること・志望動機・服装と持ち物・応募からの流れをポケカ専門店ニンニンが解説' },
+]
+for (const g of guides) { writeFileSync(join(ROOT, g.file), guidePage(g)); console.log(`wrote ${g.file}`) }
 
 // sitemap.xml: 店舗 URL を差し替え（<!-- stores --> 〜 <!-- /stores --> の間）
 const today = new Date().toISOString().slice(0, 10)
