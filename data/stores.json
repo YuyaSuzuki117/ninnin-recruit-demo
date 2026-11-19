@@ -140,7 +140,8 @@
     "stations": "JR・東急東横線・京急・相鉄・みなとみらい線・横浜市営地下鉄 横浜駅",
     "x": "ninninyokohama",
     "titles": "ポケモン",
-    "note": "2026年3月にグランドオープンした店舗です。"
+    "note": "2026年3月にグランドオープンした店舗です。",
+    "posted": "2026-10-10"
   },
   {
     "slug": "omiya",
@@ -195,7 +196,8 @@
     "x": "ninnihonbashi15",
     "titles": "ポケモン",
     "quote": "大会運営や買取、SNS発信など幅広い仕事に関われるため、毎日変化があって飽きません。",
-    "quoteBy": "大阪店 店長"
+    "quoteBy": "大阪店 店長",
+    "posted": "2026-10-14"
   },
   {
     "slug": "osaka-nipponbashi-2nd",
@@ -216,7 +218,8 @@
     "interviewLabel": "大阪店 店長のインタビューを読む",
     "stations": "南海本線・高野線 難波駅／Osaka Metro 堺筋線・千日前線 日本橋駅・近鉄日本橋駅 徒歩8分",
     "x": "ninn2nd",
-    "titles": "遊戯王"
+    "titles": "遊戯王",
+    "posted": "2026-11-06"
   },
   {
     "slug": "shinsaibashi",

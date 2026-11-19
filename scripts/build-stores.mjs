@@ -23,9 +23,9 @@ const bodyTop = slice(jobs, '<body class="font-body text-body">', '  </header>')
 const bodyBottom = slice(jobs, '  <footer class="site-footer">', '</html>')
 const tableFull = slice(slice(jobs, '<section id="full-time"', '</section>'), '<table class="job-table">', '</table>')
 const tablePart = slice(slice(jobs, '<section id="part-time"', '</section>'), '<table class="job-table">', '</table>')
-const ld = [...jobs.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]))
-const jobFull = ld.find((j) => j['@type'] === 'JobPosting' && j.employmentType === 'FULL_TIME')
-const jobPart = ld.find((j) => j['@type'] === 'JobPosting' && j.employmentType === 'PART_TIME')
+// JobPosting のひな形（給与・勤務時間・説明文）。Google は「1 ページ 1 求人」のページにしか JobPosting を認めないので、
+// 2 求人を並べる jobs.html と店舗ページには付けず、求人票ページ job-<slug>-<part|full>.html にだけ出す（下の jobPage）
+const { full: jobFull, part: jobPart } = JSON.parse(read('data/job-postings.json'))
 const SITE = 'https://yuyasuzuki117.github.io/ninnin-recruit-demo/' // deploy-recruit.mjs が本番 URL に置換する
 const GUIDE = 'cardshop-job-guide.html' // 「カードショップ バイト きつい／内容／知識」型の検索に答えるお仕事ガイド（このスクリプトの末尾で生成）
 const GUIDE_FULL = 'cardshop-seishain-guide.html' // 「カードショップ 正社員 きつい／給料／年収」
@@ -47,12 +47,13 @@ const place = (s) => ({
     addressCountry: 'JP',
   },
 })
-const posting = (base, s) => ({
+const posting = (base, s, file) => ({
   ...base,
   title: base.title,
+  ...(s.posted ? { datePosted: s.posted } : {}), // 求人サイトにその店の求人を載せた日（ひな形の日付より後に増えた店）
   identifier: { ...base.identifier, value: `${base.identifier.value}-${s.slug}` },
   jobLocation: place(s),
-  url: `${SITE}store-${s.slug}.html`,
+  url: `${SITE}${file}`,
   applicationContact: { ...base.applicationContact, url: `${SITE}entry.html` },
   description: `${base.description}<p>勤務地はニンニン ${s.name}（${s.access}）です。</p>`,
 })
@@ -83,7 +84,8 @@ const page = (s) => {
   // 求職者の検索語（「カードショップ バイト」「トレカ 求人」）も入れる
   const desc = s.comingSoon
     ? `ポケモンカード専門のカードショップ「ニンニン」の${s.name}は2026年秋口にオープン予定。オープニングスタッフ（アルバイト・正社員）の募集を予定しています。未経験歓迎、ポケカの知識は入社後に学べます。`
-    : `${s.opening ? `${s.opening}・オープニングスタッフ募集。` : ''}ポケモンカード専門のカードショップ「ニンニン」${s.name}（${addr}・${s.access}）のトレカ販売・買取スタッフ求人。アルバイトは時給1,400〜1,500円、正社員は月給25万円〜50万円。未経験歓迎、履歴書は面接時でOK。`
+    // スマホの検索結果は先頭 70 字前後で切れる → 給与と応募のしやすさを先に、住所は後ろに
+    : `${s.opening ? `${s.opening}・オープニングスタッフ募集。` : ''}${full}の求人。アルバイト時給1,400〜1,500円、正社員月給25万円〜50万円。未経験歓迎、履歴書は面接時でOK。${s.access}のポケモンカード専門カードショップで、トレカの販売・買取スタッフを募集中（${addr}）。`
   const url = `${SITE}store-${s.slug}.html`
   // X の投稿にリンクを貼ったときのカード画像: 店舗ごとの絵（tmp/ninnin-yokohama/ogp-store-render.mjs で描く）が無ければ共通の ogp.png
   const ogImage = existsSync(join(ROOT, `img/ogp/store-${s.slug}.jpg`)) ? `${SITE}img/ogp/store-${s.slug}.jpg?v=20261024` : `${SITE}img/ogp.png?v=20261015`
@@ -93,7 +95,7 @@ const page = (s) => {
     { '@type': 'ListItem', position: 2, name: '店舗一覧', item: `${SITE}#stores` },
     { '@type': 'ListItem', position: 3, name: full, item: url },
   ] }
-  const ldBlocks = [breadcrumb, ...(s.comingSoon ? [] : [posting(jobFull, s), posting(jobPart, s)])]
+  const ldBlocks = [breadcrumb]
     .map((j) => `  <script type="application/ld+json">\n${JSON.stringify(j, null, 2)}\n  </script>`).join('\n')
   const mapUrl = addr ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(full + ' ' + addr)}` : ''
 
@@ -188,6 +190,7 @@ const page = (s) => {
         ${tablePart}
       </div>
       <p class="mt-5"><a class="btn-primary" data-cta="store-parttime-bottom" href="${typeParam.part}${loc}">アルバイトに応募する</a></p>
+      <p class="mt-4 text-sm"><a href="job-${s.slug}-part.html" class="store-dl__map">${s.name}のアルバイト求人票（仕事内容・応募の流れまで1ページ）→</a></p>
     </div>
   </section>
   <section id="full-time" class="py-12 lg:py-16 bg-cream" aria-labelledby="full-time-title">
@@ -198,6 +201,7 @@ const page = (s) => {
         ${tableFull}
       </div>
       <p class="mt-5"><a class="btn-primary" data-cta="store-fulltime-bottom" href="${typeParam.full}${loc}">正社員に応募する</a></p>
+      <p class="mt-4 text-sm"><a href="job-${s.slug}-full.html" class="store-dl__map">${s.name}の正社員求人票（仕事内容・応募の流れまで1ページ）→</a></p>
     </div>
   </section>`
 
@@ -352,7 +356,8 @@ const h2 = (id, text) => `<h2 id="${id}" class="font-heading font-bold text-xl l
 const h3 = (text) => `<h3 class="font-bold text-gray-900 mt-6 mb-2">${text}</h3>`
 const glink = (href, text) => `<a href="${href}" class="store-dl__map">${text}</a>`
 const storeItems = stores.map((o) => `<li><a href="store-${o.slug}.html">${o.name}${o.comingSoon ? '（OPEN予定）' : `（${o.access}）`}</a></li>`).join('\n          ')
-const guideNote = `<p class="text-xs text-gray-500 mt-3">株式会社NINJA（ポケモンカード専門店ニンニン）採用チームが、募集要項と店長インタビューをもとに作成しました。最終更新 ${updated}</p>`
+const guideNote = `<p class="text-xs text-gray-500 mt-3">株式会社NINJA（ポケモンカード専門店ニンニン）採用チームが、募集要項と店長インタビューをもとに作成しました。最終更新 ${updated}</p>
+      <p class="mt-5"><a class="btn-primary" data-cta="guide-top" href="jobs.html">ニンニンの募集要項を見る</a></p>`
 const related = (items) => `${h2('related', 'あわせて読む')}
       ${list(items.map(([href, text]) => glink(href, text)))}`
 
@@ -490,7 +495,7 @@ const jobGuideBody = `<div class="guide-summary">
       ${q('カード知識よりも大切なのは、お客様を楽しませたいという気持ちです。', '秋葉原店 店長', 'interview.html#akihabara')}
       <p class="mb-4">面接ではポケモンカードとの関わりやお気に入りのカード・デッキを聞くことがありますが、詳しくなくても大丈夫です。「興味がある」という気持ちがあれば十分です。</p>
 
-      ${h2('hard', '「きつい」と言われるのはどんなところ？')}
+      ${h2('hard', '「きつい」「やめとけ」と言われるのはどんなところ？')}
       <p class="mb-4">「カードショップのバイトはきつい」「やめとけ」という声を見かけることもあります。ニンニンで働く場合に、応募前に知っておいてほしい点を正直にまとめました。</p>
       ${list([
     '<strong>基本は通し勤務です。</strong>アルバイトは平日12:45〜20:15、土日祝10:45〜20:15が基本で、週3日以上働ける方を募集しています（店舗により時短勤務は応相談）。週1〜2日・短時間だけ働きたい方には合わないかもしれません。',
@@ -579,8 +584,8 @@ const fullGuideBody = `<div class="guide-summary">
       ${h3('アルバイトとの違い')}
       <p class="mb-4">アルバイトはレジ・陳列・カードの仕分けから始めて、慣れてきたら買取査定の補助へ進みます。正社員はそれに加えて、買取査定と値付け、オリパやイベントの企画、ECサイトやSNSの運用まで担当します。アルバイトの仕事は${glink(GUIDE, 'カードショップのバイトの仕事内容')}にまとめています。</p>
 
-      ${h2('hard', '「きつい」と言われるのはどんなところ？')}
-      <p class="mb-4">「カードショップの正社員はきつい」という声を見かけることもあります。ニンニンで正社員として働く場合に、応募前に知っておいてほしい点を正直にまとめました。</p>
+      ${h2('hard', '「きつい」「やめとけ」と言われるのはどんなところ？')}
+      <p class="mb-4">「カードショップの正社員はきつい」「カードショップ店員はやめとけ」という声を見かけることもあります。ニンニンで正社員として働く場合に、応募前に知っておいてほしい点を正直にまとめました。</p>
       ${list([
     '<strong>休みは曜日固定ではありません。</strong>週休2日制ですが、休日はシフトで決まります。土日祝もお店は営業しています。',
     '<strong>勤務は10:00〜20:00のシフト制です。</strong>このうち実働は8時間です。',
@@ -615,6 +620,17 @@ const fullGuideBody = `<div class="guide-summary">
       <p class="mb-4">未経験の方も応募できます。ポケモンカードの知識がなくても、入社後の研修でカードの種類・レアリティ・相場観など、仕事に必要な知識を学べます。接客や販売の経験がない方も、先輩スタッフによるOJT研修でレジ操作・接客・買取査定の基礎から学べます。</p>
       <p class="mb-4">アルバイトとして入社してから正社員になる道もあります。ニンニンには正社員登用制度があり、アルバイトから正社員、さらに店長へとキャリアアップしたスタッフもいます。</p>
       ${q('ニンニンは年齢や経験に関係なく挑戦できる環境があります。', '秋葉原店 店長', 'interview.html#akihabara')}
+
+      ${h2('career', 'カードショップ店員の将来性・キャリアアップは？')}
+      <p class="mb-4">「カードショップ店員に将来性はあるのか」と気になる方へ。ニンニンでは、売場の仕事から店舗の運営、複数店舗の統括へと、任される範囲が広がっていくキャリアステップを用意しています。</p>
+      ${list([
+    '<strong>アルバイト</strong>：接客・販売の基礎、レジ操作、カードの知識を身につけます。',
+    '<strong>正社員</strong>：買取査定・在庫管理・EC出品を担当します（アルバイトからの正社員登用制度あり）。',
+    '<strong>副店長</strong>：新人教育・シフト管理・売上管理を担い、店長のもとでマネジメントを学びます。',
+    '<strong>店長</strong>：売上目標の設定、スタッフの採用・育成、イベント企画まで、店舗の運営全般を受け持ちます。',
+    '<strong>エリアマネージャー</strong>：複数店舗を統括し、新店舗の立ち上げにも携わります。',
+  ])}
+      <p class="mb-4">ニンニンは2019年の秋葉原1号店から、東京・神奈川・大阪・埼玉・沖縄の11拠点まで店舗を増やしてきました。くわしくは${glink('index.html#career', 'キャリアステップの紹介')}をご覧ください。</p>
 
       ${h2('fit', 'どんな人が向いている？')}
       <p class="mb-4">ニンニンの採用チームが募集要項で伝えているのは、知識や経験よりも「好き」という気持ちです。</p>
@@ -738,11 +754,212 @@ const guides = [
 ]
 for (const g of guides) { writeFileSync(join(ROOT, g.file), guidePage(g)); console.log(`wrote ${g.file}`) }
 
+// --- 求人票ページ（1 ページ 1 求人）: job-<slug>-part.html / job-<slug>-full.html ---
+// Google しごと検索は「1 つの求人だけを載せたページ」の JobPosting しか出さない（アルバイトと正社員を並べた店舗ページは対象外）。
+// 条件の文言は jobs.html の募集要項テーブルと data/job-postings.json をそのまま使い、ここで書き足さない
+const jobKinds = {
+  part: { base: jobPart, label: 'アルバイト', tag: 'PART-TIME', tagMod: 'pika', table: tablePart, apply: typeParam.part, other: 'full', otherLabel: '正社員',
+    titlePay: '時給1,400〜1,500円', descCond: '時給1,400〜1,500円（試用期間1,400円）、週3日以上・通し勤務', descRole: '販売・接客スタッフ',
+    card: `<p class="job-pick__pay font-num">時給1,400〜1,500円</p>
+          <p class="job-pick__step">試用期間 1,400円 → 本採用 1,500円（最短3ヶ月・最長1年）</p>
+          <p class="job-pick__cond">平日 12:45〜20:15／土日祝 10:45〜20:15</p>
+          <p class="job-pick__cond">週3日以上・通し勤務<span class="job-pick__note">高校生不可・学生は応相談・店舗により時短応相談</span></p>`,
+    perks: ['研修制度', '制服貸与', '正社員登用あり', '交通費一部支給（上限あり）'] },
+  full: { base: jobFull, label: '正社員', tag: 'FULL-TIME', tagMod: 'navy', table: tableFull, apply: typeParam.full, other: 'part', otherLabel: 'アルバイト',
+    titlePay: '月給25万円〜50万円', descCond: '月給25万円〜50万円、賞与年2回・昇給年1回・社会保険完備', descRole: '販売・買取スタッフ',
+    card: `<p class="job-pick__pay font-num">月給25万円〜50万円</p>
+          <p class="job-pick__cond">10:00〜20:00（実働8時間）</p>`,
+    perks: ['社会保険完備', '賞与年2回', '昇給年1回', '研修制度'] },
+}
+const jobPage = (s, kind) => {
+  const k = jobKinds[kind]
+  const full = `ニンニン${s.name}`
+  const file = `job-${s.slug}-${kind}.html`
+  const url = `${SITE}${file}`
+  const addr = `${s.pref}${s.city}${s.street}`
+  const opening = s.opening ? '（オープニングスタッフ）' : ''
+  const h1 = `${full}の${k.label}求人${opening}`
+  const title = `${h1}｜カードショップの${k.descRole}｜${k.titlePay}`
+  const desc = `${s.opening ? `${s.opening}・オープニングスタッフ募集。` : ''}${full}の${k.label}求人。${k.descCond}。未経験歓迎、履歴書は面接時でOK。${s.access}のポケモンカード専門カードショップで、${k.descRole}を募集中。`
+  const ogImage = existsSync(join(ROOT, `img/ogp/store-${s.slug}.jpg`)) ? `${SITE}img/ogp/store-${s.slug}.jpg?v=20261024` : `${SITE}img/ogp.png?v=20261015`
+  const applyHref = `${k.apply}&location=${encodeURIComponent(s.formValue)}`
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(full + ' ' + addr)}`
+  const job = posting(k.base, s, file)
+  const intro = (job.description.match(/<p>([\s\S]*?)<\/p>/) || [])[1] || ''
+  const ldBlocks = [
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'ホーム', item: SITE },
+      { '@type': 'ListItem', position: 2, name: full, item: `${SITE}store-${s.slug}.html` },
+      { '@type': 'ListItem', position: 3, name: `${k.label}求人`, item: url },
+    ] },
+    job,
+  ].map((j) => `  <script type="application/ld+json">\n${JSON.stringify(j, null, 2)}\n  </script>`).join('\n')
+
+  return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${esc(title)}</title>
+  <meta name="description" content="${esc(desc)}">
+  <meta name="robots" content="index, follow">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#0B1628">
+  <link rel="canonical" href="https://nin-nin-pokeka.jp/recruit/${file}">
+  <link rel="icon" href="img/favicon.png">
+
+  <!-- OGPメタタグ -->
+  <meta property="og:title" content="${esc(title)}">
+  <meta property="og:description" content="${esc(desc)}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="${url}">
+  <meta property="og:site_name" content="ニンニン採用情報">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="${ogImage}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${esc(title)}">
+  <meta name="twitter:description" content="${esc(desc)}">
+  <meta name="twitter:image" content="${ogImage}">
+
+${headCommon}
+
+${ldBlocks}
+</head>
+${bodyTop}
+
+  <main id="main-content">
+
+  <!-- パンくずリスト -->
+  <div class="pt-16 lg:pt-[112px] bg-cream border-b border-gray-200">
+    <div class="max-w-[1140px] mx-auto px-4 lg:px-6 py-2 lg:py-3">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol class="flex items-center flex-wrap text-sm">
+          <li><a href="index.html">ホーム</a></li>
+          <li><span class="mx-2" aria-hidden="true">&gt;</span></li>
+          <li><a href="store-${s.slug}.html">${s.name}</a></li>
+          <li><span class="mx-2" aria-hidden="true">&gt;</span></li>
+          <li aria-current="page"><span>${k.label}求人</span></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ページヘッダー -->
+  <div class="subpage-hero subpage-hero--lp">
+    <div class="particle-container" aria-hidden="true"></div>
+    <span class="sec-bg-num sec-bg-num--right" aria-hidden="true">JOB</span>
+    <div class="max-w-[1140px] mx-auto px-4 lg:px-6 subpage-hero__content">
+      <div class="flex items-center gap-4">
+        <div class="w-1 h-10 bg-pika flex-shrink-0"></div>
+        <div>
+          <p class="text-pika text-xs font-bold tracking-widest font-num mb-1">${s.area.toUpperCase()}</p>
+          <h1 class="font-heading font-black text-2xl lg:text-3xl text-white tracking-wide">${h1}</h1>
+          <p class="subpage-hero__lead">${k.base.title}｜${s.access}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 応募の入口 -->
+  <section class="bg-white py-5 lg:py-10 job-pick-sec" aria-label="この求人に応募">
+    <div class="max-w-[800px] mx-auto px-4 lg:px-6">
+        <div class="job-pick job-pick--main">
+          <div class="job-pick__head">
+            <span class="job-pick__tag job-pick__tag--${k.tagMod}">${k.tag}</span>
+            <span class="job-pick__role">店舗スタッフ（${k.label}）</span>
+          </div>
+          ${k.card}
+          <div class="job-pick__actions">
+            <a class="btn-primary job-pick__btn" data-cta="job-${kind}" href="${applyHref}">${s.name}に応募する</a>
+            <a class="job-pick__more" href="#detail">詳細を見る ↓</a>
+          </div>
+          <ul class="job-pick__perks" aria-label="待遇">${k.perks.map((p) => `<li>${p}</li>`).join('')}</ul>
+          <p class="job-pick__assure">履歴書は面接時にご持参（応募時は不要）・3営業日以内にご連絡</p>
+        </div>
+    </div>
+  </section>
+
+  <section id="detail" class="py-12 lg:py-16 bg-cream" aria-labelledby="job-work-title">
+    <div class="max-w-[800px] mx-auto px-4 lg:px-6">
+      <p class="sec-label">${k.tag}</p>
+      <h2 id="job-work-title" class="font-heading font-bold text-2xl lg:text-3xl text-gray-900 mb-4">仕事内容</h2>
+      <p class="jp-text text-gray-700 leading-relaxed mb-5">${intro}</p>
+      <p class="jp-text text-gray-700 leading-relaxed">勤務地は${full}（${s.access}）です。${s.note || ''}</p>
+    </div>
+  </section>
+
+  <section class="py-12 lg:py-16 bg-white" aria-labelledby="job-cond-title">
+    <div class="max-w-[1140px] mx-auto px-4 lg:px-6">
+      <h2 id="job-cond-title" class="font-heading font-bold text-2xl lg:text-3xl text-gray-900 mb-6">${s.name}の${k.label}募集条件</h2>
+      <div class="table-scroll-wrapper">
+        ${k.table}
+      </div>
+      <p class="mt-5"><a class="btn-primary" data-cta="job-${kind}-mid" href="${applyHref}">${k.label}に応募する</a></p>
+    </div>
+  </section>
+
+  <section class="py-12 lg:py-16 bg-cream" aria-labelledby="job-place-title">
+    <div class="max-w-[800px] mx-auto px-4 lg:px-6">
+      <p class="sec-label">STORE</p>
+      <h2 id="job-place-title" class="font-heading font-bold text-2xl lg:text-3xl text-gray-900 mb-4">勤務地</h2>
+      <dl class="store-dl">
+        <dt>店舗名</dt><dd>${full}</dd>
+        <dt>住所</dt><dd>${addr}<br><a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="store-dl__map">Googleマップで見る</a></dd>
+        <dt>アクセス</dt><dd>${s.access}</dd>
+        ${s.stations ? `<dt>周辺の駅</dt><dd>${s.stations}${s.stations.includes('徒歩') ? '<br><span class="text-xs text-gray-500">※徒歩時間はGoogleマップの徒歩ルートによる目安</span>' : ''}</dd>` : ''}
+        ${s.titles ? `<dt>取扱タイトル</dt><dd>${s.titles}</dd>` : ''}
+        <dt>募集状況</dt><dd>募集中（${updated} 更新）</dd>
+        <dt>採用ダイヤル</dt><dd><a href="tel:03-4363-7710" class="font-num">03-4363-7710</a>（年中無休 13:00〜20:00）</dd>
+      </dl>
+      <p class="mt-4 text-sm"><a href="store-${s.slug}.html" class="store-dl__map">${s.name}の店舗紹介を見る →</a></p>
+    </div>
+  </section>
+
+  <section class="py-12 lg:py-16 bg-white" aria-labelledby="job-flow-title">
+    <div class="max-w-[800px] mx-auto px-4 lg:px-6 jp-text text-gray-700 leading-relaxed">
+      <h2 id="job-flow-title" class="font-heading font-bold text-2xl lg:text-3xl text-gray-900 mb-4">応募から入社までの流れ</h2>
+      ${flowList}
+      <p class="mt-4 text-sm"><a href="${GUIDE_INTERVIEW}" class="store-dl__map">面接では何を聞かれる？（志望動機・服装・持ち物）→</a></p>
+      <p class="mt-2 text-sm"><a href="jobs.html#faq" class="store-dl__map">よくある質問を見る →</a></p>
+      <p class="mt-2 text-sm"><a href="job-${s.slug}-${k.other}.html" class="store-dl__map">${s.name}の${k.otherLabel}求人を見る →</a></p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sec-cta">
+    <div class="sec-cta-bg" aria-hidden="true"></div>
+    <div class="max-w-[800px] mx-auto px-5 text-center relative z-10">
+      <p class="text-sm font-num tracking-widest text-white/60 mb-4">JOIN OUR TEAM</p>
+      <h2 class="text-2xl lg:text-4xl font-heading font-black text-white mb-4 tracking-wide">${s.name}で、あなたの「好き」を<br>仕事にしよう。</h2>
+      <p class="text-gray-400 text-xs mb-2">お電話でのお問い合わせ・ご応募</p>
+      <a href="tel:03-4363-7710" class="cta-phone font-num">03-4363-7710</a>
+      <p class="text-gray-500 text-xs mb-8">年中無休 / 受付時間 13:00〜20:00</p>
+      <a href="${applyHref}" class="btn-cta-large magnetic-btn cta-shimmer" data-cta="job-${kind}-bottom">
+        応募フォームへ進む
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </a>
+      <p class="text-gray-500 text-xs mt-6">ポケモンカードが好きな方、未経験の方も歓迎いたします。</p>
+    </div>
+  </section>
+
+  </main>
+
+${bodyBottom}
+`
+}
+const jobStores = stores.filter((s) => !s.comingSoon)
+for (const s of jobStores) for (const kind of ['part', 'full']) {
+  writeFileSync(join(ROOT, `job-${s.slug}-${kind}.html`), s.genre ? genreSwap(jobPage(s, kind), s.genre) : jobPage(s, kind))
+}
+console.log(`wrote ${jobStores.length * 2} job pages`)
+
 // sitemap.xml: 店舗 URL を差し替え（<!-- stores --> 〜 <!-- /stores --> の間）
 const today = new Date().toISOString().slice(0, 10)
 const sm = read('sitemap.xml')
 // OPEN 前（comingSoon）の店舗は noindex なので sitemap に載せない
-const block = stores.filter((s) => !s.comingSoon).map((s) => `  <url>\n    <loc>${SITE}store-${s.slug}.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`).join('\n')
+const block = stores.filter((s) => !s.comingSoon).flatMap((s) => [`store-${s.slug}`, `job-${s.slug}-part`, `job-${s.slug}-full`]).map((f) => `  <url>\n    <loc>${SITE}${f}.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`).join('\n')
 const next = sm.includes('<!-- stores -->')
   ? sm.replace(/<!-- stores -->[\s\S]*?<!-- \/stores -->/, `<!-- stores -->\n${block}\n  <!-- /stores -->`)
   : sm.replace('</urlset>', `  <!-- stores -->\n${block}\n  <!-- /stores -->\n</urlset>`)
