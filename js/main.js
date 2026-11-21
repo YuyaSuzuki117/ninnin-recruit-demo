@@ -54,6 +54,8 @@ function attributionLabel(raw) {
   if (tags[0] === 'ninnin_official') return '公式サイト（' + (BANNER[tags[2]] || tags[2] || 'バナー') + '）';
   if (tags[0] === 'x' && tags[1] === 'post') return 'X投稿' + (detail ? '（' + detail + '）' : '');
   if (AI_SOURCES[tags[0]]) return 'AI（' + AI_SOURCES[tags[0]] + '）';
+  // Google の求人検索の「応募」リンクは utm_source=google_jobs_apply を付けてくる（求人票ページ job-*.html が着地先）
+  if (tags[0] === 'google_jobs_apply') return 'Googleしごと検索';
   if (raw === '直接') return '不明（参照元なし）';
   if (raw === '公式サイト/TOP') return '公式サイト（TOPの店舗カード）';
   if (raw === '公式サイト') return '公式サイト（バナー以外）';
@@ -70,6 +72,8 @@ function recruitPageName(path) {
   const file = path.split('/').pop().replace(/\.html$/, '');
   const store = /^store-(.+)$/.exec(file);
   if (store) return (RECRUIT_STORES[store[1]] || store[1]) + 'ページ';
+  const job = /^job-(.+)-(part|full)$/.exec(file);
+  if (job) return (RECRUIT_STORES[job[1]] || job[1]) + 'の求人票（' + (job[2] === 'part' ? 'アルバイト' : '正社員') + '）';
   return { '': 'トップ', index: 'トップ', jobs: '募集要項', interview: 'インタビュー', entry: '応募フォーム' }[file] || file;
 }
 
